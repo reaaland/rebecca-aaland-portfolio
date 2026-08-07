@@ -39,6 +39,7 @@ const skills = [
   "Git & GitHub",
   "Accessibility",
   "Troubleshooting",
+  "Full-stack development · currently learning",
 ] as const;
 
 function Arrow() {
@@ -226,9 +227,11 @@ export default function Home() {
             <p className="eyebrow">04 / Working philosophy</p>
             <h2 id="principle-title">Build. Learn. Improve. Repeat.</h2>
             <p>
-              My portfolio is not proof that I know everything. It is proof
-              that I can learn difficult systems, make useful things, evaluate
-              the result honestly, and keep improving the work.
+              I am currently expanding my full-stack knowledge through FES
+              coursework and hands-on projects such as PawCircle. This
+              portfolio is proof that I can learn difficult systems, make
+              useful things, evaluate the result honestly, and keep improving
+              the work.
             </p>
             <Link className="text-link" href="/about">More about how I work <Arrow /></Link>
           </div>
