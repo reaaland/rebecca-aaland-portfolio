@@ -2119,6 +2119,31 @@ a {
   box-shadow: 0 24px 70px rgba(47, 61, 82, 0.13);
 }
 
+/* These project illustrations intentionally stay dark in both themes. */
+[data-theme="light"] .project-visual .visual-topbar,
+[data-theme="light"] .project-visual .scan-core span,
+[data-theme="light"] .project-visual .scan-core small {
+  color: #91a8c2;
+}
+
+[data-theme="light"] .project-visual .pawcircle-console {
+  background: rgba(5, 8, 15, 0.88);
+  color: #e8f1fb;
+}
+
+[data-theme="light"] .project-visual .console-line span {
+  color: #58adff;
+}
+
+[data-theme="light"] .project-visual .console-line strong,
+[data-theme="light"] .project-visual .scan-core strong {
+  color: #e8f1fb;
+}
+
+[data-theme="light"] .signal-strip {
+  background: rgba(54, 127, 211, 0.055);
+}
+
 [data-theme="light"] .service-grid article {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(231, 237, 246, 0.86));
 }
