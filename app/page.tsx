@@ -10,7 +10,16 @@ const projects = [
     title: "PawCircle Membership",
     summary:
       "I planned, built, launched, and ultimately retired a real local pet-care membership product when the market evidence did not support continuing the paid model.",
-    proof: ["React", "Supabase", "Stripe", "Product ownership"],
+    proof: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "React",
+      "Responsive UI",
+      "Supabase",
+      "Stripe",
+      "Product ownership",
+    ],
     href: "/work/pawcircle",
     visual: "pawcircle",
   },
@@ -20,13 +29,24 @@ const projects = [
     title: "Skinstric",
     summary:
       "A responsive AI skin-analysis flow I implemented from supplied designs, assets, APIs, and phased requirements.",
-    proof: ["Next.js", "TypeScript", "Browser media", "API integration"],
+    proof: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "TypeScript",
+      "Next.js",
+      "Responsive UI",
+      "Browser media",
+      "API integration",
+    ],
     href: "/work/skinstric",
     visual: "skinstric",
   },
 ] as const;
 
 const skills = [
+  "HTML",
+  "CSS",
   "React",
   "Next.js",
   "TypeScript",
@@ -206,7 +226,7 @@ export default function Home() {
               <p>Useful for a development team, an implementation role, or a small business that needs a clearer website.</p>
             </div>
             <div className="service-grid">
-              <article><span>01</span><h3>Frontend development</h3><p>Responsive React and Next.js interfaces, typed components, APIs, states, and careful browser behavior.</p></article>
+              <article><span>01</span><h3>Frontend development</h3><p>Semantic HTML, modern CSS, JavaScript and TypeScript, responsive React and Next.js interfaces, APIs, application states, and careful browser behavior.</p></article>
               <article><span>02</span><h3>Implementation &amp; support</h3><p>Requirements, workflow mapping, testing, troubleshooting, documentation, and clear communication with users.</p></article>
               <article><span>03</span><h3>Focused websites</h3><p>Practical sites that clarify an offer, build credibility, and give visitors an obvious next step.</p></article>
             </div>
