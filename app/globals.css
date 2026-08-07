@@ -2144,6 +2144,19 @@ a {
   background: rgba(54, 127, 211, 0.055);
 }
 
+/* The final contact band stays dark, so its content needs fixed light colors. */
+.contact-section .contact-inner h2 {
+  color: #f4f7fb;
+}
+
+.contact-section .contact-inner > p:not(.eyebrow) {
+  color: #aebdd1;
+}
+
+.contact-section .contact-inner .text-link {
+  color: #e6eef8;
+}
+
 [data-theme="light"] .service-grid article {
   background: linear-gradient(145deg, rgba(255, 255, 255, 0.84), rgba(231, 237, 246, 0.86));
 }
@@ -2242,6 +2255,13 @@ a {
   font-size: clamp(2rem, 3.25vw, 3.25rem);
   line-height: 1.08;
   letter-spacing: -0.045em;
+}
+
+.contact-inner h2 {
+  max-width: 820px;
+  font-size: clamp(2.7rem, 4.25vw, 4.15rem);
+  line-height: 1.04;
+  letter-spacing: -0.052em;
 }
 
 .story-process {
@@ -2481,6 +2501,9 @@ a {
   .plain-cta h2,
   .story-copy h2 {
     font-size: clamp(1.9rem, 8.5vw, 2.55rem);
+  }
+  .contact-inner h2 {
+    font-size: clamp(2.25rem, 10vw, 2.9rem);
   }
   .case-meta { grid-template-columns: 1fr; }
   .case-meta > div { padding: 18px 0; }
