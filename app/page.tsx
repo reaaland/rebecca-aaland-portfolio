@@ -45,21 +45,30 @@ function Arrow() {
   return <span aria-hidden="true">↗</span>;
 }
 
-function SystemMap() {
+function WebpageAssembler() {
   return (
-    <div className="system-map" aria-label="Rebecca's build, learn, improve, repeat working loop">
-      <div className="system-orbit system-orbit-one" aria-hidden="true" />
-      <div className="system-orbit system-orbit-two" aria-hidden="true" />
-      <div className="system-grid" aria-hidden="true" />
-      <div className="system-core">
-        <span>Rebecca Aaland</span>
-        <strong>Clear systems.<br />Human outcomes.</strong>
-        <small>Rochester, MN</small>
+    <div className="page-assembler" aria-label="An interface assembling from a responsive grid">
+      <div className="assembler-grid" aria-hidden="true" />
+      <div className="assembler-window">
+        <div className="assembler-toolbar">
+          <span /><span /><span />
+          <small>responsive-interface.tsx</small>
+        </div>
+        <div className="assembler-layout">
+          <div className="assembler-nav" />
+          <div className="assembler-copy">
+            <span />
+            <strong />
+            <strong />
+            <small />
+            <button tabIndex={-1}>Clear next step</button>
+          </div>
+          <div className="assembler-visual">
+            <i /><i /><i /><i />
+          </div>
+        </div>
       </div>
-      <div className="system-node node-build"><span>01</span><strong>Build</strong></div>
-      <div className="system-node node-learn"><span>02</span><strong>Learn</strong></div>
-      <div className="system-node node-improve"><span>03</span><strong>Improve</strong></div>
-      <div className="system-node node-repeat"><span>04</span><strong>Repeat</strong></div>
+      <p className="assembler-caption"><span>01</span> Structure <b>→</b> interface <b>→</b> useful outcome</p>
     </div>
   );
 }
@@ -75,28 +84,27 @@ export default function Home() {
           <div className="hero-ambient hero-ambient-one" aria-hidden="true" />
           <div className="hero-ambient hero-ambient-two" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="eyebrow hero-eyebrow"><span /> Frontend developer · Web designer · Problem solver</p>
-            <h1 id="hero-title">I build the useful path through <em>complicated problems.</em></h1>
+            <p className="eyebrow hero-eyebrow"><span /> Frontend development · Web design</p>
+            <h1 id="hero-title">Frontend developer and web designer building <em>clear, thoughtful digital experiences.</em></h1>
             <p className="hero-intro">
-              Former science teacher. Business owner. SaaS founder. Now I build
-              thoughtful frontend experiences—and bring the communication,
-              troubleshooting, and persistence the work demands.
+              I create responsive interfaces and practical websites for teams
+              and small businesses—with careful details and an obvious next step.
             </p>
             <div className="hero-actions">
               <a className="button button-primary" href="#work">
-                Explore my work <Arrow />
+                View frontend work <Arrow />
               </a>
               <Link className="button button-secondary" href="/contact">
-                Start a conversation
+                Discuss a website
               </Link>
             </div>
             <div className="hero-status" aria-label="Current availability">
               <span className="status-light" />
-              <p>Open to frontend roles, implementation work, and focused website projects.</p>
+              <p>Available for frontend opportunities and focused website projects.</p>
             </div>
           </div>
 
-          <SystemMap />
+          <WebpageAssembler />
         </section>
 
         <section className="signal-strip" aria-label="Technical skills">
