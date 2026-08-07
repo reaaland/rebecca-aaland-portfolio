@@ -25,12 +25,15 @@ export default function AboutPage() {
         </section>
 
         <section className="story-grid shell">
-          <div className="story-marker">
-            <span>Listen</span>
-            <span>Clarify</span>
-            <span>Build</span>
-            <span>Improve</span>
-          </div>
+          <aside className="story-process" aria-labelledby="story-process-title">
+            <p className="eyebrow" id="story-process-title">How I approach the work</p>
+            <ol>
+              <li><strong>Listen</strong><span>Understand the person, goal, and constraint.</span></li>
+              <li><strong>Clarify</strong><span>Turn uncertainty into a workable next step.</span></li>
+              <li><strong>Build</strong><span>Create the clearest useful version.</span></li>
+              <li><strong>Improve</strong><span>Test, learn, and refine what matters.</span></li>
+            </ol>
+          </aside>
           <div className="story-copy">
             <h2>The common thread is making complicated things usable.</h2>
             <p>
@@ -55,7 +58,7 @@ export default function AboutPage() {
 
         <section className="principles-section">
           <div className="shell">
-            <p className="eyebrow">How I work</p>
+            <p className="eyebrow">Development principles</p>
             <div className="principle-grid">
               <article>
                 <span>01</span>

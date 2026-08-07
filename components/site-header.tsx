@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
   return (
@@ -12,8 +13,9 @@ export function SiteHeader() {
         <Link href="/work">Work</Link>
         <Link href="/services">Services</Link>
         <Link href="/about">About</Link>
+        <ThemeToggle />
         <Link className="nav-cta" href="/contact">
-          Start a conversation <span aria-hidden="true">↗</span>
+          Discuss a website <span aria-hidden="true">↗</span>
         </Link>
       </nav>
     </header>
