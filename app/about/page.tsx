@@ -14,7 +14,7 @@ export default function AboutPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="page-hero shell">
+        <section className="page-hero shell" data-reveal>
           <p className="eyebrow">About Rebecca</p>
           <h1>I learned to solve problems in a few very different places.</h1>
           <p>
@@ -25,7 +25,7 @@ export default function AboutPage() {
           </p>
         </section>
 
-        <section className="story-grid shell">
+        <section className="story-grid shell" data-reveal>
           <aside className="story-process" aria-labelledby="story-process-title">
             <p className="eyebrow" id="story-process-title">How I approach the work</p>
             <ol>
@@ -56,7 +56,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="principles-section">
+        <section className="principles-section" data-reveal>
           <div className="shell">
             <p className="eyebrow">What I bring to the work</p>
             <div className="principle-grid">
@@ -79,7 +79,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="plain-cta shell">
+        <section className="plain-cta shell" data-reveal>
           <p className="eyebrow">Continue</p>
           <h2>See what I have built.</h2>
           <Link className="button button-dark" href="/work">
