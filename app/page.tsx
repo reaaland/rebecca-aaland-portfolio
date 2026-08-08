@@ -6,10 +6,10 @@ import { SiteHeader } from "@/components/site-header";
 const projects = [
   {
     number: "01",
-    label: "Independent product · Honest outcome",
+    label: "Independent product · From idea to launch",
     title: "PawCircle Membership",
     summary:
-      "I planned, built, launched, and ultimately retired a real local pet-care membership product when the market evidence did not support continuing the paid model.",
+      "I planned, built, launched, supported, and later converted a real paid pet-care membership product into an interactive portfolio demo after the paid model no longer made sense.",
     proof: [
       "HTML",
       "CSS",
@@ -25,7 +25,7 @@ const projects = [
   },
   {
     number: "02",
-    label: "FES internship project · Compensation pending",
+    label: "Frontend Simplified internship project",
     title: "Skinstric",
     summary:
       "A responsive AI skin-analysis flow I implemented from supplied designs, assets, APIs, and phased requirements.",
@@ -59,7 +59,7 @@ const skills = [
   "Git & GitHub",
   "Accessibility",
   "Troubleshooting",
-  "Full-stack development · currently learning",
+  "Full-stack projects",
 ] as const;
 
 function Arrow() {
@@ -105,23 +105,25 @@ export default function Home() {
           <div className="hero-ambient hero-ambient-one" aria-hidden="true" />
           <div className="hero-ambient hero-ambient-two" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="eyebrow hero-eyebrow"><span /> Frontend development · Web design</p>
-            <h1 id="hero-title">Frontend developer and web designer building <em>clear, thoughtful digital experiences.</em></h1>
+            <p className="eyebrow hero-eyebrow"><span /> Web design · Frontend development</p>
+            <h1 id="hero-title">Websites and digital solutions built around <em>real needs.</em></h1>
             <p className="hero-intro">
-              I create responsive interfaces and practical websites for teams
-              and small businesses—with careful details and an obvious next step.
+              I build clear, responsive websites and web applications for small
+              businesses and real-world problems. My approach is practical:
+              understand what needs to work, build it well, and keep improving
+              as I learn more.
             </p>
             <div className="hero-actions">
-              <a className="button button-primary" href="#work">
-                View frontend work <Arrow />
-              </a>
-              <Link className="button button-secondary" href="/contact">
-                Discuss a website
+              <Link className="button button-primary" href="/contact">
+                Discuss a website <Arrow />
               </Link>
+              <a className="button button-secondary" href="#work">
+                View my work
+              </a>
             </div>
             <div className="hero-status" aria-label="Current availability">
               <span className="status-light" />
-              <p>Available for frontend opportunities and focused website projects.</p>
+              <p>Available for website projects and frontend opportunities.</p>
             </div>
           </div>
 
@@ -138,16 +140,62 @@ export default function Home() {
           </div>
         </section>
 
+        <section className="services-section" aria-labelledby="services-title" data-reveal>
+          <div className="shell">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">01 / What I can help with</p>
+                <h2 id="services-title">Practical web help for real business needs.</h2>
+              </div>
+              <p>
+                Whether you need a new site, a clearer existing one, or frontend
+                implementation for a larger product, I focus on what needs to
+                work and who needs to use it.
+              </p>
+            </div>
+            <div className="service-grid">
+              <article>
+                <span>01</span>
+                <h3>New websites</h3>
+                <p>
+                  Professional, responsive sites for service businesses that
+                  need a clear online presence and an easy way for customers to
+                  take the next step.
+                </p>
+              </article>
+              <article>
+                <span>02</span>
+                <h3>Website improvements</h3>
+                <p>
+                  Updates to existing sites—mobile fixes, navigation, content
+                  structure, forms, accessibility, and visual consistency—without
+                  rebuilding more than necessary.
+                </p>
+              </article>
+              <article>
+                <span>03</span>
+                <h3>Frontend development</h3>
+                <p>
+                  Responsive React and Next.js interfaces, API-driven features,
+                  application states, and careful implementation from designs or
+                  requirements.
+                </p>
+              </article>
+            </div>
+            <Link className="section-link" href="/services">See services and fit <Arrow /></Link>
+          </div>
+        </section>
+
         <section className="work-section shell" id="work" aria-labelledby="work-title" data-reveal>
           <div className="section-heading">
             <div>
-              <p className="eyebrow">01 / Selected work</p>
-              <h2 id="work-title">Proof with the full story attached.</h2>
+              <p className="eyebrow">02 / Selected work</p>
+              <h2 id="work-title">Real projects, real problem-solving.</h2>
             </div>
             <p>
-              I am not building a highlight reel of perfect endings. These
-              projects show implementation, ownership, judgment, and what I do
-              when the evidence changes the plan.
+              These projects show how I turn ideas and requirements into working
+              interfaces, solve problems as they come up, and keep learning
+              through the build.
             </p>
           </div>
 
@@ -163,7 +211,7 @@ export default function Home() {
                     <div className="pawcircle-console">
                       <div className="console-line"><span>PRODUCT</span><strong>PawCircle Membership</strong></div>
                       <div className="console-line"><span>BUILT</span><strong>Profiles · Messaging · Payments</strong></div>
-                      <div className="console-line"><span>OUTCOME</span><strong>Retired responsibly</strong></div>
+                      <div className="console-line"><span>OUTCOME</span><strong>Launched · Supported · Repurposed</strong></div>
                       <div className="console-pulse" aria-hidden="true" />
                     </div>
                   ) : (
@@ -187,7 +235,7 @@ export default function Home() {
                     {project.proof.map((item) => <li key={item}>{item}</li>)}
                   </ul>
                   <Link className="project-link" href={project.href}>
-                    Read the honest case study <Arrow />
+                    Read the case study <Arrow />
                   </Link>
                 </div>
               </article>
@@ -199,38 +247,21 @@ export default function Home() {
           <div className="shell">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">02 / The path here</p>
-                <h2 id="journey-title">Different chapters. One useful pattern.</h2>
+                <p className="eyebrow">03 / The path here</p>
+                <h2 id="journey-title">Different experience, same problem-solving habit.</h2>
               </div>
               <p>
-                Every chapter taught me to understand a problem, explain it
-                clearly, build a response, and improve it with real feedback.
+                Teaching, running a business, and building software all taught
+                me the same thing: understand the problem, communicate clearly,
+                and keep working until the solution makes sense.
               </p>
             </div>
             <ol className="journey-track">
-              <li><span>01</span><strong>Science teacher</strong><p>Turn complexity into understanding.</p></li>
-              <li><span>02</span><strong>Business owner</strong><p>Listen closely and earn trust.</p></li>
-              <li><span>03</span><strong>SaaS founder</strong><p>Own the entire problem—and the outcome.</p></li>
-              <li><span>04</span><strong>Frontend developer</strong><p>Build clear systems people can actually use.</p></li>
+              <li><span>01</span><strong>Science teacher</strong><p>Make complicated ideas easier to understand.</p></li>
+              <li><span>02</span><strong>Business owner</strong><p>Understand customers and solve practical problems.</p></li>
+              <li><span>03</span><strong>Product builder</strong><p>Take an idea from concept to working software.</p></li>
+              <li><span>04</span><strong>Frontend developer</strong><p>Build responsive interfaces people can actually use.</p></li>
             </ol>
-          </div>
-        </section>
-
-        <section className="services-section" aria-labelledby="services-title" data-reveal>
-          <div className="shell">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">03 / What I bring</p>
-                <h2 id="services-title">Technical execution with human context.</h2>
-              </div>
-              <p>Useful for a development team, an implementation role, or a small business that needs a clearer website.</p>
-            </div>
-            <div className="service-grid">
-              <article><span>01</span><h3>Frontend development</h3><p>Semantic HTML, modern CSS, JavaScript and TypeScript, responsive React and Next.js interfaces, APIs, application states, and careful browser behavior.</p></article>
-              <article><span>02</span><h3>Implementation &amp; support</h3><p>Requirements, workflow mapping, testing, troubleshooting, documentation, and clear communication with users.</p></article>
-              <article><span>03</span><h3>Focused websites</h3><p>Practical sites that clarify an offer, build credibility, and give visitors an obvious next step.</p></article>
-            </div>
-            <Link className="section-link" href="/services">See services and fit <Arrow /></Link>
           </div>
         </section>
 
@@ -247,11 +278,9 @@ export default function Home() {
             <p className="eyebrow">04 / Working philosophy</p>
             <h2 id="principle-title">Build. Learn. Improve. Repeat.</h2>
             <p>
-              I am currently expanding my full-stack knowledge through FES
-              coursework and hands-on projects such as PawCircle. This
-              portfolio is proof that I can learn difficult systems, make
-              useful things, evaluate the result honestly, and keep improving
-              the work.
+              I learn best by building. Each project gives me a new problem to
+              solve, a chance to test what works, and a clearer understanding of
+              what to improve next.
             </p>
             <Link className="text-link" href="/about">More about how I work <Arrow /></Link>
           </div>
@@ -259,9 +288,12 @@ export default function Home() {
 
         <section className="contact-section" id="contact" aria-labelledby="contact-title" data-reveal>
           <div className="shell contact-inner">
-            <p className="eyebrow"><span className="status-light" /> Available for the right next step</p>
-            <h2 id="contact-title">Have a useful problem we should talk about?</h2>
-            <p>Tell me about the role, project, or workflow—and what a good outcome would look like.</p>
+            <p className="eyebrow"><span className="status-light" /> Available for website projects and frontend opportunities</p>
+            <h2 id="contact-title">Have a website or web project you want to improve?</h2>
+            <p>
+              Tell me what you need, what is not working now, or what you are
+              trying to build. We can start there.
+            </p>
             <div className="contact-actions">
               <Link className="button button-primary" href="/contact">Start a conversation <Arrow /></Link>
               <a className="text-link" href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>
