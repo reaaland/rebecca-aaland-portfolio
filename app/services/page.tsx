@@ -68,7 +68,7 @@ export default function ServicesPage() {
                 <h2>{service.title}</h2>
               </div>
               <p className="service-fit">{service.fit}</p>
-              <ul>
+              <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
                 {service.includes.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
