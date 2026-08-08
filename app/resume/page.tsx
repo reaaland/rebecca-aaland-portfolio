@@ -14,7 +14,7 @@ export default function ResumePage() {
     <>
       <SiteHeader />
       <main>
-        <section className="resume-hero shell">
+        <section className="resume-hero shell" data-reveal>
           <div>
             <p className="eyebrow">Résumé overview</p>
             <h1>Rebecca Aaland</h1>
@@ -26,7 +26,7 @@ export default function ResumePage() {
         </section>
 
         <div className="resume-layout shell">
-          <aside>
+          <aside data-reveal>
             <section>
               <h2>Contact</h2>
               <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>
@@ -40,7 +40,7 @@ export default function ResumePage() {
           </aside>
 
           <div className="resume-main">
-            <section>
+            <section data-reveal>
               <p className="eyebrow">Professional summary</p>
               <p className="resume-summary">
                 Frontend developer and web designer with independent
@@ -50,7 +50,7 @@ export default function ResumePage() {
               </p>
             </section>
 
-            <section>
+            <section data-reveal>
               <p className="eyebrow">Selected technical experience</p>
               <article>
                 <h2>PawCircle Membership</h2>
@@ -74,7 +74,7 @@ export default function ResumePage() {
               </article>
             </section>
 
-            <section>
+            <section data-reveal>
               <p className="eyebrow">Transferable strengths</p>
               <ul className="resume-strengths">
                 <li>Explaining technical or unfamiliar information clearly</li>
