@@ -25,7 +25,7 @@ export default function SkinstricCaseStudy() {
       <main>
         <section className="case-hero case-hero-skinstric">
           <div className="skinstric-case-mark" aria-hidden="true" />
-          <div className="shell">
+          <div className="shell" data-reveal>
             <p className="eyebrow">Frontend Simplified internship project</p>
             <h1>Turning supplied designs and requirements into a working browser experience.</h1>
             <p className="case-lede">
@@ -51,7 +51,7 @@ export default function SkinstricCaseStudy() {
         </section>
 
         <section className="case-body shell">
-          <aside className="case-sidebar">
+          <aside className="case-sidebar" data-reveal>
             <p className="eyebrow">Technology</p>
             <ul>
               <li>Next.js &amp; React</li>
@@ -76,7 +76,7 @@ export default function SkinstricCaseStudy() {
           </aside>
 
           <div className="case-narrative">
-            <section>
+            <section data-reveal>
               <p className="eyebrow">01 / The assignment</p>
               <h2>Take an existing design and make the full interaction work.</h2>
               <p>
@@ -87,7 +87,7 @@ export default function SkinstricCaseStudy() {
               </p>
             </section>
 
-            <section>
+            <section data-reveal>
               <p className="eyebrow">02 / The challenge</p>
               <h2>Several browser features had to work together without feeling disconnected.</h2>
               <p>
@@ -99,7 +99,7 @@ export default function SkinstricCaseStudy() {
               </p>
             </section>
 
-            <section>
+            <section data-reveal>
               <p className="eyebrow">03 / What I implemented</p>
               <h2>The technical work behind the experience.</h2>
               <ul className="case-list">
@@ -109,7 +109,7 @@ export default function SkinstricCaseStudy() {
               </ul>
             </section>
 
-            <section className="case-outcome">
+            <section className="case-outcome" data-reveal>
               <p className="eyebrow">04 / What this project shows</p>
               <h2>I can work from someone else&apos;s requirements and turn them into a functioning interface.</h2>
               <p>
@@ -127,7 +127,7 @@ export default function SkinstricCaseStudy() {
           </div>
         </section>
 
-        <section className="next-project shell">
+        <section className="next-project shell" data-reveal>
           <p>Previous case study</p>
           <Link href="/work/pawcircle">PawCircle Membership ↗</Link>
         </section>
