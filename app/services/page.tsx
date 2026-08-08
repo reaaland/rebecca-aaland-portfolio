@@ -50,7 +50,7 @@ export default function ServicesPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="page-hero shell">
+        <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Services</p>
           <h1>Web help built around what you actually need.</h1>
           <p>
@@ -62,7 +62,7 @@ export default function ServicesPage() {
 
         <section className="service-detail-list shell">
           {services.map((service) => (
-            <article key={service.title}>
+            <article key={service.title} data-reveal>
               <div className="service-detail-heading">
                 <span>{service.number}</span>
                 <h2>{service.title}</h2>
@@ -77,7 +77,7 @@ export default function ServicesPage() {
           ))}
         </section>
 
-        <section className="plain-cta shell">
+        <section className="plain-cta shell" data-reveal>
           <p className="eyebrow">A good first step</p>
           <h2>Tell me what you need the site to do.</h2>
           <p>
