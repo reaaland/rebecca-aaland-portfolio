@@ -1,0 +1,14 @@
+/* Small visual fixes and inner-page polish layered after globals.css. */
+
+/* Case-study outcome cards intentionally stay dark in both themes. */
+.case-outcome h2 {
+  color: #f4f7fb;
+}
+
+.case-outcome > p:not(.eyebrow) {
+  color: #aebdd1;
+}
+
+.case-outcome .eyebrow {
+  color: #62b4ff;
+}
