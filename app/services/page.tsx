@@ -6,25 +6,14 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Frontend development, small-business websites, and practical website refreshes from Rebecca Aaland.",
+    "Small-business websites, website improvements, and frontend development from Rebecca Aaland.",
 };
 
 const services = [
   {
     number: "01",
-    title: "Frontend implementation",
-    fit: "For teams with a design or clear product requirements that need careful implementation.",
-    includes: [
-      "Responsive React or Next.js interfaces",
-      "Reusable typed components",
-      "API-driven states and interactions",
-      "Accessibility and mobile behavior review",
-    ],
-  },
-  {
-    number: "02",
-    title: "Small-business websites",
-    fit: "For service businesses that need a credible, focused web presence with a clear next step.",
+    title: "New websites",
+    fit: "For service businesses that need a professional, responsive website with a clear message and an easy next step for customers.",
     includes: [
       "Page structure and message clarification",
       "Responsive custom design and build",
@@ -33,14 +22,25 @@ const services = [
     ],
   },
   {
-    number: "03",
-    title: "Website refreshes",
-    fit: "For existing sites that feel confusing, dated, inconsistent, or difficult to use on a phone.",
+    number: "02",
+    title: "Website improvements",
+    fit: "For existing sites that are hard to use, dated, confusing, or not working well on phones.",
     includes: [
       "Homepage and navigation improvements",
-      "Content hierarchy and call-to-action cleanup",
-      "Mobile, accessibility, and visual consistency fixes",
-      "A prioritized plan when a full rebuild is unnecessary",
+      "Mobile and responsive fixes",
+      "Content, forms, and call-to-action cleanup",
+      "Accessibility and visual consistency improvements",
+    ],
+  },
+  {
+    number: "03",
+    title: "Frontend development",
+    fit: "For teams with a design, feature, or set of requirements that need to become a working interface.",
+    includes: [
+      "Responsive React or Next.js interfaces",
+      "Reusable TypeScript components",
+      "API-driven states and interactions",
+      "Testing, troubleshooting, and browser behavior review",
     ],
   },
 ] as const;
@@ -50,24 +50,25 @@ export default function ServicesPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="page-hero shell">
+        <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Services</p>
-          <h1>Focused help without the agency fog.</h1>
+          <h1>Web help built around what you actually need.</h1>
           <p>
-            I offer practical frontend and website support with clear scope,
-            direct communication, and no promise that outruns the evidence.
+            I work with small businesses and teams on focused website and
+            frontend projects—from new sites and mobile fixes to responsive
+            implementation from an existing design.
           </p>
         </section>
 
         <section className="service-detail-list shell">
           {services.map((service) => (
-            <article key={service.title}>
+            <article key={service.title} data-reveal>
               <div className="service-detail-heading">
                 <span>{service.number}</span>
                 <h2>{service.title}</h2>
               </div>
               <p className="service-fit">{service.fit}</p>
-              <ul>
+              <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
                 {service.includes.map((item) => (
                   <li key={item}>{item}</li>
                 ))}
@@ -76,9 +77,14 @@ export default function ServicesPage() {
           ))}
         </section>
 
-        <section className="plain-cta shell">
+        <section className="plain-cta shell" data-reveal>
           <p className="eyebrow">A good first step</p>
-          <h2>Tell me what is not working and what you need the site to do.</h2>
+          <h2>Tell me what you need the site to do.</h2>
+          <p>
+            You do not need a technical plan before reaching out. Tell me what
+            you are trying to accomplish, what is not working now, or what you
+            wish your website did better.
+          </p>
           <Link className="button button-dark" href="/contact">
             Discuss a website project ↗
           </Link>

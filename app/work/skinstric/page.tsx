@@ -6,16 +6,16 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Skinstric Case Study",
   description:
-    "A typed responsive Next.js skin-analysis flow implemented by Rebecca Aaland from supplied internship requirements.",
+    "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow from supplied Frontend Simplified requirements.",
 };
 
 const implementation = [
   "Responsive landing, intake, scan, results, and demographics routes",
-  "Controlled name and location inputs with string validation",
+  "Controlled name and location inputs with validation",
   "External API requests, local persistence, navigation, and error feedback",
   "Gallery upload with FileReader and Base64 conversion",
-  "Camera permission, video preview, canvas capture, JPEG conversion, and media cleanup",
-  "Demographic ranking, two-decimal confidence display, correction, reset, and confirmation",
+  "Camera permission, live video preview, canvas capture, JPEG conversion, and media cleanup",
+  "Demographic ranking, confidence display, correction, reset, and confirmation flows",
 ];
 
 export default function SkinstricCaseStudy() {
@@ -25,9 +25,9 @@ export default function SkinstricCaseStudy() {
       <main>
         <section className="case-hero case-hero-skinstric">
           <div className="skinstric-case-mark" aria-hidden="true" />
-          <div className="shell">
-            <p className="eyebrow">Frontend internship project · Compensation pending</p>
-            <h1>Turning supplied requirements into a connected browser experience.</h1>
+          <div className="shell" data-reveal>
+            <p className="eyebrow">Frontend Simplified internship project</p>
+            <h1>Turning supplied designs and requirements into a working browser experience.</h1>
             <p className="case-lede">
               I implemented a responsive AI skin-analysis flow using the design,
               assets, APIs, and phased requirements supplied by Frontend
@@ -43,15 +43,15 @@ export default function SkinstricCaseStudy() {
                 <strong>Design · Assets · APIs · Requirements</strong>
               </div>
               <div>
-                <span>Compensation</span>
-                <strong>$200 expected, not confirmed received</strong>
+                <span>My focus</span>
+                <strong>Responsive UI · Data flow · Browser media</strong>
               </div>
             </div>
           </div>
         </section>
 
         <section className="case-body shell">
-          <aside className="case-sidebar">
+          <aside className="case-sidebar" data-reveal>
             <p className="eyebrow">Technology</p>
             <ul>
               <li>Next.js &amp; React</li>
@@ -76,31 +76,32 @@ export default function SkinstricCaseStudy() {
           </aside>
 
           <div className="case-narrative">
-            <section>
-              <p className="eyebrow">01 / Context</p>
-              <h2>Implementation work—not an original product-design claim.</h2>
+            <section data-reveal>
+              <p className="eyebrow">01 / The assignment</p>
+              <h2>Take an existing design and make the full interaction work.</h2>
               <p>
                 Frontend Simplified supplied the visual direction, assets,
                 external APIs, expected behavior, and phased requirements. My
-                responsibility was to translate those inputs into a working,
-                typed, responsive application. This was not direct client work.
+                job was to translate those inputs into a responsive Next.js
+                application and connect the pieces into one working flow.
               </p>
             </section>
 
-            <section>
-              <p className="eyebrow">02 / Challenge</p>
-              <h2>Several browser capabilities had to feel like one flow.</h2>
+            <section data-reveal>
+              <p className="eyebrow">02 / The challenge</p>
+              <h2>Several browser features had to work together without feeling disconnected.</h2>
               <p>
-                The experience connects validated intake data, asynchronous API
-                requests, gallery-to-Base64 image handling, camera permissions,
-                selfie capture, and demographic results that users can review
-                and correct.
+                The project moves from validated intake data into API requests,
+                image upload or camera capture, and demographic results that a
+                user can review and adjust. That meant managing browser
+                permissions, image conversion, application state, navigation,
+                asynchronous feedback, and responsive behavior across the flow.
               </p>
             </section>
 
-            <section>
-              <p className="eyebrow">03 / Implementation</p>
-              <h2>Required behaviors verified in the repository.</h2>
+            <section data-reveal>
+              <p className="eyebrow">03 / What I implemented</p>
+              <h2>The technical work behind the experience.</h2>
               <ul className="case-list">
                 {implementation.map((item) => (
                   <li key={item}>{item}</li>
@@ -108,27 +109,25 @@ export default function SkinstricCaseStudy() {
               </ul>
             </section>
 
-            <section className="case-outcome">
-              <p className="eyebrow">04 / Verification boundary</p>
-              <h2>A strong build with one honest testing gate remaining.</h2>
+            <section className="case-outcome" data-reveal>
+              <p className="eyebrow">04 / What this project shows</p>
+              <h2>I can work from someone else&apos;s requirements and turn them into a functioning interface.</h2>
               <p>
-                The repository passes lint, TypeScript compilation, and a
-                production build. Its public Home, Analysis, Scan, and
-                Demographics routes return successfully. Before calling the
-                flow fully verified, I still need one manual live-browser pass
-                covering the external APIs, upload, camera, selfie, and mobile
-                interactions.
+                Skinstric is different from PawCircle because I did not define
+                the product or visual design. The value of this project is in
+                the implementation: following supplied requirements, working
+                through unfamiliar browser APIs, connecting multiple states and
+                routes, and keeping the experience usable across screen sizes.
               </p>
               <p>
-                The public project also needs a clear facial-image disclosure,
-                stronger upload validation, a project-specific README, and
-                cleanup of placeholder or unused routes.
+                It also gave me practice debugging a more involved user flow
+                instead of building isolated components or a static page.
               </p>
             </section>
           </div>
         </section>
 
-        <section className="next-project shell">
+        <section className="next-project shell" data-reveal>
           <p>Previous case study</p>
           <Link href="/work/pawcircle">PawCircle Membership ↗</Link>
         </section>
