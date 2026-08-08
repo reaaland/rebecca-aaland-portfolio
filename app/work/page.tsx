@@ -14,7 +14,7 @@ export default function WorkPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="page-hero shell">
+        <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Selected work</p>
           <h1>Different projects. Different problems to solve.</h1>
           <p>
@@ -25,7 +25,7 @@ export default function WorkPage() {
         </section>
 
         <section className="work-index shell" aria-label="Case studies">
-          <article className="work-index-card work-index-pawcircle">
+          <article className="work-index-card work-index-pawcircle" data-reveal>
             <div>
               <span>01 / Independent product</span>
               <h2>PawCircle Membership</h2>
@@ -38,7 +38,7 @@ export default function WorkPage() {
             </div>
           </article>
 
-          <article className="work-index-card work-index-skinstric">
+          <article className="work-index-card work-index-skinstric" data-reveal>
             <div>
               <span>02 / Frontend Simplified internship project</span>
               <h2>Skinstric</h2>
