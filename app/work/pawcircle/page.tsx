@@ -24,7 +24,7 @@ export default function PawCircleCaseStudy() {
       <SiteHeader />
       <main>
         <section className="case-hero case-hero-pawcircle">
-          <div className="shell">
+          <div className="shell" data-reveal>
             <p className="eyebrow">Independent product · From idea to launch</p>
             <h1>Taking a local pet-care platform from idea to a live product.</h1>
             <p className="case-lede">
@@ -51,7 +51,7 @@ export default function PawCircleCaseStudy() {
         </section>
 
         <section className="case-body shell">
-          <aside className="case-sidebar">
+          <aside className="case-sidebar" data-reveal>
             <p className="eyebrow">Technology</p>
             <ul>
               <li>React &amp; JavaScript</li>
@@ -76,7 +76,7 @@ export default function PawCircleCaseStudy() {
           </aside>
 
           <div className="case-narrative">
-            <section>
+            <section data-reveal>
               <p className="eyebrow">01 / Why I built it</p>
               <h2>The idea came from my own experience working in pet care.</h2>
               <p>
@@ -87,7 +87,7 @@ export default function PawCircleCaseStudy() {
               </p>
             </section>
 
-            <section>
+            <section data-reveal>
               <p className="eyebrow">02 / What I built</p>
               <h2>A full-stack product, not just a landing page.</h2>
               <p>
@@ -99,7 +99,7 @@ export default function PawCircleCaseStudy() {
               </p>
             </section>
 
-            <section>
+            <section data-reveal>
               <p className="eyebrow">03 / Implementation &amp; problem-solving</p>
               <h2>Building it also meant supporting it when real problems appeared.</h2>
               <ul className="case-list">
@@ -109,7 +109,7 @@ export default function PawCircleCaseStudy() {
               </ul>
             </section>
 
-            <section className="case-outcome">
+            <section className="case-outcome" data-reveal>
               <p className="eyebrow">04 / What happened after launch</p>
               <h2>The product worked. The paid model needed stronger differentiation.</h2>
               <p>
@@ -129,7 +129,7 @@ export default function PawCircleCaseStudy() {
           </div>
         </section>
 
-        <section className="next-project shell">
+        <section className="next-project shell" data-reveal>
           <p>Next case study</p>
           <Link href="/work/skinstric">Skinstric ↗</Link>
         </section>
