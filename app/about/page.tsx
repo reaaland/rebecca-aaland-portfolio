@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "Rebecca Aaland is a frontend developer and web designer with a background in helping people understand difficult things.",
+    "About Rebecca Aaland, a web developer and business owner with a background in teaching, problem-solving, and building practical digital products.",
 };
 
 export default function AboutPage() {
@@ -16,11 +16,12 @@ export default function AboutPage() {
       <main>
         <section className="page-hero shell">
           <p className="eyebrow">About Rebecca</p>
-          <h1>I came to technology through people, problems, and persistence.</h1>
+          <h1>I learned to solve problems in a few very different places.</h1>
           <p>
-            My path includes customer support, training, technical writing,
-            education, business ownership, and now frontend development and web
-            design.
+            Before I was building websites and web applications, I was a science
+            teacher and later a small-business owner. Those experiences taught
+            me how to listen, explain complicated things clearly, and figure out
+            what someone actually needs.
           </p>
         </section>
 
@@ -28,52 +29,51 @@ export default function AboutPage() {
           <aside className="story-process" aria-labelledby="story-process-title">
             <p className="eyebrow" id="story-process-title">How I approach the work</p>
             <ol>
-              <li><strong>Listen</strong><span>Understand the person, goal, and constraint.</span></li>
-              <li><strong>Clarify</strong><span>Turn uncertainty into a workable next step.</span></li>
-              <li><strong>Build</strong><span>Create the clearest useful version.</span></li>
-              <li><strong>Improve</strong><span>Test, learn, and refine what matters.</span></li>
+              <li><strong>Understand</strong><span>Start with what needs to happen and who it is for.</span></li>
+              <li><strong>Simplify</strong><span>Break a complicated problem into manageable pieces.</span></li>
+              <li><strong>Build</strong><span>Turn the plan into something clear and usable.</span></li>
+              <li><strong>Improve</strong><span>Test it, fix what does not work, and keep learning.</span></li>
             </ol>
           </aside>
           <div className="story-copy">
-            <h2>The common thread is making complicated things usable.</h2>
+            <h2>The work changed. The way I solve problems did not.</h2>
             <p>
-              Working directly with customers and learners taught me to notice
-              where confusion begins. Technical writing taught me to organize
-              information so someone else can act on it. Business ownership
-              taught me that a working product and a working business are not
-              the same thing.
+              Teaching taught me to notice when something was not making sense
+              and find another way to explain it. Running a business taught me
+              to think about customers, trust, time, money, and what actually
+              helps.
             </p>
             <p>
-              I bring those lessons into development. I ask what the interface
-              needs to help someone understand, what state might fail, and what
-              the honest next step is when reality does not match the original
-              plan.
+              Development gave me another way to solve those kinds of problems.
+              I now build responsive websites and web applications, and I keep
+              growing through Frontend Simplified work, independent projects,
+              and the increasingly complex things I choose to build next.
             </p>
             <blockquote>
-              Good work is not only polished. It is understandable,
-              supportable, and truthful about what it is.
+              I like building things that have a reason to exist and are easier
+              for people to use when I am done.
             </blockquote>
           </div>
         </section>
 
         <section className="principles-section">
           <div className="shell">
-            <p className="eyebrow">Development principles</p>
+            <p className="eyebrow">What I bring to the work</p>
             <div className="principle-grid">
               <article>
                 <span>01</span>
-                <h2>Start with the real problem.</h2>
-                <p>Clarity about the goal prevents decoration from becoming the strategy.</p>
+                <h2>Understand before building.</h2>
+                <p>A good solution starts with knowing what the person or business is actually trying to accomplish.</p>
               </article>
               <article>
                 <span>02</span>
-                <h2>Make states visible.</h2>
-                <p>Loading, errors, empty results, and mobile behavior deserve design attention too.</p>
+                <h2>Make it clear and usable.</h2>
+                <p>A feature is not very useful if people cannot understand it, find it, or use it comfortably on their phone.</p>
               </article>
               <article>
                 <span>03</span>
-                <h2>Say what the work actually proves.</h2>
-                <p>Specific, supportable claims build more trust than a polished exaggeration.</p>
+                <h2>Keep learning and improving.</h2>
+                <p>I test, troubleshoot, learn from what happens, and make the next version better.</p>
               </article>
             </div>
           </div>
@@ -81,7 +81,7 @@ export default function AboutPage() {
 
         <section className="plain-cta shell">
           <p className="eyebrow">Continue</p>
-          <h2>See the work behind those principles.</h2>
+          <h2>See what I have built.</h2>
           <Link className="button button-dark" href="/work">
             View selected work ↗
           </Link>
