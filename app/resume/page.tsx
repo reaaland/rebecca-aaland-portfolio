@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 
 export const metadata: Metadata = {
   title: "Résumé",
   description:
-    "A concise professional overview of Rebecca Aaland's frontend, product, and communication experience.",
+    "Rebecca Aaland's web and frontend development résumé, including PawCircle, Frontend Simplified project work, and earlier communication and technical experience.",
 };
 
 export default function ResumePage() {
@@ -18,11 +17,11 @@ export default function ResumePage() {
           <div>
             <p className="eyebrow">Résumé overview</p>
             <h1>Rebecca Aaland</h1>
-            <p>Frontend Developer &amp; Web Designer</p>
+            <p>Web Developer · Frontend Developer · Technical Problem Solver</p>
           </div>
-          <Link className="button button-dark" href="/contact">
-            Request the full résumé ↗
-          </Link>
+          <a className="button button-dark" href="/resume.pdf">
+            Download résumé PDF ↓
+          </a>
         </section>
 
         <div className="resume-layout shell">
@@ -35,7 +34,11 @@ export default function ResumePage() {
             <section>
               <h2>Core tools</h2>
               <p>React · Next.js · TypeScript · JavaScript · HTML · CSS · Tailwind CSS</p>
-              <p>Supabase · PostgreSQL · Firebase · Stripe · Git · GitHub · Vercel</p>
+              <p>REST APIs · Supabase · PostgreSQL · Firebase · Stripe · Git · GitHub · Vercel</p>
+            </section>
+            <section>
+              <h2>Background</h2>
+              <p>Business ownership · Teaching · Tier 1 technical support · Technical writing</p>
             </section>
           </aside>
 
@@ -43,45 +46,56 @@ export default function ResumePage() {
             <section data-reveal>
               <p className="eyebrow">Professional summary</p>
               <p className="resume-summary">
-                Frontend developer and web designer with independent
-                product-development experience, modern internship
-                implementation work, and a background in customer support,
-                training, technical writing, education, and business ownership.
+                Frontend developer and web designer with hands-on experience
+                building and launching responsive web applications, implementing
+                supplied designs and requirements, and connecting interfaces to
+                APIs, authentication, databases, payments, and browser media.
               </p>
             </section>
 
             <section data-reveal>
-              <p className="eyebrow">Selected technical experience</p>
+              <p className="eyebrow">Selected development work</p>
               <article>
                 <h2>PawCircle Membership</h2>
                 <span>Founder · Product owner · Developer</span>
                 <p>
-                  Planned and built a production React application with
-                  authentication, profiles, messaging, role-based behavior,
-                  Supabase data, and Stripe workflows. Retired the paid product
-                  responsibly and converted it into a fictional demonstration.
+                  Planned, designed, built, and launched a responsive React
+                  application with authentication, role-based profiles, local
+                  discovery, privacy controls, messaging, Supabase/PostgreSQL,
+                  and Stripe. The closed paid product is now preserved as an
+                  interactive portfolio demo.
                 </p>
               </article>
               <article>
                 <h2>Skinstric</h2>
                 <span>Frontend Simplified internship project</span>
                 <p>
-                  Implemented a typed responsive Next.js flow spanning form
-                  validation, API integration, Base64 upload, camera capture,
-                  and interactive demographic results from supplied project
-                  requirements.
+                  Implemented a responsive Next.js and TypeScript skin-analysis
+                  flow from supplied designs, assets, APIs, and requirements,
+                  including validation, image upload, camera capture, and
+                  interactive demographic results.
+                </p>
+              </article>
+              <article>
+                <h2>Ultraverse NFT Marketplace</h2>
+                <span>Frontend Simplified internship project</span>
+                <p>
+                  Implemented API-driven React marketplace sections with loading
+                  skeletons, responsive carousels, countdown timers,
+                  sorting/filtering, load-more behavior, and routed author and
+                  item-detail views.
                 </p>
               </article>
             </section>
 
             <section data-reveal>
-              <p className="eyebrow">Transferable strengths</p>
+              <p className="eyebrow">What I bring to a team</p>
               <ul className="resume-strengths">
-                <li>Explaining technical or unfamiliar information clearly</li>
+                <li>Turning requirements into clear, usable interfaces</li>
                 <li>Troubleshooting across user experience and system behavior</li>
-                <li>Documenting decisions, processes, and support steps</li>
+                <li>Explaining technical or unfamiliar information clearly</li>
                 <li>Working directly with customers, learners, and stakeholders</li>
-                <li>Owning outcomes and changing direction when evidence demands it</li>
+                <li>Testing, learning, and improving when something does not work as expected</li>
               </ul>
             </section>
           </div>
