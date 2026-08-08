@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Selected Work",
   description:
-    "Evidence-backed case studies from Rebecca Aaland, frontend developer and web designer.",
+    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership and Skinstric.",
 };
 
 export default function WorkPage() {
@@ -16,11 +16,11 @@ export default function WorkPage() {
       <main>
         <section className="page-hero shell">
           <p className="eyebrow">Selected work</p>
-          <h1>Evidence first. Story second. No inflated claims.</h1>
+          <h1>Different projects. Different problems to solve.</h1>
           <p>
-            These projects show different kinds of work: an independently
-            owned product and a frontend implementation completed from supplied
-            internship requirements.
+            PawCircle shows what I learned taking my own product from idea to
+            launch. Skinstric shows how I work from supplied designs,
+            requirements, and APIs to build a working frontend experience.
           </p>
         </section>
 
@@ -30,8 +30,9 @@ export default function WorkPage() {
               <span>01 / Independent product</span>
               <h2>PawCircle Membership</h2>
               <p>
-                Building, testing, and responsibly repositioning a local
-                pet-care platform.
+                Taking a local pet-care membership product from idea through
+                development, launch, production troubleshooting, and its current
+                portfolio-demo form.
               </p>
               <Link href="/work/pawcircle">Read the case study ↗</Link>
             </div>
@@ -39,26 +40,16 @@ export default function WorkPage() {
 
           <article className="work-index-card work-index-skinstric">
             <div>
-              <span>02 / Frontend internship project</span>
+              <span>02 / Frontend Simplified internship project</span>
               <h2>Skinstric</h2>
               <p>
-                Implementing a multi-step AI skin-analysis experience from
-                supplied requirements.
+                Turning supplied designs, APIs, and phased requirements into a
+                responsive multi-step skin-analysis experience.
               </p>
               <Link href="/work/skinstric">Read the case study ↗</Link>
             </div>
           </article>
         </section>
-
-        <aside className="work-hold-note shell">
-          <span>Why only two?</span>
-          <p>
-            Summarist contains meaningful implementation work, but it is not
-            featured until its lint errors and required missing flows are
-            resolved. Two honest case studies are stronger than three padded
-            ones.
-          </p>
-        </aside>
       </main>
       <SiteFooter />
     </>
