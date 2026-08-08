@@ -37,16 +37,16 @@ function buildResumePdf() {
   }
 
   function bullet(y: number, lines: string[]) {
-    text(58, y, 8.6, "-", "F1", black);
+    text(58, y, 8.8, "-", "F1", black);
     lines.forEach((value, index) =>
-      text(70, y - index * 10.5, 8.6, value, "F1", black),
+      text(70, y - index * 11.5, 8.8, value, "F1", black),
     );
-    return y - lines.length * 10.5;
+    return y - lines.length * 11.5;
   }
 
   function heading(y: number, value: string) {
     text(54, y, 10.2, value.toUpperCase(), "F2", blue);
-    return y - 14;
+    return y - 16;
   }
 
   text(183, 750, 20, "REBECCA AALAND", "F2", navy);
@@ -74,87 +74,87 @@ function buildResumePdf() {
     "F1",
     gray,
   );
-  line(54, 691, 558, 691, 0.7);
+  line(54, 687, 558, 687, 0.7);
 
-  let y = 676;
+  let y = 672;
   y = heading(y, "Professional Summary");
   text(
     54,
     y,
-    8.8,
+    9,
     "Frontend developer and web designer with hands-on experience building and launching responsive web applications,",
   );
-  y -= 10.5;
+  y -= 12;
   text(
     54,
     y,
-    8.8,
+    9,
     "implementing supplied designs and requirements, and integrating APIs, authentication, databases, payments, and browser",
   );
-  y -= 10.5;
+  y -= 12;
   text(
     54,
     y,
-    8.8,
+    9,
     "media. Former science teacher and small-business owner with earlier Tier 1 technical support and technical writing",
   );
-  y -= 10.5;
+  y -= 12;
   text(
     54,
     y,
-    8.8,
+    9,
     "experience, bringing clear communication, customer perspective, and practical problem-solving to technical work.",
   );
-  y -= 16;
+  y -= 18;
 
   y = heading(y, "Technical Skills");
   text(
     54,
     y,
-    8.7,
+    8.9,
     "Frontend: HTML5, CSS3, JavaScript, TypeScript, React, Next.js, Tailwind CSS, responsive UI, accessibility",
   );
-  y -= 10.5;
+  y -= 11.5;
   text(
     54,
     y,
-    8.7,
+    8.9,
     "Data & integrations: REST APIs, Supabase, PostgreSQL, Firebase, Stripe, authentication/authorization",
   );
-  y -= 10.5;
+  y -= 11.5;
   text(
     54,
     y,
-    8.7,
+    8.9,
     "Workflow: Git, GitHub, Vercel, debugging, functional testing, AI-assisted development",
   );
-  y -= 16;
+  y -= 18;
 
   y = heading(y, "Selected Development Work");
-  text(54, y, 9.2, "PawCircle Membership", "F2", navy);
+  text(54, y, 9.4, "PawCircle Membership", "F2", navy);
   text(
     167,
     y,
-    8.1,
+    8.2,
     "React, JavaScript, Supabase/PostgreSQL, Stripe, Vercel",
     "F1",
     gray,
   );
-  y -= 11;
+  y -= 13;
   y = bullet(y, [
     "Planned, designed, built, and launched a responsive pet-care membership application with authentication, protected",
     "areas, role-based profiles, local discovery, privacy controls, introductory messaging, and payment workflows.",
   ]);
-  y = bullet(y - 1, [
+  y = bullet(y - 4, [
     "Troubleshot production issues across registration, routing, profiles, messaging notifications, data, and payments;",
     "later converted the closed paid product into a fictional interactive portfolio demo.",
   ]);
-  y -= 2;
+  y -= 5;
 
   text(
     54,
     y,
-    9.2,
+    9.4,
     "Skinstric - Frontend Simplified Internship Project",
     "F2",
     navy,
@@ -162,99 +162,99 @@ function buildResumePdf() {
   text(
     294,
     y,
-    8.1,
+    8.2,
     "Next.js, React, TypeScript, Tailwind CSS, Browser Media APIs",
     "F1",
     gray,
   );
-  y -= 11;
+  y -= 13;
   y = bullet(y, [
     "Implemented a responsive multi-step skin-analysis flow from supplied designs, assets, APIs, and phased requirements.",
   ]);
-  y = bullet(y - 1, [
+  y = bullet(y - 4, [
     "Built validated inputs, asynchronous API states, gallery upload/Base64 conversion, camera permission and capture flows,",
     "and interactive demographic results with correction/reset behavior.",
   ]);
-  y -= 2;
+  y -= 5;
 
   text(
     54,
     y,
-    9.2,
+    9.4,
     "Ultraverse NFT Marketplace - Frontend Simplified Internship Project",
     "F2",
     navy,
   );
-  y -= 10.5;
+  y -= 11.5;
   text(
     54,
     y,
-    8.1,
+    8.2,
     "React, JavaScript, Axios, React Router, react-slick",
     "F1",
     gray,
   );
-  y -= 11;
+  y -= 13;
   y = bullet(y, [
     "Implemented API-driven marketplace sections with loading skeletons, responsive carousels, live countdowns,",
     "sorting/filtering, incremental load-more behavior, and routed author/item detail views.",
   ]);
-  y -= 2;
+  y -= 7;
 
   y = heading(y, "Professional Experience");
   text(
     54,
     y,
-    9.1,
+    9.3,
     "Founder & Owner - PawCircle LLC / Bow Wows & Meows Pet Services",
     "F2",
     navy,
   );
-  text(394, y, 8.1, "Oct 2023-Present", "F1", gray);
-  y -= 11;
+  text(394, y, 8.2, "Oct 2023-Present", "F1", gray);
+  y -= 13;
   y = bullet(y, [
     "Built and operated a service business with approximately 95% repeat business, managing client communication,",
     "scheduling, changing requirements, problem resolution, and day-to-day operations.",
   ]);
-  y -= 2;
+  y -= 6;
 
   text(
     54,
     y,
-    9.1,
+    9.3,
     "Science Teacher - Rochester Public Schools & Adrian Public Schools",
     "F2",
     navy,
   );
-  text(391, y, 8.1, "2012-2023", "F1", gray);
-  y -= 11;
+  text(391, y, 8.2, "2012-2023", "F1", gray);
+  y -= 13;
   y = bullet(y, [
     "Explained complex concepts to varied audiences, created curriculum and training materials, managed concurrent",
     "projects and deadlines, and adjusted approaches when people or processes were not working as expected.",
   ]);
-  y -= 2;
+  y -= 7;
 
   y = heading(y, "Education & Development");
   text(
     54,
     y,
-    8.9,
+    9.1,
     "Frontend Simplified - Frontend Development Program  |  2026-Present",
     "F2",
     navy,
   );
-  y -= 10.5;
+  y -= 12;
   text(
     54,
     y,
-    8.6,
+    8.8,
     "B.S., Elementary Education, Summa Cum Laude - St. Cloud State University",
   );
-  y -= 10.5;
+  y -= 12;
   text(
     54,
     y,
-    8.6,
+    8.8,
     "M.S., Women's Studies; B.S., Sociology & Women's Studies - Minnesota State University, Mankato",
   );
 
