@@ -14,7 +14,7 @@ export default function ContactPage() {
     <>
       <SiteHeader />
       <main>
-        <section className="contact-page shell">
+        <section className="contact-page shell" data-reveal>
           <div className="contact-page-intro">
             <p className="eyebrow">Contact</p>
             <h1>Start with the problem, role, or project.</h1>
