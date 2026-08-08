@@ -106,7 +106,7 @@ export default function Home() {
           <div className="hero-ambient hero-ambient-two" aria-hidden="true" />
           <div className="hero-copy">
             <p className="eyebrow hero-eyebrow"><span /> Web design · Frontend development</p>
-            <h1 id="hero-title">Websites and digital solutions built around <em>real needs.</em></h1>
+            <h1 id="hero-title">Websites and digital solutions built to solve <em>practical problems.</em></h1>
             <p className="hero-intro">
               I build clear, responsive websites and web applications for small
               businesses and real-world problems. My approach is practical:
