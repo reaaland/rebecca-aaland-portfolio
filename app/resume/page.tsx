@@ -40,6 +40,13 @@ export default function ResumePage() {
               <h2>Background</h2>
               <p>Business ownership · Teaching · Tier 1 technical support · Technical writing</p>
             </section>
+            <section>
+              <h2>Education</h2>
+              <p>Frontend Simplified · Frontend Development Program · 2026–Present</p>
+              <p>B.S., Elementary Education · St. Cloud State University</p>
+              <p>M.S., Women&apos;s Studies · Minnesota State University, Mankato</p>
+              <p>B.S., Sociology &amp; Women&apos;s Studies · Minnesota State University, Mankato · 1990–1995</p>
+            </section>
           </aside>
 
           <div className="resume-main">
