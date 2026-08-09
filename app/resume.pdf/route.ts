@@ -39,9 +39,9 @@ function buildResumePdf() {
   function paragraph(
     y: number,
     lines: string[],
-    size = 10.6,
+    size = 9.7,
     x = 54,
-    lineHeight = 12.5,
+    lineHeight = 11.5,
     font = "F1",
     color = black,
   ) {
@@ -51,7 +51,7 @@ function buildResumePdf() {
     return y - lines.length * lineHeight;
   }
 
-  function bullet(y: number, lines: string[], size = 10.4, lineHeight = 12.3) {
+  function bullet(y: number, lines: string[], size = 9.6, lineHeight = 11.4) {
     text(58, y, size, "-", "F1", black);
     lines.forEach((value, index) =>
       text(70, y - index * lineHeight, size, value, "F1", black),
@@ -60,138 +60,124 @@ function buildResumePdf() {
   }
 
   function heading(y: number, value: string) {
-    text(54, y, 12, value.toUpperCase(), "F2", blue);
-    return y - 16;
+    text(54, y, 11.3, value.toUpperCase(), "F2", blue);
+    return y - 15;
   }
 
-  text(180, 750, 20, "REBECCA AALAND", "F2", navy);
+  text(193, 753, 20, "REBECCA AALAND", "F2", navy);
   text(
-    118,
-    731,
-    11.3,
-    "Web Developer  |  Frontend Developer  |  Technical Problem Solver",
+    125,
+    733,
+    11.2,
+    "Frontend Developer  |  React  |  JavaScript  |  Next.js  |  Supabase",
     "F2",
     blue,
   );
   text(
-    77,
-    713,
-    9.5,
+    73,
+    714,
+    9.3,
     "Rochester, Minnesota  |  Open to remote work  |  (507) 990-4627  |  reaaland@gmail.com",
     "F1",
     gray,
   );
   text(
-    155,
-    698,
-    9.2,
+    151,
+    699,
+    9.1,
     "rebeccaiaaland.com  |  github.com/reaaland  |  linkedin.com/in/rebecca-aaland-494169411",
     "F1",
     gray,
   );
-  line(54, 686, 558, 686, 0.7);
+  line(54, 687, 558, 687, 0.7);
 
   let y = 670;
+
   y = heading(y, "Professional Summary");
-  y = paragraph(
-    y,
-    [
-      "Frontend developer and web designer with hands-on experience building and launching responsive",
-      "web applications, implementing supplied designs and requirements, and integrating APIs, authentication,",
-      "databases, payments, and browser media. Former science teacher and small-business owner with earlier",
-      "Tier 1 technical support and technical writing experience, bringing clear communication, customer",
-      "perspective, and practical problem-solving to technical work.",
-    ],
-    10.5,
-    54,
-    12.2,
-  );
-  y -= 7;
+  y = paragraph(y, [
+    "Frontend developer with hands-on experience building and launching responsive web applications using React,",
+    "JavaScript, Next.js, Supabase, and modern web tools. Experienced with API integration, authentication,",
+    "databases, payments, responsive interfaces, and troubleshooting production issues. Background in education,",
+    "small-business ownership, technical writing, and customer support with a focus on clear communication and",
+    "practical problem-solving.",
+  ]);
+  y -= 5;
 
   y = heading(y, "Technical Skills");
-  y = paragraph(
-    y,
-    [
-      "Frontend: HTML5, CSS3, JavaScript, TypeScript, React, Next.js, Tailwind CSS, responsive UI, accessibility",
-      "Data & integrations: REST APIs, Supabase, PostgreSQL, Firebase, Stripe, authentication/authorization",
-      "Workflow: Git, GitHub, Vercel, debugging, functional testing, AI-assisted development",
-    ],
-    10.2,
-    54,
-    12,
-  );
-  y -= 7;
-
-  y = heading(y, "Selected Development Work");
-  text(54, y, 11.5, "PawCircle Membership", "F2", navy);
-  y -= 14;
-  text(54, y, 9.7, "React, JavaScript, Supabase/PostgreSQL, Stripe, Vercel", "F1", gray);
-  y -= 13;
-  y = bullet(y, [
-    "Planned, designed, built, and launched a responsive pet-care membership application with authentication,",
-    "protected areas, role-based profiles, local discovery, privacy controls, introductory messaging, and",
-    "payment workflows.",
-  ]);
-  y -= 3;
-  y = bullet(y, [
-    "Troubleshot production issues across registration, routing, profiles, messaging notifications, data, and",
-    "payments; later converted the closed paid product into a fictional interactive portfolio demo.",
-  ]);
-  y -= 6;
-
-  text(54, y, 11.5, "Skinstric - Frontend Simplified Internship Project", "F2", navy);
-  y -= 14;
-  text(54, y, 9.7, "Next.js, React, TypeScript, Tailwind CSS, Browser Media APIs", "F1", gray);
-  y -= 13;
-  y = bullet(y, [
-    "Implemented a responsive multi-step skin-analysis flow from supplied designs, assets, APIs, and phased",
-    "requirements.",
-  ]);
-  y -= 3;
-  y = bullet(y, [
-    "Built validated inputs, asynchronous API states, gallery upload/Base64 conversion, camera permission",
-    "and capture flows, and interactive demographic results with correction/reset behavior.",
-  ]);
-  y -= 6;
-
-  text(54, y, 11.5, "Ultraverse NFT Marketplace - Frontend Simplified Internship Project", "F2", navy);
-  y -= 14;
-  text(54, y, 9.7, "React, JavaScript, Axios, React Router, react-slick", "F1", gray);
-  y -= 13;
-  y = bullet(y, [
-    "Implemented API-driven marketplace sections with loading skeletons, responsive carousels, live countdowns,",
-    "sorting/filtering, incremental load-more behavior, and routed author/item detail views.",
-  ]);
-  y -= 7;
+  y = paragraph(y, [
+    "Programming: JavaScript, TypeScript, HTML5, CSS3",
+    "Frameworks & technologies: React, Next.js, Tailwind CSS, Supabase, PostgreSQL, REST APIs",
+    "Tools & platforms: Git, GitHub, Vercel, Vite, Stripe, Figma, VS Code",
+  ], 9.5, 54, 11.2);
+  y -= 5;
 
   y = heading(y, "Professional Experience");
-  text(54, y, 11.2, "Founder & Owner - PawCircle LLC / Bow Wows & Meows Pet Services", "F2", navy);
-  text(436, y, 9.4, "Oct 2023-Present", "F1", gray);
-  y -= 14;
+  text(54, y, 10.8, "Founder & Owner - PawCircle LLC", "F2", navy);
+  text(446, y, 9.2, "Oct 2023-Present", "F1", gray);
+  y -= 13;
   y = bullet(y, [
-    "Built and operated a service business with approximately 95% repeat business, managing client",
-    "communication, scheduling, changing requirements, problem resolution, and day-to-day operations.",
+    "Founded and operate an independent pet-care business with approximately 95% repeat business through",
+    "dependable service, referrals, and long-term client relationships.",
   ]);
-  y -= 6;
-
-  text(54, y, 11.2, "Science Teacher - Rochester Public Schools & Adrian Public Schools", "F2", navy);
-  text(443, y, 9.4, "2012-2023", "F1", gray);
-  y -= 14;
+  y -= 2;
   y = bullet(y, [
-    "Explained complex concepts to varied audiences, created curriculum and training materials, managed",
-    "concurrent projects and deadlines, and adjusted approaches when people or processes were not working",
-    "as expected.",
+    "Designed, built, launched, and maintained PawCircle Membership, a React application with authentication,",
+    "protected areas, role-based profiles, local discovery, messaging, privacy controls, and Stripe payments.",
   ]);
-  y -= 7;
+  y -= 2;
+  y = bullet(y, [
+    "Troubleshot production issues across registration, routing, profiles, notifications, data, and payments;",
+    "the closed paid membership product is now maintained as an interactive portfolio demonstration.",
+  ]);
+  y -= 5;
 
-  y = heading(y, "Education & Development");
-  text(54, y, 10.8, "Frontend Simplified - Frontend Development Program  |  2026-Present", "F2", navy);
+  text(54, y, 10.8, "Science Teacher - Rochester Public Schools & Adrian Public Schools", "F2", navy);
+  text(455, y, 9.2, "2012-2023", "F1", gray);
   y -= 13;
-  text(54, y, 10.5, "B.S., Elementary Education, Summa Cum Laude - St. Cloud State University");
+  y = bullet(y, [
+    "Explained complex scientific and technical concepts to varied audiences, created curriculum and training",
+    "materials, managed concurrent projects and deadlines, and adjusted approaches based on results.",
+  ]);
+  y -= 5;
+
+  text(54, y, 10.8, "Technical Writer - TransCore", "F2", navy);
+  text(461, y, 9.2, "2000-2002", "F1", gray);
   y -= 13;
-  text(54, y, 10.5, "M.S., Women's Studies - Minnesota State University, Mankato");
+  y = bullet(y, [
+    "Edited, formatted, distributed, and maintained technical documentation supporting engineering teams and",
+    "operational workflows while keeping technical information accurate, organized, and accessible.",
+  ]);
+  y -= 5;
+
+  y = heading(y, "Selected Development Work");
+  text(54, y, 10.8, "PawCircle Membership", "F2", navy);
   y -= 13;
-  text(54, y, 10.5, "B.S., Sociology & Women's Studies - Minnesota State University, Mankato | 1990-1995");
+  text(54, y, 9.2, "React, JavaScript, Supabase/PostgreSQL, Stripe, Vercel", "F1", gray);
+  y -= 12;
+  y = bullet(y, [
+    "Built a responsive membership application with three role-based profile paths, protected routes, local",
+    "discovery, privacy controls, introductory messaging, and payment workflows.",
+  ]);
+  y -= 4;
+
+  text(54, y, 10.8, "Ultraverse NFT Marketplace", "F2", navy);
+  y -= 13;
+  text(54, y, 9.2, "React, JavaScript, Axios, React Router, react-slick", "F1", gray);
+  y -= 12;
+  y = bullet(y, [
+    "Built API-driven marketplace experiences with loading skeletons, live countdowns, filtering and sorting,",
+    "incremental load-more behavior, routed detail views, and responsive carousels adapting 4 to 2 to 1 cards.",
+  ]);
+  y -= 5;
+
+  y = heading(y, "Education");
+  text(54, y, 9.8, "Frontend Simplified - Frontend Development Program  |  2026-Present", "F2", navy);
+  y -= 12;
+  text(54, y, 9.5, "B.S., Elementary Education, Summa Cum Laude - St. Cloud State University");
+  y -= 11;
+  text(54, y, 9.5, "M.S., Women's Studies - Minnesota State University, Mankato");
+  y -= 11;
+  text(54, y, 9.5, "B.S., Sociology & Women's Studies - Minnesota State University, Mankato");
 
   const stream = `${commands.join("\n")}\n`;
   const objects: string[] = [];
@@ -201,8 +187,7 @@ function buildResumePdf() {
     "<< /Type /Page /Parent 2 0 R /MediaBox [0 0 612 792] /Resources << /Font << /F1 5 0 R /F2 6 0 R >> >> /Contents 4 0 R >>";
   objects[4] = `<< /Length ${stream.length} >>\nstream\n${stream}endstream`;
   objects[5] = "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>";
-  objects[6] =
-    "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>";
+  objects[6] = "<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold >>";
 
   let pdf = "%PDF-1.4\n";
   const offsets = [0];
@@ -227,7 +212,7 @@ export function GET() {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition":
-        'attachment; filename="Rebecca_Aaland_Web_Frontend_Resume.pdf"',
+        'attachment; filename="Rebecca_Aaland_Frontend_Developer_Resume.pdf"',
       "Cache-Control": "public, max-age=86400",
     },
   });
