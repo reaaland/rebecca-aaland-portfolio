@@ -131,7 +131,7 @@ export default function PawCircleCaseStudy() {
 
         <section className="next-project shell" data-reveal>
           <p>Next case study</p>
-          <Link href="/work/skinstric">Skinstric ↗</Link>
+          <Link href="/work/ultraverse">Ultraverse NFT Marketplace ↗</Link>
         </section>
       </main>
       <SiteFooter />
