@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Skinstric Case Study",
   description:
-    "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow from supplied Frontend Simplified requirements.",
+    "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow from supplied designs, APIs, and requirements.",
 };
 
 const implementation = [
@@ -26,7 +26,7 @@ export default function SkinstricCaseStudy() {
         <section className="case-hero case-hero-skinstric">
           <div className="skinstric-case-mark" aria-hidden="true" />
           <div className="shell" data-reveal>
-            <p className="eyebrow">Frontend Simplified internship project</p>
+            <p className="eyebrow">Frontend development project</p>
             <h1>Turning supplied designs and requirements into a working browser experience.</h1>
             <p className="case-lede">
               I implemented a responsive AI skin-analysis flow using the design,
@@ -129,7 +129,7 @@ export default function SkinstricCaseStudy() {
 
         <section className="next-project shell" data-reveal>
           <p>Previous case study</p>
-          <Link href="/work/pawcircle">PawCircle Membership ↗</Link>
+          <Link href="/work/ultraverse">Ultraverse NFT Marketplace ↗</Link>
         </section>
       </main>
       <SiteFooter />
