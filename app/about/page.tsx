@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "About",
   description:
-    "About Rebecca Aaland, a web developer and business owner with a background in teaching, problem-solving, and building practical digital products.",
+    "About Rebecca Aaland, a frontend developer and business owner with a background in teaching, problem-solving, and building practical digital products.",
 };
 
 export default function AboutPage() {
@@ -32,7 +32,7 @@ export default function AboutPage() {
               <li><strong>Understand</strong><span>Start with what needs to happen and who it is for.</span></li>
               <li><strong>Simplify</strong><span>Break a complicated problem into manageable pieces.</span></li>
               <li><strong>Build</strong><span>Turn the plan into something clear and usable.</span></li>
-              <li><strong>Improve</strong><span>Test it, fix what does not work, and keep learning.</span></li>
+              <li><strong>Improve</strong><span>Test it, fix what does not work, and refine the result.</span></li>
             </ol>
           </aside>
           <div className="story-copy">
@@ -45,9 +45,9 @@ export default function AboutPage() {
             </p>
             <p>
               Development gave me another way to solve those kinds of problems.
-              I now build responsive websites and web applications, and I keep
-              growing through Frontend Simplified work, independent projects,
-              and the increasingly complex things I choose to build next.
+              I now build responsive websites and web applications through
+              independent product work and frontend projects built from real
+              requirements, designs, APIs, and user needs.
             </p>
             <blockquote>
               I like building things that have a reason to exist and are easier
@@ -72,8 +72,8 @@ export default function AboutPage() {
               </article>
               <article>
                 <span>03</span>
-                <h2>Keep learning and improving.</h2>
-                <p>I test, troubleshoot, learn from what happens, and make the next version better.</p>
+                <h2>Test, refine, and improve.</h2>
+                <p>I troubleshoot what is not working, use the evidence in front of me, and make the next version better.</p>
               </article>
             </div>
           </div>
