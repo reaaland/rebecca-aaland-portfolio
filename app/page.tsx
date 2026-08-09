@@ -25,7 +25,7 @@ const projects = [
   },
   {
     number: "02",
-    label: "Frontend Simplified internship project",
+    label: "Frontend development project",
     title: "Skinstric",
     summary:
       "A responsive AI skin-analysis flow I implemented from supplied designs, assets, APIs, and phased requirements.",
@@ -59,7 +59,7 @@ const skills = [
   "Git & GitHub",
   "Accessibility",
   "Troubleshooting",
-  "Full-stack projects",
+  "Web applications",
 ] as const;
 
 function Arrow() {
@@ -105,13 +105,13 @@ export default function Home() {
           <div className="hero-ambient hero-ambient-one" aria-hidden="true" />
           <div className="hero-ambient hero-ambient-two" aria-hidden="true" />
           <div className="hero-copy">
-            <p className="eyebrow hero-eyebrow"><span /> Web design · Frontend development</p>
+            <p className="eyebrow hero-eyebrow"><span /> Frontend development · Web applications · Web design</p>
             <h1 id="hero-title">Websites and digital solutions built to solve <em>practical problems.</em></h1>
             <p className="hero-intro">
               I build clear, responsive websites and web applications for small
               businesses and real-world problems. My approach is practical:
-              understand what needs to work, build it well, and keep improving
-              as I learn more.
+              understand what needs to work, build it well, and refine it based
+              on how people actually use it.
             </p>
             <div className="hero-actions">
               <Link className="button button-primary" href="/contact">
@@ -194,8 +194,8 @@ export default function Home() {
             </div>
             <p>
               These projects show how I turn ideas and requirements into working
-              interfaces, solve problems as they come up, and keep learning
-              through the build.
+              interfaces, solve problems as they come up, and make thoughtful
+              decisions throughout the build.
             </p>
           </div>
 
@@ -220,7 +220,7 @@ export default function Home() {
                       <span className="scan-corner scan-two" />
                       <span className="scan-corner scan-three" />
                       <span className="scan-corner scan-four" />
-                      <div className="scan-core"><span>FES / INTERNSHIP</span><strong>SKINSTRIC</strong><small>Camera + API + Results</small></div>
+                      <div className="scan-core"><span>FRONTEND PROJECT</span><strong>SKINSTRIC</strong><small>Camera + API + Results</small></div>
                     </div>
                   )}
                 </div>
@@ -267,20 +267,21 @@ export default function Home() {
 
         <section className="principle-section shell" aria-labelledby="principle-title" data-reveal>
           <div className="principle-code" aria-hidden="true">
-            <span>while (curious) &#123;</span>
+            <span>while (building) &#123;</span>
             <strong>build();</strong>
-            <strong>learn();</strong>
+            <strong>test();</strong>
             <strong>improve();</strong>
             <strong>repeat();</strong>
             <span>&#125;</span>
           </div>
           <div className="principle-copy">
             <p className="eyebrow">04 / Working philosophy</p>
-            <h2 id="principle-title">Build. Learn. Improve. Repeat.</h2>
+            <h2 id="principle-title">Build. Test. Improve. Repeat.</h2>
             <p>
-              I learn best by building. Each project gives me a new problem to
-              solve, a chance to test what works, and a clearer understanding of
-              what to improve next.
+              I work best by building through real problems, testing what works,
+              and refining the result. Each project is a chance to make the next
+              decision clearer, the interface more useful, and the final product
+              stronger.
             </p>
             <Link className="text-link" href="/about">More about how I work <Arrow /></Link>
           </div>
