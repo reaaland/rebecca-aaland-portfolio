@@ -26,20 +26,20 @@ const projects = [
   {
     number: "02",
     label: "Frontend development project",
-    title: "Skinstric",
+    title: "Ultraverse NFT Marketplace",
     summary:
-      "A responsive AI skin-analysis flow I implemented from supplied designs, assets, APIs, and phased requirements.",
+      "A responsive React marketplace I implemented from supplied designs, APIs, and requirements, with reusable components, routing, loading states, carousels, timers, sorting, and incremental loading.",
     proof: [
-      "HTML",
-      "CSS",
+      "React",
       "JavaScript",
-      "TypeScript",
-      "Next.js",
+      "React Router",
+      "Axios",
+      "REST APIs",
       "Responsive UI",
-      "Browser media",
-      "API integration",
+      "Loading states",
+      "Vercel",
     ],
-    href: "/work/skinstric",
+    href: "/work/ultraverse",
     visual: "skinstric",
   },
 ] as const;
@@ -193,9 +193,9 @@ export default function Home() {
               <h2 id="work-title">Real projects, real problem-solving.</h2>
             </div>
             <p>
-              These projects show how I turn ideas and requirements into working
-              interfaces, solve problems as they come up, and make thoughtful
-              decisions throughout the build.
+              These projects show different kinds of frontend work: taking a
+              product from idea to launch and building responsive, API-driven
+              interfaces from supplied requirements.
             </p>
           </div>
 
@@ -220,7 +220,7 @@ export default function Home() {
                       <span className="scan-corner scan-two" />
                       <span className="scan-corner scan-three" />
                       <span className="scan-corner scan-four" />
-                      <div className="scan-core"><span>FRONTEND PROJECT</span><strong>SKINSTRIC</strong><small>Camera + API + Results</small></div>
+                      <div className="scan-core"><span>FRONTEND PROJECT</span><strong>ULTRAVERSE</strong><small>API + Routing + Responsive UI</small></div>
                     </div>
                   )}
                 </div>
