@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Selected Work",
   description:
-    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Skinstric, and Frontend Simplified marketplace work.",
+    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Ultraverse NFT Marketplace, and Skinstric.",
 };
 
 export default function WorkPage() {
@@ -18,10 +18,9 @@ export default function WorkPage() {
           <p className="eyebrow">Selected work</p>
           <h1>Different projects. Different problems to solve.</h1>
           <p>
-            PawCircle shows what I learned taking my own product from idea to
-            launch. Skinstric shows how I work from supplied designs,
-            requirements, and APIs. Additional Frontend Simplified work shows
-            more of the responsive React and data-driven UI work I have built.
+            These projects show different kinds of frontend work: taking a
+            product from idea to launch, implementing supplied requirements, and
+            building responsive API-driven interfaces.
           </p>
         </section>
 
@@ -41,49 +40,44 @@ export default function WorkPage() {
 
           <article className="work-index-card work-index-skinstric" data-reveal>
             <div>
-              <span>02 / Frontend Simplified internship project</span>
-              <h2>Skinstric</h2>
+              <span>02 / Frontend development project</span>
+              <h2>Ultraverse NFT Marketplace</h2>
               <p>
-                Turning supplied designs, APIs, and phased requirements into a
-                responsive multi-step skin-analysis experience.
+                Building a responsive React marketplace with API-driven content,
+                loading states, carousels, timers, filtering, incremental loading,
+                and routed detail views.
               </p>
-              <Link href="/work/skinstric">Read the case study ↗</Link>
+              <Link href="/work/ultraverse">Read the case study ↗</Link>
             </div>
           </article>
         </section>
 
         <section className="work-hold-note shell" data-reveal aria-labelledby="additional-work-title">
-          <span>03 / Additional frontend work</span>
+          <span>03 / Supporting frontend work</span>
           <div>
             <h2
               id="additional-work-title"
               className="m-0 mb-3 text-2xl font-semibold tracking-[-0.03em] text-[color:var(--text)]"
             >
-              Ultraverse NFT Marketplace
+              Skinstric
             </h2>
             <p>
-              A Frontend Simplified React project built from a supplied starter,
-              design, APIs, and requirements. I implemented API-driven content,
-              loading skeletons, responsive carousels, countdown timers,
-              sorting/filtering, incremental loading, and routed author and
-              item-detail views.
+              A responsive Next.js skin-analysis flow implemented from supplied
+              designs, assets, APIs, and phased requirements. The project includes
+              validation, image upload, camera capture, asynchronous states, and
+              interactive demographic results.
             </p>
             <div className="mt-5 flex flex-wrap gap-5 text-sm font-bold">
+              <Link className="underline underline-offset-4" href="/work/skinstric">
+                Read the case study ↗
+              </Link>
               <a
                 className="underline underline-offset-4"
-                href="https://rebecca-internship.vercel.app"
+                href="https://skinstric-internship-chi.vercel.app"
                 target="_blank"
                 rel="noreferrer"
               >
                 Open deployed project ↗
-              </a>
-              <a
-                className="underline underline-offset-4"
-                href="https://github.com/reaaland/rebecca-internship"
-                target="_blank"
-                rel="noreferrer"
-              >
-                View source on GitHub ↗
               </a>
             </div>
           </div>
