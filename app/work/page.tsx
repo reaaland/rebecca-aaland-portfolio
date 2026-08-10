@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Selected Work",
   description:
-    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Ultraverse NFT Marketplace, and Skinstric.",
+    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Ultraverse NFT Marketplace, Skinstric, and Summarist.",
 };
 
 export default function WorkPage() {
@@ -52,11 +52,11 @@ export default function WorkPage() {
           </article>
         </section>
 
-        <section className="work-hold-note shell" data-reveal aria-labelledby="additional-work-title">
+        <section className="work-hold-note shell" data-reveal aria-labelledby="skinstric-title">
           <span>03 / Supporting frontend work</span>
           <div>
             <h2
-              id="additional-work-title"
+              id="skinstric-title"
               className="m-0 mb-3 text-2xl font-semibold tracking-[-0.03em] text-[color:var(--text)]"
             >
               Skinstric
@@ -74,6 +74,37 @@ export default function WorkPage() {
               <a
                 className="underline underline-offset-4"
                 href="https://skinstric-internship-chi.vercel.app"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Open deployed project ↗
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="work-hold-note shell" data-reveal aria-labelledby="summarist-title">
+          <span>04 / Frontend Simplified virtual internship</span>
+          <div>
+            <h2
+              id="summarist-title"
+              className="m-0 mb-3 text-2xl font-semibold tracking-[-0.03em] text-[color:var(--text)]"
+            >
+              Summarist
+            </h2>
+            <p>
+              A multi-route Next.js book-summary application built from supplied
+              internship requirements, APIs, assets, and a visual starting point.
+              The project includes authentication, search, Firestore persistence,
+              subscription-aware access, library behavior, settings, and an audio player.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-5 text-sm font-bold">
+              <Link className="underline underline-offset-4" href="/work/summarist">
+                Read the case study ↗
+              </Link>
+              <a
+                className="underline underline-offset-4"
+                href="https://summarist-internship.vercel.app"
                 target="_blank"
                 rel="noreferrer"
               >
