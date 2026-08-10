@@ -17,7 +17,7 @@ export default function ContactPage() {
         <section className="contact-page shell" data-reveal>
           <div className="contact-page-intro">
             <p className="eyebrow">Contact</p>
-            <h1>Start with the problem, role, or project.</h1>
+            <h1>Let’s Talk About What’s Next.</h1>
             <p>
               A short, specific note is enough. Tell me what you are working
               on, where you are stuck, and what a useful outcome would look
