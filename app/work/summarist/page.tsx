@@ -64,7 +64,7 @@ export default function SummaristCaseStudy() {
               <li>Redux Toolkit</li>
             </ul>
             <a
-              href="https://summarist-internship.vercel.app"
+              href="https://summarist-internship-delta.vercel.app"
               target="_blank"
               rel="noreferrer"
             >
