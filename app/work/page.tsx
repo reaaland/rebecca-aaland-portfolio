@@ -104,7 +104,7 @@ export default function WorkPage() {
               </Link>
               <a
                 className="underline underline-offset-4"
-                href="https://summarist-internship.vercel.app"
+                href="https://summarist-internship-delta.vercel.app"
                 target="_blank"
                 rel="noreferrer"
               >
