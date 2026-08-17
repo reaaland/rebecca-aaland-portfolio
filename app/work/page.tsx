@@ -67,7 +67,7 @@ export default function WorkPage() {
         </section>
 
         <section className="work-hold-note shell" data-reveal aria-labelledby="summarist-title">
-          <span>04 / Frontend Simplified virtual internship · In progress</span>
+          <span>04 / Completed Frontend Simplified virtual internship</span>
           <div>
             <h2
               id="summarist-title"
@@ -76,11 +76,12 @@ export default function WorkPage() {
               Summarist
             </h2>
             <p>
-              A multi-route Next.js book-summary application built from supplied
-              internship requirements, APIs, assets, and a visual starting point.
-              The project includes authentication, search, Firestore persistence,
-              subscription-aware access, library behavior, settings, and an audio
-              player. The portfolio version is still being refined.
+              A completed multi-route Next.js book-summary application built as
+              a Frontend Simplified virtual internship project from supplied
+              requirements, APIs, assets, and a visual starting point. It includes
+              authentication, search, Firestore persistence, subscription-aware
+              access, library behavior, settings, and an audio player. This is an
+              internship implementation, not a product or site I own.
             </p>
             <div className="mt-5 flex flex-wrap gap-5 text-sm font-bold">
               <Link className="underline underline-offset-4" href="/work/summarist">
