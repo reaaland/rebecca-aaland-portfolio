@@ -6,7 +6,7 @@ import { ContactForm } from "./contact-form";
 export const metadata: Metadata = {
   title: "Contact",
   description:
-    "Contact Rebecca Aaland about a frontend role, internship, website project, or general inquiry.",
+    "Contact Rebecca Aaland about a frontend opportunity, website project, or general inquiry.",
 };
 
 export default function ContactPage() {
@@ -19,9 +19,9 @@ export default function ContactPage() {
             <p className="eyebrow">Contact</p>
             <h1>Let’s Talk About What’s Next.</h1>
             <p>
-              A short, specific note is enough. Tell me what you are working
-              on, where you are stuck, and what a useful outcome would look
-              like.
+              Choose the path that fits best: a frontend opportunity, a website
+              project, or a general question. Each option asks only for the
+              details that are useful for that conversation.
             </p>
             <div className="direct-email">
               <span>Prefer direct email?</span>
