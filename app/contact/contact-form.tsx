@@ -3,34 +3,73 @@
 import { FormEvent, useState } from "react";
 
 const inquiryLabels = {
-  role: "Employment or internship",
+  role: "Frontend opportunity",
   website: "Website project",
   general: "General inquiry",
 } as const;
 
 type InquiryType = keyof typeof inquiryLabels;
 
+const inquiryDetails: Record<
+  InquiryType,
+  { intro: string; messageLabel: string; buttonLabel: string }
+> = {
+  role: {
+    intro:
+      "For frontend roles, internships, contract work, or conversations with a development team.",
+    messageLabel: "What should I know about the opportunity?",
+    buttonLabel: "Prepare opportunity email ↗",
+  },
+  website: {
+    intro:
+      "For a new website, an existing site that needs improvement, or a small web project.",
+    messageLabel: "What would you like help with?",
+    buttonLabel: "Prepare project email ↗",
+  },
+  general: {
+    intro:
+      "For anything that does not fit the other two options. A short note is completely fine.",
+    messageLabel: "What would you like to discuss?",
+    buttonLabel: "Prepare email ↗",
+  },
+};
+
 export function ContactForm() {
-  const [inquiryType, setInquiryType] = useState<InquiryType>("website");
+  const [inquiryType, setInquiryType] = useState<InquiryType>("role");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+
     const data = new FormData(event.currentTarget);
     const name = String(data.get("name") ?? "").trim();
     const email = String(data.get("email") ?? "").trim();
+    const organization = String(data.get("organization") ?? "").trim();
+    const roleTitle = String(data.get("roleTitle") ?? "").trim();
+    const website = String(data.get("website") ?? "").trim();
     const message = String(data.get("message") ?? "").trim();
+
     const subject = `${inquiryLabels[inquiryType]} from ${name}`;
-    const body = [`Name: ${name}`, `Email: ${email}`, "", message].join("\n");
+    const bodyLines = [
+      `Name: ${name}`,
+      `Email: ${email}`,
+      organization ? `Company / organization: ${organization}` : "",
+      inquiryType === "role" && roleTitle ? `Role: ${roleTitle}` : "",
+      inquiryType === "website" && website ? `Current website: ${website}` : "",
+      "",
+      message,
+    ].filter((line, index, lines) => line || index === lines.length - 2);
 
     window.location.href = `mailto:reaaland@gmail.com?subject=${encodeURIComponent(
       subject,
-    )}&body=${encodeURIComponent(body)}`;
+    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
   }
+
+  const details = inquiryDetails[inquiryType];
 
   return (
     <form className="contact-form" onSubmit={handleSubmit}>
       <fieldset>
-        <legend>What would you like to discuss?</legend>
+        <legend>What brings you here?</legend>
         <div className="inquiry-options">
           {(Object.entries(inquiryLabels) as [InquiryType, string][]).map(
             ([value, label]) => (
@@ -49,6 +88,8 @@ export function ContactForm() {
         </div>
       </fieldset>
 
+      <p className="form-note">{details.intro}</p>
+
       <div className="form-row">
         <label>
           Your name
@@ -60,8 +101,34 @@ export function ContactForm() {
         </label>
       </div>
 
+      {inquiryType === "role" && (
+        <div className="form-row">
+          <label>
+            Company or organization
+            <input name="organization" type="text" autoComplete="organization" />
+          </label>
+          <label>
+            Role or opportunity
+            <input name="roleTitle" type="text" />
+          </label>
+        </div>
+      )}
+
+      {inquiryType === "website" && (
+        <div className="form-row">
+          <label>
+            Business or organization
+            <input name="organization" type="text" autoComplete="organization" />
+          </label>
+          <label>
+            Current website, if you have one
+            <input name="website" type="text" autoComplete="url" />
+          </label>
+        </div>
+      )}
+
       <label>
-        What are you working on?
+        {details.messageLabel}
         <textarea name="message" rows={7} required />
       </label>
 
@@ -70,7 +137,7 @@ export function ContactForm() {
         information is stored by this site.
       </p>
       <button className="button button-dark" type="submit">
-        Prepare email ↗
+        {details.buttonLabel}
       </button>
     </form>
   );
