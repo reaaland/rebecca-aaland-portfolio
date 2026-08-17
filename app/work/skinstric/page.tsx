@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Skinstric Case Study",
   description:
-    "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow from supplied designs, APIs, and requirements.",
+    "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow during a paid Frontend Simplified internship.",
 };
 
 const implementation = [
@@ -26,17 +26,17 @@ export default function SkinstricCaseStudy() {
         <section className="case-hero case-hero-skinstric">
           <div className="skinstric-case-mark" aria-hidden="true" />
           <div className="shell" data-reveal>
-            <p className="eyebrow">Frontend development project</p>
+            <p className="eyebrow">Paid frontend internship · Frontend Simplified</p>
             <h1>Turning supplied designs and requirements into a working browser experience.</h1>
             <p className="case-lede">
               I implemented a responsive AI skin-analysis flow using the design,
               assets, APIs, and phased requirements supplied by Frontend
-              Simplified.
+              Simplified as paid frontend internship work.
             </p>
             <div className="case-meta">
               <div>
                 <span>Role</span>
-                <strong>Frontend implementation</strong>
+                <strong>Frontend Developer Intern</strong>
               </div>
               <div>
                 <span>Provided by FES</span>
