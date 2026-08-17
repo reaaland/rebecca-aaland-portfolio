@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Selected Work",
   description:
-    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Ultraverse NFT Marketplace, Skinstric, and Summarist.",
+    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Skinstric, Ultraverse NFT Marketplace, and Summarist.",
 };
 
 export default function WorkPage() {
@@ -30,7 +30,7 @@ export default function WorkPage() {
               <span>01 / Independent product</span>
               <h2>PawCircle Membership</h2>
               <p>
-                Taking a local pet-care membership product from idea through
+                Taking a pet-care membership product from idea through
                 development, launch, production troubleshooting, and its current
                 portfolio-demo form.
               </p>
@@ -40,7 +40,21 @@ export default function WorkPage() {
 
           <article className="work-index-card work-index-skinstric" data-reveal>
             <div>
-              <span>02 / Frontend development project</span>
+              <span>02 / Paid frontend internship</span>
+              <h2>Skinstric</h2>
+              <p>
+                Implementing a responsive Next.js and TypeScript skin-analysis
+                flow from supplied Figma designs, APIs, assets, and project
+                requirements, including image upload, camera capture, and
+                interactive demographic results.
+              </p>
+              <Link href="/work/skinstric">Read the case study ↗</Link>
+            </div>
+          </article>
+
+          <article className="work-index-card work-index-skinstric" data-reveal>
+            <div>
+              <span>03 / Frontend development project</span>
               <h2>Ultraverse NFT Marketplace</h2>
               <p>
                 Building a responsive React marketplace with API-driven content,
@@ -52,39 +66,8 @@ export default function WorkPage() {
           </article>
         </section>
 
-        <section className="work-hold-note shell" data-reveal aria-labelledby="skinstric-title">
-          <span>03 / Supporting frontend work</span>
-          <div>
-            <h2
-              id="skinstric-title"
-              className="m-0 mb-3 text-2xl font-semibold tracking-[-0.03em] text-[color:var(--text)]"
-            >
-              Skinstric
-            </h2>
-            <p>
-              A responsive Next.js skin-analysis flow implemented from supplied
-              designs, assets, APIs, and phased requirements. The project includes
-              validation, image upload, camera capture, asynchronous states, and
-              interactive demographic results.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-5 text-sm font-bold">
-              <Link className="underline underline-offset-4" href="/work/skinstric">
-                Read the case study ↗
-              </Link>
-              <a
-                className="underline underline-offset-4"
-                href="https://skinstric-internship-chi.vercel.app"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open deployed project ↗
-              </a>
-            </div>
-          </div>
-        </section>
-
         <section className="work-hold-note shell" data-reveal aria-labelledby="summarist-title">
-          <span>04 / Frontend Simplified virtual internship</span>
+          <span>04 / Frontend Simplified virtual internship · In progress</span>
           <div>
             <h2
               id="summarist-title"
@@ -96,7 +79,8 @@ export default function WorkPage() {
               A multi-route Next.js book-summary application built from supplied
               internship requirements, APIs, assets, and a visual starting point.
               The project includes authentication, search, Firestore persistence,
-              subscription-aware access, library behavior, settings, and an audio player.
+              subscription-aware access, library behavior, settings, and an audio
+              player. The portfolio version is still being refined.
             </p>
             <div className="mt-5 flex flex-wrap gap-5 text-sm font-bold">
               <Link className="underline underline-offset-4" href="/work/summarist">
