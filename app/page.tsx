@@ -25,6 +25,25 @@ const projects = [
   },
   {
     number: "02",
+    label: "Paid frontend internship",
+    title: "Skinstric",
+    summary:
+      "A responsive Next.js and TypeScript skin-analysis flow I implemented from supplied Figma designs, APIs, assets, and project requirements during a paid Frontend Simplified internship.",
+    proof: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "REST APIs",
+      "Camera API",
+      "Image upload",
+      "Responsive UI",
+      "Git & GitHub",
+    ],
+    href: "/work/skinstric",
+    visual: "skinstric",
+  },
+  {
+    number: "03",
     label: "Frontend development project",
     title: "Ultraverse NFT Marketplace",
     summary:
@@ -194,8 +213,9 @@ export default function Home() {
             </div>
             <p>
               These projects show different kinds of frontend work: taking a
-              product from idea to launch and building responsive, API-driven
-              interfaces from supplied requirements.
+              product from idea to launch, completing paid implementation work,
+              and building responsive API-driven interfaces from supplied
+              requirements.
             </p>
           </div>
 
@@ -220,7 +240,11 @@ export default function Home() {
                       <span className="scan-corner scan-two" />
                       <span className="scan-corner scan-three" />
                       <span className="scan-corner scan-four" />
-                      <div className="scan-core"><span>FRONTEND PROJECT</span><strong>ULTRAVERSE</strong><small>API + Routing + Responsive UI</small></div>
+                      <div className="scan-core">
+                        <span>{project.title === "Skinstric" ? "PAID FRONTEND INTERNSHIP" : "FRONTEND PROJECT"}</span>
+                        <strong>{project.title === "Skinstric" ? "SKINSTRIC" : "ULTRAVERSE"}</strong>
+                        <small>{project.title === "Skinstric" ? "Next.js + APIs + Browser Media" : "API + Routing + Responsive UI"}</small>
+                      </div>
                     </div>
                   )}
                 </div>
