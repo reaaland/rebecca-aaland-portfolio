@@ -67,7 +67,9 @@ export default function WorkPage() {
         </section>
 
         <section className="work-hold-note shell" data-reveal aria-labelledby="summarist-title">
-          <span>04 / Completed Frontend Simplified virtual internship</span>
+          <span style={{ color: "var(--green)" }}>
+            04 / Completed Frontend Simplified virtual internship
+          </span>
           <div>
             <h2
               id="summarist-title"
