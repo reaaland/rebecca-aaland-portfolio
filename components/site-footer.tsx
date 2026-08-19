@@ -10,6 +10,13 @@ export function SiteFooter() {
       <p>Independent work through PawCircle LLC.</p>
       <nav aria-label="Footer navigation">
         <Link href="/resume">Résumé</Link>
+        <a
+          href="https://github.com/reaaland"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
         <Link href="/contact">Contact</Link>
         <a href="#top">Back to top ↑</a>
       </nav>
