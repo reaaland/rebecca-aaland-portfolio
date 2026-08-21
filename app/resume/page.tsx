@@ -18,12 +18,12 @@ export default function ResumePage() {
           <div>
             <p className="eyebrow">Résumé</p>
             <h1>Rebecca Aaland</h1>
-            <p>Frontend Developer · React · JavaScript · Next.js · Supabase</p>
+            <p>Junior Frontend Developer · React · JavaScript · Next.js · Supabase</p>
           </div>
 
           <a
             className="button button-dark"
-            href="https://drive.google.com/file/d/1wjL5DyXGCDqJ-U3Rixrd5etxNFunVu-z/view?usp=sharing"
+            href="/Rebecca-Aaland-Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -89,7 +89,7 @@ export default function ResumePage() {
             <section data-reveal>
               <p className="eyebrow">Professional Summary</p>
               <p className="resume-summary">
-                Frontend developer with experience building and launching web
+                Junior Frontend Developer with experience building and launching web
                 applications using React, JavaScript, Next.js, Supabase, APIs,
                 authentication, databases, and payments. Built PawCircle
                 Membership from idea through production and completed a paid
