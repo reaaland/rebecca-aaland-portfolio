@@ -2,11 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeToggle } from "@/components/theme-toggle";
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      document.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [menuOpen]);
 
   return (
     <header className="site-header">
@@ -34,6 +53,7 @@ export function SiteHeader() {
       </Link>
 
       <button
+        ref={menuButtonRef}
         className="mobile-menu-toggle"
         type="button"
         aria-label={menuOpen ? "Close navigation" : "Open navigation"}
