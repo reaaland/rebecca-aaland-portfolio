@@ -64,41 +64,21 @@ export default function WorkPage() {
               <Link href="/work/ultraverse">Read the case study ↗</Link>
             </div>
           </article>
-        </section>
 
-        <section className="work-hold-note shell" data-reveal aria-labelledby="summarist-title">
-          <span style={{ color: "var(--green)" }}>
-            04 / Completed Frontend Simplified virtual internship
-          </span>
-          <div>
-            <h2
-              id="summarist-title"
-              className="m-0 mb-3 text-2xl font-semibold tracking-[-0.03em] text-[color:var(--text)]"
-            >
-              Summarist
-            </h2>
-            <p>
-              A completed multi-route Next.js book-summary application built as
-              a Frontend Simplified virtual internship project from supplied
-              requirements, APIs, assets, and a visual starting point. It includes
-              authentication, search, Firestore persistence, subscription-aware
-              access, library behavior, settings, and an audio player. This is an
-              internship implementation, not a product or site I own.
-            </p>
-            <div className="mt-5 flex flex-wrap gap-5 text-sm font-bold">
-              <Link className="underline underline-offset-4" href="/work/summarist">
-                Read the case study ↗
-              </Link>
-              <a
-                className="underline underline-offset-4"
-                href="https://summarist-internship-delta.vercel.app"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Open deployed project ↗
-              </a>
+          <article className="work-index-card work-index-skinstric" data-reveal>
+            <div>
+              <span>04 / Completed Frontend Simplified virtual internship</span>
+              <h2>Summarist</h2>
+              <p>
+                A completed multi-route Next.js book-summary application built as a
+                Frontend Simplified virtual internship project from supplied
+                requirements, APIs, assets, and a visual starting point. It includes
+                authentication, search, Firestore persistence, subscription-aware
+                access, library behavior, settings, and an audio player.
+              </p>
+              <Link href="/work/summarist">Read the case study ↗</Link>
             </div>
-          </div>
+          </article>
         </section>
       </main>
       <SiteFooter />

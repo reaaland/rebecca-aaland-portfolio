@@ -52,7 +52,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" id="top" suppressHydrationWarning>
+    <html
+      lang="en"
+      id="top"
+      suppressHydrationWarning
+      data-scroll-behavior="smooth"
+    >
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <MotionController />
         {children}

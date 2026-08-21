@@ -6,9 +6,21 @@
 }
 
 .case-outcome > p:not(.eyebrow) {
-  color: #aebdd1;
+  color: #c8d4e3;
 }
 
 .case-outcome .eyebrow {
   color: #62b4ff;
+}
+
+.case-project-visual {
+  margin: 0;
+}
+
+.case-project-visual figcaption {
+  margin-top: 14px;
+  color: var(--text-faint);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.65rem;
+  line-height: 1.5;
 }
