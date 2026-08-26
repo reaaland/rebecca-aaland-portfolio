@@ -458,10 +458,6 @@ export default function Home() {
               <Link className="button button-primary" href="/contact">
                 Start a conversation <Arrow />
               </Link>
-
-              <a className="text-link" href="mailto:reaaland@gmail.com">
-                reaaland@gmail.com
-              </a>
             </div>
           </div>
         </section>
