@@ -3,9 +3,9 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Frontend Developer Résumé",
+  title: "Junior Frontend Developer Résumé",
   description:
-    "Rebecca Aaland's frontend developer résumé, including PawCircle Membership, paid Skinstric internship work, and React API projects.",
+    "Rebecca Aaland's frontend developer résumé, highlighting production React/Supabase work, a paid Skinstric internship, API-driven projects, and practical problem solving.",
   path: "/resume",
 });
 
@@ -24,7 +24,7 @@ export default function ResumePage() {
 
           <a
             className="button button-dark"
-            href="/Rebecca-Aaland-Resume.pdf"
+            href="/resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
           >
@@ -58,12 +58,11 @@ export default function ResumePage() {
             <section>
               <h2>Technical Skills</h2>
               <p>JavaScript · TypeScript · React · Next.js</p>
-              <p>HTML5 · CSS3 · Tailwind CSS</p>
-              <p>Supabase · PostgreSQL · Firebase · Firestore</p>
-              <p>REST APIs · Authentication · Stripe</p>
-              <p>Git · GitHub · Vercel · Vite</p>
-              <p>Axios · React Router · Figma · VS Code</p>
-              <p>Debugging · Functional Testing</p>
+              <p>HTML5 · CSS3 · Tailwind CSS · React Router · Redux Toolkit</p>
+              <p>REST APIs · Axios · Supabase · PostgreSQL</p>
+              <p>Firebase · Firestore · Stripe</p>
+              <p>Git · GitHub · Vercel · Vite · Figma</p>
+              <p>Responsive Design · Accessibility · Functional Testing</p>
             </section>
 
             <section>
@@ -77,11 +76,8 @@ export default function ResumePage() {
                 University
               </p>
               <p>
-                M.S., Women&apos;s Studies · Minnesota State University, Mankato
-              </p>
-              <p>
-                B.S., Sociology &amp; Women&apos;s Studies · Minnesota State
-                University, Mankato
+                M.S., Women&apos;s Studies; B.S., Sociology &amp; Women&apos;s
+                Studies · Minnesota State University, Mankato
               </p>
             </section>
           </aside>
@@ -90,14 +86,13 @@ export default function ResumePage() {
             <section data-reveal>
               <p className="eyebrow">Professional Summary</p>
               <p className="resume-summary">
-                Junior Frontend Developer with experience building and launching web
-                applications using React, JavaScript, Next.js, Supabase, APIs,
-                authentication, databases, and payments. Built PawCircle
-                Membership from idea through production and worked as a paid
-                Frontend Developer Intern with Skinstric. Before moving into
-                development, worked in teaching, business ownership, technical
-                writing, and customer support, building strong communication,
-                organization, and practical problem-solving skills.
+                Junior frontend developer who builds and ships responsive web
+                applications from requirements through deployment. Recent work
+                includes a production React/Supabase application and a paid
+                Next.js/TypeScript internship. Brings practical experience with
+                APIs, authentication, databases, payments, testing, debugging,
+                and responsive design, along with a background in technical
+                writing, teaching, and small-business ownership.
               </p>
             </section>
 
@@ -106,46 +101,51 @@ export default function ResumePage() {
 
               <article>
                 <h2>PawCircle Membership</h2>
-                <span>Production app · React · Supabase / PostgreSQL · Stripe</span>
+                <span>React · Supabase / PostgreSQL · Stripe</span>
                 <p>
-                  Built and launched a responsive React application using
-                  Supabase/PostgreSQL, Stripe, and Vercel with authentication,
-                  role-based profiles, protected directories, messaging, privacy
-                  controls, and payment workflows.
+                  Identified the need for a direct local pet-care membership
+                  product, mapped the core user flows, and built and launched a
+                  responsive React application with Supabase/PostgreSQL, Stripe,
+                  and Vercel.
                 </p>
                 <p>
-                  Troubleshot production issues across registration, routing,
-                  profiles, notifications, data, and payments; after closing the
-                  paid membership model, converted the application into an
-                  interactive portfolio demonstration.
+                  Implemented authentication, role-based profiles, protected
+                  directories, messaging, privacy controls, and payment workflows;
+                  tested failures across the interface, data layer, and third-party
+                  services and verified fixes before release.
                 </p>
               </article>
 
               <article>
                 <h2>Skinstric</h2>
-                <span>Skinstric Internship · Next.js · TypeScript · APIs</span>
+                <span>Paid Internship · Next.js · TypeScript</span>
                 <p>
-                  Built a responsive Next.js and TypeScript application from
-                  supplied Figma designs, including user intake, image-source
-                  selection, AI analysis results, and editable demographic
-                  results.
-                </p>
-                <p>
-                  Connected provided APIs, converted uploaded and camera images
-                  to Base64, handled localStorage, state, and navigation, fixed a
-                  hydration issue, tested responsive behavior, and deployed the
-                  completed project to Vercel.
+                  Turned supplied Figma designs and API requirements into a
+                  responsive skin-analysis flow with validated intake,
+                  camera/gallery capture, Base64 conversion, browser permissions,
+                  editable results, responsive testing, and Vercel deployment.
                 </p>
               </article>
 
               <article>
                 <h2>Ultraverse NFT Marketplace</h2>
-                <span>React · JavaScript · Axios · React Router · APIs</span>
+                <span>React · API Project</span>
                 <p>
-                  Built six API-driven views with React, JavaScript, Axios, and
-                  React Router, including loading skeletons, responsive
-                  carousels, countdown timers, sorting, filtering, incremental
-                  loading, and routed detail pages.
+                  Built reusable API-driven marketplace views with loading
+                  skeletons, responsive carousels, countdown timers,
+                  sorting/filtering, incremental loading, and React Router
+                  navigation to deliver a complete responsive browsing experience.
+                </p>
+              </article>
+
+              <article>
+                <h2>Summarist</h2>
+                <span>Next.js · Firebase Project</span>
+                <p>
+                  Completed a multi-route book-summary application with Firebase
+                  Authentication, Firestore persistence, Redux Toolkit state,
+                  debounced search, protected and premium states, dynamic routes,
+                  and an audio player.
                 </p>
               </article>
             </section>
@@ -157,9 +157,9 @@ export default function ResumePage() {
                 <h2>Frontend Developer Intern</h2>
                 <span>Skinstric · 2026</span>
                 <p>
-                  Completed a paid frontend developer internship with Skinstric,
-                  building from project requirements and Figma designs and using
-                  Git and GitHub throughout development, testing, and deployment.
+                  Completed a paid frontend internship by carrying Skinstric from
+                  supplied requirements and designs through implementation,
+                  Git/GitHub workflow, testing, debugging, and deployment.
                 </p>
               </article>
 
@@ -167,9 +167,9 @@ export default function ResumePage() {
                 <h2>Founder &amp; Owner</h2>
                 <span>PawCircle LLC · 2023–Present</span>
                 <p>
-                  Run an independent pet-care business with approximately 95%
+                  Run an independent service business with approximately 95%
                   repeat business, managing client communication, scheduling,
-                  changing needs, problem resolution, and day-to-day operations.
+                  changing requirements, and day-to-day problem solving.
                 </p>
               </article>
 
@@ -177,10 +177,10 @@ export default function ResumePage() {
                 <h2>Earlier Professional Experience</h2>
                 <span>Education · Technical Writing · Tier 1 Support</span>
                 <p>
-                  Taught science for 11 years, explaining complex ideas clearly,
-                  managing multiple priorities, and creating curriculum and
-                  training materials. Earlier technical roles included technical
-                  writing and document control plus Tier 1 internet support.
+                  Eleven years as a science educator plus earlier technical
+                  writing/document control and Tier 1 internet support built strong
+                  documentation, training, communication, and technical
+                  troubleshooting skills.
                 </p>
               </article>
             </section>
