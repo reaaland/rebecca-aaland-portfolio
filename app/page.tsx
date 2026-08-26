@@ -168,13 +168,13 @@ export default function Home() {
             </p>
 
             <div className="hero-actions">
-              <a className="button button-primary" href="#work">
-                View my work <Arrow />
-              </a>
-
-              <Link className="button button-secondary" href="/contact">
-                Contact me
+              <Link className="button button-primary" href="/contact">
+                Contact me <Arrow />
               </Link>
+
+              <a className="button button-secondary" href="#work">
+                View my work
+              </a>
             </div>
 
             <div className="hero-status" aria-label="Current availability">
@@ -280,7 +280,12 @@ export default function Home() {
 
           <div className="project-list">
             {projects.map((project) => (
-              <article className="project-card" key={project.title} data-reveal>
+              <Link
+                className="project-card"
+                href={project.href}
+                key={project.title}
+                data-reveal
+              >
                 <div
                   className={`project-visual project-visual-${project.visual}`}
                 >
@@ -339,11 +344,11 @@ export default function Home() {
                     ))}
                   </ul>
 
-                  <Link className="project-link" href={project.href}>
+                  <span className="project-link">
                     Read the case study <Arrow />
-                  </Link>
+                  </span>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </section>

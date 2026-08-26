@@ -92,7 +92,7 @@ export function SiteHeader() {
           href="/contact"
           onClick={() => setMenuOpen(false)}
         >
-          Discuss a website <span aria-hidden="true">↗</span>
+          Contact me <span aria-hidden="true">↗</span>
         </Link>
       </nav>
     </header>

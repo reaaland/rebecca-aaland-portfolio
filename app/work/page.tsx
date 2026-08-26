@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -8,6 +9,61 @@ export const metadata: Metadata = {
   description:
     "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Skinstric, Ultraverse NFT Marketplace, and Summarist.",
 };
+
+const projects = [
+  {
+    number: "01",
+    label: "Independent product",
+    title: "PawCircle Membership",
+    summary:
+      "Taking a pet-care membership product from idea through development, launch, production troubleshooting, and its current portfolio-demo form.",
+    href: "/work/pawcircle",
+    image: "/pawcircle-homepage.png",
+    imageAlt: "PawCircle Membership homepage",
+    imageWidth: 1536,
+    imageHeight: 1024,
+    className: "work-index-pawcircle",
+  },
+  {
+    number: "02",
+    label: "Paid frontend internship",
+    title: "Skinstric",
+    summary:
+      "Implementing a responsive Next.js and TypeScript skin-analysis flow from supplied Figma designs, APIs, assets, and project requirements, including image upload, camera capture, and interactive demographic results.",
+    href: "/work/skinstric",
+    image: "/skinstric-homepage.png",
+    imageAlt: "Skinstric skin-analysis application homepage",
+    imageWidth: 1672,
+    imageHeight: 941,
+    className: "work-index-skinstric",
+  },
+  {
+    number: "03",
+    label: "Frontend development project",
+    title: "Ultraverse NFT Marketplace",
+    summary:
+      "Building a responsive React marketplace with API-driven content, loading states, carousels, timers, filtering, incremental loading, and routed detail views.",
+    href: "/work/ultraverse",
+    image: "/ultraverse-homepage.png",
+    imageAlt: "Ultraverse NFT marketplace homepage",
+    imageWidth: 1672,
+    imageHeight: 941,
+    className: "work-index-ultraverse",
+  },
+  {
+    number: "04",
+    label: "Completed Frontend Simplified virtual internship",
+    title: "Summarist",
+    summary:
+      "A completed multi-route Next.js book-summary application built from supplied requirements, APIs, assets, and a visual starting point. It includes authentication, search, Firestore persistence, subscription-aware access, library behavior, settings, and an audio player.",
+    href: "/work/summarist",
+    image: "/summarist-case-study.png",
+    imageAlt: "Summarist personalized For You page",
+    imageWidth: 1672,
+    imageHeight: 941,
+    className: "work-index-summarist",
+  },
+] as const;
 
 export default function WorkPage() {
   return (
@@ -25,60 +81,35 @@ export default function WorkPage() {
         </section>
 
         <section className="work-index shell" aria-label="Case studies">
-          <article className="work-index-card work-index-pawcircle" data-reveal>
-            <div>
-              <span>01 / Independent product</span>
-              <h2>PawCircle Membership</h2>
-              <p>
-                Taking a pet-care membership product from idea through
-                development, launch, production troubleshooting, and its current
-                portfolio-demo form.
-              </p>
-              <Link href="/work/pawcircle">Read the case study ↗</Link>
-            </div>
-          </article>
+          {projects.map((project) => (
+            <Link
+              className={`work-index-card ${project.className}`}
+              href={project.href}
+              key={project.title}
+              data-reveal
+            >
+              <div className="work-index-image">
+                <Image
+                  src={project.image}
+                  alt={project.imageAlt}
+                  width={project.imageWidth}
+                  height={project.imageHeight}
+                  sizes="(max-width: 980px) calc(100vw - 48px), 600px"
+                />
+              </div>
 
-          <article className="work-index-card work-index-skinstric" data-reveal>
-            <div>
-              <span>02 / Paid frontend internship</span>
-              <h2>Skinstric</h2>
-              <p>
-                Implementing a responsive Next.js and TypeScript skin-analysis
-                flow from supplied Figma designs, APIs, assets, and project
-                requirements, including image upload, camera capture, and
-                interactive demographic results.
-              </p>
-              <Link href="/work/skinstric">Read the case study ↗</Link>
-            </div>
-          </article>
-
-          <article className="work-index-card work-index-skinstric" data-reveal>
-            <div>
-              <span>03 / Frontend development project</span>
-              <h2>Ultraverse NFT Marketplace</h2>
-              <p>
-                Building a responsive React marketplace with API-driven content,
-                loading states, carousels, timers, filtering, incremental loading,
-                and routed detail views.
-              </p>
-              <Link href="/work/ultraverse">Read the case study ↗</Link>
-            </div>
-          </article>
-
-          <article className="work-index-card work-index-skinstric" data-reveal>
-            <div>
-              <span>04 / Completed Frontend Simplified virtual internship</span>
-              <h2>Summarist</h2>
-              <p>
-                A completed multi-route Next.js book-summary application built as a
-                Frontend Simplified virtual internship project from supplied
-                requirements, APIs, assets, and a visual starting point. It includes
-                authentication, search, Firestore persistence, subscription-aware
-                access, library behavior, settings, and an audio player.
-              </p>
-              <Link href="/work/summarist">Read the case study ↗</Link>
-            </div>
-          </article>
+              <div className="work-index-content">
+                <span>
+                  {project.number} / {project.label}
+                </span>
+                <h2>{project.title}</h2>
+                <p>{project.summary}</p>
+                <strong className="work-index-link">
+                  Read the case study ↗
+                </strong>
+              </div>
+            </Link>
+          ))}
         </section>
       </main>
       <SiteFooter />

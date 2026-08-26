@@ -9,6 +9,7 @@ const inquiryLabels = {
 } as const;
 
 type InquiryType = keyof typeof inquiryLabels;
+type FormStatus = "idle" | "submitting" | "success" | "error";
 
 const inquiryDetails: Record<
   InquiryType,
@@ -18,56 +19,70 @@ const inquiryDetails: Record<
     intro:
       "For frontend roles, internships, contract work, or conversations with a development team.",
     messageLabel: "What should I know about the opportunity?",
-    buttonLabel: "Prepare opportunity email ↗",
+    buttonLabel: "Send opportunity message ↗",
   },
   website: {
     intro:
       "For a new website, an existing site that needs improvement, or a small web project.",
     messageLabel: "What would you like help with?",
-    buttonLabel: "Prepare project email ↗",
+    buttonLabel: "Send project message ↗",
   },
   general: {
     intro:
       "For anything that does not fit the other two options. A short note is completely fine.",
     messageLabel: "What would you like to discuss?",
-    buttonLabel: "Prepare email ↗",
+    buttonLabel: "Send message ↗",
   },
 };
 
 export function ContactForm() {
   const [inquiryType, setInquiryType] = useState<InquiryType>("role");
+  const [status, setStatus] = useState<FormStatus>("idle");
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "").trim();
-    const email = String(data.get("email") ?? "").trim();
-    const organization = String(data.get("organization") ?? "").trim();
-    const roleTitle = String(data.get("roleTitle") ?? "").trim();
-    const website = String(data.get("website") ?? "").trim();
-    const message = String(data.get("message") ?? "").trim();
+    const form = event.currentTarget;
+    const data = new FormData(form);
 
-    const subject = `${inquiryLabels[inquiryType]} from ${name}`;
-    const bodyLines = [
-      `Name: ${name}`,
-      `Email: ${email}`,
-      organization ? `Company / organization: ${organization}` : "",
-      inquiryType === "role" && roleTitle ? `Role: ${roleTitle}` : "",
-      inquiryType === "website" && website ? `Current website: ${website}` : "",
-      "",
-      message,
-    ].filter((line, index, lines) => line || index === lines.length - 2);
+    setStatus("submitting");
 
-    window.location.href = `mailto:reaaland@gmail.com?subject=${encodeURIComponent(
-      subject,
-    )}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          inquiryType,
+          name: String(data.get("name") ?? "").trim(),
+          email: String(data.get("email") ?? "").trim(),
+          organization: String(data.get("organization") ?? "").trim(),
+          roleTitle: String(data.get("roleTitle") ?? "").trim(),
+          website: String(data.get("website") ?? "").trim(),
+          companySite: String(data.get("companySite") ?? "").trim(),
+          message: String(data.get("message") ?? "").trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("The contact request could not be sent.");
+      }
+
+      form.reset();
+      setInquiryType("role");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   }
 
   const details = inquiryDetails[inquiryType];
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit}>
+    <form
+      className="contact-form"
+      onSubmit={handleSubmit}
+      aria-busy={status === "submitting"}
+    >
       <fieldset>
         <legend>What brings you here?</legend>
         <div className="inquiry-options">
@@ -129,15 +144,43 @@ export function ContactForm() {
 
       <label>
         {details.messageLabel}
-        <textarea name="message" rows={7} required />
+        <textarea name="message" rows={7} maxLength={5000} required />
+      </label>
+
+      <label className="form-honeypot" aria-hidden="true">
+        Leave this field empty
+        <input
+          name="companySite"
+          type="text"
+          autoComplete="off"
+          tabIndex={-1}
+        />
       </label>
 
       <p className="form-note">
-        Submitting opens your email application with this message prepared. No
-        information is stored by this site.
+        Your message will be sent directly to Rebecca. You can also use the
+        direct email link on this page.
       </p>
-      <button className="button button-dark" type="submit">
-        {details.buttonLabel}
+
+      {status === "success" ? (
+        <p className="form-status form-status-success" role="status">
+          Thanks—your message was sent directly to Rebecca.
+        </p>
+      ) : null}
+
+      {status === "error" ? (
+        <p className="form-status form-status-error" role="alert">
+          The form could not send your message. Please email Rebecca directly at{" "}
+          <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>.
+        </p>
+      ) : null}
+
+      <button
+        className="button button-dark"
+        type="submit"
+        disabled={status === "submitting"}
+      >
+        {status === "submitting" ? "Sending…" : details.buttonLabel}
       </button>
     </form>
   );
