@@ -39,9 +39,9 @@ function buildResumePdf() {
   function paragraph(
     y: number,
     lines: string[],
-    size = 9.7,
-    x = 54,
-    lineHeight = 11.5,
+    size = 8.8,
+    x = 50,
+    lineHeight = 10.2,
     font = "F1",
     color = black,
   ) {
@@ -51,133 +51,136 @@ function buildResumePdf() {
     return y - lines.length * lineHeight;
   }
 
-  function bullet(y: number, lines: string[], size = 9.6, lineHeight = 11.4) {
-    text(58, y, size, "-", "F1", black);
+  function bullet(y: number, lines: string[], size = 8.6, lineHeight = 10) {
+    text(54, y, size, "-", "F1", black);
     lines.forEach((value, index) =>
-      text(70, y - index * lineHeight, size, value, "F1", black),
+      text(66, y - index * lineHeight, size, value, "F1", black),
     );
     return y - lines.length * lineHeight;
   }
 
   function heading(y: number, value: string) {
-    text(54, y, 11.3, value.toUpperCase(), "F2", blue);
-    return y - 15;
+    text(50, y, 10.7, value.toUpperCase(), "F2", blue);
+    return y - 14;
   }
 
-  text(193, 753, 20, "REBECCA AALAND", "F2", navy);
+  text(190, 754, 19, "REBECCA AALAND", "F2", navy);
+  text(217, 735, 10.8, "Junior Frontend Developer", "F2", blue);
   text(
-    125,
-    733,
-    11.2,
-    "Frontend Developer  |  React  |  JavaScript  |  Next.js  |  Supabase",
-    "F2",
-    blue,
-  );
-  text(
-    73,
-    714,
-    9.3,
-    "Rochester, Minnesota  |  Open to remote work  |  (507) 990-4627  |  reaaland@gmail.com",
+    72,
+    717,
+    8.8,
+    "Rochester, Minnesota  |  (507) 990-4627  |  reaaland@gmail.com",
     "F1",
     gray,
   );
   text(
-    151,
-    699,
-    9.1,
+    124,
+    703,
+    8.6,
     "rebeccaiaaland.com  |  github.com/reaaland  |  linkedin.com/in/rebecca-aaland-494169411",
     "F1",
     gray,
   );
-  line(54, 687, 558, 687, 0.7);
+  line(50, 690, 562, 690, 0.7);
 
-  let y = 670;
+  let y = 674;
 
   y = heading(y, "Professional Summary");
   y = paragraph(y, [
-    "Frontend developer with hands-on experience building and launching responsive web applications using React,",
-    "JavaScript, Next.js, Supabase, and modern web tools. Experienced with API integration, authentication,",
-    "databases, payments, responsive interfaces, and troubleshooting production issues. Background in education,",
-    "small-business ownership, technical writing, and customer support with a focus on clear communication and",
-    "practical problem-solving.",
+    "Junior frontend developer who builds and ships responsive web applications from requirements through deployment.",
+    "Recent work includes a production React/Supabase application and a paid Next.js/TypeScript internship.",
+    "Practical experience includes APIs, authentication, databases, payments, testing, debugging, responsive design,",
+    "technical writing, teaching, and small-business ownership.",
   ]);
-  y -= 5;
+  y -= 3;
 
   y = heading(y, "Technical Skills");
   y = paragraph(y, [
-    "Programming: JavaScript, TypeScript, HTML5, CSS3",
-    "Frameworks & technologies: React, Next.js, Tailwind CSS, Supabase, PostgreSQL, REST APIs",
-    "Tools & platforms: Git, GitHub, Vercel, Vite, Stripe, Figma, VS Code",
-  ], 9.5, 54, 11.2);
-  y -= 5;
+    "JavaScript | TypeScript | React | Next.js | HTML5 | CSS3 | Tailwind CSS | React Router | Redux Toolkit",
+    "REST APIs | Axios | Supabase | PostgreSQL | Firebase | Firestore | Stripe",
+    "Git | GitHub | Vercel | Vite | Figma | Responsive Design | Accessibility | Functional Testing",
+  ], 8.45, 50, 9.8);
+  y -= 3;
 
-  y = heading(y, "Professional Experience");
-  text(54, y, 10.8, "Founder & Owner - PawCircle LLC", "F2", navy);
-  text(446, y, 9.2, "Oct 2023-Present", "F1", gray);
-  y -= 13;
-  y = bullet(y, [
-    "Founded and operate an independent pet-care business with approximately 95% repeat business through",
-    "dependable service, referrals, and long-term client relationships.",
-  ]);
-  y -= 2;
-  y = bullet(y, [
-    "Designed, built, launched, and maintained PawCircle Membership, a React application with authentication,",
-    "protected areas, role-based profiles, local discovery, messaging, privacy controls, and Stripe payments.",
-  ]);
-  y -= 2;
-  y = bullet(y, [
-    "Troubleshot production issues across registration, routing, profiles, notifications, data, and payments;",
-    "the closed paid membership product is now maintained as an interactive portfolio demonstration.",
-  ]);
-  y -= 5;
+  y = heading(y, "Selected Development Projects");
 
-  text(54, y, 10.8, "Science Teacher - Rochester Public Schools & Adrian Public Schools", "F2", navy);
-  text(455, y, 9.2, "2012-2023", "F1", gray);
-  y -= 13;
-  y = bullet(y, [
-    "Explained complex scientific and technical concepts to varied audiences, created curriculum and training",
-    "materials, managed concurrent projects and deadlines, and adjusted approaches based on results.",
-  ]);
-  y -= 5;
-
-  text(54, y, 10.8, "Technical Writer - TransCore", "F2", navy);
-  text(461, y, 9.2, "2000-2002", "F1", gray);
-  y -= 13;
-  y = bullet(y, [
-    "Edited, formatted, distributed, and maintained technical documentation supporting engineering teams and",
-    "operational workflows while keeping technical information accurate, organized, and accessible.",
-  ]);
-  y -= 5;
-
-  y = heading(y, "Selected Development Work");
-  text(54, y, 10.8, "PawCircle Membership", "F2", navy);
-  y -= 13;
-  text(54, y, 9.2, "React, JavaScript, Supabase/PostgreSQL, Stripe, Vercel", "F1", gray);
+  text(50, y, 9.9, "PawCircle Membership", "F2", navy);
+  text(390, y, 8.3, "React / Supabase / Stripe", "F1", gray);
   y -= 12;
   y = bullet(y, [
-    "Built a responsive membership application with three role-based profile paths, protected routes, local",
-    "discovery, privacy controls, introductory messaging, and payment workflows.",
+    "Identified the need for a direct local pet-care membership product, mapped the core user flows, and built and",
+    "launched a responsive React application with Supabase/PostgreSQL, Stripe, and Vercel.",
+  ]);
+  y -= 1;
+  y = bullet(y, [
+    "Implemented authentication, role-based profiles, protected directories, messaging, privacy controls, and payment",
+    "workflows; tested failures across the interface, data layer, and third-party services and verified fixes before release.",
+  ]);
+  y -= 3;
+
+  text(50, y, 9.9, "Skinstric - Paid Frontend Internship", "F2", navy);
+  text(423, y, 8.3, "Next.js / TypeScript", "F1", gray);
+  y -= 12;
+  y = bullet(y, [
+    "Turned supplied Figma designs and API requirements into a responsive skin-analysis flow with validated intake,",
+    "camera/gallery capture, Base64 conversion, browser permissions, editable results, responsive testing, and",
+    "Vercel deployment.",
+  ]);
+  y -= 3;
+
+  text(50, y, 9.9, "Ultraverse NFT Marketplace", "F2", navy);
+  text(426, y, 8.3, "React / API Project", "F1", gray);
+  y -= 12;
+  y = bullet(y, [
+    "Built reusable API-driven marketplace views with loading skeletons, responsive carousels, countdown timers,",
+    "sorting/filtering, incremental loading, and React Router navigation for a complete responsive browsing experience.",
+  ]);
+  y -= 3;
+
+  text(50, y, 9.9, "Summarist", "F2", navy);
+  text(423, y, 8.3, "Next.js / Firebase Project", "F1", gray);
+  y -= 12;
+  y = bullet(y, [
+    "Completed a multi-route book-summary application with Firebase Authentication, Firestore persistence, Redux Toolkit",
+    "state, debounced search, protected and premium states, dynamic routes, and an audio player.",
   ]);
   y -= 4;
 
-  text(54, y, 10.8, "Ultraverse NFT Marketplace", "F2", navy);
-  y -= 13;
-  text(54, y, 9.2, "React, JavaScript, Axios, React Router, react-slick", "F1", gray);
+  y = heading(y, "Professional Experience");
+
+  text(50, y, 9.9, "Frontend Developer Intern - Skinstric", "F2", navy);
+  text(495, y, 8.3, "2026", "F1", gray);
   y -= 12;
   y = bullet(y, [
-    "Built API-driven marketplace experiences with loading skeletons, live countdowns, filtering and sorting,",
-    "incremental load-more behavior, routed detail views, and responsive carousels adapting 4 to 2 to 1 cards.",
+    "Completed a paid frontend internship by carrying Skinstric from supplied requirements and designs through",
+    "implementation, Git/GitHub workflow, testing, debugging, and deployment.",
   ]);
-  y -= 5;
+  y -= 3;
+
+  text(50, y, 9.9, "Founder & Owner - PawCircle LLC", "F2", navy);
+  text(459, y, 8.3, "2023-Present", "F1", gray);
+  y -= 12;
+  y = bullet(y, [
+    "Run an independent service business with approximately 95% repeat business, managing client communication,",
+    "scheduling, changing requirements, and day-to-day problem solving.",
+  ]);
+  y -= 3;
+
+  text(50, y, 9.9, "Earlier Professional Experience", "F2", navy);
+  y -= 12;
+  y = bullet(y, [
+    "Eleven years as a science educator plus earlier technical writing/document control and Tier 1 internet support built",
+    "strong documentation, training, communication, and technical troubleshooting skills.",
+  ]);
+  y -= 4;
 
   y = heading(y, "Education");
-  text(54, y, 9.8, "Frontend Simplified - Frontend Development Program  |  2026-Present", "F2", navy);
-  y -= 12;
-  text(54, y, 9.5, "B.S., Elementary Education, Summa Cum Laude - St. Cloud State University");
+  text(50, y, 8.9, "Frontend Simplified | Frontend Development Program - Completed 2026", "F2", navy);
   y -= 11;
-  text(54, y, 9.5, "M.S., Women's Studies - Minnesota State University, Mankato");
-  y -= 11;
-  text(54, y, 9.5, "B.S., Sociology & Women's Studies - Minnesota State University, Mankato");
+  text(50, y, 8.7, "B.S., Elementary Education, Summa Cum Laude - St. Cloud State University");
+  y -= 10;
+  text(50, y, 8.7, "M.S., Women's Studies; B.S., Sociology & Women's Studies - Minnesota State University, Mankato");
 
   const stream = `${commands.join("\n")}\n`;
   const objects: string[] = [];
@@ -212,7 +215,7 @@ export function GET() {
     headers: {
       "Content-Type": "application/pdf",
       "Content-Disposition":
-        'attachment; filename="Rebecca_Aaland_Frontend_Developer_Resume.pdf"',
+        'inline; filename="Rebecca_Aaland_Frontend_Developer_STAR_Resume.pdf"',
       "Cache-Control": "public, max-age=86400",
     },
   });
