@@ -25,6 +25,9 @@ export const metadata: Metadata = {
   authors: [{ name: "Rebecca Aaland" }],
   creator: "Rebecca Aaland",
   metadataBase: new URL(SITE_URL),
+  verification: {
+    google: "RbevpWa_IZwBUPSQDoubqD8KQA1-eOP3VwNSTLGcQao",
+  },
   openGraph: {
     title: "Rebecca Aaland — Frontend Developer & Web Designer",
     description:
