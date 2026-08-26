@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "Services",
+export const metadata = createPageMetadata({
+  title: "Web Design & Frontend Development Services",
   description:
-    "Small-business websites, website improvements, and frontend development from Rebecca Aaland.",
-};
+    "Web design, website improvements, and frontend development for Rochester, Minnesota small businesses and remote teams.",
+  path: "/services",
+});
 
 const services = [
   {
@@ -54,9 +55,10 @@ export default function ServicesPage() {
           <p className="eyebrow">Services</p>
           <h1>Web help built around what you actually need.</h1>
           <p>
-            I work with small businesses and teams on focused website and
-            frontend projects—from new sites and mobile fixes to responsive
-            implementation from an existing design.
+            Based in Rochester, Minnesota, I work with small businesses locally
+            and with remote teams on focused website and frontend projects—from
+            new sites and mobile fixes to responsive implementation from an
+            existing design.
           </p>
         </section>
 

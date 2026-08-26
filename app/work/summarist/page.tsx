@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "Summarist Case Study",
+export const metadata = createPageMetadata({
+  title: "Summarist Next.js Application Case Study",
   description:
     "How Rebecca Aaland implemented a multi-route Next.js book-summary application as a completed Frontend Simplified coursework project.",
-};
+  path: "/work/summarist",
+});
 
 const implementation = [
   "Email/password registration, login, logout, and guest access with Firebase Authentication",

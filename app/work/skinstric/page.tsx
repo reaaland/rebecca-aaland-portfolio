@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "Skinstric Case Study",
+export const metadata = createPageMetadata({
+  title: "Skinstric Internship Case Study",
   description:
     "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow during a paid internship with Skinstric.",
-};
+  path: "/work/skinstric",
+});
 
 const implementation = [
   "Responsive landing, intake, scan, results, and demographics routes",

@@ -1,8 +1,16 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ExperienceIntro } from "@/components/experience-intro";
+import { ProfileStructuredData } from "@/components/profile-structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
 
 const projects = [
   {
@@ -142,6 +150,7 @@ function WebpageAssembler() {
 export default function Home() {
   return (
     <>
+      <ProfileStructuredData />
       <ExperienceIntro />
       <SiteHeader />
 
@@ -164,7 +173,8 @@ export default function Home() {
               I build clear, responsive websites and web applications for small
               businesses and real-world problems. My approach is practical:
               understand what needs to work, build it well, and refine it based
-              on how people actually use it.
+              on how people actually use it. Based in Rochester, Minnesota, I
+              work with local clients and remote teams.
             </p>
 
             <div className="hero-actions">

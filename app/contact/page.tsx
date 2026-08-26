@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 import { ContactForm } from "./contact-form";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact Rebecca Aaland about a frontend opportunity, website project, or general inquiry.",
-};
+    "Contact Rebecca Aaland about frontend opportunities or local and remote website projects.",
+  path: "/contact",
+});
 
 export default function ContactPage() {
   return (

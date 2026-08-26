@@ -1,13 +1,14 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "About",
   description:
-    "About Rebecca Aaland, a frontend developer and business owner with a background in teaching, problem-solving, and building practical digital products.",
-};
+    "Meet Rebecca Aaland, a Rochester, Minnesota frontend developer, web designer, business owner, and former teacher who builds practical digital products.",
+  path: "/about",
+});
 
 export default function AboutPage() {
   return (

@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "Résumé",
+export const metadata = createPageMetadata({
+  title: "Frontend Developer Résumé",
   description:
     "Rebecca Aaland's frontend developer résumé, including PawCircle Membership, paid Skinstric internship work, and React API projects.",
-};
+  path: "/resume",
+});
 
 export default function ResumePage() {
   return (

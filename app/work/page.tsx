@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "Selected Work",
+export const metadata = createPageMetadata({
+  title: "Frontend Development Portfolio",
   description:
-    "Selected web and frontend projects from Rebecca Aaland, including PawCircle Membership, Skinstric, Ultraverse NFT Marketplace, and Summarist.",
-};
+    "Explore Rebecca Aaland's frontend development portfolio, including responsive React, Next.js, TypeScript, API, Supabase, and Firebase projects.",
+  path: "/work",
+});
 
 const projects = [
   {

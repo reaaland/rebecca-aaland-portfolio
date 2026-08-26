@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "Ultraverse NFT Marketplace Case Study",
+export const metadata = createPageMetadata({
+  title: "Ultraverse React Marketplace Case Study",
   description:
     "How Rebecca Aaland implemented a responsive React marketplace with API-driven content, routing, loading states, carousels, timers, and filtering.",
-};
+  path: "/work/ultraverse",
+});
 
 const implementation = [
   "Responsive React pages and reusable marketplace components",

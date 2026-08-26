@@ -1,14 +1,15 @@
-import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
+import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
-  title: "PawCircle Membership Case Study",
+export const metadata = createPageMetadata({
+  title: "PawCircle Full-Stack Product Case Study",
   description:
-    "How Rebecca Aaland took PawCircle Membership from an idea to a launched full-stack pet-care membership product.",
-};
+    "How Rebecca Aaland designed, developed, launched, and supported PawCircle Membership, a full-stack React, Supabase, and Stripe pet-care product.",
+  path: "/work/pawcircle",
+});
 
 const implementation = [
   "Responsive React interfaces for pet owners and service providers",
