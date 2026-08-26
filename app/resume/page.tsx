@@ -92,8 +92,8 @@ export default function ResumePage() {
                 Junior Frontend Developer with experience building and launching web
                 applications using React, JavaScript, Next.js, Supabase, APIs,
                 authentication, databases, and payments. Built PawCircle
-                Membership from idea through production and completed a paid
-                frontend internship building Skinstric. Before moving into
+                Membership from idea through production and worked as a paid
+                Frontend Developer Intern with Skinstric. Before moving into
                 development, worked in teaching, business ownership, technical
                 writing, and customer support, building strong communication,
                 organization, and practical problem-solving skills.
@@ -122,7 +122,7 @@ export default function ResumePage() {
 
               <article>
                 <h2>Skinstric</h2>
-                <span>Paid Frontend Internship · Next.js · TypeScript · APIs</span>
+                <span>Skinstric Internship · Next.js · TypeScript · APIs</span>
                 <p>
                   Built a responsive Next.js and TypeScript application from
                   supplied Figma designs, including user intake, image-source
@@ -154,11 +154,11 @@ export default function ResumePage() {
 
               <article>
                 <h2>Frontend Developer Intern</h2>
-                <span>Frontend Simplified · 2026</span>
+                <span>Skinstric · 2026</span>
                 <p>
-                  Completed a paid frontend internship building Skinstric from
-                  project requirements and Figma designs, using Git and GitHub
-                  throughout development, testing, and deployment.
+                  Completed a paid frontend developer internship with Skinstric,
+                  building from project requirements and Figma designs and using
+                  Git and GitHub throughout development, testing, and deployment.
                 </p>
               </article>
 

@@ -26,7 +26,7 @@ const projects = [
   },
   {
     number: "02",
-    label: "Paid frontend internship",
+    label: "Skinstric internship",
     title: "Skinstric",
     summary:
       "Implementing a responsive Next.js and TypeScript skin-analysis flow from supplied Figma designs, APIs, assets, and project requirements, including image upload, camera capture, and interactive demographic results.",
@@ -52,7 +52,7 @@ const projects = [
   },
   {
     number: "04",
-    label: "Completed Frontend Simplified virtual internship",
+    label: "Completed Frontend Simplified coursework",
     title: "Summarist",
     summary:
       "A completed multi-route Next.js book-summary application built from supplied requirements, APIs, assets, and a visual starting point. It includes authentication, search, Firestore persistence, subscription-aware access, library behavior, settings, and an audio player.",

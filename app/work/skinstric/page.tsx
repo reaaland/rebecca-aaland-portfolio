@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Skinstric Case Study",
   description:
-    "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow during a paid Frontend Simplified internship.",
+    "How Rebecca Aaland implemented a responsive Next.js skin-analysis flow during a paid internship with Skinstric.",
 };
 
 const implementation = [
@@ -29,9 +29,7 @@ export default function SkinstricCaseStudy() {
           <div className="skinstric-case-mark" aria-hidden="true" />
 
           <div className="shell" data-reveal>
-            <p className="eyebrow">
-              Paid frontend internship &middot; Frontend Simplified
-            </p>
+            <p className="eyebrow">Paid Skinstric internship</p>
 
             <h1>
               Turning supplied designs and requirements into a working browser
@@ -40,8 +38,8 @@ export default function SkinstricCaseStudy() {
 
             <p className="case-lede">
               I implemented a responsive AI skin-analysis flow using the design,
-              assets, APIs, and phased requirements supplied by Frontend
-              Simplified as paid frontend internship work.
+              assets, APIs, and phased requirements provided for my paid
+              internship with Skinstric.
             </p>
 
             <div className="case-meta">
@@ -51,7 +49,7 @@ export default function SkinstricCaseStudy() {
               </div>
 
               <div>
-                <span>Provided by FES</span>
+                <span>Project inputs</span>
                 <strong>
                   Design &middot; Assets &middot; APIs &middot; Requirements
                 </strong>
@@ -124,10 +122,10 @@ export default function SkinstricCaseStudy() {
               </h2>
 
               <p>
-                Frontend Simplified supplied the visual direction, assets,
-                external APIs, expected behavior, and phased requirements. My
-                job was to translate those inputs into a responsive Next.js
-                application and connect the pieces into one working flow.
+                I worked from supplied visual direction, assets, external APIs,
+                expected behavior, and phased requirements. My job was to
+                translate those inputs into a responsive Next.js application
+                and connect the pieces into one working flow.
               </p>
             </section>
 

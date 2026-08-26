@@ -7,7 +7,7 @@ import { SiteHeader } from "@/components/site-header";
 export const metadata: Metadata = {
   title: "Summarist Case Study",
   description:
-    "How Rebecca Aaland implemented a multi-route Next.js book-summary application as a completed Frontend Simplified virtual internship project.",
+    "How Rebecca Aaland implemented a multi-route Next.js book-summary application as a completed Frontend Simplified coursework project.",
 };
 
 const implementation = [
@@ -31,20 +31,18 @@ export default function SummaristCaseStudy() {
       <main>
         <section className="case-hero">
           <div className="shell" data-reveal>
-            <p className="eyebrow">
-              Completed Frontend Simplified virtual internship
-            </p>
+            <p className="eyebrow">Completed Frontend Simplified coursework</p>
 
             <h1>
               Building a larger application from a defined set of requirements.
             </h1>
 
             <p className="case-lede">
-              Summarist was a Frontend Simplified virtual internship project
-              that I completed and passed. I worked from supplied requirements,
-              APIs, assets, and an existing visual starting point to implement
-              the application flow in Next.js. This is internship project work,
-              not a product or site I own.
+              Summarist was a Frontend Simplified coursework project that I
+              completed and passed. I worked from supplied requirements, APIs,
+              assets, and an existing visual starting point to implement the
+              application flow in Next.js. This is education project work, not
+              a product or site I own.
             </p>
 
             <div className="case-meta">
@@ -126,7 +124,7 @@ export default function SummaristCaseStudy() {
               <p className="eyebrow">01 / The assignment</p>
 
               <h2>
-                Turn the internship brief into a working multi-page application.
+                Turn the project brief into a working multi-page application.
               </h2>
 
               <p>
@@ -172,7 +170,7 @@ export default function SummaristCaseStudy() {
             <section data-reveal>
               <p className="eyebrow">03 / What I implemented</p>
 
-              <h2>The application work behind the internship requirements.</h2>
+              <h2>The application work behind the project requirements.</h2>
 
               <ul className="case-list">
                 {implementation.map((item) => (
@@ -192,7 +190,7 @@ export default function SummaristCaseStudy() {
               <p>
                 Summarist shows a different kind of work from PawCircle. I did
                 not define the product or visual direction myself. The value is
-                in following the internship requirements, working through app
+                in following the project requirements, working through app
                 state and authentication, connecting multiple routes and data
                 sources, and debugging the flow until the pieces worked
                 together.
@@ -202,7 +200,7 @@ export default function SummaristCaseStudy() {
                 For the public portfolio version, the subscription step uses a
                 demo state rather than collecting real payment information. That
                 keeps the access-gating behavior visible without presenting this
-                internship project as a live paid product.
+                coursework project as a live paid product.
               </p>
             </section>
           </div>

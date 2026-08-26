@@ -26,10 +26,10 @@ const projects = [
   },
   {
     number: "02",
-    label: "Paid frontend internship",
+    label: "Skinstric internship",
     title: "Skinstric",
     summary:
-      "A responsive Next.js and TypeScript skin-analysis flow I implemented from supplied Figma designs, APIs, assets, and project requirements during a paid Frontend Simplified internship.",
+      "A responsive Next.js and TypeScript skin-analysis flow I implemented from supplied Figma designs, APIs, assets, and project requirements during a paid internship with Skinstric.",
     proof: [
       "Next.js",
       "TypeScript",
