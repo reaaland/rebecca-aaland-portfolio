@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { ExperienceIntro } from "@/components/experience-intro";
+import { MinnlawnProjectVisual } from "@/components/minnlawn-project-visual";
 import { ProfileStructuredData } from "@/components/profile-structured-data";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -15,6 +16,26 @@ export const metadata: Metadata = {
 const projects = [
   {
     number: "01",
+    label: "Client website · Full rebuild",
+    title: "Minnlawn Lawn & Landscape",
+    summary:
+      "I rebuilt a real local service-business website beyond the limits of its original GoDaddy template, with clearer service paths, seasonal content, quote functionality, SEO, performance work, and launch support.",
+    testimonial: "“The site is now a powerful asset for my business.” — Yohan, Minnlawn",
+    proof: [
+      "Next.js",
+      "TypeScript",
+      "Responsive UI",
+      "SEO",
+      "Schema",
+      "Forms",
+      "Google reviews",
+      "Netlify",
+    ],
+    href: "/work/minnlawn",
+    visual: "minnlawn",
+  },
+  {
+    number: "02",
     label: "Independent product · From idea to launch",
     title: "PawCircle Membership",
     summary:
@@ -33,7 +54,7 @@ const projects = [
     visual: "pawcircle",
   },
   {
-    number: "02",
+    number: "03",
     label: "Skinstric internship",
     title: "Skinstric",
     summary:
@@ -52,7 +73,7 @@ const projects = [
     visual: "skinstric",
   },
   {
-    number: "03",
+    number: "04",
     label: "Frontend development project",
     title: "Ultraverse NFT Marketplace",
     summary:
@@ -281,10 +302,9 @@ export default function Home() {
             </div>
 
             <p>
-              These projects show different kinds of frontend work: taking a
-              product from idea to launch, completing paid implementation work,
-              and building responsive API-driven interfaces from supplied
-              requirements.
+              These projects show client website work, independent product
+              development, paid implementation work, and responsive
+              API-driven interfaces built from supplied requirements.
             </p>
           </div>
 
@@ -304,7 +324,9 @@ export default function Home() {
                     <span>REBECCA AALAND</span>
                   </div>
 
-                  {project.title === "PawCircle Membership" ? (
+                  {project.title === "Minnlawn Lawn & Landscape" ? (
+                    <MinnlawnProjectVisual />
+                  ) : project.title === "PawCircle Membership" ? (
                     <div className="project-screenshot-frame">
                       <Image
                         src="/pawcircle-homepage.png"
@@ -343,6 +365,11 @@ export default function Home() {
                   <div className="project-main">
                     <h3>{project.title}</h3>
                     <p className="project-summary">{project.summary}</p>
+                    {"testimonial" in project ? (
+                      <blockquote className="project-quote">
+                        {project.testimonial}
+                      </blockquote>
+                    ) : null}
                   </div>
 
                   <ul
