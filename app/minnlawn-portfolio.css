@@ -1,0 +1,208 @@
+.project-visual-minnlawn,
+.work-index-minnlawn {
+  background:
+    radial-gradient(circle at 18% 78%, rgba(86, 183, 105, 0.2), transparent 30%),
+    radial-gradient(circle at 82% 18%, rgba(67, 220, 255, 0.13), transparent 31%),
+    #08110d;
+}
+
+.minnlawn-project-visual {
+  position: relative;
+  z-index: 2;
+  width: min(100%, 620px);
+  overflow: hidden;
+  border: 1px solid rgba(135, 218, 149, 0.3);
+  border-radius: 16px;
+  background: rgba(7, 14, 10, 0.92);
+  box-shadow:
+    0 28px 70px rgba(0, 0, 0, 0.36),
+    0 0 42px rgba(86, 183, 105, 0.08);
+}
+
+.minnlawn-preview-chrome {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.09);
+  background: rgba(255, 255, 255, 0.035);
+}
+
+.minnlawn-preview-chrome > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.28);
+}
+
+.minnlawn-preview-chrome small {
+  margin-left: auto;
+  color: rgba(226, 236, 229, 0.54);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.55rem;
+  letter-spacing: 0.06em;
+}
+
+.minnlawn-preview-body {
+  padding: clamp(24px, 4vw, 42px);
+}
+
+.minnlawn-preview-brand {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.minnlawn-preview-brand > span {
+  display: grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  border: 1px solid rgba(135, 218, 149, 0.44);
+  border-radius: 50%;
+  color: #b8efc1;
+  font-size: 1.15rem;
+  font-weight: 760;
+}
+
+.minnlawn-preview-brand div {
+  display: grid;
+  gap: 2px;
+}
+
+.minnlawn-preview-brand strong {
+  color: #f3f7f4;
+  font-size: 0.83rem;
+  letter-spacing: 0.12em;
+}
+
+.minnlawn-preview-brand small,
+.minnlawn-preview-body > p {
+  color: rgba(224, 236, 227, 0.58);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.54rem;
+  letter-spacing: 0.1em;
+}
+
+.minnlawn-preview-body > p {
+  margin: 36px 0 10px;
+}
+
+.minnlawn-preview-body h3 {
+  max-width: 520px;
+  margin: 0;
+  color: #f3f7f4;
+  font-size: clamp(1.9rem, 4vw, 3.4rem);
+  font-weight: 540;
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.minnlawn-preview-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 34px;
+}
+
+.minnlawn-preview-pills span {
+  padding: 7px 10px;
+  border: 1px solid rgba(135, 218, 149, 0.18);
+  border-radius: 999px;
+  color: rgba(232, 242, 234, 0.76);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.56rem;
+}
+
+.minnlawn-project-visual-compact {
+  width: min(90%, 540px);
+}
+
+.work-index-minnlawn > .work-index-image {
+  display: grid;
+  place-items: center;
+  padding: 30px;
+  background:
+    radial-gradient(circle at 15% 80%, rgba(86, 183, 105, 0.18), transparent 32%),
+    radial-gradient(circle at 84% 16%, rgba(67, 220, 255, 0.1), transparent 30%),
+    #08110d;
+}
+
+.project-quote,
+.work-index-quote {
+  margin: 22px 0 24px;
+  padding-left: 16px;
+  border-left: 2px solid rgba(135, 218, 149, 0.62);
+  color: var(--text-soft);
+  font-size: 0.9rem;
+  font-style: normal;
+  line-height: 1.6;
+}
+
+.case-hero-minnlawn {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(86, 183, 105, 0.14), transparent 28rem),
+    radial-gradient(circle at 8% 82%, rgba(67, 220, 255, 0.1), transparent 28rem),
+    #08110d;
+}
+
+.client-testimonial-section h2 {
+  margin-bottom: 34px;
+}
+
+.client-testimonial {
+  margin: 0;
+  padding: clamp(28px, 5vw, 46px);
+  border: 1px solid var(--line-bright);
+  border-radius: 18px;
+  background: linear-gradient(145deg, rgba(13, 26, 18, 0.96), rgba(8, 16, 12, 0.98));
+  box-shadow: 10px 10px 0 rgba(86, 183, 105, 0.1);
+}
+
+.client-testimonial p {
+  max-width: none;
+  margin: 0 0 22px;
+  color: #d4dfd7;
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.client-testimonial p:last-of-type {
+  margin-bottom: 30px;
+}
+
+.client-testimonial footer {
+  color: #b8efc1;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+[data-theme="light"] .project-visual-minnlawn,
+[data-theme="light"] .work-index-minnlawn,
+[data-theme="light"] .case-hero-minnlawn {
+  background:
+    radial-gradient(circle at 18% 78%, rgba(86, 183, 105, 0.16), transparent 30%),
+    radial-gradient(circle at 82% 18%, rgba(54, 127, 211, 0.09), transparent 31%),
+    #eef5ef;
+}
+
+@media (max-width: 680px) {
+  .work-index-minnlawn > .work-index-image {
+    padding: 18px;
+  }
+
+  .minnlawn-preview-body {
+    padding: 22px;
+  }
+
+  .minnlawn-preview-body > p {
+    margin-top: 26px;
+  }
+
+  .minnlawn-preview-pills {
+    margin-top: 24px;
+  }
+}
