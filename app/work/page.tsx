@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { MinnlawnProjectVisual } from "@/components/minnlawn-project-visual";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
@@ -7,13 +8,24 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Frontend Development Portfolio",
   description:
-    "Explore Rebecca Aaland's frontend development portfolio, including responsive React, Next.js, TypeScript, API, Supabase, and Firebase projects.",
+    "Explore Rebecca Aaland's client website and frontend development portfolio, including responsive Next.js, React, TypeScript, API, Supabase, and Firebase projects.",
   path: "/work",
 });
 
 const projects = [
   {
     number: "01",
+    label: "Client website · Full rebuild",
+    title: "Minnlawn Lawn & Landscape",
+    summary:
+      "Rebuilding a local service-business website beyond the limits of its original GoDaddy template, with clearer service paths, seasonal content, quote functionality, SEO, performance work, and launch support.",
+    testimonial: "“The site is now a powerful asset for my business.” — Yohan, Minnlawn",
+    href: "/work/minnlawn",
+    customVisual: "minnlawn",
+    className: "work-index-minnlawn",
+  },
+  {
+    number: "02",
     label: "Independent product",
     title: "PawCircle Membership",
     summary:
@@ -26,7 +38,7 @@ const projects = [
     className: "work-index-pawcircle",
   },
   {
-    number: "02",
+    number: "03",
     label: "Skinstric internship",
     title: "Skinstric",
     summary:
@@ -39,7 +51,7 @@ const projects = [
     className: "work-index-skinstric",
   },
   {
-    number: "03",
+    number: "04",
     label: "Frontend development project",
     title: "Ultraverse NFT Marketplace",
     summary:
@@ -52,7 +64,7 @@ const projects = [
     className: "work-index-ultraverse",
   },
   {
-    number: "04",
+    number: "05",
     label: "Completed Frontend Simplified coursework",
     title: "Summarist",
     summary:
@@ -75,9 +87,10 @@ export default function WorkPage() {
           <p className="eyebrow">Selected work</p>
           <h1>Different projects. Different problems to solve.</h1>
           <p>
-            These projects show different kinds of frontend work: taking a
-            product from idea to launch, implementing supplied requirements, and
-            building responsive API-driven interfaces.
+            These projects show different kinds of work: rebuilding a real
+            client website, taking a product from idea to launch, implementing
+            supplied requirements, and building responsive API-driven
+            interfaces.
           </p>
         </section>
 
@@ -90,13 +103,17 @@ export default function WorkPage() {
               data-reveal
             >
               <div className="work-index-image">
-                <Image
-                  src={project.image}
-                  alt={project.imageAlt}
-                  width={project.imageWidth}
-                  height={project.imageHeight}
-                  sizes="(max-width: 980px) calc(100vw - 48px), 600px"
-                />
+                {"customVisual" in project ? (
+                  <MinnlawnProjectVisual compact />
+                ) : (
+                  <Image
+                    src={project.image}
+                    alt={project.imageAlt}
+                    width={project.imageWidth}
+                    height={project.imageHeight}
+                    sizes="(max-width: 980px) calc(100vw - 48px), 600px"
+                  />
+                )}
               </div>
 
               <div className="work-index-content">
@@ -105,6 +122,11 @@ export default function WorkPage() {
                 </span>
                 <h2>{project.title}</h2>
                 <p>{project.summary}</p>
+                {"testimonial" in project ? (
+                  <blockquote className="work-index-quote">
+                    {project.testimonial}
+                  </blockquote>
+                ) : null}
                 <strong className="work-index-link">
                   Read the case study ↗
                 </strong>
