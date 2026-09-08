@@ -7,32 +7,50 @@ export function SiteFooter() {
         <strong>
           <span aria-hidden="true">[RA]</span> Rebecca Aaland
         </strong>
-        <span>Frontend Developer &amp; Web Designer</span>
+        <span>Frontend Developer</span>
       </div>
-      <p>Independent work through PawCircle LLC.</p>
+      <p>
+        Independent client work through{" "}
+        <a
+          href="https://www.pawcirclellc.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          PawCircle LLC
+        </a>
+        .
+      </p>
       <nav aria-label="Footer navigation">
-  <Link href="/resume">Résumé</Link>
+        <Link href="/resume">Résumé</Link>
 
-  <a
-    href="https://github.com/reaaland"
-    target="_blank"
-    rel="noreferrer"
-  >
-    GitHub
-  </a>
+        <a
+          href="https://github.com/reaaland"
+          target="_blank"
+          rel="noreferrer"
+        >
+          GitHub
+        </a>
 
-  <a
-    href="https://www.linkedin.com/in/rebecca-aaland-494169411"
-    target="_blank"
-    rel="noreferrer"
-  >
-    LinkedIn
-  </a>
+        <a
+          href="https://www.linkedin.com/in/rebecca-aaland-494169411"
+          target="_blank"
+          rel="noreferrer"
+        >
+          LinkedIn
+        </a>
 
-  <Link href="/contact">Contact</Link>
+        <a
+          href="https://www.pawcirclellc.com"
+          target="_blank"
+          rel="noreferrer"
+        >
+          PawCircle LLC
+        </a>
 
-  <a href="#top">Back to top ↑</a>
-</nav>
+        <Link href="/contact">Contact</Link>
+
+        <a href="#top">Back to top ↑</a>
+      </nav>
     </footer>
   );
 }
