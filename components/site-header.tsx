@@ -75,12 +75,12 @@ export function SiteHeader() {
           Work
         </Link>
 
-        <Link href="/services" onClick={() => setMenuOpen(false)}>
-          Services
-        </Link>
-
         <Link href="/about" onClick={() => setMenuOpen(false)}>
           About
+        </Link>
+
+        <Link href="/resume" onClick={() => setMenuOpen(false)}>
+          Résumé
         </Link>
 
         <div className="mobile-theme-row">
