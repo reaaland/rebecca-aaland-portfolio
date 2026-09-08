@@ -182,25 +182,25 @@ export default function Home() {
 
           <div className="hero-copy">
             <p className="eyebrow hero-eyebrow">
-              <span /> Frontend development · Web applications · Web design
+              <span /> Frontend developer · React · Next.js · TypeScript
             </p>
 
             <h1 id="hero-title">
-              Websites and digital solutions built to solve{" "}
-              <em>practical problems.</em>
+              I build thoughtful frontend experiences for{" "}
+              <em>real-world problems.</em>
             </h1>
 
             <p className="hero-intro">
-              I build clear, responsive websites and web applications for small
-              businesses and real-world problems. My approach is practical:
-              understand what needs to work, build it well, and refine it based
-              on how people actually use it. Based in Rochester, Minnesota, I
-              work with local clients and remote teams.
+              I am a frontend developer with experience building responsive web
+              applications, client websites, API-driven features, and production
+              projects from real requirements. My background in teaching and
+              business ownership also gives me a strong foundation in clear
+              communication, problem-solving, and learning new systems quickly.
             </p>
 
             <div className="hero-actions">
-              <Link className="button button-primary" href="/contact">
-                Contact me <Arrow />
+              <Link className="button button-primary" href="/resume">
+                View my résumé <Arrow />
               </Link>
 
               <a className="button button-secondary" href="#work">
@@ -210,7 +210,7 @@ export default function Home() {
 
             <div className="hero-status" aria-label="Current availability">
               <span className="status-light" />
-              <p>Available for website projects and frontend opportunities.</p>
+              <p>Open to frontend, web development, and related technical opportunities.</p>
             </div>
           </div>
 
@@ -238,53 +238,55 @@ export default function Home() {
           <div className="shell">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">01 / What I can help with</p>
+                <p className="eyebrow">01 / What I bring</p>
                 <h2 id="services-title">
-                  Practical web help for real business needs.
+                  Technical work grounded in communication and problem-solving.
                 </h2>
               </div>
 
               <p>
-                Whether you need a new site, a clearer existing one, or frontend
-                implementation for a larger product, I focus on what needs to
-                work and who needs to use it.
+                My experience spans frontend development, real client work, and
+                years of teaching. I bring both the technical skills to build
+                and the communication skills to understand what people actually
+                need.
               </p>
             </div>
 
             <div className="service-grid">
               <article>
                 <span>01</span>
-                <h3>New websites</h3>
+                <h3>Frontend development</h3>
                 <p>
-                  Professional, responsive sites for service businesses that
-                  need a clear online presence and an easy way for customers to
-                  take the next step.
+                  Responsive React and Next.js interfaces, TypeScript,
+                  API-driven features, application states, forms, and careful
+                  implementation from designs or requirements.
                 </p>
               </article>
 
               <article>
                 <span>02</span>
-                <h3>Website improvements</h3>
+                <h3>Practical problem-solving</h3>
                 <p>
-                  Updates to existing sites—mobile fixes, navigation, content
-                  structure, forms, accessibility, and visual
-                  consistency—without rebuilding more than necessary.
+                  I have taken projects from idea to launch, worked through
+                  deployment and integration issues, and adapted existing
+                  systems when the original approach no longer fit the goal.
                 </p>
               </article>
 
               <article>
                 <span>03</span>
-                <h3>Frontend development</h3>
+                <h3>Clear communication</h3>
                 <p>
-                  Responsive React and Next.js interfaces, API-driven features,
-                  application states, and careful implementation from designs or
-                  requirements.
+                  Eighteen years of teaching taught me how to break complex
+                  ideas into understandable steps, listen for what someone
+                  needs, and explain technical decisions without unnecessary
+                  jargon.
                 </p>
               </article>
             </div>
 
-            <Link className="section-link" href="/services">
-              See services and fit <Arrow />
+            <Link className="section-link" href="/resume">
+              View experience and résumé <Arrow />
             </Link>
           </div>
         </section>
@@ -467,6 +469,22 @@ export default function Home() {
             <Link className="text-link" href="/about">
               More about how I work <Arrow />
             </Link>
+
+            <p>
+              I also run PawCircle LLC, where I build and support websites for
+              independent service businesses. That client work gives me ongoing
+              production experience while this portfolio stays focused on my
+              development career.
+            </p>
+
+            <a
+              className="text-link"
+              href="https://www.pawcirclellc.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit PawCircle LLC <Arrow />
+            </a>
           </div>
         </section>
 
@@ -478,22 +496,25 @@ export default function Home() {
         >
           <div className="shell contact-inner">
             <p className="eyebrow">
-              <span className="status-light" /> Available for website projects
-              and frontend opportunities
+              <span className="status-light" /> Open to frontend, web development,
+              and related technical opportunities
             </p>
 
             <h2 id="contact-title">
-              Have a website or web project you want to improve?
+              Looking for someone who can build, learn, and communicate clearly?
             </h2>
 
             <p>
-              Tell me what you need, what is not working now, or what you are
-              trying to build. We can start there.
+              I would be glad to talk about the role, the team, and the problems
+              you need someone to help solve.
             </p>
 
             <div className="contact-actions">
               <Link className="button button-primary" href="/contact">
-                Start a conversation <Arrow />
+                Contact me <Arrow />
+              </Link>
+              <Link className="button button-secondary" href="/resume">
+                View résumé
               </Link>
             </div>
           </div>
