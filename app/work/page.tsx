@@ -12,9 +12,6 @@ export const metadata = createPageMetadata({
   path: "/work",
 });
 
-const mosLiveScreenshot =
-  "https://s.wordpress.com/mshots/v1/https%3A%2F%2Fmosmajerus.com?w=1600";
-
 const projects = [
   {
     number: "01",
@@ -36,9 +33,10 @@ const projects = [
     testimonial:
       "“Fast, professional service… very simple and thorough. I would definitely recommend her.” — Jason Majerus, Google review",
     href: "/work/mos",
-    image: mosLiveScreenshot,
-    imageAlt: "Live screenshot of the Majerus Outdoor Services website homepage",
-    externalImage: true,
+    image: "/mos-homepage-real.jpg",
+    imageAlt: "Majerus Outdoor Services live website homepage with concrete driveway hero image",
+    imageWidth: 900,
+    imageHeight: 347,
     className: "work-index-mos",
   },
   {
@@ -122,13 +120,6 @@ export default function WorkPage() {
               <div className="work-index-image">
                 {"customVisual" in project ? (
                   <MinnlawnProjectVisual compact />
-                ) : "externalImage" in project ? (
-                  <img
-                    src={project.image}
-                    alt={project.imageAlt}
-                    loading="lazy"
-                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-                  />
                 ) : (
                   <Image
                     src={project.image}
