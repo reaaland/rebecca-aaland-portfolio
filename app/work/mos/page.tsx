@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -131,12 +130,11 @@ export default function MosCaseStudy() {
 
             <section data-reveal aria-label="Majerus Outdoor Services website overview">
               <div className="project-screenshot-frame">
-                <Image
-                  src="/mos.png"
+                <img
+                  src="/mos.png?v=20260912b"
                   alt="Majerus Outdoor Services live website homepage with concrete driveway hero image"
-                  width={2020}
-                  height={778}
                   className="project-screenshot"
+                  style={{ width: "100%", height: "auto", display: "block" }}
                 />
               </div>
               <p>
