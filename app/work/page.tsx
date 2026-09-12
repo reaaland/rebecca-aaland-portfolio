@@ -26,6 +26,21 @@ const projects = [
   },
   {
     number: "02",
+    label: "Client website · New build",
+    title: "Majerus Outdoor Services",
+    summary:
+      "Designing and building a responsive website for an owner-operated Rochester-area concrete and outdoor-services business, with clear service paths, project proof, a stronger contact experience, and a visual identity built around the company rather than a generic contractor template.",
+    testimonial:
+      "“Fast, professional service… very simple and thorough. I would definitely recommend her.” — Jason Majerus, Google review",
+    href: "/work/mos",
+    image: "/mos-project-preview.svg",
+    imageAlt: "Majerus Outdoor Services website project preview",
+    imageWidth: 1200,
+    imageHeight: 760,
+    className: "work-index-mos",
+  },
+  {
+    number: "03",
     label: "Independent product",
     title: "PawCircle Membership",
     summary:
@@ -38,7 +53,7 @@ const projects = [
     className: "work-index-pawcircle",
   },
   {
-    number: "03",
+    number: "04",
     label: "Skinstric internship",
     title: "Skinstric",
     summary:
@@ -51,7 +66,7 @@ const projects = [
     className: "work-index-skinstric",
   },
   {
-    number: "04",
+    number: "05",
     label: "Frontend development project",
     title: "Ultraverse NFT Marketplace",
     summary:
@@ -64,7 +79,7 @@ const projects = [
     className: "work-index-ultraverse",
   },
   {
-    number: "05",
+    number: "06",
     label: "Completed Frontend Simplified coursework",
     title: "Summarist",
     summary:
@@ -87,10 +102,10 @@ export default function WorkPage() {
           <p className="eyebrow">Selected work</p>
           <h1>Different projects. Different problems to solve.</h1>
           <p>
-            These projects show different kinds of work: rebuilding a real
-            client website, taking a product from idea to launch, implementing
-            supplied requirements, and building responsive API-driven
-            interfaces.
+            These projects show different kinds of work: rebuilding and creating
+            real client websites, taking a product from idea to launch,
+            implementing supplied requirements, and building responsive
+            API-driven interfaces.
           </p>
         </section>
 

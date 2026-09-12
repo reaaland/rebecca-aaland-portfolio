@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "",
     "/work",
     "/work/minnlawn",
+    "/work/mos",
     "/work/pawcircle",
     "/work/ultraverse",
     "/work/skinstric",
