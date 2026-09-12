@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
@@ -32,7 +33,8 @@ export default function MosCaseStudy() {
             </p>
 
             <h1>
-              Giving an owner-operated service business a clearer, more professional online presence.
+              Giving an owner-operated service business a clearer, more
+              professional online presence.
             </h1>
 
             <p className="case-lede">
@@ -47,17 +49,25 @@ export default function MosCaseStudy() {
             <div className="case-meta">
               <div>
                 <span>Role</span>
-                <strong>Web designer &middot; Frontend developer &middot; Client collaboration</strong>
+                <strong>
+                  Web designer &middot; Frontend developer &middot; Client
+                  collaboration
+                </strong>
               </div>
 
               <div>
                 <span>Built</span>
-                <strong>Responsive site &middot; Service structure &middot; Project proof &middot; Contact path</strong>
+                <strong>
+                  Responsive site &middot; Service structure &middot; Project
+                  proof &middot; Contact path
+                </strong>
               </div>
 
               <div>
                 <span>Client</span>
-                <strong>Majerus Outdoor Services &middot; Rochester, Minnesota</strong>
+                <strong>
+                  Majerus Outdoor Services &middot; Rochester, Minnesota
+                </strong>
               </div>
             </div>
 
@@ -99,8 +109,8 @@ export default function MosCaseStudy() {
               <p>
                 MOS provides concrete work alongside stump grinding, snow
                 removal, and seasonal outdoor services. The challenge was to
-                make those services easy to understand while keeping concrete
-                at the center of the company&apos;s identity. Just as important,
+                make those services easy to understand while keeping concrete at
+                the center of the company&apos;s identity. Just as important,
                 the site needed to reflect an owner-operated business where
                 customers work directly with Jason rather than a large national
                 brand.
@@ -110,15 +120,18 @@ export default function MosCaseStudy() {
             <section data-reveal>
               <p className="eyebrow">02 / What I built</p>
 
-              <h2>A site designed around credibility, service discovery, and an easy next step.</h2>
+              <h2>
+                A site designed around credibility, service discovery, and an
+                easy next step.
+              </h2>
 
               <p>
                 I started with visual concept work so the client could react to
                 different directions before the build. The final system uses a
                 stronger contractor-focused palette and layout, while the
-                content structure keeps the experience practical: understand
-                the services, see the work, learn who is behind the business,
-                and know how to get in touch.
+                content structure keeps the experience practical: understand the
+                services, see the work, learn who is behind the business, and
+                know how to get in touch.
               </p>
 
               <ul className="case-list">
@@ -128,20 +141,31 @@ export default function MosCaseStudy() {
               </ul>
             </section>
 
-            <section data-reveal aria-label="Majerus Outdoor Services website overview">
+            <section
+              data-reveal
+              aria-label="Majerus Outdoor Services website overview"
+            >
               <div className="project-screenshot-frame">
-                <img
-                  src="/mos.png?v=20260912b"
+                <Image
+                  src="/mos.png"
                   alt="Majerus Outdoor Services live website homepage with concrete driveway hero image"
+                  width={2020}
+                  height={778}
                   className="project-screenshot"
-                  style={{ width: "100%", height: "auto", display: "block" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    transform: "translateX(15px)",
+                    display: "block",
+                  }}
                 />
               </div>
               <p>
                 The MOS direction is intentionally different from Minnlawn. The
                 dark charcoal header, real concrete project photography, and
-                straightforward service-focused layout support a contractor identity
-                while keeping the site clean and easy to use.
+                straightforward service-focused layout support a contractor
+                identity while keeping the site clean and easy to use.
               </p>
             </section>
 
@@ -153,8 +177,9 @@ export default function MosCaseStudy() {
               <p>
                 One of my goals was to make the project understandable for a
                 business owner who did not want to manage the technical details.
-                Jason&apos;s review highlighted exactly that: work that initially
-                felt stressful to him became a simple and thorough process.
+                Jason&apos;s review highlighted exactly that: work that
+                initially felt stressful to him became a simple and thorough
+                process.
               </p>
             </section>
 
@@ -170,7 +195,8 @@ export default function MosCaseStudy() {
                 </p>
 
                 <footer>
-                  Jason Majerus &middot; Majerus Outdoor Services &middot; Google review
+                  Jason Majerus &middot; Majerus Outdoor Services &middot;
+                  Google review
                 </footer>
               </blockquote>
             </section>
