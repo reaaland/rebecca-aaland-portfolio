@@ -132,10 +132,10 @@ export default function MosCaseStudy() {
             <section data-reveal aria-label="Majerus Outdoor Services website overview">
               <div className="project-screenshot-frame">
                 <Image
-                  src="/mos-homepage-real.jpg"
+                  src="/mos.png"
                   alt="Majerus Outdoor Services live website homepage with concrete driveway hero image"
-                  width={900}
-                  height={347}
+                  width={2020}
+                  height={778}
                   className="project-screenshot"
                 />
               </div>
