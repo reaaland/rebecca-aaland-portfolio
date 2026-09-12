@@ -132,18 +132,18 @@ export default function MosCaseStudy() {
             <section data-reveal aria-label="Majerus Outdoor Services website overview">
               <div className="project-screenshot-frame">
                 <Image
-                  src="/mos-project-preview.svg"
-                  alt="Majerus Outdoor Services website project preview in steel blue, concrete gray, white, and orange"
-                  width={1200}
-                  height={760}
+                  src="/mos-homepage-real.jpg"
+                  alt="Majerus Outdoor Services live website homepage with concrete driveway hero image"
+                  width={900}
+                  height={347}
                   className="project-screenshot"
                 />
               </div>
               <p>
                 The MOS direction is intentionally different from Minnlawn. The
-                steel-blue, concrete-gray, white, and restrained orange system
-                supports a more contractor-focused identity while still keeping
-                the interface clean and approachable.
+                dark charcoal header, real concrete project photography, and
+                straightforward service-focused layout support a contractor identity
+                while keeping the site clean and easy to use.
               </p>
             </section>
 
