@@ -33,10 +33,9 @@ const projects = [
     testimonial:
       "“Fast, professional service… very simple and thorough. I would definitely recommend her.” — Jason Majerus, Google review",
     href: "/work/mos",
-    image: "/mos.png",
+    image: "/mos.png?v=20260912b",
     imageAlt: "Majerus Outdoor Services live website homepage with concrete driveway hero image",
-    imageWidth: 2020,
-    imageHeight: 778,
+    rawImage: true,
     className: "work-index-mos",
   },
   {
@@ -120,6 +119,13 @@ export default function WorkPage() {
               <div className="work-index-image">
                 {"customVisual" in project ? (
                   <MinnlawnProjectVisual compact />
+                ) : "rawImage" in project ? (
+                  <img
+                    src={project.image}
+                    alt={project.imageAlt}
+                    loading="lazy"
+                    style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
+                  />
                 ) : (
                   <Image
                     src={project.image}
