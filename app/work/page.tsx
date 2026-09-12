@@ -33,10 +33,10 @@ const projects = [
     testimonial:
       "“Fast, professional service… very simple and thorough. I would definitely recommend her.” — Jason Majerus, Google review",
     href: "/work/mos",
-    image: "/mos-homepage-real.jpg",
+    image: "/mos.png",
     imageAlt: "Majerus Outdoor Services live website homepage with concrete driveway hero image",
-    imageWidth: 900,
-    imageHeight: 347,
+    imageWidth: 2020,
+    imageHeight: 778,
     className: "work-index-mos",
   },
   {
