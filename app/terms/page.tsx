@@ -13,7 +13,7 @@ export default function TermsPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell">
           <p className="eyebrow">Terms</p>
           <h1>Terms of Service</h1>
