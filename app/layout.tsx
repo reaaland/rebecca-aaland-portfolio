@@ -6,6 +6,7 @@ import { SITE_URL } from "@/lib/site-metadata";
 import "./globals.css";
 import "./portfolio-enhancements.css";
 import "./minnlawn-portfolio.css";
+import "./business-extensions.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
