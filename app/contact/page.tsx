@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="contact-page shell" data-reveal>
           <div className="contact-page-intro">
             <p className="eyebrow">Contact</p>
