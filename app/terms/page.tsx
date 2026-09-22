@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Terms of Use",
+  title: "Terms of Service",
   description:
     "Website terms of use for Aaland Web Design & Site Care and rebeccaiaaland.com.",
   path: "/terms",
@@ -16,7 +16,7 @@ export default function TermsPage() {
       <main>
         <section className="page-hero shell">
           <p className="eyebrow">Terms</p>
-          <h1>Terms of Use</h1>
+          <h1>Terms of Service</h1>
           <p>Effective September 22, 2026</p>
         </section>
 
