@@ -1,0 +1,57 @@
+.business-choice-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.business-choice-grid article {
+  min-height: 220px;
+}
+
+.legal-copy {
+  max-width: 900px;
+  padding-bottom: 120px;
+}
+
+.legal-copy h2 {
+  margin: 54px 0 14px;
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  letter-spacing: -0.03em;
+}
+
+.legal-copy p {
+  color: var(--text-soft);
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+.legal-copy a {
+  color: var(--cyan);
+}
+
+#new-websites,
+#existing-websites,
+#site-care,
+#website-updates {
+  scroll-margin-top: 110px;
+}
+
+@media (max-width: 980px) {
+  .business-choice-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .wordmark-name {
+    max-width: 250px;
+    line-height: 1.15;
+  }
+}
+
+@media (max-width: 620px) {
+  .wordmark-name {
+    max-width: 175px;
+    font-size: 0.72rem;
+  }
+
+  .legal-copy {
+    padding-bottom: 84px;
+  }
+}
