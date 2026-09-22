@@ -1,8 +1,9 @@
 import { Resend } from "resend";
 
 const inquiryLabels = {
-  role: "Frontend opportunity",
-  website: "Website project",
+  website: "Website project or updates",
+  care: "Ongoing Site Care",
+  role: "Developer / job opportunity",
   general: "General inquiry",
 } as const;
 
@@ -81,7 +82,7 @@ export async function POST(request: Request) {
     `Email: ${email}`,
     organization ? `Company / organization: ${organization}` : "",
     inquiryType === "role" && roleTitle ? `Role: ${roleTitle}` : "",
-    inquiryType === "website" && website ? `Current website: ${website}` : "",
+    inquiryType !== "role" && website ? `Current website: ${website}` : "",
   ].filter(Boolean);
 
   details.push("", "Message:", message);
@@ -90,7 +91,7 @@ export async function POST(request: Request) {
 
   try {
     const { error } = await resend.emails.send({
-      from: "Rebecca Aaland Portfolio <onboarding@resend.dev>",
+      from: "Aaland Web Design & Site Care <onboarding@resend.dev>",
       to: ["reaaland@gmail.com"],
       replyTo: email,
       subject: `${inquiryLabels[inquiryType]} from ${subjectName}`,
