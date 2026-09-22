@@ -71,12 +71,12 @@ export function PortfolioHeader() {
         className={`primary-nav ${menuOpen ? "primary-nav-open" : ""}`}
         aria-label="Primary navigation"
       >
-        <Link href="/work" onClick={() => setMenuOpen(false)}>
+        <Link href="/portfolio#work" onClick={() => setMenuOpen(false)}>
           Work
         </Link>
 
-        <Link href="/about" onClick={() => setMenuOpen(false)}>
-          About
+        <Link href="/" onClick={() => setMenuOpen(false)}>
+          Business Site
         </Link>
 
         <Link href="/resume" onClick={() => setMenuOpen(false)}>
