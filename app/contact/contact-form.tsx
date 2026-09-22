@@ -3,8 +3,9 @@
 import { FormEvent, useState } from "react";
 
 const inquiryLabels = {
-  role: "Frontend opportunity",
-  website: "Website project",
+  website: "Website project or updates",
+  care: "Ongoing Site Care",
+  role: "Developer / job opportunity",
   general: "General inquiry",
 } as const;
 
@@ -15,28 +16,34 @@ const inquiryDetails: Record<
   InquiryType,
   { intro: string; messageLabel: string; buttonLabel: string }
 > = {
+  website: {
+    intro:
+      "For a new website, a refresh, or changes to a website you already have.",
+    messageLabel: "What would you like the website to do better?",
+    buttonLabel: "Send website inquiry ↗",
+  },
+  care: {
+    intro:
+      "For ongoing website support, routine updates, and monthly Site Care.",
+    messageLabel: "What kind of ongoing help do you expect to need?",
+    buttonLabel: "Ask about Site Care ↗",
+  },
   role: {
     intro:
-      "For frontend roles, internships, contract work, or conversations with a development team.",
+      "For frontend, web development, contract, or related technical opportunities.",
     messageLabel: "What should I know about the opportunity?",
     buttonLabel: "Send opportunity message ↗",
   },
-  website: {
-    intro:
-      "For a new website, an existing site that needs improvement, or a small web project.",
-    messageLabel: "What would you like help with?",
-    buttonLabel: "Send project message ↗",
-  },
   general: {
     intro:
-      "For anything that does not fit the other two options. A short note is completely fine.",
+      "For anything that does not fit the other options. A short note is completely fine.",
     messageLabel: "What would you like to discuss?",
     buttonLabel: "Send message ↗",
   },
 };
 
 export function ContactForm() {
-  const [inquiryType, setInquiryType] = useState<InquiryType>("role");
+  const [inquiryType, setInquiryType] = useState<InquiryType>("website");
   const [status, setStatus] = useState<FormStatus>("idle");
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -68,7 +75,7 @@ export function ContactForm() {
       }
 
       form.reset();
-      setInquiryType("role");
+      setInquiryType("website");
       setStatus("success");
     } catch {
       setStatus("error");
@@ -116,7 +123,7 @@ export function ContactForm() {
         </label>
       </div>
 
-      {inquiryType === "role" && (
+      {inquiryType === "role" ? (
         <div className="form-row">
           <label>
             Company or organization
@@ -127,9 +134,7 @@ export function ContactForm() {
             <input name="roleTitle" type="text" />
           </label>
         </div>
-      )}
-
-      {inquiryType === "website" && (
+      ) : (
         <div className="form-row">
           <label>
             Business or organization
