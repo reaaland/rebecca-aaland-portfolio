@@ -84,7 +84,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="hero-principles" aria-label="Choose the kind of website help you need">
+          <div className="hero-principles business-choice-grid" aria-label="Choose the kind of website help you need">
             {quickPaths.map((item) => (
               <article key={item.title}>
                 <h2>{item.title}</h2>
