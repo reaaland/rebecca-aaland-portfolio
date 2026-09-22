@@ -44,11 +44,11 @@ export default function SiteCarePage() {
         <section className="service-detail-list shell">
           <article data-reveal>
             <div className="service-detail-heading">
-              <span>$99</span>
+              <span>$100</span>
               <h2>Monthly Site Care</h2>
             </div>
             <p className="service-fit">
-              $99 per month. Includes routine support and up to one hour of small
+              $100 per month. Includes routine support and up to one hour of small
               website updates each month. Unused update time does not roll over.
             </p>
             <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
