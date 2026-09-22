@@ -4,7 +4,7 @@ import Link from "next/link";
 import { ExperienceIntro } from "@/components/experience-intro";
 import { MinnlawnProjectVisual } from "@/components/minnlawn-project-visual";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { PortfolioHeader } from "@/components/portfolio-header";
 
 export const metadata: Metadata = {
   title: "Developer Portfolio | Rebecca Aaland",
@@ -174,7 +174,7 @@ export default function Home() {
   return (
     <>
       <ExperienceIntro />
-      <SiteHeader />
+      <PortfolioHeader />
 
       <main id="main-content">
         <section className="hero shell" aria-labelledby="hero-title">
