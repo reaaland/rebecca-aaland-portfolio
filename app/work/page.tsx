@@ -40,7 +40,7 @@ export default function WorkPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Client work</p>
           <h1>Different businesses need different websites.</h1>
