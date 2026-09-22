@@ -13,7 +13,7 @@ export default function PrivacyPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell">
           <p className="eyebrow">Privacy</p>
           <h1>Privacy Policy</h1>
