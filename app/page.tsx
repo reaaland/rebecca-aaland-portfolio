@@ -53,7 +53,7 @@ export default function HomePage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main business-home">
         <section className="hero shell" aria-labelledby="hero-title">
           <div className="hero-ambient hero-ambient-one" aria-hidden="true" />
           <div className="hero-ambient hero-ambient-two" aria-hidden="true" />
@@ -97,7 +97,42 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="services-section" aria-labelledby="pricing-title" data-reveal>
+        <section className="business-value-section shell" aria-labelledby="business-value-title" data-reveal>
+          <div className="business-value-copy">
+            <p className="eyebrow">Practical web support</p>
+            <h2 id="business-value-title">Web help without making you manage the technology.</h2>
+            <p>
+              Some businesses need a new website. Others only need a few things
+              fixed, updated, or made easier for customers. I start with what is
+              already working and build from there.
+            </p>
+          </div>
+
+          <div className="business-value-grid">
+            <article>
+              <span>01</span>
+              <h3>Start in writing</h3>
+              <p>You can send the details first. A phone call is not required just to find out whether the project fits.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Existing sites are welcome</h3>
+              <p>I can review and improve a website I did not originally build instead of automatically recommending a replacement.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Know the price first</h3>
+              <p>You will know the scope and price before I begin work that changes your cost.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <h3>Stay supported</h3>
+              <p>Use one-time updates when that is enough, or Site Care when you want ongoing help month to month.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="services-section business-pricing-band" aria-labelledby="pricing-title" data-reveal>
           <div className="shell">
             <div className="section-heading">
               <div>
@@ -177,7 +212,39 @@ export default function HomePage() {
           </div>
         </section>
 
-        <section className="plain-cta shell" data-reveal>
+        <section className="business-process-section shell" aria-labelledby="business-process-title" data-reveal>
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">How it works</p>
+              <h2 id="business-process-title">A clear path from “something needs to change” to a finished update.</h2>
+            </div>
+            <p>
+              You do not need to diagnose the technical problem before reaching
+              out. Tell me what you want the website to do better, and I will
+              help sort out the practical next step.
+            </p>
+          </div>
+
+          <div className="business-process-grid">
+            <article>
+              <span>01</span>
+              <h3>Send what you know</h3>
+              <p>Share the website, the problem, the change you want, and any deadline that matters.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>I review the best path</h3>
+              <p>I look at what can be improved before recommending a larger project than you need.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Get a written next step</h3>
+              <p>You receive a clear response about scope, pricing, and what I need from you to move forward.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="plain-cta business-final-cta shell" data-reveal>
           <p className="eyebrow">Simple next step</p>
           <h2>Tell me what you want your website to do better.</h2>
           <p>
