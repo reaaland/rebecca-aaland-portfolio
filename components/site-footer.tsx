@@ -5,50 +5,24 @@ export function SiteFooter() {
     <footer className="site-footer shell">
       <div>
         <strong>
-          <span aria-hidden="true">[RA]</span> Rebecca Aaland
+          <span aria-hidden="true">[RA]</span> Aaland Web Design &amp; Site Care
         </strong>
-        <span>Frontend Developer</span>
+        <span>Web design · Updates · Ongoing support</span>
       </div>
+
       <p>
-        Independent client work through{" "}
-        <a
-          href="https://www.pawcirclellc.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          PawCircle LLC
-        </a>
-        .
+        Based in Rochester, Minnesota. Working with small businesses locally and beyond.
       </p>
+
       <nav aria-label="Footer navigation">
-        <Link href="/resume">Résumé</Link>
-
-        <a
-          href="https://github.com/reaaland"
-          target="_blank"
-          rel="noreferrer"
-        >
-          GitHub
-        </a>
-
-        <a
-          href="https://www.linkedin.com/in/rebecca-aaland-494169411"
-          target="_blank"
-          rel="noreferrer"
-        >
-          LinkedIn
-        </a>
-
-        <a
-          href="https://www.pawcirclellc.com"
-          target="_blank"
-          rel="noreferrer"
-        >
-          PawCircle LLC
-        </a>
-
+        <Link href="/services">Services</Link>
+        <Link href="/pricing">Pricing</Link>
+        <Link href="/work">Work</Link>
+        <Link href="/site-care">Site Care</Link>
         <Link href="/contact">Contact</Link>
-
+        <Link href="/portfolio">Developer Portfolio</Link>
+        <Link href="/privacy">Privacy</Link>
+        <Link href="/terms">Terms</Link>
         <a href="#top">Back to top ↑</a>
       </nav>
     </footer>
