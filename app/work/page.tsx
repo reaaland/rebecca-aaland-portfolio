@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 import { MinnlawnProjectVisual } from "@/components/minnlawn-project-visual";
 import { SiteFooter } from "@/components/site-footer";
@@ -6,9 +5,9 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Frontend Development Portfolio",
+  title: "Client Work",
   description:
-    "Explore Rebecca Aaland's client website and frontend development portfolio, including responsive Next.js, React, TypeScript, API, Supabase, and Firebase projects.",
+    "Selected small-business website work by Aaland Web Design & Site Care, including Minnlawn Lawn & Landscape and Majerus Outdoor Services.",
   path: "/work",
 });
 
@@ -18,77 +17,22 @@ const projects = [
     label: "Client website · Full rebuild",
     title: "Minnlawn Lawn & Landscape",
     summary:
-      "Rebuilding a local service-business website beyond the limits of its original GoDaddy template, with clearer service paths, seasonal content, quote functionality, SEO, performance work, and launch support.",
-    testimonial: "“The site is now a powerful asset for my business.” — Yohan, Minnlawn",
+      "A custom rebuild that moved beyond the limits of the original template, with clearer service paths, seasonal content, quote functionality, Google review integration, search work, performance testing, and launch support.",
+    testimonial:
+      "“The site is now a powerful asset for my business.” — Yohan, Minnlawn Lawn & Landscape",
     href: "/work/minnlawn",
-    customVisual: "minnlawn",
-    className: "work-index-minnlawn",
+    customVisual: true,
   },
   {
     number: "02",
     label: "Client website · New build",
     title: "Majerus Outdoor Services",
     summary:
-      "Designing and building a responsive website for an owner-operated Rochester-area concrete and outdoor-services business, with clear service paths, project proof, a stronger contact experience, and a visual identity built around the company rather than a generic contractor template.",
+      "A responsive multi-page website for an owner-operated Rochester-area concrete and outdoor-services business, with clear services, project proof, a stronger contact experience, and custom visual direction.",
     testimonial:
-      "“Fast, professional service… very simple and thorough. I would definitely recommend her.” — Jason Majerus, Google review",
+      "“Fast, professional service… very simple and thorough. I would definitely recommend her.” — Jason Majerus",
     href: "/work/mos",
     image: "/mos.png?v=20260912b",
-    imageAlt: "Majerus Outdoor Services live website homepage with concrete driveway hero image",
-    rawImage: true,
-    className: "work-index-mos",
-  },
-  {
-    number: "03",
-    label: "Independent product",
-    title: "PawCircle Membership",
-    summary:
-      "Taking a pet-care membership product from idea through development, launch, production troubleshooting, and its current portfolio-demo form.",
-    href: "/work/pawcircle",
-    image: "/pawcircle-homepage.png",
-    imageAlt: "PawCircle Membership homepage",
-    imageWidth: 1536,
-    imageHeight: 1024,
-    className: "work-index-pawcircle",
-  },
-  {
-    number: "04",
-    label: "Skinstric internship",
-    title: "Skinstric",
-    summary:
-      "Implementing a responsive Next.js and TypeScript skin-analysis flow from supplied Figma designs, APIs, assets, and project requirements, including image upload, camera capture, and interactive demographic results.",
-    href: "/work/skinstric",
-    image: "/skinstric-homepage.png",
-    imageAlt: "Skinstric skin-analysis application homepage",
-    imageWidth: 1672,
-    imageHeight: 941,
-    className: "work-index-skinstric",
-  },
-  {
-    number: "05",
-    label: "Frontend development project",
-    title: "Ultraverse NFT Marketplace",
-    summary:
-      "Building a responsive React marketplace with API-driven content, loading states, carousels, timers, filtering, incremental loading, and routed detail views.",
-    href: "/work/ultraverse",
-    image: "/ultraverse-homepage.png",
-    imageAlt: "Ultraverse NFT marketplace homepage",
-    imageWidth: 1672,
-    imageHeight: 941,
-    className: "work-index-ultraverse",
-  },
-  {
-    number: "06",
-    label: "Completed Frontend Simplified coursework",
-    title: "Summarist",
-    summary:
-      "A completed multi-route Next.js book-summary application built from supplied requirements, APIs, assets, and a visual starting point. It includes authentication, search, Firestore persistence, subscription-aware access, library behavior, settings, and an audio player.",
-    href: "/work/summarist",
-    image: "/summarist-case-study.png",
-    imageAlt: "Summarist personalized For You page",
-    imageWidth: 1672,
-    imageHeight: 941,
-    className: "work-index-summarist",
   },
 ] as const;
 
@@ -98,20 +42,19 @@ export default function WorkPage() {
       <SiteHeader />
       <main>
         <section className="page-hero shell" data-reveal>
-          <p className="eyebrow">Selected work</p>
-          <h1>Different projects. Different problems to solve.</h1>
+          <p className="eyebrow">Client work</p>
+          <h1>Different businesses need different websites.</h1>
           <p>
-            These projects show different kinds of work: rebuilding and creating
-            real client websites, taking a product from idea to launch,
-            implementing supplied requirements, and building responsive
-            API-driven interfaces.
+            These are my current client projects. The testimonials stay with the
+            work they describe rather than being separated into a generic review
+            page.
           </p>
         </section>
 
-        <section className="work-index shell" aria-label="Case studies">
+        <section className="work-index shell" aria-label="Client case studies">
           {projects.map((project) => (
             <Link
-              className={`work-index-card ${project.className}`}
+              className="work-index-card"
               href={project.href}
               key={project.title}
               data-reveal
@@ -119,10 +62,10 @@ export default function WorkPage() {
               <div className="work-index-image">
                 {"customVisual" in project ? (
                   <MinnlawnProjectVisual compact />
-                ) : "rawImage" in project ? (
+                ) : (
                   <img
                     src={project.image}
-                    alt={project.imageAlt}
+                    alt="Majerus Outdoor Services website homepage"
                     loading="lazy"
                     style={{
                       width: "100%",
@@ -131,14 +74,6 @@ export default function WorkPage() {
                       objectPosition: "25% center",
                       display: "block",
                     }}
-                  />
-                ) : (
-                  <Image
-                    src={project.image}
-                    alt={project.imageAlt}
-                    width={project.imageWidth}
-                    height={project.imageHeight}
-                    sizes="(max-width: 980px) calc(100vw - 48px), 600px"
                   />
                 )}
               </div>
@@ -149,17 +84,25 @@ export default function WorkPage() {
                 </span>
                 <h2>{project.title}</h2>
                 <p>{project.summary}</p>
-                {"testimonial" in project ? (
-                  <blockquote className="work-index-quote">
-                    {project.testimonial}
-                  </blockquote>
-                ) : null}
-                <strong className="work-index-link">
-                  Read the case study ↗
-                </strong>
+                <blockquote className="work-index-quote">
+                  {project.testimonial}
+                </blockquote>
+                <strong className="work-index-link">Read the case study ↗</strong>
               </div>
             </Link>
           ))}
+        </section>
+
+        <section className="plain-cta shell" data-reveal>
+          <p className="eyebrow">Looking for development work?</p>
+          <h2>The technical portfolio is still here.</h2>
+          <p>
+            My developer portfolio includes client work, product development,
+            internship work, React and Next.js projects, and my résumé.
+          </p>
+          <Link className="button button-dark" href="/portfolio">
+            View developer portfolio ↗
+          </Link>
         </section>
       </main>
       <SiteFooter />
