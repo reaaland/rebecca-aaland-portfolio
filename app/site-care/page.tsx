@@ -30,7 +30,7 @@ export default function SiteCarePage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Site Care</p>
           <h1>You should not have to rebuild your website every time something changes.</h1>
