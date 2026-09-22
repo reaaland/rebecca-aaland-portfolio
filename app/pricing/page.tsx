@@ -25,7 +25,7 @@ const categories = [
   },
   {
     title: "Site Care",
-    price: "$99/month",
+    price: "$100/month",
     href: "#site-care",
     text: "For routine support and small ongoing updates.",
   },
@@ -177,7 +177,7 @@ export default function PricingPage() {
 
         <section id="site-care" className="plain-cta shell" data-reveal>
           <p className="eyebrow">Ongoing Site Care</p>
-          <h2>$99/month</h2>
+          <h2>$100/month</h2>
           <p>
             Routine website checks, questions and support, plus up to one hour
             each month for small text, photo, link, service, or contact-information
