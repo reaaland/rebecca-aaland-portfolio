@@ -21,6 +21,13 @@ export default function TermsPage() {
         </section>
 
         <section className="legal-copy shell">
+          <p>
+            Aaland Web Design &amp; Site Care is operated by PawCircle LLC.
+            Unless a written client agreement states otherwise, PawCircle LLC is
+            the legal business entity providing the services described on this
+            website.
+          </p>
+
           <h2>Website use</h2>
           <p>
             This website provides general information about Aaland Web Design &
@@ -39,9 +46,11 @@ export default function TermsPage() {
 
           <h2>Client agreements control project work</h2>
           <p>
-            If you hire Aaland Web Design & Site Care, the proposal, statement
-            of work, contract, invoice terms, or other written client agreement
-            for that project controls if it conflicts with these website terms.
+            If you hire Aaland Web Design &amp; Site Care, the proposal,
+            statement of work, contract, invoice terms, or other written client
+            agreement for that project controls if it conflicts with these
+            website terms. Contracts and invoices may identify PawCircle LLC as
+            the legal entity providing the services.
           </p>
 
           <h2>Intellectual property</h2>
