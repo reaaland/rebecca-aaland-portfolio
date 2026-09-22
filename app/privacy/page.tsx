@@ -21,6 +21,12 @@ export default function PrivacyPage() {
         </section>
 
         <section className="legal-copy shell">
+          <p>
+            Aaland Web Design &amp; Site Care is operated by PawCircle LLC. This
+            policy applies to rebeccaiaaland.com and information collected
+            through the website in connection with those services.
+          </p>
+
           <h2>Information I collect</h2>
           <p>
             If you contact Aaland Web Design & Site Care through this website,
