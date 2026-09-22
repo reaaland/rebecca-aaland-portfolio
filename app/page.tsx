@@ -44,7 +44,7 @@ const pricing = [
   },
   {
     title: "Site Care",
-    price: "$99/month",
+    price: "$100/month",
     text: "Routine checks, support, and a limited amount of small monthly updates.",
   },
 ] as const;
