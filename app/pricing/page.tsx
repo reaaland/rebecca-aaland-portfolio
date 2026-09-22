@@ -73,18 +73,17 @@ const websitePlans = [
 const updateOptions = [
   {
     title: "Small Website Updates",
-    price: "$150",
-    text: "A clearly defined set of small changes such as text, photos, links, services, or contact information.",
+    price: "Starting at $150",
+    text: "Best when you already know the changes you need: text, photos, links, services, contact information, or another focused fix.",
+    href: "/contact",
+    cta: "Request website updates",
   },
   {
     title: "Website Refresh",
-    price: "$750",
-    text: "Focused improvements across roughly 3–5 pages when the current site can still do the job.",
-  },
-  {
-    title: "Full Website Rebuild",
-    price: "Uses the website tiers above",
-    text: "For an existing site whose current platform, template, structure, or technical setup is getting in the way.",
+    price: "Starting at $750",
+    text: "Best when the website still works but several pages need cleanup, stronger organization, better mobile presentation, or a more polished look.",
+    href: "/contact",
+    cta: "Ask about a refresh",
   },
 ] as const;
 
@@ -154,23 +153,47 @@ export default function PricingPage() {
           <div className="shell">
             <div className="section-heading">
               <div>
-                <p className="eyebrow">Already have a website?</p>
-                <h2>You may only need an update—not a rebuild.</h2>
+                <p className="eyebrow">Existing website help</p>
+                <h2>Keep the site you have when it still makes sense.</h2>
               </div>
               <p>
-                I will look at what you already have before recommending the
-                larger option.
+                For smaller changes, choose an update or refresh. If the platform,
+                structure, or overall site is the real problem, a rebuild may make
+                more sense.
               </p>
             </div>
 
-            <div className="service-grid">
+            <div className="service-grid pricing-update-grid">
               {updateOptions.map((option) => (
                 <article key={option.title}>
                   <span>{option.price}</span>
                   <h3>{option.title}</h3>
                   <p>{option.text}</p>
+                  <Link className="text-link" href={option.href}>
+                    {option.cta} ↗
+                  </Link>
                 </article>
               ))}
+            </div>
+
+            <div className="pricing-rebuild-callout">
+              <div>
+                <p className="eyebrow">When updates are not enough</p>
+                <h3>Is the current platform or structure getting in the way?</h3>
+                <p>
+                  If fixing the existing site would cost more than it is worth,
+                  I will say so. You can compare the rebuild tiers above or send
+                  me the current site and I will take a look.
+                </p>
+              </div>
+              <div className="hero-actions">
+                <a className="button button-secondary" href="#new-websites">
+                  Compare rebuild pricing ↑
+                </a>
+                <Link className="button button-dark" href="/contact">
+                  Send me the site ↗
+                </Link>
+              </div>
             </div>
           </div>
         </section>
