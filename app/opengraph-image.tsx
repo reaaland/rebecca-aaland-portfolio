@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Rebecca Aaland — Frontend Developer and Web Designer";
+export const alt = "Aaland Web Design & Site Care";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,7 +30,7 @@ export default function OpenGraphImage() {
             textTransform: "uppercase",
           }}
         >
-          <span>Rebecca Aaland</span>
+          <span>Aaland Web Design &amp; Site Care</span>
           <span style={{ color: "#4da3ff" }}>Rochester, MN</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 1020 }}>
@@ -44,7 +44,7 @@ export default function OpenGraphImage() {
               textTransform: "uppercase",
             }}
           >
-            Frontend developer &amp; web designer
+            Web design · Updates · Site care
           </span>
           <span
             style={{
@@ -54,7 +54,7 @@ export default function OpenGraphImage() {
               lineHeight: 0.95,
             }}
           >
-            I build the useful path through complicated problems.
+            Websites built around what your business actually needs.
           </span>
         </div>
         <div
@@ -69,7 +69,7 @@ export default function OpenGraphImage() {
             padding: "18px 24px",
           }}
         >
-          Build · Learn · Improve · Repeat
+          Build · Improve · Support
         </div>
       </div>
     ),
