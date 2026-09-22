@@ -92,7 +92,7 @@ export default function PricingPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Pricing</p>
           <h1>Start with the category that fits what you need.</h1>
