@@ -14,7 +14,7 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">About Rebecca</p>
           <h1>I build practical websites for real businesses.</h1>
