@@ -59,7 +59,7 @@ export default function ServicesPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Services</p>
           <h1>Choose the kind of website help you actually need.</h1>
