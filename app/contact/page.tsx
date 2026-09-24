@@ -6,7 +6,7 @@ import { ContactForm } from "./contact-form";
 export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact Rebecca Aaland about frontend opportunities or local and remote website projects.",
+    "Contact Rebecca Aaland about a new website, website updates, Site Care, or a development opportunity.",
   path: "/contact",
 });
 
@@ -14,15 +14,15 @@ export default function ContactPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="contact-page shell" data-reveal>
           <div className="contact-page-intro">
             <p className="eyebrow">Contact</p>
-            <h1>Let’s Talk About What’s Next.</h1>
+            <h1>Tell me what you need the website to do.</h1>
             <p>
-              Choose the path that fits best: a frontend opportunity, a website
-              project, or a general question. Each option asks only for the
-              details that are useful for that conversation.
+              A technical plan is not required. Start with what you have now,
+              what is not working, or what you want to change. I can help figure
+              out the next step.
             </p>
             <div className="direct-email">
               <span>Prefer direct email?</span>

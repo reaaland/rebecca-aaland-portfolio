@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionController } from "@/components/motion-controller";
+import { BusinessStructuredData } from "@/components/business-structured-data";
 import { SITE_URL } from "@/lib/site-metadata";
 import "./globals.css";
 import "./portfolio-enhancements.css";
 import "./minnlawn-portfolio.css";
+import "./business-extensions.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,11 +20,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Rebecca Aaland | Frontend Developer & Web Designer",
-    template: "%s | Rebecca Aaland",
+    default: "Aaland Web Design & Site Care | Rochester, MN",
+    template: "%s | Aaland Web Design & Site Care",
   },
   description:
-    "Rochester, Minnesota frontend developer and web designer building responsive websites and practical web applications for small businesses and teams.",
+    "Web design, website updates, and ongoing site care for small businesses in Rochester, Minnesota and beyond.",
   authors: [{ name: "Rebecca Aaland" }],
   creator: "Rebecca Aaland",
   metadataBase: new URL(SITE_URL),
@@ -30,19 +32,19 @@ export const metadata: Metadata = {
     google: "RbevpWa_IZwBUPSQDoubqD8KQA1-eOP3VwNSTLGcQao",
   },
   openGraph: {
-    title: "Rebecca Aaland — Frontend Developer & Web Designer",
+    title: "Aaland Web Design & Site Care",
     description:
-      "Responsive frontend work, independent product experience, and practical website services from Rochester, Minnesota.",
+      "Web design, website updates, and ongoing site care for small businesses.",
     url: "/",
-    siteName: "Rebecca Aaland Portfolio",
+    siteName: "Aaland Web Design & Site Care",
     type: "website",
     images: ["/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Rebecca Aaland — Frontend Developer & Web Designer",
+    title: "Aaland Web Design & Site Care",
     description:
-      "Responsive frontend work, independent product experience, and practical website services from Rochester, Minnesota.",
+      "Web design, website updates, and ongoing site care for small businesses.",
     images: ["/opengraph-image"],
   },
   icons: {
@@ -64,6 +66,7 @@ export default function RootLayout({
       data-scroll-behavior="smooth"
     >
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <BusinessStructuredData />
         <MotionController />
         {children}
       </body>

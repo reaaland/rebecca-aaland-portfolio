@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "About",
   description:
-    "Meet Rebecca Aaland, a Rochester, Minnesota frontend developer, web designer, business owner, and former teacher who builds practical digital products.",
+    "Meet Rebecca Aaland, the web designer and developer behind Aaland Web Design & Site Care in Rochester, Minnesota.",
   path: "/about",
 });
 
@@ -14,15 +14,15 @@ export default function AboutPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">About Rebecca</p>
-          <h1>I learned to solve problems in a few very different places.</h1>
+          <h1>I build practical websites for real businesses.</h1>
           <p>
-            Before I was building websites and web applications, I was a science
-            teacher and later a small-business owner. Those experiences taught
-            me how to listen, explain complicated things clearly, and figure out
-            what someone actually needs.
+            My background includes teaching, running a small business, and
+            frontend development. Those experiences shaped how I work now:
+            understand the problem first, explain things clearly, and build only
+            what actually helps.
           </p>
         </section>
 
@@ -30,62 +30,51 @@ export default function AboutPage() {
           <aside className="story-process" aria-labelledby="story-process-title">
             <p className="eyebrow" id="story-process-title">How I approach the work</p>
             <ol>
-              <li><strong>Understand</strong><span>Start with what needs to happen and who it is for.</span></li>
-              <li><strong>Simplify</strong><span>Break a complicated problem into manageable pieces.</span></li>
-              <li><strong>Build</strong><span>Turn the plan into something clear and usable.</span></li>
-              <li><strong>Improve</strong><span>Test it, fix what does not work, and refine the result.</span></li>
+              <li><strong>Understand</strong><span>Start with the business goal and the customer.</span></li>
+              <li><strong>Simplify</strong><span>Remove unnecessary complexity before adding more.</span></li>
+              <li><strong>Build</strong><span>Create something clear, responsive, and useful.</span></li>
+              <li><strong>Support</strong><span>Keep improving the site as the business changes.</span></li>
             </ol>
           </aside>
+
           <div className="story-copy">
-            <h2>The work changed. The way I solve problems did not.</h2>
+            <h2>The website is part of the business—not a separate technical project.</h2>
             <p>
-              Teaching taught me to notice when something was not making sense
-              and find another way to explain it. Running a business taught me
-              to think about customers, trust, time, money, and what actually
-              helps.
+              I spent years teaching before moving into web development and
+              business ownership. Teaching taught me how to listen, break down
+              complicated information, and recognize when an explanation is not
+              working. Running a service business taught me how much time,
+              trust, communication, and clear expectations matter.
             </p>
             <p>
-              Development gave me another way to solve those kinds of problems.
-              I now build responsive websites and web applications through
-              independent product work and frontend projects built from real
-              requirements, designs, APIs, and user needs.
+              I now bring those habits into web design and development. My work
+              includes custom client websites, frontend applications, API
+              integrations, forms, deployment, troubleshooting, and ongoing
+              website support.
             </p>
             <blockquote>
-              I like building things that have a reason to exist and are easier
-              for people to use when I am done.
+              My goal is not to sell the biggest project. It is to figure out
+              what the website actually needs to do better.
             </blockquote>
           </div>
         </section>
 
-        <section className="principles-section" data-reveal>
-          <div className="shell">
-            <p className="eyebrow">What I bring to the work</p>
-            <div className="principle-grid">
-              <article>
-                <span>01</span>
-                <h2>Understand before building.</h2>
-                <p>A good solution starts with knowing what the person or business is actually trying to accomplish.</p>
-              </article>
-              <article>
-                <span>02</span>
-                <h2>Make it clear and usable.</h2>
-                <p>A feature is not very useful if people cannot understand it, find it, or use it comfortably on their phone.</p>
-              </article>
-              <article>
-                <span>03</span>
-                <h2>Test, refine, and improve.</h2>
-                <p>I troubleshoot what is not working, use the evidence in front of me, and make the next version better.</p>
-              </article>
-            </div>
-          </div>
-        </section>
-
         <section className="plain-cta shell" data-reveal>
-          <p className="eyebrow">Continue</p>
-          <h2>See what I have built.</h2>
-          <Link className="button button-dark" href="/work">
-            View selected work ↗
-          </Link>
+          <p className="eyebrow">Two sides of the work</p>
+          <h2>Looking for my development experience?</h2>
+          <p>
+            The business site stays focused on clients. My technical portfolio
+            and résumé are available separately for employers and development
+            opportunities.
+          </p>
+          <div className="hero-actions">
+            <Link className="button button-dark" href="/portfolio">
+              Developer portfolio ↗
+            </Link>
+            <Link className="button button-secondary" href="/work">
+              Client work
+            </Link>
+          </div>
         </section>
       </main>
       <SiteFooter />

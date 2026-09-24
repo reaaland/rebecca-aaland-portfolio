@@ -4,45 +4,54 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Web Design & Frontend Development Services",
+  title: "Services",
   description:
-    "Web design, website improvements, and frontend development for Rochester, Minnesota small businesses and remote teams.",
+    "New websites, website updates, and ongoing site care for small businesses in Rochester, Minnesota and beyond.",
   path: "/services",
 });
 
-const services = [
+const serviceList = [
   {
+    id: "new-websites",
     number: "01",
     title: "New websites",
-    fit: "For service businesses that need a professional, responsive website with a clear message and an easy next step for customers.",
+    fit: "For a business that needs a professional website built around what customers need to know, trust, and do next.",
     includes: [
-      "Page structure and message clarification",
-      "Responsive custom design and build",
-      "Contact and inquiry pathways",
-      "Launch support and practical handoff",
+      "Responsive custom design and development",
+      "Clear page and service organization",
+      "Contact or quote pathways",
+      "Foundational search and launch setup",
     ],
+    href: "/pricing#new-websites",
+    cta: "See website pricing",
   },
   {
+    id: "website-updates",
     number: "02",
-    title: "Website improvements",
-    fit: "For existing sites that are hard to use, dated, confusing, or not working well on phones.",
+    title: "Website updates & improvements",
+    fit: "For an existing site that needs changes, cleanup, new content, better mobile behavior, or focused improvements rather than a complete rebuild.",
     includes: [
-      "Homepage and navigation improvements",
-      "Mobile and responsive fixes",
-      "Content, forms, and call-to-action cleanup",
-      "Accessibility and visual consistency improvements",
+      "Text, photo, service, and contact-information updates",
+      "Homepage, navigation, and call-to-action improvements",
+      "Mobile, accessibility, and visual consistency fixes",
+      "Forms, links, and other practical website changes",
     ],
+    href: "/pricing#existing-websites",
+    cta: "See update pricing",
   },
   {
+    id: "site-care",
     number: "03",
-    title: "Frontend development",
-    fit: "For teams with a design, feature, or set of requirements that need to become a working interface.",
+    title: "Ongoing Site Care",
+    fit: "For businesses that want a reliable person to keep the website working well and handle routine updates after launch.",
     includes: [
-      "Responsive React or Next.js interfaces",
-      "Reusable TypeScript components",
-      "API-driven states and interactions",
-      "Testing, troubleshooting, and browser behavior review",
+      "Routine website checks",
+      "Up to one hour of small updates each month",
+      "Questions and practical support",
+      "Larger changes quoted before work begins",
     ],
+    href: "/site-care",
+    cta: "Learn about Site Care",
   },
 ] as const;
 
@@ -50,21 +59,20 @@ export default function ServicesPage() {
   return (
     <>
       <SiteHeader />
-      <main>
+      <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Services</p>
-          <h1>Web help built around what you actually need.</h1>
+          <h1>Choose the kind of website help you actually need.</h1>
           <p>
-            Based in Rochester, Minnesota, I work with small businesses locally
-            and with remote teams on focused website and frontend projects—from
-            new sites and mobile fixes to responsive implementation from an
-            existing design.
+            You may need a new site, a few changes to the one you already have,
+            or someone to keep it taken care of. Those are different problems,
+            so I treat them as different services.
           </p>
         </section>
 
         <section className="service-detail-list shell">
-          {services.map((service) => (
-            <article key={service.title} data-reveal>
+          {serviceList.map((service) => (
+            <article id={service.id} key={service.title} data-reveal>
               <div className="service-detail-heading">
                 <span>{service.number}</span>
                 <h2>{service.title}</h2>
@@ -75,20 +83,22 @@ export default function ServicesPage() {
                   <li key={item}>{item}</li>
                 ))}
               </ul>
+              <Link className="text-link" href={service.href}>
+                {service.cta} ↗
+              </Link>
             </article>
           ))}
         </section>
 
         <section className="plain-cta shell" data-reveal>
-          <p className="eyebrow">A good first step</p>
-          <h2>Tell me what you need the site to do.</h2>
+          <p className="eyebrow">Not sure which one?</p>
+          <h2>Show me what you have now.</h2>
           <p>
-            You do not need a technical plan before reaching out. Tell me what
-            you are trying to accomplish, what is not working now, or what you
-            wish your website did better.
+            I will look at the existing site and the problem you are trying to
+            solve before recommending the larger option.
           </p>
           <Link className="button button-dark" href="/contact">
-            Discuss a website project ↗
+            Discuss your website ↗
           </Link>
         </section>
       </main>
