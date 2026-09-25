@@ -4,9 +4,9 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Web Design, Updates & Site Care",
+  title: "Web Design in Rochester, MN",
   description:
-    "Aaland Web Design & Site Care builds new websites, improves existing sites, and provides ongoing website support for small businesses.",
+    "Web design in Rochester, Minnesota for small businesses, including new websites, website updates, and ongoing site care from Aaland Web Design & Site Care.",
   path: "/",
 });
 
