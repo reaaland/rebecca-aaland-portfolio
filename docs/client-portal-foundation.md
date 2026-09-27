@@ -12,9 +12,14 @@
 
 ## Authentication direction
 
-Use Supabase email magic-link authentication with persistent sessions.
+Use Supabase Auth with two client-facing sign-in options:
 
-The magic link authenticates the user. Row Level Security and private Storage policies authorize what that user can access.
+- Continue with Google
+- Email me a sign-in link (magic link)
+
+Use persistent sessions for returning clients. Authentication identifies the user; Row Level Security and private Storage policies authorize what that user can access.
+
+Portal access remains approval-based. A new auth user should only be created when the email already exists as an approved client record. Google sign-in should use the same approved email address. Supabase can automatically link Google and email identities that share the same verified email.
 
 ## Current data model
 
