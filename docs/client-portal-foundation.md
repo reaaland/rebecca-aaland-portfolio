@@ -54,7 +54,7 @@ Object path convention:
 
 `<client_id>/<request_id>/<filename>`
 
-Storage RLS policies are already defined for this bucket. The bucket itself still needs to be created as **private** before upload work begins.
+The `client-request-files` bucket has now been created as **private**. Storage RLS policies are already defined for it.
 
 ## Remote migrations
 
@@ -75,9 +75,8 @@ The Services area should show the client's active service first and link out to 
 
 ## Next implementation steps
 
-1. Create the private `client-request-files` Storage bucket.
-2. Configure Supabase Auth Site URL and allowed redirect URLs for production and preview.
-3. Create Rebecca's portal auth account and add its user ID to `portal_admins`.
-4. Add Supabase client/auth code to this branch.
-5. Build the login flow.
-6. Create two test clients and explicitly prove cross-client database and file access is denied before building the rest of the request UI.
+1. Configure Supabase Auth Site URL and allowed redirect URLs for production and preview.
+2. Create Rebecca's portal auth account and add its user ID to `portal_admins`.
+3. Add Supabase client/auth code to this branch.
+4. Build the login flow.
+5. Create two test clients and explicitly prove cross-client database and file access is denied before building the rest of the request UI.
