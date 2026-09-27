@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Pricing",
   description:
-    "Starting prices for web design and Site Care, plus scope-based pricing for technical writing, grant research, and practical business support."
+    "Starting prices for web design and Site Care, plus scope-based pricing for technical writing, grant research, and practical business support.",
   path: "/pricing",
 });
 
