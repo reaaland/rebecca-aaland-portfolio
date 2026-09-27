@@ -19,10 +19,11 @@ export default function PortalAuthTestPage() {
   useEffect(() => {
     if (!supabase) return;
 
+    const client = supabase;
     let active = true;
 
     async function checkUser() {
-      const { data, error } = await supabase.auth.getUser();
+      const { data, error } = await client.auth.getUser();
 
       if (!active) return;
 
@@ -35,8 +36,8 @@ export default function PortalAuthTestPage() {
       setUserEmail(data.user.email ?? "signed-in user");
 
       const [{ data: adminRows }, { data: clientRows }] = await Promise.all([
-        supabase.from("portal_admins").select("user_id").limit(1),
-        supabase
+        client.from("portal_admins").select("user_id").limit(1),
+        client
           .from("clients")
           .select("contact_name, business_name")
           .eq("auth_user_id", data.user.id)
@@ -63,7 +64,7 @@ export default function PortalAuthTestPage() {
 
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange(() => {
+    } = client.auth.onAuthStateChange(() => {
       void checkUser();
     });
 
