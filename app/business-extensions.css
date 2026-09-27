@@ -730,10 +730,10 @@
 }
 
 [data-theme="light"] .business-choice-grid .quick-card-tech {
-  border-color: rgba(42, 167, 164, 0.2);
+  border-color: var(--line);
   background:
-    radial-gradient(circle at 90% 8%, rgba(42, 167, 164, 0.14), transparent 52%),
-    linear-gradient(155deg, rgba(249, 253, 253, 0.98), rgba(239, 248, 247, 0.96));
+    radial-gradient(circle at 90% 8%, rgba(42, 167, 164, 0.14), transparent 40%),
+    rgba(255, 255, 255, 0.88);
 }
 
 [data-theme="light"] .business-choice-grid .quick-card-tech::before {
@@ -745,10 +745,10 @@
 }
 
 [data-theme="light"] .business-choice-grid .quick-card-grant {
-  border-color: rgba(166, 137, 85, 0.22);
+  border-color: var(--line);
   background:
-    radial-gradient(circle at 90% 8%, rgba(166, 137, 85, 0.13), transparent 52%),
-    linear-gradient(155deg, rgba(253, 251, 247, 0.98), rgba(247, 241, 232, 0.96));
+    radial-gradient(circle at 90% 8%, rgba(166, 137, 85, 0.13), transparent 40%),
+    rgba(255, 255, 255, 0.88);
 }
 
 [data-theme="light"] .business-choice-grid .quick-card-grant::before {
