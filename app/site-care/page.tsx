@@ -83,7 +83,7 @@ export default function SiteCarePage() {
             tell you whether Site Care makes sense or whether occasional updates
             would be a better fit.
           </p>
-          <Link className="button button-dark" href="/contact">
+          <Link className="button button-dark" href="/contact?type=care">
             Ask about Site Care ↗
           </Link>
         </section>
