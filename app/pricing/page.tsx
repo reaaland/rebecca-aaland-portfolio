@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Pricing",
   description:
-    "Starting prices for new websites, website updates, and ongoing Site Care from Aaland Web Design & Site Care.",
+    "Starting prices for web design and Site Care, plus scope-based pricing for technical writing, grant research, and practical business support."
   path: "/pricing",
 });
 
@@ -28,6 +28,18 @@ const categories = [
     price: "$100/month",
     href: "#site-care",
     text: "For routine support and small ongoing updates.",
+  },
+  {
+    title: "Technical writing",
+    price: "Quoted by scope",
+    href: "#technical-writing",
+    text: "For documentation, SOPs, user guides, onboarding, and help content.",
+  },
+  {
+    title: "Grant research & writing",
+    price: "Quoted by scope",
+    href: "#grant-services",
+    text: "For grant research, funding roadmaps, and clearly defined writing support.",
   },
 ] as const;
 
@@ -195,6 +207,44 @@ export default function PricingPage() {
                 </Link>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section id="technical-writing" className="services-section" data-reveal>
+          <div className="shell">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Technical writing &amp; documentation</p>
+                <h2>Pricing depends on the amount and condition of the material.</h2>
+              </div>
+              <p>
+                A short SOP cleanup is different from building a documentation
+                set from scattered notes, screenshots, interviews, and existing files.
+                I review the scope first and give you the price in writing.
+              </p>
+            </div>
+            <Link className="section-link" href="/technical-writing">
+              See technical writing services ↗
+            </Link>
+          </div>
+        </section>
+
+        <section id="grant-services" className="services-section" data-reveal>
+          <div className="shell">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Grant research &amp; writing</p>
+                <h2>Start with the actual funding need and scope.</h2>
+              </div>
+              <p>
+                Grant research, opportunity evaluation, funding roadmaps, and
+                application support vary considerably in size. I review the
+                organization, project, and requested work before quoting the project.
+              </p>
+            </div>
+            <Link className="section-link" href="/grant-research-writing">
+              See grant research &amp; writing services ↗
+            </Link>
           </div>
         </section>
 
