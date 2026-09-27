@@ -85,3 +85,31 @@ The Services area should show the client's active service first and link out to 
 3. Add Supabase client/auth code to this branch.
 4. Build the login flow.
 5. Create two test clients and explicitly prove cross-client database and file access is denied before building the rest of the request UI.
+
+
+## Invite-only access gate
+
+Google sign-in is configured in Supabase alongside magic-link authentication.
+
+A Postgres `Before User Created` hook function is now present:
+
+`private.hook_allow_approved_portal_user(event jsonb)`
+
+It allows creation of a Supabase Auth user only when:
+
+- the email matches an active row in `public.clients`, or
+- the email is on the private portal-admin bootstrap allow-list.
+
+The current admin bootstrap email is Rebecca's present Google Workspace identity:
+`rebecca@pawcirclellc.com`.
+
+After an approved user is created, an `auth.users` trigger automatically:
+
+- adds an approved admin to `public.portal_admins`, or
+- links an approved client by setting `clients.auth_user_id`.
+
+The admin email allow-list lives in the non-exposed `private` schema and has an explicit deny-all RLS policy for direct access.
+
+**Remaining dashboard step:** enable the Supabase Authentication → Auth Hooks → Before User Created hook and select the Postgres function `private.hook_allow_approved_portal_user`.
+
+Security Advisor is clean after these migrations.
