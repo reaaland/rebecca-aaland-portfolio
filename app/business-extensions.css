@@ -446,3 +446,103 @@
     padding: 24px;
   }
 }
+
+
+/* Service-specific themes: preserve the Aaland visual system while giving
+   technical writing and grant work distinct accent families. */
+.service-theme-tech {
+  --service-accent: #43d6d0;
+  --service-accent-strong: #2fb8c0;
+  background:
+    radial-gradient(circle at 90% 5%, rgba(67, 214, 208, 0.16), transparent 30rem),
+    radial-gradient(circle at 10% 36%, rgba(47, 184, 192, 0.1), transparent 34rem),
+    radial-gradient(circle at 86% 72%, rgba(77, 163, 255, 0.08), transparent 32rem);
+}
+
+.service-theme-grant {
+  --service-accent: #b79a68;
+  --service-accent-strong: #9d8053;
+  background:
+    radial-gradient(circle at 90% 5%, rgba(183, 154, 104, 0.15), transparent 30rem),
+    radial-gradient(circle at 10% 36%, rgba(157, 128, 83, 0.09), transparent 34rem),
+    radial-gradient(circle at 86% 72%, rgba(77, 163, 255, 0.055), transparent 32rem);
+}
+
+.service-theme-tech .eyebrow,
+.service-theme-grant .eyebrow,
+.service-themed-list .service-detail-heading span {
+  color: var(--service-accent);
+}
+
+.service-themed-list article {
+  position: relative;
+  overflow: hidden;
+}
+
+.service-themed-list article::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--service-accent), transparent);
+  content: "";
+  opacity: .8;
+}
+
+.service-theme-tech .service-themed-list article {
+  background:
+    linear-gradient(145deg, rgba(67, 214, 208, 0.055), transparent 46%),
+    rgba(13, 19, 29, 0.54);
+}
+
+.service-theme-grant .service-themed-list article {
+  background:
+    linear-gradient(145deg, rgba(183, 154, 104, 0.06), transparent 46%),
+    rgba(13, 19, 29, 0.54);
+}
+
+.service-theme-tech .themed-cta {
+  border-color: rgba(67, 214, 208, 0.24);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(67, 214, 208, 0.14), transparent 26rem),
+    rgba(13, 19, 29, 0.64);
+}
+
+.service-theme-grant .themed-cta {
+  border-color: rgba(183, 154, 104, 0.24);
+  background:
+    radial-gradient(circle at 90% 10%, rgba(183, 154, 104, 0.12), transparent 26rem),
+    rgba(13, 19, 29, 0.64);
+}
+
+[data-theme="light"] .service-theme-tech {
+  background:
+    radial-gradient(circle at 90% 4%, rgba(42, 167, 164, 0.16), transparent 32rem),
+    radial-gradient(circle at 10% 34%, rgba(38, 143, 181, 0.1), transparent 36rem),
+    linear-gradient(180deg, rgba(255,255,255,.38), rgba(233,237,243,.16));
+}
+
+[data-theme="light"] .service-theme-grant {
+  background:
+    radial-gradient(circle at 90% 4%, rgba(166, 137, 85, 0.16), transparent 32rem),
+    radial-gradient(circle at 10% 34%, rgba(183, 154, 104, 0.1), transparent 36rem),
+    linear-gradient(180deg, rgba(255,255,255,.38), rgba(233,237,243,.16));
+}
+
+[data-theme="light"] .service-theme-tech .service-themed-list article,
+[data-theme="light"] .service-theme-grant .service-themed-list article {
+  background: rgba(255, 255, 255, 0.82);
+}
+
+[data-theme="light"] .service-theme-tech .themed-cta {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(42, 167, 164, 0.12), transparent 26rem),
+    rgba(255, 255, 255, 0.8);
+}
+
+[data-theme="light"] .service-theme-grant .themed-cta {
+  background:
+    radial-gradient(circle at 90% 10%, rgba(166, 137, 85, 0.11), transparent 26rem),
+    rgba(255, 255, 255, 0.8);
+}
