@@ -10,30 +10,7 @@ export const metadata = createPageMetadata({
   path: "/contact",
 });
 
-const inquiryTypes = [
-  "website",
-  "care",
-  "technical",
-  "grant",
-  "role",
-  "general",
-] as const;
-
-type InquiryType = (typeof inquiryTypes)[number];
-
-export default async function ContactPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ type?: string | string[] }>;
-}) {
-  const params = await searchParams;
-  const requestedType = Array.isArray(params.type) ? params.type[0] : params.type;
-  const initialInquiryType: InquiryType = inquiryTypes.includes(
-    requestedType as InquiryType,
-  )
-    ? (requestedType as InquiryType)
-    : "website";
-
+export default function ContactPage() {
   return (
     <>
       <SiteHeader />
@@ -52,7 +29,7 @@ export default async function ContactPage({
               <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>
             </div>
           </div>
-          <ContactForm initialInquiryType={initialInquiryType} />
+          <ContactForm />
         </section>
       </main>
       <SiteFooter />
