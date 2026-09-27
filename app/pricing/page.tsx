@@ -37,7 +37,7 @@ const categories = [
   },
   {
     title: "Grant research & writing",
-    price: "Quoted by scope",
+    price: "From $195",
     href: "#grant-services",
     text: "For grant research, funding roadmaps, and clearly defined writing support.",
   },
@@ -234,17 +234,38 @@ export default function PricingPage() {
             <div className="section-heading">
               <div>
                 <p className="eyebrow">Grant research &amp; writing</p>
-                <h2>Start with the actual funding need and scope.</h2>
+                <h2>Start small, then build the funding strategy when it makes sense.</h2>
               </div>
               <p>
-                Grant research, opportunity evaluation, funding roadmaps, and
-                application support vary considerably in size. I review the
-                organization, project, and requested work before quoting the project.
+                The Grant Funding Snapshot starts at $195. A deeper Funding
+                Strategy starts at $750. Grant-writing support is quoted separately
+                once the opportunity and scope are clear.
               </p>
             </div>
-            <Link className="section-link" href="/grant-research-writing">
-              See grant research &amp; writing services ↗
-            </Link>
+            <div className="service-grid pricing-update-grid">
+              <article>
+                <span>Starting at $195</span>
+                <h3>Grant Funding Snapshot</h3>
+                <p>
+                  A focused review of 5–8 relevant opportunities, including
+                  eligibility, deadlines, funding ranges, and priority notes.
+                </p>
+                <Link className="text-link" href="/grant-research-writing">
+                  See grant research services ↗
+                </Link>
+              </article>
+              <article>
+                <span>Starting at $750</span>
+                <h3>Funding Strategy</h3>
+                <p>
+                  A deeper opportunity pipeline with a 6–12 month grant calendar,
+                  readiness gaps, and recommended next steps.
+                </p>
+                <Link className="text-link" href="/grant-research-writing">
+                  See funding strategy details ↗
+                </Link>
+              </article>
+            </div>
           </div>
         </section>
 
