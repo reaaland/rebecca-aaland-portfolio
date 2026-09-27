@@ -503,6 +503,7 @@
 }
 
 .service-theme-tech .themed-cta {
+  padding-left: 8px;
   border-color: rgba(67, 214, 208, 0.24);
   background:
     radial-gradient(circle at 90% 10%, rgba(67, 214, 208, 0.14), transparent 26rem),
@@ -510,6 +511,7 @@
 }
 
 .service-theme-grant .themed-cta {
+  padding-left: 8px;
   border-color: rgba(183, 154, 104, 0.24);
   background:
     radial-gradient(circle at 90% 10%, rgba(183, 154, 104, 0.12), transparent 26rem),
