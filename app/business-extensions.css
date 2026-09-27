@@ -772,3 +772,41 @@
     grid-column: auto;
   }
 }
+
+
+@media (max-width: 680px) {
+  .service-theme-tech .service-themed-list article,
+  .service-theme-grant .service-themed-list article {
+    gap: 20px;
+    padding: 34px 18px;
+  }
+
+  .service-theme-tech .service-detail-heading,
+  .service-theme-grant .service-detail-heading {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .service-theme-tech .service-detail-heading h2,
+  .service-theme-grant .service-detail-heading h2 {
+    font-size: clamp(1.85rem, 7.5vw, 2.25rem);
+    line-height: 1.05;
+  }
+
+  .service-theme-tech .service-fit,
+  .service-theme-grant .service-fit {
+    font-size: 0.98rem;
+    line-height: 1.6;
+  }
+
+  .service-theme-tech .service-themed-list ul,
+  .service-theme-grant .service-themed-list ul {
+    padding-left: 20px;
+  }
+
+  .service-theme-tech .themed-cta,
+  .service-theme-grant .themed-cta {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}
