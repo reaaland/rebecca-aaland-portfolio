@@ -918,3 +918,10 @@
     line-height: 1.08;
   }
 }
+
+
+@media (max-width: 760px) and (min-width: 681px) {
+  .business-home .hero-copy {
+    padding-inline: 20px;
+  }
+}
