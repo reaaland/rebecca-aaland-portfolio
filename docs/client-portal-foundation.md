@@ -113,3 +113,18 @@ The admin email allow-list lives in the non-exposed `private` schema and has an 
 **Remaining dashboard step:** enable the Supabase Authentication → Auth Hooks → Before User Created hook and select the Postgres function `private.hook_allow_approved_portal_user`.
 
 Security Advisor is clean after these migrations.
+
+
+## Login UI direction
+
+The portal sign-in screen should use a polished centered auth card/modal inspired by finished consumer login experiences, while remaining fully Aaland-branded.
+
+- Show the Aaland logo/wordmark at the top.
+- Primary option: **Continue with Google**.
+- Secondary option: **Email me a sign-in link**.
+- No guest login.
+- Keep unrelated navigation and clutter off the auth screen.
+- Match the homepage visual system: light background, navy text, blue/cyan/lilac accents, subtle gradients/glows, rounded corners, and generous spacing.
+- A simple “or” divider may separate Google and email options.
+- Magic-link flow: enter email → send link → confirmation state.
+- Mobile presentation must remain clean and comfortable.
