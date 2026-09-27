@@ -90,7 +90,7 @@ export default function GrantResearchWritingPage() {
             Start with the organization, project, and funding need. Research and
             fit come before promising that an application should be written.
           </p>
-          <Link className="button button-dark" href="/contact">
+          <Link className="button button-dark" href="/contact?type=grant">
             Discuss grant research ↗
           </Link>
         </section>
