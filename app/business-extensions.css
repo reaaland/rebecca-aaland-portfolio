@@ -546,3 +546,142 @@
     radial-gradient(circle at 90% 10%, rgba(166, 137, 85, 0.11), transparent 26rem),
     rgba(255, 255, 255, 0.8);
 }
+
+
+.business-specialty-section {
+  padding-block: 12px 102px;
+}
+
+.business-specialty-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.specialty-card {
+  position: relative;
+  min-height: 320px;
+  padding: 32px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(13, 19, 29, 0.7);
+  box-shadow: 0 22px 56px rgba(0, 0, 0, 0.14);
+}
+
+.specialty-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 3px;
+  content: "";
+}
+
+.specialty-card > span {
+  font-family: var(--font-mono), monospace;
+  font-size: .7rem;
+  font-weight: 720;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.specialty-card h3 {
+  max-width: 620px;
+  margin: 76px 0 18px;
+  font-size: clamp(1.6rem, 2.6vw, 2.35rem);
+  line-height: 1.08;
+  letter-spacing: -.04em;
+}
+
+.specialty-card p {
+  max-width: 650px;
+  color: var(--text-soft);
+  line-height: 1.7;
+}
+
+.specialty-card .text-link {
+  display: inline-flex;
+  margin-top: 28px;
+}
+
+.specialty-card-tech {
+  background:
+    radial-gradient(circle at 90% 8%, rgba(67, 214, 208, 0.13), transparent 38%),
+    linear-gradient(150deg, rgba(13, 28, 31, 0.9), rgba(9, 16, 28, 0.86));
+}
+
+.specialty-card-tech::before {
+  background: linear-gradient(90deg, #2fb8c0, #43d6d0, rgba(77, 163, 255, .65));
+}
+
+.specialty-card-tech > span,
+.specialty-card-tech .text-link {
+  color: #43d6d0;
+}
+
+.specialty-card-grant {
+  background:
+    radial-gradient(circle at 90% 8%, rgba(183, 154, 104, 0.12), transparent 38%),
+    linear-gradient(150deg, rgba(29, 25, 20, 0.9), rgba(9, 16, 28, 0.86));
+}
+
+.specialty-card-grant::before {
+  background: linear-gradient(90deg, #8f744d, #b79a68, rgba(205, 188, 155, .72));
+}
+
+.specialty-card-grant > span,
+.specialty-card-grant .text-link {
+  color: #c0aa7a;
+}
+
+[data-theme="light"] .specialty-card {
+  box-shadow: 0 18px 50px rgba(55, 72, 96, 0.09);
+}
+
+[data-theme="light"] .specialty-card-tech {
+  background:
+    radial-gradient(circle at 90% 8%, rgba(42, 167, 164, 0.14), transparent 40%),
+    rgba(255, 255, 255, 0.88);
+}
+
+[data-theme="light"] .specialty-card-grant {
+  background:
+    radial-gradient(circle at 90% 8%, rgba(166, 137, 85, 0.13), transparent 40%),
+    rgba(255, 255, 255, 0.88);
+}
+
+[data-theme="light"] .specialty-card-tech > span,
+[data-theme="light"] .specialty-card-tech .text-link {
+  color: #287f83;
+}
+
+[data-theme="light"] .specialty-card-grant > span,
+[data-theme="light"] .specialty-card-grant .text-link {
+  color: #826b47;
+}
+
+@media (max-width: 900px) {
+  .business-specialty-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .specialty-card {
+    min-height: 280px;
+  }
+}
+
+@media (max-width: 680px) {
+  .business-specialty-section {
+    padding-bottom: 82px;
+  }
+
+  .specialty-card {
+    min-height: auto;
+    padding: 26px 24px;
+  }
+
+  .specialty-card h3 {
+    margin-top: 58px;
+  }
+}
