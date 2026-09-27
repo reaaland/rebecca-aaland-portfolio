@@ -128,3 +128,19 @@ The portal sign-in screen should use a polished centered auth card/modal inspire
 - A simple “or” divider may separate Google and email options.
 - Magic-link flow: enter email → send link → confirmation state.
 - Mobile presentation must remain clean and comfortable.
+
+
+## Auth verification results
+
+Local auth verification completed successfully on September 27, 2026.
+
+- Approved admin Google sign-in succeeded for `rebecca@pawcirclellc.com`.
+- The created auth user was recognized as **Portal admin**.
+- An unapproved email (`reaaland@gmail.com`) was rejected by the invite-only hook with the expected message: portal access is by invitation only.
+- This confirms the Google/Supabase auth connection, the Before User Created approval gate, and admin account linking are functioning together.
+
+Remaining before client rollout:
+- replace the temporary auth test route with the polished Aaland-branded login experience
+- verify client-row linking with at least two test client accounts
+- verify client A cannot read client B database rows or request files
+- clean the temporary duplicate Supabase client warning seen in local development
