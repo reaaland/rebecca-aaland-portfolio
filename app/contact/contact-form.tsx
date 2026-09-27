@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 
 const inquiryLabels = {
   website: "Website project or updates",
@@ -59,6 +59,13 @@ const inquiryDetails: Record<
 export function ContactForm() {
   const [inquiryType, setInquiryType] = useState<InquiryType>("website");
   const [status, setStatus] = useState<FormStatus>("idle");
+
+  useEffect(() => {
+    const requestedType = new URLSearchParams(window.location.search).get("type");
+    if (requestedType && requestedType in inquiryLabels) {
+      setInquiryType(requestedType as InquiryType);
+    }
+  }, []);
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
