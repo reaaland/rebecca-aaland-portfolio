@@ -826,6 +826,10 @@
     padding-bottom: 64px;
   }
 
+  .business-home .hero-copy {
+    padding-inline: 20px;
+  }
+
   .business-home .hero-eyebrow {
     max-width: 100%;
     font-size: 0.64rem;
