@@ -86,7 +86,7 @@ export default function TechnicalWritingPage() {
             you are working from. I can help organize it and identify the
             clearest next step.
           </p>
-          <Link className="button button-dark" href="/contact">
+          <Link className="button button-dark" href="/contact?type=technical">
             Discuss a documentation project ↗
           </Link>
         </section>
