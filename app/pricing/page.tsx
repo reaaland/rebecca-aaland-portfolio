@@ -31,9 +31,9 @@ const categories = [
   },
   {
     title: "Technical writing",
-    price: "Quoted by scope",
+    price: "From $175",
     href: "#technical-writing",
-    text: "For documentation, SOPs, user guides, onboarding, and help content.",
+    text: "For documentation cleanup, SOPs, user guides, onboarding, and help content.",
   },
   {
     title: "Grant research & writing",
@@ -215,17 +215,65 @@ export default function PricingPage() {
             <div className="section-heading">
               <div>
                 <p className="eyebrow">Technical writing &amp; documentation</p>
-                <h2>Pricing depends on the amount and condition of the material.</h2>
+                <h2>Start with the size and complexity of the documentation.</h2>
               </div>
               <p>
-                A short SOP cleanup is different from building a documentation
-                set from scattered notes, screenshots, interviews, and existing files.
-                I review the scope first and give you the price in writing.
+                Introductory pricing starts at $175 for cleanup of an existing
+                document. SOPs start at $250, user or onboarding guides at $400,
+                and small documentation sets at $750. Larger projects are quoted
+                by scope.
               </p>
             </div>
-            <Link className="section-link" href="/technical-writing">
-              See technical writing services ↗
-            </Link>
+
+            <div className="service-grid pricing-update-grid">
+              <article>
+                <span>Starting at $175</span>
+                <h3>Documentation Review &amp; Cleanup</h3>
+                <p>
+                  Edit and reorganize an existing SOP, guide, help article, or
+                  process document for clarity and usability.
+                </p>
+                <Link className="text-link" href="/technical-writing">
+                  See technical writing services ↗
+                </Link>
+              </article>
+
+              <article>
+                <span>Starting at $250</span>
+                <h3>Single SOP or Process Guide</h3>
+                <p>
+                  Turn one defined workflow into a clear, repeatable SOP,
+                  checklist, or internal process guide.
+                </p>
+                <Link className="text-link" href="/technical-writing">
+                  See SOP details ↗
+                </Link>
+              </article>
+
+              <article>
+                <span>Starting at $400</span>
+                <h3>User or Onboarding Guide</h3>
+                <p>
+                  Multi-step documentation for onboarding, implementation,
+                  software use, or training.
+                </p>
+                <Link className="text-link" href="/technical-writing">
+                  See guide details ↗
+                </Link>
+              </article>
+
+              <article>
+                <span>Starting at $750</span>
+                <h3>Small Documentation Set</h3>
+                <p>
+                  A coordinated set of roughly 3–5 related documents with
+                  consistent structure and terminology.
+                </p>
+                <Link className="text-link" href="/technical-writing">
+                  See documentation packages ↗
+                </Link>
+              </article>
+            </div>
           </div>
         </section>
 
