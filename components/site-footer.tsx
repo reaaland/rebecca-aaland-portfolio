@@ -7,11 +7,11 @@ export function SiteFooter() {
         <strong>
           <span aria-hidden="true">[RA]</span> Aaland Web Design &amp; Site Care
         </strong>
-        <span>Web design · Updates · Ongoing support</span>
+        <span>Web design · Site care · Technical writing · Business support</span>
       </div>
 
       <p>
-        Based in Rochester, Minnesota. Working with small businesses locally and beyond. Aaland Web Design &amp; Site Care is operated by PawCircle LLC.
+        Based in Rochester, Minnesota. Working with small businesses and organizations locally and beyond. Aaland Web Design &amp; Site Care is operated by PawCircle LLC.
       </p>
 
       <nav aria-label="Footer navigation">
