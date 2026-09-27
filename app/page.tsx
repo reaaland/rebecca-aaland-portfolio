@@ -4,9 +4,9 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Web Design in Rochester, MN",
+  title: "Web Design, Technical Writing & Business Support in Rochester, MN",
   description:
-    "Web design in Rochester, Minnesota for small businesses, including new websites, website updates, and ongoing site care from Aaland Web Design & Site Care.",
+    "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
   path: "/",
 });
 
@@ -60,18 +60,18 @@ export default function HomePage() {
 
           <div className="hero-copy">
             <p className="eyebrow hero-eyebrow">
-              <span /> Rochester, Minnesota · Small-business web support
+              <span /> Based in Rochester, Minnesota · Serving clients locally and beyond
             </p>
 
             <h1 id="hero-title">
-              A website should make your business easier to understand—
-              <em> and easier to run.</em>
+              Clearer websites, better documentation,
+              <em> and practical business support.</em>
             </h1>
 
             <p className="hero-intro">
-              I build new websites, improve existing ones, and provide ongoing
-              support for small businesses that want a professional site without
-              unnecessary technical hassle.
+              From websites and site care to technical writing, grant research, and
+              process support, I help small businesses and organizations turn
+              complicated needs into clear, practical solutions.
             </p>
 
             <div className="hero-actions">
