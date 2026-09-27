@@ -169,3 +169,17 @@ The temporary `/portal-auth-test` route now redirects to `/portal/login`.
 The browser Supabase client is stored as a singleton on `globalThis` so development hot reloads do not create competing GoTrue clients using the same browser storage key.
 
 Before production merge, add the production redirect URL `https://www.rebeccaiaaland.com/portal/login` to the Supabase Auth redirect allow-list. Localhost and Vercel preview wildcards already cover development and preview testing.
+
+
+## Finishing UX direction
+
+For final polish, use restrained professional loading states rather than abrupt content jumps.
+
+- Prefer skeleton placeholders for data-driven portal sections such as dashboard cards, requests, services, billing, and file lists.
+- Keep skeleton timing natural: show them when data is genuinely loading and use a very short minimum display time only when needed to avoid flicker.
+- Avoid artificial long delays just to showcase animation.
+- Use subtle staggered reveal timing for cards/rows once data is ready.
+- Keep motion quiet and functional; no flashy spinners or heavy page transitions.
+- Preserve layout dimensions during loading so content does not jump.
+- Respect `prefers-reduced-motion`.
+- Authentication transitions should remain especially fast and simple.
