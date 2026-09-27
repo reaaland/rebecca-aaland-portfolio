@@ -6,7 +6,7 @@ import { ContactForm } from "./contact-form";
 export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact Rebecca Aaland about a new website, website updates, Site Care, or a development opportunity.",
+    "Contact Rebecca Aaland about web design, Site Care, technical writing, grant research, business support, or a development opportunity.",
   path: "/contact",
 });
 
@@ -18,11 +18,11 @@ export default function ContactPage() {
         <section className="contact-page shell" data-reveal>
           <div className="contact-page-intro">
             <p className="eyebrow">Contact</p>
-            <h1>Tell me what you need the website to do.</h1>
+            <h1>Tell me what you need to work better.</h1>
             <p>
-              A technical plan is not required. Start with what you have now,
-              what is not working, or what you want to change. I can help figure
-              out the next step.
+              A finished plan is not required. Start with what you have now,
+              what is not working, what needs to be clearer, or what you are
+              trying to accomplish. I can help figure out the practical next step.
             </p>
             <div className="direct-email">
               <span>Prefer direct email?</span>
