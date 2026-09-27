@@ -132,6 +132,46 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="business-specialty-section shell" aria-labelledby="specialty-title" data-reveal>
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Beyond the website</p>
+              <h2 id="specialty-title">Clear information is part of how a business works.</h2>
+            </div>
+            <p>
+              Some problems are not website problems. I also help organize
+              technical information, document processes, and research realistic
+              funding opportunities.
+            </p>
+          </div>
+
+          <div className="business-specialty-grid">
+            <article className="specialty-card specialty-card-tech">
+              <span>Technical writing</span>
+              <h3>Documentation people can actually follow.</h3>
+              <p>
+                User guides, SOPs, onboarding material, help-center content, and
+                process documentation built around clarity and practical use.
+              </p>
+              <Link className="text-link" href="/technical-writing">
+                Explore technical writing ↗
+              </Link>
+            </article>
+
+            <article className="specialty-card specialty-card-grant">
+              <span>Grant research &amp; writing</span>
+              <h3>Start with realistic funding opportunities.</h3>
+              <p>
+                Grant research, fit evaluation, funding roadmaps, and clearly
+                defined writing support for small organizations.
+              </p>
+              <Link className="text-link" href="/grant-research-writing">
+                Explore grant services ↗
+              </Link>
+            </article>
+          </div>
+        </section>
+
         <section className="services-section business-pricing-band" aria-labelledby="pricing-title" data-reveal>
           <div className="shell">
             <div className="section-heading">
