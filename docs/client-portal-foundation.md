@@ -140,7 +140,32 @@ Local auth verification completed successfully on September 27, 2026.
 - This confirms the Google/Supabase auth connection, the Before User Created approval gate, and admin account linking are functioning together.
 
 Remaining before client rollout:
-- replace the temporary auth test route with the polished Aaland-branded login experience
+- polished Aaland-branded login experience implemented at `/portal/login`
 - verify client-row linking with at least two test client accounts
 - verify client A cannot read client B database rows or request files
-- clean the temporary duplicate Supabase client warning seen in local development
+- singleton browser Supabase client added to prevent duplicate GoTrue client instances during local development
+
+
+## Polished login implementation
+
+The client-facing sign-in experience is now implemented at:
+
+`/portal/login`
+
+It includes:
+
+- Aaland Web Design & Site Care logo/wordmark
+- **Continue with Google** with Google account selection
+- **Email me a sign-in link**
+- no guest access
+- invitation-only access messaging
+- polished success and error states
+- signed-in account confirmation
+- responsive mobile layout
+- homepage-aligned light navy/blue/cyan/lilac visual language
+
+The temporary `/portal-auth-test` route now redirects to `/portal/login`.
+
+The browser Supabase client is stored as a singleton on `globalThis` so development hot reloads do not create competing GoTrue clients using the same browser storage key.
+
+Before production merge, add the production redirect URL `https://www.rebeccaiaaland.com/portal/login` to the Supabase Auth redirect allow-list. Localhost and Vercel preview wildcards already cover development and preview testing.
