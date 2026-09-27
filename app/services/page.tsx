@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Services",
   description:
-    "New websites, website updates, and ongoing site care for small businesses in Rochester, Minnesota and beyond.",
+    "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
   path: "/services",
 });
 
@@ -53,6 +53,34 @@ const serviceList = [
     href: "/site-care",
     cta: "Learn about Site Care",
   },
+  {
+    id: "technical-writing",
+    number: "04",
+    title: "Technical Writing & Documentation",
+    fit: "For businesses and organizations that need complicated information turned into clear user guides, SOPs, onboarding material, help content, or process documentation.",
+    includes: [
+      "User guides and software walkthroughs",
+      "SOPs and internal process documentation",
+      "Onboarding and training materials",
+      "Help-center content and documentation editing",
+    ],
+    href: "/technical-writing",
+    cta: "Explore technical writing",
+  },
+  {
+    id: "grant-research",
+    number: "05",
+    title: "Grant Research & Writing",
+    fit: "For small organizations that need help finding realistic funding opportunities, evaluating fit, organizing priorities, or developing a well-supported application.",
+    includes: [
+      "Grant opportunity research",
+      "Eligibility, deadline, and fit review",
+      "Funding roadmaps and grant calendars",
+      "Clearly defined grant-writing support",
+    ],
+    href: "/grant-research-writing",
+    cta: "Explore grant research & writing",
+  },
 ] as const;
 
 export default function ServicesPage() {
@@ -62,11 +90,11 @@ export default function ServicesPage() {
       <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Services</p>
-          <h1>Choose the kind of website help you actually need.</h1>
+          <h1>Choose the kind of practical support you actually need.</h1>
           <p>
-            You may need a new site, a few changes to the one you already have,
-            or someone to keep it taken care of. Those are different problems,
-            so I treat them as different services.
+            You may need a website, clearer documentation, funding research, or
+            help organizing a process. Those are different problems, so I treat
+            them as different services instead of forcing everything into one package.
           </p>
         </section>
 
@@ -92,13 +120,14 @@ export default function ServicesPage() {
 
         <section className="plain-cta shell" data-reveal>
           <p className="eyebrow">Not sure which one?</p>
-          <h2>Show me what you have now.</h2>
+          <h2>Start with the problem you are trying to solve.</h2>
           <p>
-            I will look at the existing site and the problem you are trying to
-            solve before recommending the larger option.
+            You do not need to choose the service category first. Tell me what
+            you have now, what is getting in the way, and what you need to work
+            better. I can help identify the practical next step.
           </p>
           <Link className="button button-dark" href="/contact">
-            Discuss your website ↗
+            Tell me what you need ↗
           </Link>
         </section>
       </main>

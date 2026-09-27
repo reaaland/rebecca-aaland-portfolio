@@ -4,9 +4,9 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Web Design in Rochester, MN",
+  title: "Web Design, Technical Writing & Business Support in Rochester, MN",
   description:
-    "Web design in Rochester, Minnesota for small businesses, including new websites, website updates, and ongoing site care from Aaland Web Design & Site Care.",
+    "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
   path: "/",
 });
 
@@ -16,18 +16,35 @@ const quickPaths = [
     text: "Custom, responsive websites for small businesses that need a clear, professional online home.",
     href: "/services#new-websites",
     link: "Explore website builds",
+    className: "quick-card-web",
   },
   {
     title: "I need website updates",
     text: "Focused improvements, content changes, mobile fixes, forms, new sections, and other practical updates.",
     href: "/services#website-updates",
     link: "Explore website updates",
+    className: "quick-card-web",
   },
   {
-    title: "I want someone to handle it",
-    text: "Ongoing Site Care for businesses that want a reliable person to keep the website updated and working well.",
+    title: "I want ongoing Site Care",
+    text: "Reliable monthly support to keep a website updated, working well, and easier to maintain.",
     href: "/site-care",
     link: "Explore Site Care",
+    className: "quick-card-web",
+  },
+  {
+    title: "I need technical writing",
+    text: "Clear documentation, SOPs, user guides, onboarding, and help content.",
+    href: "/technical-writing",
+    link: "Explore technical writing",
+    className: "quick-card-tech",
+  },
+  {
+    title: "I need grant research",
+    text: "Funding research, opportunity evaluation, roadmaps, and grant-writing support.",
+    href: "/grant-research-writing",
+    link: "Explore grant services",
+    className: "quick-card-grant",
   },
 ] as const;
 
@@ -60,18 +77,18 @@ export default function HomePage() {
 
           <div className="hero-copy">
             <p className="eyebrow hero-eyebrow">
-              <span /> Rochester, Minnesota · Small-business web support
+              <span /> Based in Rochester, Minnesota · Serving clients locally and beyond
             </p>
 
             <h1 id="hero-title">
-              A website should make your business easier to understand—
-              <em> and easier to run.</em>
+              Clearer websites, better documentation,
+              <em> and practical business support.</em>
             </h1>
 
             <p className="hero-intro">
-              I build new websites, improve existing ones, and provide ongoing
-              support for small businesses that want a professional site without
-              unnecessary technical hassle.
+              From websites and site care to technical writing, grant research, and
+              process support, I help small businesses and organizations turn
+              complicated needs into clear, practical solutions.
             </p>
 
             <div className="hero-actions">
@@ -86,7 +103,7 @@ export default function HomePage() {
 
           <div className="hero-principles business-choice-grid" aria-label="Choose the kind of website help you need">
             {quickPaths.map((item) => (
-              <article key={item.title}>
+              <article className={item.className} key={item.title}>
                 <h2>{item.title}</h2>
                 <p>{item.text}</p>
                 <Link className="text-link" href={item.href}>
@@ -128,6 +145,46 @@ export default function HomePage() {
               <span>04</span>
               <h3>Stay supported</h3>
               <p>Use one-time updates when that is enough, or Site Care when you want ongoing help month to month.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="business-specialty-section shell" aria-labelledby="specialty-title" data-reveal>
+          <div className="section-heading">
+            <div>
+              <p className="eyebrow">Beyond the website</p>
+              <h2 id="specialty-title">Clear information is part of how a business works.</h2>
+            </div>
+            <p>
+              Some problems are not website problems. I also help organize
+              technical information, document processes, and research realistic
+              funding opportunities.
+            </p>
+          </div>
+
+          <div className="business-specialty-grid">
+            <article className="specialty-card specialty-card-tech">
+              <span>Technical writing</span>
+              <h3>Documentation people can actually follow.</h3>
+              <p>
+                User guides, SOPs, onboarding material, help-center content, and
+                process documentation built around clarity and practical use.
+              </p>
+              <Link className="text-link" href="/technical-writing">
+                Explore technical writing ↗
+              </Link>
+            </article>
+
+            <article className="specialty-card specialty-card-grant">
+              <span>Grant research &amp; writing</span>
+              <h3>Start with realistic funding opportunities.</h3>
+              <p>
+                Grant research, fit evaluation, funding roadmaps, and clearly
+                defined writing support for small organizations.
+              </p>
+              <Link className="text-link" href="/grant-research-writing">
+                Explore grant services ↗
+              </Link>
             </article>
           </div>
         </section>

@@ -7,6 +7,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/services",
     "/pricing",
     "/site-care",
+    "/technical-writing",
+    "/grant-research-writing",
     "/work",
     "/work/minnlawn",
     "/work/mos",
@@ -25,13 +27,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return routes.map((route) => ({
     url: `${SITE_URL}${route}`,
     changeFrequency:
-      route === "" || route === "/pricing" || route === "/site-care"
+      route === "" ||
+      route === "/pricing" ||
+      route === "/site-care" ||
+      route === "/technical-writing" ||
+      route === "/grant-research-writing"
         ? "monthly"
         : "yearly",
     priority:
       route === ""
         ? 1
-        : ["/services", "/pricing", "/site-care", "/work"].includes(route)
+        : [
+              "/services",
+              "/pricing",
+              "/site-care",
+              "/technical-writing",
+              "/grant-research-writing",
+              "/work",
+            ].includes(route)
           ? 0.9
           : 0.7,
   }));

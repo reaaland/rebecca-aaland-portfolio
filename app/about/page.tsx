@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "About",
   description:
-    "Meet Rebecca Aaland, the web designer and developer behind Aaland Web Design & Site Care in Rochester, Minnesota.",
+    "Meet Rebecca Aaland, the web designer, developer, technical writer, and small-business owner behind Aaland Web Design & Site Care in Rochester, Minnesota.",
   path: "/about",
 });
 
@@ -17,12 +17,12 @@ export default function AboutPage() {
       <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">About Rebecca</p>
-          <h1>I build practical websites for real businesses.</h1>
+          <h1>I turn complicated needs into practical, understandable solutions.</h1>
           <p>
-            My background includes teaching, running a small business, and
-            frontend development. Those experiences shaped how I work now:
-            understand the problem first, explain things clearly, and build only
-            what actually helps.
+            My background includes teaching, research and writing, running a
+            small business, and frontend development. Those experiences shaped
+            how I work now: understand the problem first, organize the
+            information, explain things clearly, and build only what actually helps.
           </p>
         </section>
 
@@ -38,7 +38,7 @@ export default function AboutPage() {
           </aside>
 
           <div className="story-copy">
-            <h2>The website is part of the business—not a separate technical project.</h2>
+            <h2>Clear communication and useful systems are part of how a business works.</h2>
             <p>
               I spent years teaching before moving into web development and
               business ownership. Teaching taught me how to listen, break down
@@ -47,14 +47,21 @@ export default function AboutPage() {
               trust, communication, and clear expectations matter.
             </p>
             <p>
-              I now bring those habits into web design and development. My work
-              includes custom client websites, frontend applications, API
-              integrations, forms, deployment, troubleshooting, and ongoing
-              website support.
+              I now bring those habits into web design, technical writing,
+              documentation, grant research, and practical business support. My
+              work includes custom client websites, frontend applications,
+              process documentation, user-facing guides, research, troubleshooting,
+              and ongoing support.
+            </p>
+            <p>
+              Earlier in my teaching career, I wrote funded classroom grants for
+              microscopes and a 3-D printer. That experience is part of why I
+              approach grant work from the research and fit side first rather than
+              treating every opportunity as an application that should be pursued.
             </p>
             <blockquote>
               My goal is not to sell the biggest project. It is to figure out
-              what the website actually needs to do better.
+              what actually needs to work better and make the next step clear.
             </blockquote>
           </div>
         </section>

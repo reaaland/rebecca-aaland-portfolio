@@ -1,16 +1,15 @@
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
-import { ContactForm } from "./contact-form";
+import { ContactForm } from "../contact-form";
 
 export const metadata = createPageMetadata({
-  title: "Contact",
-  description:
-    "Contact Rebecca Aaland about web design, Site Care, technical writing, grant research, business support, or a development opportunity.",
-  path: "/contact",
+  title: "Site Care Inquiry",
+  description: "Share the current website and the routine updates or support you expect to need. I can help determine whether monthly Site Care fits.",
+  path: "/contact/site-care",
 });
 
-export default function ContactPage() {
+export default function ServiceContactPage() {
   return (
     <>
       <SiteHeader />
@@ -18,18 +17,16 @@ export default function ContactPage() {
         <section className="contact-page shell" data-reveal>
           <div className="contact-page-intro">
             <p className="eyebrow">Contact</p>
-            <h1>Tell me what you need to work better.</h1>
+            <h1>Tell me what kind of website help you need ongoing.</h1>
             <p>
-              A finished plan is not required. Start with what you have now,
-              what is not working, what needs to be clearer, or what you are
-              trying to accomplish. I can help figure out the practical next step.
+              Share the current website and the routine updates or support you expect to need. I can help determine whether monthly Site Care fits.
             </p>
             <div className="direct-email">
               <span>Prefer direct email?</span>
               <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>
             </div>
           </div>
-          <ContactForm />
+          <ContactForm initialInquiryType="care" />
         </section>
       </main>
       <SiteFooter />
