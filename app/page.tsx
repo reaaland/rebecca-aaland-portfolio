@@ -16,18 +16,35 @@ const quickPaths = [
     text: "Custom, responsive websites for small businesses that need a clear, professional online home.",
     href: "/services#new-websites",
     link: "Explore website builds",
+    className: "quick-card-web",
   },
   {
     title: "I need website updates",
     text: "Focused improvements, content changes, mobile fixes, forms, new sections, and other practical updates.",
     href: "/services#website-updates",
     link: "Explore website updates",
+    className: "quick-card-web",
   },
   {
-    title: "I want someone to handle it",
-    text: "Ongoing Site Care for businesses that want a reliable person to keep the website updated and working well.",
+    title: "I want ongoing Site Care",
+    text: "Reliable monthly support to keep a website updated, working well, and easier to maintain.",
     href: "/site-care",
     link: "Explore Site Care",
+    className: "quick-card-web",
+  },
+  {
+    title: "I need technical writing",
+    text: "Clear documentation, SOPs, user guides, onboarding, and help content.",
+    href: "/technical-writing",
+    link: "Explore technical writing",
+    className: "quick-card-tech",
+  },
+  {
+    title: "I need grant research",
+    text: "Funding research, opportunity evaluation, roadmaps, and grant-writing support.",
+    href: "/grant-research-writing",
+    link: "Explore grant services",
+    className: "quick-card-grant",
   },
 ] as const;
 
@@ -86,7 +103,7 @@ export default function HomePage() {
 
           <div className="hero-principles business-choice-grid" aria-label="Choose the kind of website help you need">
             {quickPaths.map((item) => (
-              <article key={item.title}>
+              <article className={item.className} key={item.title}>
                 <h2>{item.title}</h2>
                 <p>{item.text}</p>
                 <Link className="text-link" href={item.href}>
