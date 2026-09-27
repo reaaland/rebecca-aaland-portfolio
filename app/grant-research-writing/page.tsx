@@ -13,22 +13,24 @@ export const metadata = createPageMetadata({
 const services = [
   {
     number: "01",
-    title: "Grant opportunity research",
-    text: "Find realistic funding opportunities and narrow the list before spending time on an application.",
+    title: "Grant Funding Snapshot",
+    price: "Starting at $195",
+    text: "A focused first step for organizations that want to know which opportunities are worth considering before committing to a larger strategy.",
     includes: [
-      "Relevant grant opportunity research",
+      "5–8 relevant grant opportunities",
       "Eligibility and deadline review",
       "Funding-range and requirement notes",
-      "Prioritized fit recommendations",
+      "Top-priority fit recommendations",
     ],
   },
   {
     number: "02",
-    title: "Funding roadmap",
-    text: "Organize promising opportunities into a practical plan so you can see what to pursue, when, and what needs to be ready first.",
+    title: "Funding Strategy",
+    price: "Starting at $750",
+    text: "A deeper research and planning project that turns promising opportunities into an organized funding roadmap.",
     includes: [
-      "Prioritized opportunity list",
-      "Grant deadline calendar",
+      "Prioritized opportunity pipeline",
+      "6–12 month grant calendar",
       "Readiness and information gaps",
       "Recommended next steps",
     ],
@@ -36,6 +38,7 @@ const services = [
   {
     number: "03",
     title: "Grant-writing support",
+    price: "Quoted by scope",
     text: "Support for clearly defined grant applications when the opportunity and project are a realistic match.",
     includes: [
       "Application organization and drafting support",
@@ -68,7 +71,9 @@ export default function GrantResearchWritingPage() {
                 <span>{service.number}</span>
                 <h2>{service.title}</h2>
               </div>
-              <p className="service-fit">{service.text}</p>
+              <p className="service-fit">
+                <strong>{service.price}</strong> · {service.text}
+              </p>
               <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
                 {service.includes.map((item) => (
                   <li key={item}>{item}</li>
