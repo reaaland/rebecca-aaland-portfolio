@@ -13,35 +13,62 @@ export const metadata = createPageMetadata({
 const services = [
   {
     number: "01",
-    title: "User guides & help content",
-    text: "Clear, practical instructions that help people understand what to do without digging through unnecessary technical language.",
+    title: "Documentation Review & Cleanup",
+    price: "Starting at $175",
+    text: "For an existing SOP, help article, guide, or process document that needs clearer structure, wording, or organization.",
     includes: [
-      "User guides and software walkthroughs",
-      "Help-center and knowledge-base articles",
-      "FAQs and step-by-step instructions",
-      "Editing existing documentation for clarity",
+      "Clarity and structure review",
+      "Editing and rewrite of existing material",
+      "Organization and formatting cleanup",
+      "One revision round",
     ],
   },
   {
     number: "02",
-    title: "SOPs & process documentation",
-    text: "Document recurring work so the process is easier to follow, teach, repeat, and improve.",
+    title: "Single SOP or Process Guide",
+    price: "Starting at $250",
+    text: "For one clearly defined process that needs to become a polished, repeatable SOP, checklist, or internal guide.",
     includes: [
-      "Standard operating procedures",
-      "Internal process documentation",
-      "Checklists and repeatable workflows",
-      "Process cleanup and organization",
+      "One defined workflow or process",
+      "Step-by-step structure",
+      "Clear roles, actions, or checkpoints",
+      "One revision round",
     ],
   },
   {
     number: "03",
-    title: "Onboarding & training materials",
-    text: "Turn complicated information into material that gives customers, employees, or users a clearer starting point.",
+    title: "User Guide or Onboarding Guide",
+    price: "Starting at $400",
+    text: "For a more substantial guide with multiple steps or sections, such as software walkthroughs, onboarding, implementation instructions, or training material.",
     includes: [
-      "Client or customer onboarding guides",
-      "Internal training documentation",
-      "Implementation and setup instructions",
-      "Plain-language revisions of technical material",
+      "Multi-step guide structure",
+      "Plain-language instructions",
+      "Screenshots or visual references when provided",
+      "One revision round",
+    ],
+  },
+  {
+    number: "04",
+    title: "Small Documentation Set",
+    price: "Starting at $750",
+    text: "For several related documents that need a consistent structure, voice, and format.",
+    includes: [
+      "Typically 3–5 related documents",
+      "Examples: SOP set, onboarding package, or small help-center section",
+      "Shared structure and terminology",
+      "One revision round",
+    ],
+  },
+  {
+    number: "05",
+    title: "Larger Documentation Project",
+    price: "Quoted by scope",
+    text: "For larger documentation systems, multi-page knowledge bases, or projects that require deeper research, interviews, testing, or ongoing coordination.",
+    includes: [
+      "Scope defined before work begins",
+      "Milestones and deliverables confirmed in writing",
+      "Pricing based on complexity and source material",
+      "Specialized work quoted separately",
     ],
   },
 ] as const;
@@ -68,7 +95,9 @@ export default function TechnicalWritingPage() {
                 <span>{service.number}</span>
                 <h2>{service.title}</h2>
               </div>
-              <p className="service-fit">{service.text}</p>
+              <p className="service-fit">
+                <strong>{service.price}</strong> · {service.text}
+              </p>
               <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
                 {service.includes.map((item) => (
                   <li key={item}>{item}</li>
