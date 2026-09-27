@@ -155,6 +155,28 @@ export function ContactForm() {
             <input name="roleTitle" type="text" />
           </label>
         </div>
+      ) : inquiryType === "technical" ? (
+        <div className="form-row">
+          <label>
+            Business or organization
+            <input name="organization" type="text" autoComplete="organization" />
+          </label>
+          <label>
+            Relevant document or project link, if any
+            <input name="website" type="text" autoComplete="url" />
+          </label>
+        </div>
+      ) : inquiryType === "grant" ? (
+        <div className="form-row">
+          <label>
+            Organization
+            <input name="organization" type="text" autoComplete="organization" />
+          </label>
+          <label>
+            Organization website, if available
+            <input name="website" type="text" autoComplete="url" />
+          </label>
+        </div>
       ) : (
         <div className="form-row">
           <label>
