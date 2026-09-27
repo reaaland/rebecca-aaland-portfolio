@@ -87,14 +87,14 @@ const updateOptions = [
     title: "Small Website Updates",
     price: "Starting at $150",
     text: "Best when you already know the changes you need: text, photos, links, services, contact information, or another focused fix.",
-    href: "/contact",
+    href: "/contact?type=website",
     cta: "Request website updates",
   },
   {
     title: "Website Refresh",
     price: "Starting at $750",
     text: "Best when the website still works but several pages need cleanup, stronger organization, better mobile presentation, or a more polished look.",
-    href: "/contact",
+    href: "/contact?type=website",
     cta: "Ask about a refresh",
   },
 ] as const;
@@ -202,7 +202,7 @@ export default function PricingPage() {
                 <a className="button button-secondary" href="#new-websites">
                   Compare rebuild pricing ↑
                 </a>
-                <Link className="button button-dark" href="/contact">
+                <Link className="button button-dark" href="/contact?type=website">
                   Send me the site ↗
                 </Link>
               </div>
@@ -282,7 +282,7 @@ export default function PricingPage() {
             <Link className="button button-dark" href="/site-care">
               See Site Care details ↗
             </Link>
-            <Link className="button button-secondary" href="/contact">
+            <Link className="button button-secondary" href="/contact?type=care">
               Ask about your website
             </Link>
           </div>
