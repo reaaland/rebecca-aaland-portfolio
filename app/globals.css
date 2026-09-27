@@ -3168,3 +3168,66 @@ a {
     min-width: 0;
   }
 }
+
+
+@media (max-width: 760px) and (min-width: 681px) {
+  .site-header {
+    top: 8px;
+    width: calc(100% - 16px);
+    min-height: 62px;
+    margin-top: 8px;
+    padding-inline: 12px;
+    border-radius: 14px;
+  }
+
+  .wordmark-name {
+    display: none;
+  }
+
+  .mobile-menu-toggle {
+    display: block;
+    margin-left: auto;
+  }
+
+  .primary-nav {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    left: 0;
+    display: none;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 12px;
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    background: var(--panel-raised);
+    box-shadow: 0 18px 48px rgba(0, 0, 0, 0.22);
+  }
+
+  .primary-nav-open {
+    display: flex;
+  }
+
+  .primary-nav > a {
+    display: block;
+    padding: 14px 12px;
+    border-radius: 9px;
+  }
+
+  .primary-nav > a:not(.nav-cta):hover {
+    background: rgba(77, 163, 255, 0.08);
+  }
+
+  .mobile-theme-row {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px 12px;
+  }
+
+  .nav-cta {
+    justify-content: center;
+    margin-top: 6px;
+  }
+}
