@@ -35,6 +35,15 @@ type RequestRecord = {
   created_at: string;
 };
 
+type AdminRequestRecord = RequestRecord & {
+  client_id: string;
+  description: string;
+  clientName: string;
+  businessName: string | null;
+  clientEmail: string;
+  attachmentCount: number;
+};
+
 type DashboardData = {
   email: string;
   role: PortalRole;
@@ -42,6 +51,7 @@ type DashboardData = {
   website: WebsiteRecord | null;
   service: ServiceRecord | null;
   requests: RequestRecord[];
+  adminRequests: AdminRequestRecord[];
 };
 
 const requestTypes = [
@@ -204,6 +214,87 @@ export function PortalDashboard() {
       let website: WebsiteRecord | null = null;
       let service: ServiceRecord | null = null;
       let requests: RequestRecord[] = [];
+      let adminRequests: AdminRequestRecord[] = [];
+
+      if (isAdmin) {
+        const { data: requestRows, error: requestError } = await client
+          .from("service_requests")
+          .select("id, client_id, title, description, request_type, status, created_at")
+          .order("created_at", { ascending: false })
+          .limit(20);
+
+        if (!active) return;
+
+        if (requestError) {
+          setError("We could not load client requests. Please try again.");
+          return;
+        }
+
+        const rawRequests = (requestRows ?? []) as Array<
+          RequestRecord & { client_id: string; description: string }
+        >;
+        const clientIds = [...new Set(rawRequests.map((request) => request.client_id))];
+        const requestIds = rawRequests.map((request) => request.id);
+
+        let clientDetails: Array<{
+          id: string;
+          contact_name: string;
+          business_name: string | null;
+          email: string;
+        }> = [];
+
+        if (clientIds.length) {
+          const { data: rows, error: detailsError } = await client
+            .from("clients")
+            .select("id, contact_name, business_name, email")
+            .in("id", clientIds);
+
+          if (detailsError) {
+            setError("We could not load client details. Please try again.");
+            return;
+          }
+
+          clientDetails = rows ?? [];
+        }
+
+        let attachmentRows: Array<{ request_id: string }> = [];
+
+        if (requestIds.length) {
+          const { data: rows, error: attachmentError } = await client
+            .from("request_attachments")
+            .select("request_id")
+            .in("request_id", requestIds);
+
+          if (attachmentError) {
+            setError("We could not load request file information. Please try again.");
+            return;
+          }
+
+          attachmentRows = rows ?? [];
+        }
+
+        const clientsById = new Map(clientDetails.map((row) => [row.id, row]));
+        const attachmentCounts = new Map<string, number>();
+
+        attachmentRows.forEach((row) => {
+          attachmentCounts.set(
+            row.request_id,
+            (attachmentCounts.get(row.request_id) ?? 0) + 1,
+          );
+        });
+
+        adminRequests = rawRequests.map((request) => {
+          const requestClient = clientsById.get(request.client_id);
+
+          return {
+            ...request,
+            clientName: requestClient?.contact_name ?? "Client",
+            businessName: requestClient?.business_name ?? null,
+            clientEmail: requestClient?.email ?? "",
+            attachmentCount: attachmentCounts.get(request.id) ?? 0,
+          };
+        });
+      }
 
       if (portalClient) {
         const [websiteResult, serviceResult, requestResult] = await Promise.all([
@@ -241,6 +332,7 @@ export function PortalDashboard() {
         website,
         service,
         requests,
+        adminRequests,
       });
     }
 
@@ -294,6 +386,15 @@ export function PortalDashboard() {
   const displayName =
     data.client?.business_name || data.client?.contact_name || "Aaland portal";
   const firstName = data.client?.contact_name?.split(" ")[0] ?? "Rebecca";
+  const adminCounts = {
+    received: data.adminRequests.filter((request) => request.status === "received").length,
+    working: data.adminRequests.filter((request) => request.status === "working").length,
+    complete: data.adminRequests.filter((request) => request.status === "complete").length,
+  };
+  const adminFileCount = data.adminRequests.reduce(
+    (total, request) => total + request.attachmentCount,
+    0,
+  );
 
   return (
     <main className={styles.page}>
@@ -327,7 +428,7 @@ export function PortalDashboard() {
         <header className={styles.topbar}>
           <div>
             <p className={styles.eyebrow}>
-              {data.role === "admin" ? "Administrator preview" : "Client portal"}
+              {data.role === "admin" ? "Portal administration" : "Client portal"}
             </p>
             <h1>Hi, {firstName}.</h1>
           </div>
@@ -337,19 +438,45 @@ export function PortalDashboard() {
           </div>
         </header>
 
-        <section className={styles.requestHero} aria-labelledby="help-heading">
-          <div className={styles.heroCopy}>
-            <p className={styles.eyebrow}>Website support</p>
-            <h2 id="help-heading">What do you need help with?</h2>
-            <p>
-              Choose the closest option. The request form will only ask for the
-              information needed to complete your update.
-            </p>
-          </div>
+        {data.role === "admin" ? (
+          <section className={styles.adminHero} aria-labelledby="admin-heading">
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>Client activity</p>
+              <h2 id="admin-heading">Client requests</h2>
+              <p>
+                Review incoming website requests and files from approved Aaland
+                clients. New requests arrive with a status of Received.
+              </p>
+            </div>
 
-          <div className={styles.requestGrid}>
-            {requestTypes.map((request) =>
-              request.href ? (
+            <div className={styles.adminStats}>
+              <div>
+                <span>Received</span>
+                <strong>{adminCounts.received}</strong>
+              </div>
+              <div>
+                <span>Working on it</span>
+                <strong>{adminCounts.working}</strong>
+              </div>
+              <div>
+                <span>Complete</span>
+                <strong>{adminCounts.complete}</strong>
+              </div>
+            </div>
+          </section>
+        ) : (
+          <section className={styles.requestHero} aria-labelledby="help-heading">
+            <div className={styles.heroCopy}>
+              <p className={styles.eyebrow}>Website support</p>
+              <h2 id="help-heading">What do you need help with?</h2>
+              <p>
+                Choose the closest option. The request form will only ask for the
+                information needed to complete your update.
+              </p>
+            </div>
+
+            <div className={styles.requestGrid}>
+              {requestTypes.map((request) => (
                 <Link
                   key={request.title}
                   href={request.href}
@@ -362,36 +489,100 @@ export function PortalDashboard() {
                   <span>{request.description}</span>
                   <small>Start request →</small>
                 </Link>
-              ) : (
-                <div
-                  key={request.title}
-                  className={styles.requestCard + " " + styles.requestCardPending}
-                >
-                  <span className={styles.requestIcon}>
-                    <RequestIcon name={request.icon} />
-                  </span>
-                  <strong>{request.title}</strong>
-                  <span>{request.description}</span>
-                  <small>Coming next</small>
-                </div>
-              ),
-            )}
-          </div>
-        </section>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className={styles.dashboardGrid}>
-          <section className={styles.panel} id="requests">
+          <section
+            className={
+              styles.panel +
+              (data.role === "admin" ? " " + styles.adminRequestsPanel : "")
+            }
+            id="requests"
+          >
             <div className={styles.panelHeading}>
               <div>
                 <p className={styles.eyebrow}>Requests</p>
-                <h2>Recent requests</h2>
+                <h2>
+                  {data.role === "admin"
+                    ? "Recent client requests"
+                    : "Recent requests"}
+                </h2>
               </div>
               <span className={styles.quietBadge}>
-                {data.requests.length ? data.requests.length + " shown" : "None yet"}
+                {data.role === "admin"
+                  ? data.adminRequests.length
+                    ? data.adminRequests.length + " shown"
+                    : "None yet"
+                  : data.requests.length
+                    ? data.requests.length + " shown"
+                    : "None yet"}
               </span>
             </div>
 
-            {data.requests.length ? (
+            {data.role === "admin" ? (
+              data.adminRequests.length ? (
+                <div className={styles.adminRequestList}>
+                  {data.adminRequests.map((request) => (
+                    <article key={request.id} className={styles.adminRequestRow}>
+                      <div className={styles.adminRequestMain}>
+                        <div className={styles.adminRequestClient}>
+                          <strong>
+                            {request.businessName || request.clientName}
+                          </strong>
+                          <span>
+                            {request.clientName}
+                            {request.clientEmail
+                              ? " • " + request.clientEmail
+                              : ""}
+                          </span>
+                        </div>
+                        <div className={styles.adminRequestSummary}>
+                          <strong>
+                            {request.title || requestTypeLabel(request.request_type)}
+                          </strong>
+                          <span>{request.description}</span>
+                        </div>
+                      </div>
+                      <div className={styles.adminRequestMeta}>
+                        <span>
+                          {new Intl.DateTimeFormat("en-US", {
+                            month: "short",
+                            day: "numeric",
+                            year: "numeric",
+                          }).format(new Date(request.created_at))}
+                        </span>
+                        <span>
+                          {request.attachmentCount
+                            ? request.attachmentCount +
+                              (request.attachmentCount === 1 ? " file" : " files")
+                            : "No files"}
+                        </span>
+                        <span
+                          className={
+                            styles.status +
+                            " " +
+                            styles["status_" + request.status]
+                          }
+                        >
+                          {statusLabel(request.status)}
+                        </span>
+                      </div>
+                    </article>
+                  ))}
+                </div>
+              ) : (
+                <div className={styles.emptyState}>
+                  <strong>No client requests yet.</strong>
+                  <p>
+                    New client submissions will appear here as soon as they are
+                    received.
+                  </p>
+                </div>
+              )
+            ) : data.requests.length ? (
               <div className={styles.requestList}>
                 {data.requests.map((request) => (
                   <article key={request.id} className={styles.requestRow}>
@@ -461,15 +652,29 @@ export function PortalDashboard() {
           <section className={styles.panel}>
             <div className={styles.panelHeading}>
               <div>
-                <p className={styles.eyebrow}>Website</p>
-                <h2>Your website</h2>
+                <p className={styles.eyebrow}>
+                  {data.role === "admin" ? "Files" : "Website"}
+                </p>
+                <h2>
+                  {data.role === "admin" ? "Request files" : "Your website"}
+                </h2>
               </div>
+              {data.role === "admin" ? (
+                <span className={styles.quietBadge}>{adminFileCount}</span>
+              ) : null}
             </div>
 
             {data.role === "admin" ? (
               <div className={styles.emptyState}>
-                <strong>Administrator preview</strong>
-                <p>The client&apos;s primary website will appear here.</p>
+                <strong>
+                  {adminFileCount
+                    ? adminFileCount + (adminFileCount === 1 ? " file received" : " files received")
+                    : "No request files yet."}
+                </strong>
+                <p>
+                  Photos and other attachments will appear with their client
+                  request once we build the upload flow.
+                </p>
               </div>
             ) : data.website ? (
               <div className={styles.websiteCard}>
