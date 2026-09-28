@@ -213,6 +213,117 @@
   box-shadow: 0 24px 60px rgba(47, 86, 133, 0.07);
 }
 
+.adminHero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(280px, 0.8fr);
+  gap: 30px;
+  align-items: end;
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid rgba(39, 90, 156, 0.1);
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 8% 15%, rgba(51, 142, 229, 0.14), transparent 19rem),
+    radial-gradient(circle at 92% 88%, rgba(150, 118, 233, 0.12), transparent 21rem),
+    rgba(255, 255, 255, 0.9);
+  box-shadow: 0 24px 60px rgba(47, 86, 133, 0.07);
+}
+
+.adminHero h2 {
+  margin: 0;
+  color: #12213a;
+  font-size: clamp(2rem, 4.8vw, 4rem);
+  font-weight: 610;
+  line-height: 0.98;
+  letter-spacing: -0.06em;
+}
+
+.adminStats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.adminStats > div {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid rgba(39, 90, 156, 0.1);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.adminStats span {
+  color: #748198;
+  font-size: 0.64rem;
+  font-weight: 700;
+}
+
+.adminStats strong {
+  color: #183254;
+  font-size: 1.55rem;
+  line-height: 1;
+}
+
+.adminRequestsPanel {
+  grid-column: 1 / -1;
+}
+
+.adminRequestList {
+  display: grid;
+  gap: 10px;
+}
+
+.adminRequestRow {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 22px;
+  align-items: center;
+  padding: 16px 17px;
+  border: 1px solid rgba(39, 90, 156, 0.08);
+  border-radius: 13px;
+  background: #fbfcfe;
+}
+
+.adminRequestMain {
+  display: grid;
+  grid-template-columns: minmax(180px, 0.8fr) minmax(0, 1.4fr);
+  gap: 22px;
+  min-width: 0;
+}
+
+.adminRequestClient,
+.adminRequestSummary {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.adminRequestClient strong,
+.adminRequestSummary strong {
+  font-size: 0.78rem;
+}
+
+.adminRequestClient span,
+.adminRequestSummary span,
+.adminRequestMeta > span:not(.status) {
+  color: #7b8799;
+  font-size: 0.66rem;
+  line-height: 1.45;
+}
+
+.adminRequestSummary span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.adminRequestMeta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
 .heroCopy {
   max-width: 690px;
 }
@@ -644,6 +755,11 @@
 }
 
 @media (max-width: 1050px) {
+  .adminHero {
+    grid-template-columns: 1fr;
+    align-items: stretch;
+  }
+
   .requestGrid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -704,6 +820,16 @@
   .loadingGrid {
     grid-template-columns: 1fr;
   }
+
+  .adminRequestRow,
+  .adminRequestMain {
+    grid-template-columns: 1fr;
+  }
+
+  .adminRequestMeta {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
 }
 
 @media (max-width: 620px) {
@@ -716,9 +842,14 @@
     min-width: 0;
   }
 
-  .requestHero {
+  .requestHero,
+  .adminHero {
     padding: 24px 18px;
     border-radius: 20px;
+  }
+
+  .adminStats {
+    grid-template-columns: 1fr;
   }
 
   .requestGrid {
