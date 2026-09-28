@@ -174,6 +174,16 @@ export function AdminRequestDetail() {
         return;
       }
 
+      if (attachmentResult.error) {
+        setError("We could not load the files attached to this request.");
+        return;
+      }
+
+      if (historyResult.error) {
+        setError("We could not load the status history for this request.");
+        return;
+      }
+
       let websiteName: string | null = null;
       let serviceName: string | null = null;
 
@@ -264,6 +274,10 @@ export function AdminRequestDetail() {
   }
 
   const { request, client, attachments, history } = data;
+  const descriptionLabel =
+    request.request_type === "upload_photos"
+      ? "What are these files for?"
+      : "What should change?";
 
   return (
     <main className={styles.page}>
@@ -305,7 +319,7 @@ export function AdminRequestDetail() {
 
         <section className={styles.details}>
           <h2>Request details</h2>
-          <DetailRow label="What should change?" value={request.description} />
+          <DetailRow label={descriptionLabel} value={request.description} />
           <DetailRow label="Where on the site?" value={request.location_on_site} />
           <DetailRow
             label="Replacement text / instructions"
