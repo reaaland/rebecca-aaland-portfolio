@@ -31,7 +31,7 @@ export function SiteHeader() {
 
   return (
     <header className="site-header">
-      <Link className="wordmark" href="/" aria-label="Aaland Web Design and Site Care home">
+      <Link className="wordmark" href="/" aria-label="Aaland Web Design and Business Solutions home">
         <span className="wordmark-logo-wrap" aria-hidden="true">
           <Image
             src="/rebecca-aaland-logo.png"
@@ -50,7 +50,7 @@ export function SiteHeader() {
             priority
           />
         </span>
-        <span className="wordmark-name">Aaland Web Design &amp; Site Care</span>
+        <span className="wordmark-name">Aaland Web Design &amp; Business Solutions</span>
       </Link>
 
       <button

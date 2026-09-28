@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Privacy Policy",
   description:
-    "Privacy policy for Aaland Web Design & Site Care and rebeccaiaaland.com.",
+    "Privacy policy for Aaland Web Design & Business Solutions and rebeccaiaaland.com.",
   path: "/privacy",
 });
 
@@ -22,14 +22,14 @@ export default function PrivacyPage() {
 
         <section className="legal-copy shell">
           <p>
-            Aaland Web Design &amp; Site Care is operated by PawCircle LLC. This
+            Aaland Web Design &amp; Business Solutions is operated by PawCircle LLC. This
             policy applies to rebeccaiaaland.com and information collected
             through the website in connection with those services.
           </p>
 
           <h2>Information I collect</h2>
           <p>
-            If you contact Aaland Web Design & Site Care through this website,
+            If you contact Aaland Web Design & Business Solutions through this website,
             I may receive information you choose to provide, such as your name,
             email address, business or organization name, website address, and
             the details included in your message.

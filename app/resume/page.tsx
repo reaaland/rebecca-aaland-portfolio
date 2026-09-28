@@ -69,7 +69,7 @@ export default function ResumePage() {
               <h2>Education</h2>
               <p>
                 Frontend Simplified · Frontend Development Program · Completed
-                2026
+                July 2026
               </p>
               <p>
                 B.S., Elementary Education, Summa Cum Laude · St. Cloud State
@@ -89,7 +89,7 @@ export default function ResumePage() {
                 Junior frontend developer who builds and ships responsive web
                 applications from requirements through deployment. Recent work
                 includes a production React/Supabase application and a paid
-                Next.js/TypeScript internship. Brings practical experience with
+                Skinstric Next.js/TypeScript internship. Brings practical experience with
                 APIs, authentication, databases, payments, testing, debugging,
                 and responsive design, along with a background in technical
                 writing, teaching, and small-business ownership.
@@ -165,21 +165,34 @@ export default function ResumePage() {
 
               <article>
                 <h2>Founder &amp; Owner</h2>
-                <span>PawCircle LLC · 2023–Present</span>
+                <span>PawCircle LLC / Aaland Web Design &amp; Business Solutions · 2023–Present</span>
                 <p>
-                  Run an independent service business with approximately 95%
-                  repeat business, managing client communication, scheduling,
-                  changing requirements, and day-to-day problem solving.
+                  Built an independent pet-service business with approximately
+                  95% repeat business, then transitioned the company into web
+                  design, website support, technical writing, and practical
+                  business solutions.
                 </p>
               </article>
 
               <article>
-                <h2>Earlier Professional Experience</h2>
-                <span>Education · Technical Writing · Tier 1 Support</span>
+                <h2>Science Teacher</h2>
+                <span>
+                  Phoenix, AZ · 2006–2010 | Adrian, MN · 2012–2015 | Rochester,
+                  MN · 2015–2023
+                </span>
                 <p>
-                  Eleven years as a science educator plus earlier technical
-                  writing/document control and Tier 1 internet support built strong
-                  documentation, training, communication, and technical
+                  Created curriculum and training materials, explained complex
+                  concepts to varied audiences, managed concurrent priorities,
+                  and adapted instruction based on feedback and outcomes.
+                </p>
+              </article>
+
+              <article>
+                <h2>Earlier Technical Experience</h2>
+                <span>Technical Writing · Document Control · Tier 1 Support</span>
+                <p>
+                  Earlier technical writing, document-control, and Tier 1 internet
+                  support roles built strong documentation, communication, and
                   troubleshooting skills.
                 </p>
               </article>

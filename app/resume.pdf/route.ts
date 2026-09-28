@@ -89,7 +89,7 @@ function buildResumePdf() {
   y = heading(y, "Professional Summary");
   y = paragraph(y, [
     "Junior frontend developer who builds and ships responsive web applications from requirements through deployment.",
-    "Recent work includes a production React/Supabase application and a paid Next.js/TypeScript internship.",
+    "Recent work includes a production React/Supabase application and a paid Skinstric Next.js/TypeScript internship.",
     "Practical experience includes APIs, authentication, databases, payments, testing, debugging, responsive design,",
     "technical writing, teaching, and small-business ownership.",
   ]);
@@ -158,25 +158,36 @@ function buildResumePdf() {
   ]);
   y -= 3;
 
-  text(50, y, 9.9, "Founder & Owner - PawCircle LLC", "F2", navy);
-  text(459, y, 8.3, "2023-Present", "F1", gray);
-  y -= 12;
+  text(50, y, 9.2, "Founder & Owner - PawCircle LLC / Aaland Web Design & Business Solutions", "F2", navy);
+  y -= 11;
+  text(50, y, 8.3, "2023-Present", "F1", gray);
+  y -= 11;
   y = bullet(y, [
-    "Run an independent service business with approximately 95% repeat business, managing client communication,",
-    "scheduling, changing requirements, and day-to-day problem solving.",
+    "Built an independent pet-service business with approximately 95% repeat business, then transitioned the company",
+    "into web design, website support, technical writing, and practical business solutions.",
   ]);
   y -= 3;
 
-  text(50, y, 9.9, "Earlier Professional Experience", "F2", navy);
+  text(50, y, 9.9, "Science Teacher", "F2", navy);
+  y -= 11;
+  text(50, y, 8.1, "Phoenix, AZ 2006-2010 | Adrian, MN 2012-2015 | Rochester, MN 2015-2023", "F1", gray);
+  y -= 11;
+  y = bullet(y, [
+    "Created curriculum and training materials, explained complex concepts to varied audiences, managed concurrent",
+    "priorities, and adapted instruction based on feedback and outcomes.",
+  ]);
+  y -= 3;
+
+  text(50, y, 9.9, "Earlier Technical Experience", "F2", navy);
   y -= 12;
   y = bullet(y, [
-    "Eleven years as a science educator plus earlier technical writing/document control and Tier 1 internet support built",
-    "strong documentation, training, communication, and technical troubleshooting skills.",
+    "Earlier technical writing, document-control, and Tier 1 internet support roles built strong documentation,",
+    "communication, and troubleshooting skills.",
   ]);
   y -= 4;
 
   y = heading(y, "Education");
-  text(50, y, 8.9, "Frontend Simplified | Frontend Development Program - Completed 2026", "F2", navy);
+  text(50, y, 8.9, "Frontend Simplified | Frontend Development Program - Completed July 2026", "F2", navy);
   y -= 11;
   text(50, y, 8.7, "B.S., Elementary Education, Summa Cum Laude - St. Cloud State University");
   y -= 10;

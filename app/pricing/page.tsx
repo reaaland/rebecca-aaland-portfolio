@@ -47,37 +47,67 @@ const websitePlans = [
   {
     title: "Simple Website",
     price: "$1,500",
-    text: "A polished 1–3 page website with the essentials covered.",
+    text: "For an owner-operated business that needs a clear introduction, a service overview, and a way for customers to get in touch.",
     details: [
-      "Typically 1–3 core pages",
-      "Responsive custom design",
-      "Contact form",
-      "Foundational search setup",
-      "Launch support",
+      "Typically 1–3 pages, such as Home, Services, and Contact",
+      "Custom design that works on phones, tablets, and desktops",
+      "One straightforward contact form",
+      "Organization of the business details, wording, and images you provide",
+      "Core search setup, launch checks, and publishing support",
     ],
   },
   {
     title: "Small Business Website",
     price: "$2,500",
-    text: "A fuller 4–7 page site with stronger organization and a more complete customer path.",
+    text: "For a business with several services or more work to showcase. Dedicated pages give customers room to understand the offer and decide whether it fits.",
     details: [
-      "Typically 4–7 pages",
-      "Custom layout and visual direction",
-      "Clear service and customer paths",
-      "Contact or quote form",
-      "Foundational SEO and launch setup",
+      "Typically 4–7 pages, with the same design, search, and launch foundations as the Simple Website",
+      "Individual service pages and clearer navigation between them",
+      "Project, gallery, testimonial, or FAQ content as agreed in the page plan",
+      "A contact or quote-request form with fields suited to your business",
+      "Organization of supplied content across a fuller customer journey",
     ],
   },
   {
     title: "Custom Business Website",
     price: "$4,500",
-    text: "For a larger site or a project that needs custom functionality, integrations, or more involved technical setup.",
+    text: "For a larger content structure or a specific feature that needs extra planning, integration, and testing. A smaller site can also fit here when its functionality is more involved.",
     details: [
-      "Typically 7+ pages or advanced functionality",
-      "Custom features or integrations",
-      "More detailed SEO and performance work",
-      "More involved testing and launch support",
-      "Scope confirmed before work begins",
+      "Often more than 7 pages, or a smaller site with more complex requirements",
+      "The same core design, search, and launch foundations, with additional planning for the agreed scope",
+      "Scoped features such as a multi-step inquiry flow or connection to an existing business tool",
+      "Additional implementation and testing for the agreed features",
+      "E-commerce, booking, accounts, portals, and membership systems are assessed and quoted individually; the starting price does not include every feature",
+    ],
+  },
+] as const;
+
+const websiteScopeNotes = [
+  {
+    title: "What every build includes",
+    text: "Responsive custom design, agreed page organization, core search setup, checks of the agreed pages and forms, and help publishing the finished site.",
+    details: [
+      "Core search setup covers page titles, descriptions, headings, and sitemap/indexing configuration appropriate to the platform",
+      "Ongoing SEO campaigns, advertising, and guaranteed rankings or leads are not included",
+      "Page counts guide the estimate; content volume, features, and integrations also affect the quote",
+    ],
+  },
+  {
+    title: "Content and separate costs",
+    text: "You provide business information, final wording, branding, and images you have permission to use. I organize the supplied material for the agreed pages and flag anything missing.",
+    details: [
+      "Substantial copywriting, branding or logo design, photography, and paid image sourcing are quoted separately",
+      "Domain registration, hosting, email, and paid third-party services are separate unless explicitly included in your quote",
+      "Ongoing Site Care is optional and is not included in the one-time website build price",
+    ],
+  },
+  {
+    title: "Before work begins",
+    text: "You receive a written scope and price before committing. We confirm the pages, features, content responsibilities, revision rounds, payment schedule, and estimated timeline together.",
+    details: [
+      "Timing depends on project complexity, content readiness, and feedback; your proposal sets the schedule",
+      "You review the agreed work before launch; handoff and any post-launch support are defined in the proposal",
+      "New requests outside the agreed scope receive a separate price and timing for approval",
     ],
   },
 ] as const;
@@ -87,14 +117,14 @@ const updateOptions = [
     title: "Small Website Updates",
     price: "Starting at $150",
     text: "Best when you already know the changes you need: text, photos, links, services, contact information, or another focused fix.",
-    href: "/contact?type=website",
+    href: "/contact/website",
     cta: "Request website updates",
   },
   {
     title: "Website Refresh",
     price: "Starting at $750",
     text: "Best when the website still works but several pages need cleanup, stronger organization, better mobile presentation, or a more polished look.",
-    href: "/contact?type=website",
+    href: "/contact/website",
     cta: "Ask about a refresh",
   },
 ] as const;
@@ -108,7 +138,7 @@ export default function PricingPage() {
           <p className="eyebrow">Pricing</p>
           <h1>Start with the category that fits what you need.</h1>
           <p>
-            These are starting prices, not hidden estimates. Once I understand
+            These are starting prices for a defined scope. Once I understand
             the actual scope, I will give you the price in writing before work
             begins.
           </p>
@@ -138,8 +168,8 @@ export default function PricingPage() {
               <h2 id="new-websites-title">Choose the scope closest to what you need.</h2>
             </div>
             <p>
-              The difference between tiers is scope, functionality, integrations,
-              testing, and setup—not how seriously I take the project.
+              Choose by what customers need to find and do. Page counts are a guide;
+              custom features can make a smaller site a more involved project.
             </p>
           </div>
 
@@ -154,6 +184,23 @@ export default function PricingPage() {
               </p>
               <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
                 {plan.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
+        </section>
+
+        <section className="service-detail-list shell" aria-label="What to expect with a website build">
+          {websiteScopeNotes.map((note) => (
+            <article key={note.title} data-reveal>
+              <div className="service-detail-heading">
+                <span>✓</span>
+                <h2>{note.title}</h2>
+              </div>
+              <p className="service-fit">{note.text}</p>
+              <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
+                {note.details.map((detail) => (
                   <li key={detail}>{detail}</li>
                 ))}
               </ul>
@@ -202,7 +249,7 @@ export default function PricingPage() {
                 <a className="button button-secondary" href="#new-websites">
                   Compare rebuild pricing ↑
                 </a>
-                <Link className="button button-dark" href="/contact?type=website">
+                <Link className="button button-dark" href="/contact/website">
                   Send me the site ↗
                 </Link>
               </div>
@@ -295,8 +342,8 @@ export default function PricingPage() {
                 <span>Starting at $195</span>
                 <h3>Grant Funding Snapshot</h3>
                 <p>
-                  A focused review of 5–8 relevant opportunities, including
-                  eligibility, deadlines, funding ranges, and priority notes.
+                  A scoped search for funding opportunities, with eligibility,
+                  deadlines, funding ranges, and fit notes for suitable matches.
                 </p>
                 <Link className="text-link" href="/grant-research-writing">
                   See grant research services ↗
@@ -321,16 +368,17 @@ export default function PricingPage() {
           <p className="eyebrow">Ongoing Site Care</p>
           <h2>$100/month</h2>
           <p>
-            Routine website checks, questions and support, plus up to one hour
-            each month for small text, photo, link, service, or contact-information
-            updates. Unused update time does not roll over. New pages, redesigns,
-            integrations, SEO projects, and larger changes are quoted separately.
+            For one reviewed website: a monthly website check, brief written support,
+            a short monthly summary, and up to 60 minutes of small updates.
+            The check and summary are separate from your update allowance.
+            Unused time does not roll over. Month to month; hosting, domains,
+            and larger work are separate unless agreed in writing.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/site-care">
               See Site Care details ↗
             </Link>
-            <Link className="button button-secondary" href="/contact?type=care">
+            <Link className="button button-secondary" href="/contact/site-care">
               Ask about your website
             </Link>
           </div>

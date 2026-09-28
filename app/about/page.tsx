@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "About",
   description:
-    "Meet Rebecca Aaland, the web designer, developer, technical writer, and small-business owner behind Aaland Web Design & Site Care in Rochester, Minnesota.",
+    "Meet Rebecca Aaland, the web designer, developer, technical writer, and small-business owner behind Aaland Web Design & Business Solutions in Rochester, Minnesota.",
   path: "/about",
 });
 
