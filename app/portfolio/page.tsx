@@ -472,7 +472,7 @@ export default function Home() {
             </Link>
 
             <p>
-              I also run Aaland Web Design & Site Care, where I build, improve, and support websites for small businesses. That client work gives me ongoing production experience while this portfolio stays focused on my development career.
+              I also run Aaland Web Design & Business Solutions, where I build, improve, and support websites for small businesses. That client work gives me ongoing production experience while this portfolio stays focused on my development career.
             </p>
 
             <a
@@ -481,7 +481,7 @@ export default function Home() {
               target="_blank"
               rel="noreferrer"
             >
-              Visit Aaland Web Design & Site Care <Arrow />
+              Visit Aaland Web Design & Business Solutions <Arrow />
             </a>
           </div>
         </section>

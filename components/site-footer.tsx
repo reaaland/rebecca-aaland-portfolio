@@ -5,13 +5,13 @@ export function SiteFooter() {
     <footer className="site-footer shell">
       <div>
         <strong>
-          <span aria-hidden="true">[RA]</span> Aaland Web Design &amp; Site Care
+          <span aria-hidden="true">[RA]</span> Aaland Web Design &amp; Business Solutions
         </strong>
         <span>Web design · Site care · Technical writing · Business support</span>
       </div>
 
       <p>
-        Based in Rochester, Minnesota. Working with small businesses and organizations locally and beyond. Aaland Web Design &amp; Site Care is operated by PawCircle LLC.
+        Based in Rochester, Minnesota. Working with small businesses and organizations locally and beyond. Aaland Web Design &amp; Business Solutions is operated by PawCircle LLC.
       </p>
 
       <nav aria-label="Footer navigation">

@@ -5,7 +5,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Terms of Service",
   description:
-    "Website terms of use for Aaland Web Design & Site Care and rebeccaiaaland.com.",
+    "Website terms of use for Aaland Web Design & Business Solutions and rebeccaiaaland.com.",
   path: "/terms",
 });
 
@@ -22,7 +22,7 @@ export default function TermsPage() {
 
         <section className="legal-copy shell">
           <p>
-            Aaland Web Design &amp; Site Care is operated by PawCircle LLC.
+            Aaland Web Design &amp; Business Solutions is operated by PawCircle LLC.
             Unless a written client agreement states otherwise, PawCircle LLC is
             the legal business entity providing the services described on this
             website.
@@ -30,8 +30,7 @@ export default function TermsPage() {
 
           <h2>Website use</h2>
           <p>
-            This website provides general information about Aaland Web Design &
-            Site Care, Rebecca Aaland&apos;s work, services, pricing, portfolio,
+            This website provides general information about Aaland Web Design & Business Solutions, Rebecca Aaland&apos;s work, services, pricing, portfolio,
             and ways to get in touch. You may use the site for lawful personal
             or business purposes.
           </p>
@@ -46,7 +45,7 @@ export default function TermsPage() {
 
           <h2>Client agreements control project work</h2>
           <p>
-            If you hire Aaland Web Design &amp; Site Care, the proposal,
+            If you hire Aaland Web Design &amp; Business Solutions, the proposal,
             statement of work, contract, invoice terms, or other written client
             agreement for that project controls if it conflicts with these
             website terms. Contracts and invoices may identify PawCircle LLC as
@@ -74,7 +73,7 @@ export default function TermsPage() {
           <h2>Third-party services and links</h2>
           <p>
             This site may link to or display information from third-party
-            services. Aaland Web Design & Site Care does not control those
+            services. Aaland Web Design & Business Solutions does not control those
             services and is not responsible for their availability, content,
             policies, or security.
           </p>
@@ -88,7 +87,7 @@ export default function TermsPage() {
 
           <h2>Limitation</h2>
           <p>
-            To the extent permitted by law, Aaland Web Design & Site Care is not
+            To the extent permitted by law, Aaland Web Design & Business Solutions is not
             responsible for indirect or consequential loss arising solely from
             use of this informational website or reliance on third-party content
             displayed here.

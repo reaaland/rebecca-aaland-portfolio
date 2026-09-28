@@ -7,7 +7,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Client Work",
   description:
-    "Selected small-business website work by Aaland Web Design & Site Care, including Minnlawn Lawn & Landscape and Majerus Outdoor Services.",
+    "Selected small-business website work by Aaland Web Design & Business Solutions, including Minnlawn Lawn & Landscape and Majerus Outdoor Services.",
   path: "/work",
 });
 
