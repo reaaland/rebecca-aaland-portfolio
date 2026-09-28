@@ -49,26 +49,31 @@ const requestTypes = [
     title: "Update something on my website",
     description: "Change text, photos, links, or another part of an existing page.",
     icon: "edit",
+    href: "/portal/requests/new/website-update",
   },
   {
     title: "Upload photos",
     description: "Send new photos or files and keep them with the request they belong to.",
     icon: "image",
+    href: null,
   },
   {
     title: "Change business information",
     description: "Update hours, contact details, services, pricing, or other business information.",
     icon: "business",
+    href: null,
   },
   {
     title: "Add something new",
     description: "Request a new page, section, feature, or other addition to your site.",
     icon: "plus",
+    href: null,
   },
   {
     title: "Something else",
     description: "Tell me what you need in your own words.",
     icon: "message",
+    href: null,
   },
 ] as const;
 
@@ -343,22 +348,34 @@ export function PortalDashboard() {
           </div>
 
           <div className={styles.requestGrid}>
-            {requestTypes.map((request) => (
-              <button
-                key={request.title}
-                type="button"
-                className={styles.requestCard}
-                disabled
-                title="Request form is the next portal build step"
-              >
-                <span className={styles.requestIcon}>
-                  <RequestIcon name={request.icon} />
-                </span>
-                <strong>{request.title}</strong>
-                <span>{request.description}</span>
-                <small>Request form coming next</small>
-              </button>
-            ))}
+            {requestTypes.map((request) =>
+              request.href ? (
+                <Link
+                  key={request.title}
+                  href={request.href}
+                  className={styles.requestCard}
+                >
+                  <span className={styles.requestIcon}>
+                    <RequestIcon name={request.icon} />
+                  </span>
+                  <strong>{request.title}</strong>
+                  <span>{request.description}</span>
+                  <small>Start request →</small>
+                </Link>
+              ) : (
+                <div
+                  key={request.title}
+                  className={styles.requestCard + " " + styles.requestCardPending}
+                >
+                  <span className={styles.requestIcon}>
+                    <RequestIcon name={request.icon} />
+                  </span>
+                  <strong>{request.title}</strong>
+                  <span>{request.description}</span>
+                  <small>Coming next</small>
+                </div>
+              ),
+            )}
           </div>
         </section>
 
