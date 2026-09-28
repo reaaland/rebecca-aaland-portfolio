@@ -6,7 +6,7 @@ const businessStructuredData = {
     {
       "@type": "ProfessionalService",
       "@id": `${SITE_URL}/#business`,
-      name: "Aaland Web Design & Site Care",
+      name: "Aaland Web Design & Business Solutions",
       legalName: "PawCircle LLC",
       url: SITE_URL,
       founder: {
@@ -43,7 +43,7 @@ const businessStructuredData = {
       "@type": "WebSite",
       "@id": `${SITE_URL}/#website`,
       url: SITE_URL,
-      name: "Aaland Web Design & Site Care",
+      name: "Aaland Web Design & Business Solutions",
       publisher: {
         "@id": `${SITE_URL}/#business`,
       },
