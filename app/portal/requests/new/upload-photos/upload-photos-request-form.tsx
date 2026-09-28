@@ -185,6 +185,13 @@ export function UploadPhotosRequestForm() {
   async function submitRequest() {
     if (!supabase || !portalClient || !userId || !files.length) return;
 
+    if (requestId) {
+      setError(
+        "This request has already been saved. Return to the dashboard and start a new upload request for any missing files.",
+      );
+      return;
+    }
+
     setSubmitting(true);
     setUploadProgress("Saving your request…");
     setError("");
@@ -349,7 +356,6 @@ export function UploadPhotosRequestForm() {
                   accept={ACCEPTED_FILES}
                   multiple
                   onChange={chooseFiles}
-                  required
                 />
                 <small>
                   Up to {MAX_FILES} files, 15 MB each. JPG, PNG, WebP, GIF,
@@ -448,7 +454,7 @@ export function UploadPhotosRequestForm() {
                 type="button"
                 className={baseStyles.primaryButton}
                 onClick={submitRequest}
-                disabled={submitting || !portalClient}
+                disabled={submitting || !portalClient || Boolean(requestId)}
                 title={
                   !portalClient
                     ? "Use an approved client test account to submit"
@@ -457,9 +463,11 @@ export function UploadPhotosRequestForm() {
               >
                 {submitting
                   ? "Uploading…"
-                  : portalClient
-                    ? "Send files"
-                    : "Client test required"}
+                  : requestId
+                    ? "Request saved"
+                    : portalClient
+                      ? "Send files"
+                      : "Client test required"}
               </button>
             </div>
 
