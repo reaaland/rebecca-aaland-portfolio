@@ -526,7 +526,11 @@ export function PortalDashboard() {
               data.adminRequests.length ? (
                 <div className={styles.adminRequestList}>
                   {data.adminRequests.map((request) => (
-                    <article key={request.id} className={styles.adminRequestRow}>
+                    <Link
+                      key={request.id}
+                      href={"/portal/admin/requests/" + request.id}
+                      className={styles.adminRequestRow}
+                    >
                       <div className={styles.adminRequestMain}>
                         <div className={styles.adminRequestClient}>
                           <strong>
@@ -569,8 +573,9 @@ export function PortalDashboard() {
                         >
                           {statusLabel(request.status)}
                         </span>
+                        <strong className={styles.openRequest}>Open request →</strong>
                       </div>
-                    </article>
+                    </Link>
                   ))}
                 </div>
               ) : (
