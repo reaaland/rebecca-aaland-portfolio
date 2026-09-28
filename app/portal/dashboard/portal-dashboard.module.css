@@ -242,6 +242,7 @@
 }
 
 .requestCard {
+  display: block;
   min-height: 190px;
   padding: 19px;
   border: 1px solid rgba(40, 87, 147, 0.1);
@@ -249,11 +250,31 @@
   background: rgba(255, 255, 255, 0.8);
   color: #12213a;
   text-align: left;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    transform 160ms ease,
+    background-color 160ms ease;
+}
+
+.requestCard:hover {
+  border-color: rgba(45, 119, 203, 0.28);
+  background: #fff;
+  box-shadow: 0 14px 34px rgba(43, 76, 118, 0.08);
+  transform: translateY(-2px);
+}
+
+.requestCardPending {
   cursor: default;
 }
 
-.requestCard:disabled {
-  opacity: 1;
+.requestCardPending:hover {
+  border-color: rgba(40, 87, 147, 0.1);
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: none;
+  transform: none;
 }
 
 .requestIcon {
