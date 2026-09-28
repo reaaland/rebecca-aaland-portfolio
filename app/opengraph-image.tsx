@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "Aaland Web Design & Site Care";
+export const alt = "Aaland Web Design & Business Solutions";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,7 +30,7 @@ export default function OpenGraphImage() {
             textTransform: "uppercase",
           }}
         >
-          <span>Aaland Web Design &amp; Site Care</span>
+          <span>Aaland Web Design &amp; Business Solutions</span>
           <span style={{ color: "#4da3ff" }}>Rochester, MN</span>
         </div>
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 1020 }}>
