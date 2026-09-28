@@ -477,6 +477,7 @@
 }
 
 .billingPanel {
+  min-height: 170px;
   background: rgba(250, 249, 255, 0.9);
 }
 
@@ -624,6 +625,7 @@
 
   .requestCard:last-child {
     grid-column: 1 / -1;
+    min-height: 140px;
   }
 }
 
