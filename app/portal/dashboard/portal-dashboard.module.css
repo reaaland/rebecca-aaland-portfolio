@@ -62,6 +62,10 @@
 .navLink,
 .navActive {
   display: flex;
+  width: 100%;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
   align-items: center;
   justify-content: space-between;
   min-height: 44px;
