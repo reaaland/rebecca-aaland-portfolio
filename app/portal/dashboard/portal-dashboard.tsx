@@ -55,25 +55,25 @@ const requestTypes = [
     title: "Upload photos",
     description: "Send new photos or files and keep them with the request they belong to.",
     icon: "image",
-    href: null,
+    href: "/portal/requests/new/upload-photos",
   },
   {
     title: "Change business information",
     description: "Update hours, contact details, services, pricing, or other business information.",
     icon: "business",
-    href: null,
+    href: "/portal/requests/new/change-business-information",
   },
   {
     title: "Add something new",
     description: "Request a new page, section, feature, or other addition to your site.",
     icon: "plus",
-    href: null,
+    href: "/portal/requests/new/add-something-new",
   },
   {
     title: "Something else",
     description: "Tell me what you need in your own words.",
     icon: "message",
-    href: null,
+    href: "/portal/requests/new/something-else",
   },
 ] as const;
 
