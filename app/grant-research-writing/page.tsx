@@ -17,10 +17,10 @@ const services = [
     price: "Starting at $195",
     text: "A focused first step for organizations that want to know which opportunities are worth considering before committing to a larger strategy.",
     includes: [
-      "5–8 relevant grant opportunities",
+      "A scoped search based on your organization, project, and funding need",
       "Eligibility and deadline review",
       "Funding-range and requirement notes",
-      "Top-priority fit recommendations",
+      "Fit recommendations and readiness gaps; the number of suitable matches varies",
     ],
   },
   {
@@ -88,7 +88,9 @@ export default function GrantResearchWritingPage() {
           <h2>Not sure whether a grant is worth pursuing?</h2>
           <p>
             Start with the organization, project, and funding need. Research and
-            fit come before promising that an application should be written.
+            fit come before recommending an application. We agree on the research
+            scope first. Research may identify few suitable opportunities or a
+            need to improve readiness; funding is not guaranteed.
           </p>
           <Link className="button button-dark" href="/contact/grant-research">
             Discuss grant research ↗
