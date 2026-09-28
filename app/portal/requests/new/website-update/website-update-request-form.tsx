@@ -289,14 +289,18 @@ export function WebsiteUpdateRequestForm() {
                     : undefined
                 }
               >
-                {submitting ? "Submitting…" : "Submit request"}
+                {submitting
+                  ? "Submitting…"
+                  : portalClient
+                    ? "Submit request"
+                    : "Client test required"}
               </button>
             </div>
 
             {!portalClient ? (
               <p className={styles.previewOnly}>
-                Submission is disabled in the administrator preview. We&apos;ll
-                test the live insert with a client account.
+                Administrator preview only — no client record is attached to
+                this account, so a real request cannot be saved yet.
               </p>
             ) : null}
           </>
