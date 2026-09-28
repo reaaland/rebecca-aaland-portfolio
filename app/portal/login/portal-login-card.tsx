@@ -225,8 +225,8 @@ export function PortalLoginCard() {
           </div>
 
           <p className={styles.nextNote}>
-            Your portal dashboard is the next part of the build. Authentication
-            and access control are working.
+            Your portal dashboard is ready for website requests, service
+            information, and secure file sharing.
           </p>
 
           <button
@@ -303,7 +303,9 @@ export function PortalLoginCard() {
           <p className={styles.inviteNote}>
             Portal access is available to approved Aaland clients. If you need
             access,{" "}
-            <Link href="/contact">contact Aaland Web Design &amp; Site Care</Link>.
+            <Link href="/contact">
+              contact Aaland Web Design &amp; Business Solutions
+            </Link>.
           </p>
         </>
       )}
@@ -324,7 +326,7 @@ function Brand() {
       />
       <div>
         <strong>Aaland Web Design</strong>
-        <span>&amp; Site Care</span>
+        <span>&amp; Business Solutions</span>
       </div>
     </div>
   );
