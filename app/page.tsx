@@ -62,7 +62,7 @@ const pricing = [
   {
     title: "Site Care",
     price: "$100/month",
-    text: "Routine checks, support, and a limited amount of small monthly updates.",
+    text: "Monthly checks, a short summary, and up to 60 minutes of small updates for one website.",
   },
 ] as const;
 
@@ -101,7 +101,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <div className="hero-principles business-choice-grid" aria-label="Choose the kind of website help you need">
+          <div className="hero-principles business-choice-grid" aria-label="Choose the kind of support you need">
             {quickPaths.map((item) => (
               <article className={item.className} key={item.title}>
                 <h2>{item.title}</h2>
@@ -303,10 +303,10 @@ export default function HomePage() {
 
         <section className="plain-cta business-final-cta shell" data-reveal>
           <p className="eyebrow">Simple next step</p>
-          <h2>Tell me what you want your website to do better.</h2>
+          <h2>Tell me what you need to work better.</h2>
           <p>
             You do not need to know the technical solution first. Start with the
-            business problem, the current site, or the change you need.
+            business problem, the current site or document, or the change you need.
           </p>
           <Link className="button button-dark" href="/contact">
             Contact Rebecca ↗

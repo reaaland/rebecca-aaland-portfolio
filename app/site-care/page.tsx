@@ -4,26 +4,68 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Website Site Care",
+  title: "Monthly Website Care — $100/month",
   description:
-    "Ongoing website support, routine checks, and small updates for businesses that want someone to keep their site taken care of.",
+    "Monthly website checks, up to 60 minutes of small updates, written support, and a short monthly summary for one website. $100/month.",
   path: "/site-care",
 });
 
-const included = [
-  "Routine website checks",
-  "Help with website questions",
-  "Up to one hour each month for small updates",
-  "Text, photo, link, service, and contact-information changes",
-  "A clear heads-up before work falls outside the monthly plan",
-] as const;
-
-const separate = [
-  "New pages or major page rebuilds",
-  "Redesign projects",
-  "New integrations or advanced functionality",
-  "Large SEO projects",
-  "Major content writing or photo sourcing",
+const careSections = [
+  {
+    label: "$100",
+    title: "Monthly Site Care",
+    text: "For one small-business website. Each month includes a website check, a short written summary, and up to 60 minutes of small updates. The check and summary do not reduce your update allowance.",
+    details: [
+      "Check main pages, navigation, important links, and key pages on mobile",
+      "Test the main contact or quote form, including delivery where access is available",
+      "Receive a brief summary of checks, completed changes, and anything needing attention, even in months with no edits",
+      "Existing websites are welcome, subject to a review of the platform, condition, and access needed",
+    ],
+  },
+  {
+    label: "01",
+    title: "Small updates, handled for you.",
+    text: "Use your 60 minutes for several small requests or one focused update to existing pages. Send the final wording and photos you want to use; I handle the website changes.",
+    details: [
+      "Update text, hours, services, prices, links, or contact information",
+      "Replace photos or add seasonal announcements within an existing layout",
+      "Resize and compress supplied replacement photos as part of the update time",
+      "Testing and publishing requested changes count toward the allowance; unused time does not roll over",
+    ],
+  },
+  {
+    label: "02",
+    title: "A clear way to get help.",
+    text: "Send requests by email, or through the client portal when access is provided. Brief website questions are included. Hands-on troubleshooting or investigation uses your monthly allowance.",
+    details: [
+      "Receive a reply and next step within two business days, Monday–Friday, excluding holidays",
+      "Most small updates are completed within three to five business days after all needed content and access arrive; timing is confirmed for each request",
+      "Portal access, when provided, keeps instructions, photos, and request status together",
+      "If a check finds a problem, I explain the next step; repairs use available update time or a separate approved quote",
+    ],
+  },
+  {
+    label: "+",
+    title: "Know what costs extra.",
+    text: "Larger work is quoted before it begins. The monthly plan covers routine care for a small-business website; custom applications and more involved support need their own scope.",
+    details: [
+      "New pages, redesigns, new integrations, and advanced functionality",
+      "Substantial copywriting, photo sourcing, grant work, and ongoing SEO campaigns",
+      "Major repairs, complex database or membership-app support, and emergency or after-hours service",
+      "Hosting, domain renewals, and paid software are separate unless your written agreement includes them",
+    ],
+  },
+  {
+    label: "03",
+    title: "Simple monthly terms.",
+    text: "Site Care is $100 per month, month to month. Cancel in writing before the next renewal to stop future billing. Your agreement confirms the start date and billing details.",
+    details: [
+      "One reviewed website per plan",
+      "No extra-cost work begins without your approval",
+      "Scheduled monthly checks; continuous monitoring, security management, and backup services are not included unless separately agreed",
+      "If you rarely need help, occasional paid updates may be a better fit",
+    ],
+  },
 ] as const;
 
 export default function SiteCarePage() {
@@ -41,38 +83,21 @@ export default function SiteCarePage() {
           </p>
         </section>
 
-        <section className="service-detail-list shell">
-          <article data-reveal>
-            <div className="service-detail-heading">
-              <span>$100</span>
-              <h2>Monthly Site Care</h2>
-            </div>
-            <p className="service-fit">
-              $100 per month. Includes routine support and up to one hour of small
-              website updates each month. Unused update time does not roll over.
-            </p>
-            <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
-              {included.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
-
-          <article data-reveal>
-            <div className="service-detail-heading">
-              <span>+</span>
-              <h2>Larger work stays clear.</h2>
-            </div>
-            <p className="service-fit">
-              Site Care is meant for ongoing small changes, not unlimited redesign
-              or development work. Larger requests are priced before I start them.
-            </p>
-            <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
-              {separate.map((item) => (
-                <li key={item}>{item}</li>
-              ))}
-            </ul>
-          </article>
+        <section className="service-detail-list shell" aria-label="Site Care inclusions and expectations">
+          {careSections.map((section) => (
+            <article key={section.title} data-reveal>
+              <div className="service-detail-heading">
+                <span>{section.label}</span>
+                <h2>{section.title}</h2>
+              </div>
+              <p className="service-fit">{section.text}</p>
+              <ul className="border-l border-[color:var(--line)] pl-8 max-[680px]:border-l-0 max-[680px]:pl-[18px]">
+                {section.details.map((detail) => (
+                  <li key={detail}>{detail}</li>
+                ))}
+              </ul>
+            </article>
+          ))}
         </section>
 
         <section className="plain-cta shell" data-reveal>

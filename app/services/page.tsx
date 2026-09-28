@@ -45,9 +45,9 @@ const serviceList = [
     title: "Ongoing Site Care",
     fit: "For businesses that want a reliable person to keep the website working well and handle routine updates after launch.",
     includes: [
-      "Routine website checks",
+      "Monthly checks of key pages, links, mobile display, and the main inquiry form",
       "Up to one hour of small updates each month",
-      "Questions and practical support",
+      "Brief written support and a short monthly summary, separate from update time",
       "Larger changes quoted before work begins",
     ],
     href: "/site-care",
