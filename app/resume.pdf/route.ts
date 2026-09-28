@@ -170,8 +170,8 @@ function buildResumePdf() {
   text(50, y, 9.9, "Earlier Professional Experience", "F2", navy);
   y -= 12;
   y = bullet(y, [
-    "Eleven years as a science educator plus earlier technical writing/document control and Tier 1 internet support built",
-    "strong documentation, training, communication, and technical troubleshooting skills.",
+    "More than 18 years of teaching experience, plus earlier technical writing/document control and Tier 1 internet support,",
+    "built strong documentation, training, communication, and technical troubleshooting skills.",
   ]);
   y -= 4;
 

@@ -177,8 +177,8 @@ export default function ResumePage() {
                 <h2>Earlier Professional Experience</h2>
                 <span>Education · Technical Writing · Tier 1 Support</span>
                 <p>
-                  Eleven years as a science educator plus earlier technical
-                  writing/document control and Tier 1 internet support built strong
+                  More than 18 years of teaching experience, plus earlier technical
+                  writing/document control and Tier 1 internet support, built strong
                   documentation, training, communication, and technical
                   troubleshooting skills.
                 </p>
