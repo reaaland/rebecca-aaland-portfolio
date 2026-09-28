@@ -73,11 +73,11 @@ const requestTypes = [
 ] as const;
 
 const navItems = [
-  { label: "Dashboard", href: "/portal/dashboard", active: true },
-  { label: "Requests", href: "/portal/dashboard#requests" },
-  { label: "Services", href: "/portal/dashboard#services" },
-  { label: "Billing", href: "/portal/dashboard#billing", badge: "Phase 2" },
-  { label: "Account", href: "/portal/dashboard#account" },
+  { label: "Dashboard", target: "top", active: true },
+  { label: "Requests", target: "requests" },
+  { label: "Services", target: "services" },
+  { label: "Billing", target: "billing", badge: "Phase 2" },
+  { label: "Account", target: "account" },
 ];
 
 function RequestIcon({ name }: { name: (typeof requestTypes)[number]["icon"] }) {
@@ -246,6 +246,18 @@ export function PortalDashboard() {
     };
   }, [supabase]);
 
+  function scrollToPortalSection(target: string) {
+    if (target === "top") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+
+    document.getElementById(target)?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
   async function signOut() {
     if (!supabase) return;
 
@@ -285,14 +297,15 @@ export function PortalDashboard() {
 
         <nav className={styles.nav} aria-label="Client portal">
           {navItems.map((item) => (
-            <Link
+            <button
               key={item.label}
-              href={item.href}
+              type="button"
+              onClick={() => scrollToPortalSection(item.target)}
               className={item.active ? styles.navActive : styles.navLink}
             >
               <span>{item.label}</span>
               {item.badge ? <small>{item.badge}</small> : null}
-            </Link>
+            </button>
           ))}
         </nav>
 
