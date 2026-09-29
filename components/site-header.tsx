@@ -11,6 +11,7 @@ const links = [
   ["Work", "/work"],
   ["Site Care", "/site-care"],
   ["About", "/about"],
+  ["Client Portal", "/portal/login"],
 ] as const;
 
 export function SiteHeader() {
