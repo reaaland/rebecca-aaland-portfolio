@@ -686,8 +686,8 @@ export function PortalDashboard() {
                     : "No request files yet."}
                 </strong>
                 <p>
-                  Photos and other attachments will appear with their client
-                  request once we build the upload flow.
+                  Photos and other attachments are stored securely with the
+                  client request they belong to.
                 </p>
               </div>
             ) : data.website ? (
