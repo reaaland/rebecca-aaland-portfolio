@@ -11,7 +11,6 @@ const links = [
   ["Work", "/work"],
   ["Site Care", "/site-care"],
   ["About", "/about"],
-  ["Client Portal", "/portal/login"],
 ] as const;
 
 export function SiteHeader() {
@@ -78,6 +77,14 @@ export function SiteHeader() {
             {label}
           </Link>
         ))}
+
+        <Link
+          className="nav-portal"
+          href="/portal/login"
+          onClick={() => setMenuOpen(false)}
+        >
+          Client Portal
+        </Link>
 
         <div className="mobile-theme-row">
           <ThemeToggle />
