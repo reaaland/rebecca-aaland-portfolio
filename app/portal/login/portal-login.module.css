@@ -398,3 +398,21 @@
     transition: none;
   }
 }
+
+
+.ownerNote {
+  margin: 12px 0 0;
+  color: var(--portal-muted);
+  font-size: 0.74rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.clientNote {
+  display: block;
+  margin-top: 4px;
+  color: var(--portal-muted);
+  font-size: 0.7rem;
+  line-height: 1.45;
+  text-align: center;
+}
