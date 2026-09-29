@@ -1,26 +1,11 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import styles from "../request-placeholder.module.css";
+import { SomethingElseRequestForm } from "./something-else-request-form";
 
 export const metadata: Metadata = {
-  title: "Something else",
-  description: "Tell me what you need in your own words.",
+  title: "Something Else | Aaland Client Portal",
+  description: "Submit a general request through the Aaland client portal.",
 };
 
-export default function RequestPage() {
-  return (
-    <main className={styles.page}>
-      <section className={styles.card}>
-        <p className={styles.eyebrow}>Aaland Client Portal</p>
-        <h1>Something else</h1>
-        <p className={styles.intro}>Tell me what you need in your own words.</p>
-        <div className={styles.notice}>
-          This request type is connected and ready for its form to be built.
-        </div>
-        <Link href="/portal/dashboard" className={styles.backLink}>
-          ← Back to dashboard
-        </Link>
-      </section>
-    </main>
-  );
+export default function SomethingElseRequestPage() {
+  return <SomethingElseRequestForm />;
 }
