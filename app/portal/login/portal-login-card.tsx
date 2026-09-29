@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./portal-login.module.css";
 
@@ -45,6 +46,7 @@ function GoogleMark() {
 }
 
 export function PortalLoginCard() {
+  const router = useRouter();
   const supabase = useMemo(() => createClient(), []);
   const [email, setEmail] = useState("");
   const [identity, setIdentity] = useState<PortalIdentity | null>(null);
@@ -79,20 +81,17 @@ export function PortalLoginCard() {
 
       if (!active) return;
 
-      let label = "Portal access confirmed";
+      const isAdmin = Boolean(adminRows?.length);
+      const portalClient = clientRows?.[0];
 
-      if (adminRows?.length) {
-        label = "Portal administrator";
-      } else if (clientRows?.length) {
-        const portalClient = clientRows[0];
-        label = portalClient.business_name
-          ? portalClient.business_name
-          : portalClient.contact_name;
+      if (isAdmin || portalClient) {
+        router.replace("/portal/dashboard");
+        return;
       }
 
       setIdentity({
         email: data.user.email ?? "Signed-in account",
-        label,
+        label: "Portal access pending",
       });
     }
 
@@ -119,7 +118,7 @@ export function PortalLoginCard() {
       active = false;
       subscription.unsubscribe();
     };
-  }, [supabase]);
+  }, [router, supabase]);
 
   async function signInWithGoogle() {
     if (!supabase) return;
@@ -133,9 +132,6 @@ export function PortalLoginCard() {
       provider: "google",
       options: {
         redirectTo: `${window.location.origin}/portal/login`,
-        queryParams: {
-          prompt: "select_account",
-        },
       },
     });
 
