@@ -252,6 +252,11 @@ export function PortalLoginCard() {
             <span>Continue with Google</span>
           </button>
 
+          <p className={styles.ownerNote}>
+            Owner / admin access: use Google sign-in. Returning sessions stay
+            signed in on this browser unless you sign out.
+          </p>
+
           <div className={styles.divider} aria-hidden="true">
             <span />
             <small>or</small>
@@ -279,6 +284,10 @@ export function PortalLoginCard() {
                 ? "Please wait…"
                 : "Email me a sign-in link"}
             </button>
+            <small className={styles.clientNote}>
+              Email links remain available for approved clients who prefer not
+              to use Google.
+            </small>
           </form>
 
           {state.message ? (
