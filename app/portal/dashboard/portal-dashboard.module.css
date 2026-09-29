@@ -528,6 +528,18 @@
   border: 1px solid rgba(39, 90, 156, 0.08);
   border-radius: 12px;
   background: #fbfcfe;
+  color: inherit;
+  text-decoration: none;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    transform 160ms ease;
+}
+
+.requestRow:hover {
+  border-color: rgba(46, 120, 207, 0.24);
+  background: #fff;
+  transform: translateY(-1px);
 }
 
 .requestRow > div {
@@ -542,6 +554,13 @@
 .requestRow div span {
   color: #8591a3;
   font-size: 0.64rem;
+}
+
+.requestRowMeta {
+  display: flex !important;
+  align-items: center;
+  gap: 10px !important;
+  flex: 0 0 auto;
 }
 
 .status {
@@ -881,6 +900,16 @@
   .panel {
     min-height: 0;
     padding: 21px 18px;
+  }
+
+  .requestRow {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .requestRowMeta {
+    width: 100%;
+    justify-content: space-between;
   }
 
   .websiteCard {
