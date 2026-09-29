@@ -54,6 +54,7 @@ const websitePlans = [
       "One straightforward contact form",
       "Organization of the business details, wording, and images you provide",
       "Core search setup, launch checks, and publishing support",
+      "Includes 3 months of Site Care after launch",
     ],
   },
   {
@@ -66,6 +67,7 @@ const websitePlans = [
       "Project, gallery, testimonial, or FAQ content as agreed in the page plan",
       "A contact or quote-request form with fields suited to your business",
       "Organization of supplied content across a fuller customer journey",
+      "Includes 6 months of Site Care after launch",
     ],
   },
   {
@@ -78,6 +80,7 @@ const websitePlans = [
       "Scoped features such as a multi-step inquiry flow or connection to an existing business tool",
       "Additional implementation and testing for the agreed features",
       "E-commerce, booking, accounts, portals, and membership systems are assessed and quoted individually; the starting price does not include every feature",
+      "Includes 12 months of Site Care after launch",
     ],
   },
 ] as const;
@@ -98,7 +101,9 @@ const websiteScopeNotes = [
     details: [
       "Substantial copywriting, branding or logo design, photography, and paid image sourcing are quoted separately",
       "Domain registration, hosting, email, and paid third-party services are separate unless explicitly included in your quote",
-      "Ongoing Site Care is optional and is not included in the one-time website build price",
+      "Each website package includes a defined Site Care period after launch: 3 months with Simple, 6 months with Small Business, and 12 months with Custom",
+      "Included Site Care follows the standard plan scope: a monthly website check, brief written support, a short monthly summary, and up to 60 minutes of small updates; unused update time does not roll over",
+      "After the included period, continuing Site Care is optional at $100/month and does not begin automatically without your agreement",
     ],
   },
   {
