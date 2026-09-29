@@ -315,7 +315,7 @@ export function PortalDashboard() {
             .select("id, title, request_type, status, created_at")
             .eq("client_id", portalClient.id)
             .order("created_at", { ascending: false })
-            .limit(3),
+            .limit(10),
         ]);
 
         if (!active) return;
@@ -590,7 +590,11 @@ export function PortalDashboard() {
             ) : data.requests.length ? (
               <div className={styles.requestList}>
                 {data.requests.map((request) => (
-                  <article key={request.id} className={styles.requestRow}>
+                  <Link
+                    key={request.id}
+                    href={"/portal/requests/" + request.id}
+                    className={styles.requestRow}
+                  >
                     <div>
                       <strong>
                         {request.title || requestTypeLabel(request.request_type)}
@@ -603,12 +607,17 @@ export function PortalDashboard() {
                         }).format(new Date(request.created_at))}
                       </span>
                     </div>
-                    <span
-                      className={styles.status + " " + styles["status_" + request.status]}
-                    >
-                      {statusLabel(request.status)}
-                    </span>
-                  </article>
+                    <div className={styles.requestRowMeta}>
+                      <span
+                        className={
+                          styles.status + " " + styles["status_" + request.status]
+                        }
+                      >
+                        {statusLabel(request.status)}
+                      </span>
+                      <strong className={styles.openRequest}>View request →</strong>
+                    </div>
+                  </Link>
                 ))}
               </div>
             ) : (
@@ -746,7 +755,7 @@ function Brand() {
       />
       <div>
         <strong>Aaland Web Design</strong>
-        <span>&amp; Site Care</span>
+        <span>&amp; Business Solutions</span>
       </div>
     </Link>
   );
