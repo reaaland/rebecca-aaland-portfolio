@@ -61,6 +61,8 @@ const careSections = [
     text: "Site Care is $100 per month, month to month. Cancel in writing before the next renewal to stop future billing. Your agreement confirms the start date and billing details.",
     details: [
       "One reviewed website per plan",
+      "New website packages include Site Care after launch: 3 months with Simple Website, 6 months with Small Business Website, and 12 months with Custom Business Website",
+      "When the included period ends, you can choose to continue month to month at $100; paid Site Care does not begin automatically",
       "No extra-cost work begins without your approval",
       "Scheduled monthly checks; continuous monitoring, security management, and backup services are not included unless separately agreed",
       "If you rarely need help, occasional paid updates may be a better fit",
@@ -79,7 +81,8 @@ export default function SiteCarePage() {
           <p>
             Site Care is for businesses that want a reliable person to keep an
             eye on the website and handle routine changes without turning every
-            update into a new project.
+            update into a new project. New website packages include an initial
+            Site Care period after launch, based on the package you choose.
           </p>
         </section>
 
