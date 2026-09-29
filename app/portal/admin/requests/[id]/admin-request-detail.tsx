@@ -99,6 +99,8 @@ export function AdminRequestDetail() {
   const [data, setData] = useState<LoadedData | null>(null);
   const [error, setError] = useState("");
   const [openingFile, setOpeningFile] = useState("");
+  const [savingStatus, setSavingStatus] = useState<RequestStatus | null>(null);
+  const [statusMessage, setStatusMessage] = useState("");
 
   useEffect(() => {
     if (!supabase || !requestId) {
@@ -226,6 +228,63 @@ export function AdminRequestDetail() {
     };
   }, [requestId, supabase]);
 
+  async function changeStatus(nextStatus: RequestStatus) {
+    if (!supabase || !data || nextStatus === data.request.status) return;
+
+    setSavingStatus(nextStatus);
+    setStatusMessage("");
+    setError("");
+
+    const { data: updatedRequest, error: updateError } = await supabase
+      .from("service_requests")
+      .update({ status: nextStatus })
+      .eq("id", data.request.id)
+      .select(
+        "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at",
+      )
+      .single();
+
+    if (updateError || !updatedRequest) {
+      setError(updateError?.message ?? "We could not update the request status.");
+      setSavingStatus(null);
+      return;
+    }
+
+    const { data: historyRows, error: historyError } = await supabase
+      .from("request_status_history")
+      .select("id, status, changed_at")
+      .eq("request_id", data.request.id)
+      .order("changed_at", { ascending: true });
+
+    if (historyError) {
+      setError(
+        "The status changed, but we could not refresh the status history. Reload the page to see the latest history.",
+      );
+      setData((current) =>
+        current
+          ? {
+              ...current,
+              request: updatedRequest as RequestDetail,
+            }
+          : current,
+      );
+      setSavingStatus(null);
+      return;
+    }
+
+    setData((current) =>
+      current
+        ? {
+            ...current,
+            request: updatedRequest as RequestDetail,
+            history: (historyRows ?? []) as HistoryItem[],
+          }
+        : current,
+    );
+    setStatusMessage(`Status updated to ${statusLabel(nextStatus)}.`);
+    setSavingStatus(null);
+  }
+
   async function openAttachment(attachment: Attachment) {
     if (!supabase) return;
 
@@ -298,6 +357,51 @@ export function AdminRequestDetail() {
             {statusLabel(request.status)}
           </span>
         </header>
+
+        <section className={styles.statusPanel}>
+          <div className={styles.statusPanelHeading}>
+            <div>
+              <p className={styles.eyebrow}>Request status</p>
+              <h2>Update client progress</h2>
+            </div>
+            <span className={styles["status_" + request.status]}>
+              {statusLabel(request.status)}
+            </span>
+          </div>
+
+          <div className={styles.statusActions} role="group" aria-label="Request status">
+            {(["received", "working", "complete"] as RequestStatus[]).map(
+              (status) => {
+                const active = request.status === status;
+                const saving = savingStatus === status;
+
+                return (
+                  <button
+                    key={status}
+                    type="button"
+                    className={active ? styles.statusButtonActive : styles.statusButton}
+                    onClick={() => changeStatus(status)}
+                    disabled={active || savingStatus !== null}
+                    aria-pressed={active}
+                  >
+                    {saving ? "Saving…" : statusLabel(status)}
+                  </button>
+                );
+              },
+            )}
+          </div>
+
+          <p className={styles.statusHelp}>
+            Clients see this status on their portal. Every change is recorded in
+            the status history below.
+          </p>
+
+          {statusMessage ? (
+            <div className={styles.statusSuccess} role="status">
+              {statusMessage}
+            </div>
+          ) : null}
+        </section>
 
         <div className={styles.summaryGrid}>
           <section className={styles.summaryCard}>
