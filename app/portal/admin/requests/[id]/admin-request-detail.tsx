@@ -101,6 +101,9 @@ export function AdminRequestDetail() {
   const [openingFile, setOpeningFile] = useState("");
   const [savingStatus, setSavingStatus] = useState<RequestStatus | null>(null);
   const [statusMessage, setStatusMessage] = useState("");
+  const [completionNote, setCompletionNote] = useState("");
+  const [savingNote, setSavingNote] = useState(false);
+  const [noteMessage, setNoteMessage] = useState("");
 
   useEffect(() => {
     if (!supabase || !requestId) {
@@ -211,6 +214,7 @@ export function AdminRequestDetail() {
 
       if (!active) return;
 
+      setCompletionNote(request.client_visible_completion_note ?? "");
       setData({
         request,
         client: clientResult.data as ClientDetail,
@@ -283,6 +287,47 @@ export function AdminRequestDetail() {
     );
     setStatusMessage(`Status updated to ${statusLabel(nextStatus)}.`);
     setSavingStatus(null);
+  }
+
+  async function saveCompletionNote() {
+    if (!supabase || !data) return;
+
+    setSavingNote(true);
+    setNoteMessage("");
+    setError("");
+
+    const note = completionNote.trim();
+
+    const { data: updatedRequest, error: updateError } = await supabase
+      .from("service_requests")
+      .update({
+        client_visible_completion_note: note || null,
+      })
+      .eq("id", data.request.id)
+      .select(
+        "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at",
+      )
+      .single();
+
+    if (updateError || !updatedRequest) {
+      setError(updateError?.message ?? "We could not save the client note.");
+      setSavingNote(false);
+      return;
+    }
+
+    setData((current) =>
+      current
+        ? {
+            ...current,
+            request: updatedRequest as RequestDetail,
+          }
+        : current,
+    );
+    setCompletionNote(
+      (updatedRequest as RequestDetail).client_visible_completion_note ?? "",
+    );
+    setNoteMessage(note ? "Client note saved." : "Client note cleared.");
+    setSavingNote(false);
   }
 
   async function openAttachment(attachment: Attachment) {
@@ -401,6 +446,43 @@ export function AdminRequestDetail() {
               {statusMessage}
             </div>
           ) : null}
+
+          <div className={styles.completionNote}>
+            <label htmlFor="client-completion-note">
+              Client-visible note
+            </label>
+            <textarea
+              id="client-completion-note"
+              value={completionNote}
+              onChange={(event) => {
+                setCompletionNote(event.target.value);
+                setNoteMessage("");
+              }}
+              rows={4}
+              placeholder="Example: I updated your Saturday hours and phone number on the Contact page and footer."
+            />
+            <div className={styles.noteActions}>
+              <span>
+                This appears on the client&apos;s request detail page.
+              </span>
+              <button
+                type="button"
+                onClick={saveCompletionNote}
+                disabled={
+                  savingNote ||
+                  completionNote.trim() ===
+                    (request.client_visible_completion_note ?? "")
+                }
+              >
+                {savingNote ? "Saving…" : "Save note"}
+              </button>
+            </div>
+            {noteMessage ? (
+              <div className={styles.statusSuccess} role="status">
+                {noteMessage}
+              </div>
+            ) : null}
+          </div>
         </section>
 
         <div className={styles.summaryGrid}>
