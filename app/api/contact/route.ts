@@ -1,15 +1,6 @@
 import { Resend } from "resend";
 
-const inquiryLabels = {
-  website: "Website project or updates",
-  care: "Ongoing Site Care",
-  technical: "Technical writing & documentation",
-  grant: "Grant research & writing",
-  role: "Developer / job opportunity",
-  general: "General inquiry",
-} as const;
-
-type InquiryType = keyof typeof inquiryLabels;
+import { inquiryLabels, inquiryFields, linkLabels, isInquiryType } from "@/lib/contact";
 
 type ContactRequest = {
   inquiryType?: unknown;
@@ -17,6 +8,7 @@ type ContactRequest = {
   email?: unknown;
   organization?: unknown;
   roleTitle?: unknown;
+  answers?: unknown;
   website?: unknown;
   companySite?: unknown;
   message?: unknown;
@@ -28,16 +20,16 @@ function clean(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : "";
 }
 
-function isInquiryType(value: string): value is InquiryType {
-  return value in inquiryLabels;
-}
-
 export async function POST(request: Request) {
   let body: ContactRequest;
 
   try {
     body = (await request.json()) as ContactRequest;
   } catch {
+    return Response.json({ error: "Invalid request." }, { status: 400 });
+  }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
     return Response.json({ error: "Invalid request." }, { status: 400 });
   }
 
@@ -83,10 +75,17 @@ export async function POST(request: Request) {
     `Name: ${name}`,
     `Email: ${email}`,
     organization ? `Company / organization: ${organization}` : "",
-    inquiryType === "role" && roleTitle ? `Role: ${roleTitle}` : "",
-    inquiryType !== "role" && website ? `Current website: ${website}` : "",
+    website ? `${linkLabels[inquiryType]}: ${website}` : "",
   ].filter(Boolean);
 
+  const answers = body.answers && typeof body.answers === "object" && !Array.isArray(body.answers)
+    ? body.answers as Record<string, unknown> : {};
+  for (const field of inquiryFields[inquiryType]) {
+    const value = clean(answers[field.name], 300) || (field.name === "roleTitle" ? roleTitle : "");
+    if (value && (!field.options || field.options.includes(value))) {
+      details.push(`${field.label}: ${value}`);
+    }
+  }
   details.push("", "Message:", message);
 
   const resend = new Resend(apiKey);

@@ -1941,6 +1941,7 @@ a {
 
 .contact-form input[type="text"],
 .contact-form input[type="email"],
+.contact-form select,
 .contact-form textarea {
   width: 100%;
   border: 1px solid var(--line);
@@ -1955,6 +1956,7 @@ a {
 
 .contact-form input[type="text"]:focus,
 .contact-form input[type="email"]:focus,
+.contact-form select:focus,
 .contact-form textarea:focus {
   border-color: var(--blue);
   box-shadow: 0 0 0 3px rgba(77, 163, 255, 0.1);
@@ -1966,6 +1968,7 @@ a {
   padding: 10px 12px;
 }
 
+.contact-form select,
 .contact-form textarea {
   min-height: 180px;
   padding: 12px;
@@ -2696,6 +2699,7 @@ a {
 
 [data-theme="light"] .contact-form input[type="text"],
 [data-theme="light"] .contact-form input[type="email"],
+[data-theme="light"] .contact-form select,
 [data-theme="light"] .contact-form textarea {
   background: #f8fafc;
   color: #162033;
@@ -3230,4 +3234,19 @@ a {
     justify-content: center;
     margin-top: 6px;
   }
+}
+
+.contact-form select { min-height: 48px; padding: 10px 12px; }
+.contact-fields > label { display: grid; gap: 10px; margin-bottom: 22px; }
+.contact-form .contact-fields { margin-bottom: 0; min-width: 0; }
+.contact-form .form-row > label { min-width: 0; }
+[data-theme="light"] .contact-form select { background: #fff; color: var(--text); }
+
+.contact-form .form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }

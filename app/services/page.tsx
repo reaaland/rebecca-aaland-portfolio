@@ -81,6 +81,20 @@ const serviceList = [
     href: "/grant-research-writing",
     cta: "Explore grant research & writing",
   },
+  {
+    id: "business-solutions",
+    number: "06",
+    title: "Business Solutions & Process Support",
+    fit: "For businesses that need help organizing everyday tasks, information, or workflows and are not sure where to start.",
+    includes: [
+      "Process and workflow organization",
+      "Practical forms and reusable templates",
+      "Clear business information and instructions",
+      "A defined scope and quote before work begins",
+    ],
+    href: "/contact/business-solutions",
+    cta: "Ask about business support",
+  },
 ] as const;
 
 export default function ServicesPage() {
