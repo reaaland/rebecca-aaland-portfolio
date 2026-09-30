@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const inquiryLabels = {
   website: "Website project or updates",
-  care: "Ongoing Site Care",
+  care: "Site Care or as-needed website support",
   technical: "Technical writing & documentation",
   grant: "Grant research & writing",
   role: "Developer / job opportunity",
@@ -93,8 +93,8 @@ export async function POST(request: Request) {
 
   try {
     const { error } = await resend.emails.send({
-      from: "Aaland Web Design & Business Solutions <onboarding@resend.dev>",
-      to: ["reaaland@gmail.com"],
+      from: "Aaland Web Design & Business Solutions <website@rebeccaiaaland.com>",
+      to: ["rebecca@rebeccaiaaland.com"],
       replyTo: email,
       subject: `${inquiryLabels[inquiryType]} from ${subjectName}`,
       text: details.join("\n"),

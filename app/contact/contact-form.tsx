@@ -4,7 +4,7 @@ import { FormEvent, useState } from "react";
 
 const inquiryLabels = {
   website: "Website project or updates",
-  care: "Ongoing Site Care",
+  care: "Site Care or as-needed support",
   technical: "Technical writing & documentation",
   grant: "Grant research & writing",
   role: "Developer / job opportunity",
@@ -26,9 +26,9 @@ const inquiryDetails: Record<
   },
   care: {
     intro:
-      "For ongoing website support, routine updates, and monthly Site Care.",
-    messageLabel: "What kind of ongoing help do you expect to need?",
-    buttonLabel: "Ask about Site Care ↗",
+      "For $100/month Site Care or $75/hour as-needed website support.",
+    messageLabel: "What kind of website help do you expect to need?",
+    buttonLabel: "Ask about website support ↗",
   },
   technical: {
     intro:
@@ -216,8 +216,7 @@ export function ContactForm({
 
       {status === "error" ? (
         <p className="form-status form-status-error" role="alert">
-          The form could not send your message. Please email Rebecca directly at{" "}
-          <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>.
+          The form could not send your message. Please try again in a moment.
         </p>
       ) : null}
 
