@@ -28,7 +28,7 @@ const projects = [
     label: "Client website · New build",
     title: "Majerus Outdoor Services",
     summary:
-      "A responsive multi-page website for an owner-operated Rochester-area concrete and outdoor-services business, with clear services, project proof, a stronger contact experience, and custom visual direction.",
+      "A responsive multi-page website for an owner-operated Rochester-area concrete and outdoor-services business, with clear services, project proof, a custom contact path, and a foundational local SEO setup including Search Console.",
     testimonial:
       "“Fast, professional service… very simple and thorough. I would definitely recommend her.” — Jason Majerus",
     href: "/work/mos",
