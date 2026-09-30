@@ -208,8 +208,8 @@ export default function UltraverseCaseStudy() {
         </section>
 
         <section className="next-project shell" data-reveal>
-          <p>Next case study</p>
-          <Link href="/work/summarist">Summarist &#8599;</Link>
+          <p>More developer work</p>
+          <Link href="/portfolio">Back to developer portfolio &#8599;</Link>
         </section>
       </main>
 
