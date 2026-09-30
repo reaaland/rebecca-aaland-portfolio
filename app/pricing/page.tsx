@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Pricing",
   description:
-    "Starting prices for web design and Site Care, plus scope-based pricing for technical writing, grant research, and practical business support.",
+    "Starting prices for web design, Site Care, as-needed website support, technical writing, grant research, and practical business support, with clear SEO scope for each website tier.",
   path: "/pricing",
 });
 
@@ -19,9 +19,9 @@ const categories = [
   },
   {
     title: "Website updates",
-    price: "From $150",
+    price: "$75/hour or scoped quote",
     href: "#existing-websites",
-    text: "For focused changes to a site you already have.",
+    text: "For occasional support, focused changes, or a larger refresh.",
   },
   {
     title: "Site Care",
@@ -53,7 +53,8 @@ const websitePlans = [
       "Custom design that works on phones, tablets, and desktops",
       "One straightforward contact form",
       "Organization of the business details, wording, and images you provide",
-      "Core search setup, launch checks, and publishing support",
+      "Foundational SEO: search-friendly page titles and descriptions, heading structure, image alt text for supplied images, canonical URLs, sitemap and robots setup, and Google Search Console connection when access is provided",
+      "Launch checks, publishing support, and sitemap submission to Google when Search Console access is available",
       "Includes 3 months of Site Care after launch",
     ],
   },
@@ -62,11 +63,12 @@ const websitePlans = [
     price: "$2,500",
     text: "For a business with several services or more work to showcase. Dedicated pages give customers room to understand the offer and decide whether it fits.",
     details: [
-      "Typically 4–7 pages, with the same design, search, and launch foundations as the Simple Website",
+      "Typically 4–7 pages, with the same design, foundational SEO, and launch setup as the Simple Website",
       "Individual service pages and clearer navigation between them",
+      "Light keyword and local-service research to help shape agreed page titles, headings, and service wording",
+      "Local business structured data when appropriate for the business and platform",
       "Project, gallery, testimonial, or FAQ content as agreed in the page plan",
       "A contact or quote-request form with fields suited to your business",
-      "Organization of supplied content across a fuller customer journey",
       "Includes 6 months of Site Care after launch",
     ],
   },
@@ -76,11 +78,13 @@ const websitePlans = [
     text: "For a larger content structure or a specific feature that needs extra planning, integration, and testing. A smaller site can also fit here when its functionality is more involved.",
     details: [
       "Often more than 7 pages, or a smaller site with more complex requirements",
-      "The same core design, search, and launch foundations, with additional planning for the agreed scope",
+      "The same design, foundational SEO, and local-search setup included with the Small Business Website",
+      "Broader keyword and competitor review to guide a larger page structure when search visibility is part of the agreed project goals",
+      "SEO planning for the agreed content architecture, internal linking, and structured data where appropriate",
       "Scoped features such as a multi-step inquiry flow or connection to an existing business tool",
       "Additional implementation and testing for the agreed features",
       "E-commerce, booking, accounts, portals, and membership systems are assessed and quoted individually; the starting price does not include every feature",
-      "Includes 12 months of Site Care after launch",
+      "Includes 12 months of Site Care after launch, including one post-launch Search Console review during the included care period",
     ],
   },
 ] as const;
@@ -88,11 +92,20 @@ const websitePlans = [
 const websiteScopeNotes = [
   {
     title: "What every build includes",
-    text: "Responsive custom design, agreed page organization, core search setup, checks of the agreed pages and forms, and help publishing the finished site.",
+    text: "Responsive custom design, agreed page organization, a defined SEO foundation, checks of the agreed pages and forms, and help publishing the finished site.",
     details: [
-      "Core search setup covers page titles, descriptions, headings, and sitemap/indexing configuration appropriate to the platform",
-      "Ongoing SEO campaigns, advertising, and guaranteed rankings or leads are not included",
-      "Page counts guide the estimate; content volume, features, and integrations also affect the quote",
+      "Every website tier includes the foundational SEO items listed above; higher tiers add research and planning because they include more pages and a larger search footprint",
+      "Page counts guide the estimate; content volume, features, integrations, and research needs also affect the quote",
+      "The final proposal lists the exact pages, features, SEO work, and launch tasks included in your project",
+    ],
+  },
+  {
+    title: "What ongoing SEO does not mean",
+    text: "A search-ready website and an ongoing SEO campaign are different services. The website packages cover the launch foundation described above, not unlimited search marketing after launch.",
+    details: [
+      "Ongoing SEO strategy, recurring keyword and competitor research, regular Search Console monitoring, Google Business Profile management, citation or backlink work, and ongoing SEO content are quoted separately unless your proposal specifically includes them",
+      "New service or location pages created later are separate work unless they are already part of the agreed website scope",
+      "Search engines decide rankings, so rankings, traffic, leads, and specific placement in Google cannot be guaranteed",
     ],
   },
   {
@@ -108,7 +121,7 @@ const websiteScopeNotes = [
   },
   {
     title: "Before work begins",
-    text: "You receive a written scope and price before committing. We confirm the pages, features, content responsibilities, revision rounds, payment schedule, and estimated timeline together.",
+    text: "You receive a written scope and price before committing. We confirm the pages, features, content responsibilities, revision rounds, payment schedule, estimated timeline, and included SEO work together.",
     details: [
       "Timing depends on project complexity, content readiness, and feedback; your proposal sets the schedule",
       "You review the agreed work before launch; handoff and any post-launch support are defined in the proposal",
@@ -119,9 +132,16 @@ const websiteScopeNotes = [
 
 const updateOptions = [
   {
-    title: "Small Website Updates",
+    title: "As-needed Website Support",
+    price: "$75/hour",
+    text: "Best for occasional small updates or troubleshooting when you do not need monthly Site Care. You approve the work before I begin.",
+    href: "/contact/website",
+    cta: "Request as-needed support",
+  },
+  {
+    title: "Focused Website Update",
     price: "Starting at $150",
-    text: "Best when you already know the changes you need: text, photos, links, services, contact information, or another focused fix.",
+    text: "Best for a defined set of changes such as several text, photo, link, service, contact, form, or layout updates that make more sense as one scoped project.",
     href: "/contact/website",
     cta: "Request website updates",
   },
@@ -221,9 +241,9 @@ export default function PricingPage() {
                 <h2>Keep the site you have when it still makes sense.</h2>
               </div>
               <p>
-                For smaller changes, choose an update or refresh. If the platform,
-                structure, or overall site is the real problem, a rebuild may make
-                more sense.
+                Choose hourly help for occasional small requests, a scoped update
+                for a defined set of changes, or a refresh when several pages need
+                broader improvement.
               </p>
             </div>
 
@@ -370,18 +390,18 @@ export default function PricingPage() {
         </section>
 
         <section id="site-care" className="plain-cta shell" data-reveal>
-          <p className="eyebrow">Ongoing Site Care</p>
-          <h2>$100/month</h2>
+          <p className="eyebrow">Website support after launch</p>
+          <h2>$100/month Site Care · $75/hour as needed</h2>
           <p>
-            For one reviewed website: a monthly website check, brief written support,
-            a short monthly summary, and up to 60 minutes of small updates.
-            The check and summary are separate from your update allowance.
-            Unused time does not roll over. Month to month; hosting, domains,
-            and larger work are separate unless agreed in writing.
+            Site Care includes a monthly website check, brief written support, a
+            short monthly summary, and up to 60 minutes of small updates for one
+            reviewed website. If you only need occasional help, as-needed support
+            is available at $75/hour. Hosting, domains, ongoing SEO campaigns,
+            and larger project work are separate unless agreed in writing.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/site-care">
-              See Site Care details ↗
+              Compare support options ↗
             </Link>
             <Link className="button button-secondary" href="/contact/site-care">
               Ask about your website
