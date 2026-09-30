@@ -248,7 +248,8 @@ export default function HomePage() {
               <h3>Majerus Outdoor Services</h3>
               <p>
                 A responsive multi-page website with clearer service paths,
-                project proof, custom contact flow, and a stronger local presence.
+                project proof, a custom contact flow, and a foundational local
+                SEO setup including Search Console.
               </p>
               <Link className="text-link" href="/work/mos">
                 View case study ↗
