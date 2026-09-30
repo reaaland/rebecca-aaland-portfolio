@@ -21,7 +21,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/work/pawcircle",
     "/work/ultraverse",
     "/work/skinstric",
-    "/work/summarist",
   ];
 
   return routes.map((route) => ({
