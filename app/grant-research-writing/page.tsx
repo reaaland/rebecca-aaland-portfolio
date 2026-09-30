@@ -84,6 +84,19 @@ export default function GrantResearchWritingPage() {
         </section>
 
         <section className="plain-cta shell themed-cta" data-reveal>
+          <p className="eyebrow">Grant writing portfolio</p>
+          <h2>See a real submitted grant application sample.</h2>
+          <p>
+            The grant-writing section is separate from my technical-writing portfolio.
+            The first sample uses my submitted Amber Grant application for Aaland Web
+            Design &amp; Business Solutions, including the business narrative and use-of-funds plan.
+          </p>
+          <Link className="button button-dark" href="/writing-samples#grant-writing">
+            View grant writing samples ↗
+          </Link>
+        </section>
+
+        <section className="plain-cta shell themed-cta" data-reveal>
           <p className="eyebrow">A practical starting point</p>
           <h2>Not sure whether a grant is worth pursuing?</h2>
           <p>
