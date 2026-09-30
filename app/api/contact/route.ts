@@ -2,7 +2,7 @@ import { Resend } from "resend";
 
 const inquiryLabels = {
   website: "Website project or updates",
-  care: "Ongoing Site Care",
+  care: "Site Care or as-needed website support",
   technical: "Technical writing & documentation",
   grant: "Grant research & writing",
   role: "Developer / job opportunity",
