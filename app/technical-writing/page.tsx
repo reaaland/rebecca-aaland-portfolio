@@ -108,6 +108,19 @@ export default function TechnicalWritingPage() {
         </section>
 
         <section className="plain-cta shell themed-cta" data-reveal>
+          <p className="eyebrow">Technical writing portfolio</p>
+          <h2>See the technical samples without sorting through unrelated work.</h2>
+          <p>
+            View a setup and troubleshooting guide, an SEO article, and a technical
+            product page. The technical and grant-writing samples are separated so
+            each service has its own clear path.
+          </p>
+          <Link className="button button-dark" href="/writing-samples#technical-writing">
+            View technical writing samples ↗
+          </Link>
+        </section>
+
+        <section className="plain-cta shell themed-cta" data-reveal>
           <p className="eyebrow">Start with what you have</p>
           <h2>You do not need polished documentation before reaching out.</h2>
           <p>
