@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Web Design, Technical Writing & Business Support in Rochester, MN",
   description:
-    "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
+    "Web design, site care, as-needed website support, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
   path: "/",
 });
 
@@ -52,12 +52,12 @@ const pricing = [
   {
     title: "Website Builds",
     price: "Starting at $1,500",
-    text: "From focused small-business sites to more involved custom builds.",
+    text: "From focused small-business sites to more involved custom builds, with a defined SEO foundation included in each tier.",
   },
   {
-    title: "Website Updates",
-    price: "Starting at $150",
-    text: "For clearly defined changes to an existing website.",
+    title: "As-needed Website Support",
+    price: "$75/hour",
+    text: "For occasional small updates or troubleshooting when you do not need a monthly plan.",
   },
   {
     title: "Site Care",
@@ -144,7 +144,7 @@ export default function HomePage() {
             <article>
               <span>04</span>
               <h3>Stay supported</h3>
-              <p>Use one-time updates when that is enough, or Site Care when you want ongoing help month to month.</p>
+              <p>Use $75/hour as-needed support when that is enough, or $100/month Site Care when you want ongoing help.</p>
             </article>
           </div>
         </section>
