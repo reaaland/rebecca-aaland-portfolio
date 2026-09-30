@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Services",
   description:
-    "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
+    "Web design, site care, as-needed website support, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
   path: "/services",
 });
 
@@ -20,10 +20,10 @@ const serviceList = [
       "Responsive custom design and development",
       "Clear page and service organization",
       "Contact or quote pathways",
-      "Foundational search and launch setup",
+      "Foundational SEO and launch setup, with the exact SEO scope defined by the website tier you choose",
     ],
     href: "/pricing#new-websites",
-    cta: "See website pricing",
+    cta: "See website pricing and SEO scope",
   },
   {
     id: "website-updates",
@@ -34,7 +34,7 @@ const serviceList = [
       "Text, photo, service, and contact-information updates",
       "Homepage, navigation, and call-to-action improvements",
       "Mobile, accessibility, and visual consistency fixes",
-      "Forms, links, and other practical website changes",
+      "As-needed support at $75/hour for occasional small requests; larger update projects are quoted by scope",
     ],
     href: "/pricing#existing-websites",
     cta: "See update pricing",
@@ -45,13 +45,13 @@ const serviceList = [
     title: "Ongoing Site Care",
     fit: "For businesses that want a reliable person to keep the website working well and handle routine updates after launch.",
     includes: [
+      "$100/month for one reviewed website",
       "Monthly checks of key pages, links, mobile display, and the main inquiry form",
-      "Up to one hour of small updates each month",
-      "Brief written support and a short monthly summary, separate from update time",
-      "Larger changes quoted before work begins",
+      "Up to one hour of small updates each month, plus brief written support and a short monthly summary",
+      "Ongoing SEO campaigns and larger changes are quoted separately before work begins",
     ],
     href: "/site-care",
-    cta: "Learn about Site Care",
+    cta: "Compare monthly and as-needed support",
   },
   {
     id: "technical-writing",
