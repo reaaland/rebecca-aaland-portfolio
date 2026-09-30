@@ -216,10 +216,7 @@ export function ContactForm({
 
       {status === "error" ? (
         <p className="form-status form-status-error" role="alert">
-          The form could not send your message. Please email Rebecca directly at{" "}
-          <a href="mailto:rebecca@rebeccaiaaland.com">
-            rebecca@rebeccaiaaland.com
-          </a>.
+          The form could not send your message. Please try again in a moment.
         </p>
       ) : null}
 
