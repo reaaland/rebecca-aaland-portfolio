@@ -7,7 +7,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Majerus Outdoor Services Client Website Case Study",
   description:
-    "How Rebecca Aaland designed and built a responsive website for Majerus Outdoor Services, organizing concrete and outdoor services around clear customer paths, project proof, and a straightforward contact experience.",
+    "How Rebecca Aaland designed and built a responsive website for Majerus Outdoor Services with clear service paths, project proof, a straightforward contact experience, and a foundational local SEO setup.",
   path: "/work/mos",
 });
 
@@ -17,7 +17,9 @@ const implementation = [
   "Built responsive layouts and navigation for desktop, tablet, and mobile use",
   "Created project and gallery areas so real work can serve as proof instead of relying on generic marketing language",
   "Made calling, contacting, and requesting an estimate easy to find from key pages",
-  "Built a foundational local-search structure and supported the project through launch",
+  "Added Rochester and service-area context where appropriate throughout the site",
+  "Implemented foundational SEO with page titles and descriptions, canonical URLs, local-business structured data, a sitemap, and robots configuration",
+  "Verified the domain in Google Search Console, submitted the sitemap, and tested the production site and search files after launch",
 ];
 
 export default function MosCaseStudy() {
@@ -42,8 +44,8 @@ export default function MosCaseStudy() {
               concrete and outdoor services clearly, build trust quickly, and
               feel like a real local business rather than a generic contractor
               template. I worked with Jason to shape the visual direction,
-              structure the content, and build the experience around the
-              questions potential customers are likely to have.
+              structure the content, build the experience, and establish the
+              site&apos;s foundational local-search setup.
             </p>
 
             <div className="case-meta">
@@ -58,8 +60,8 @@ export default function MosCaseStudy() {
               <div>
                 <span>Built</span>
                 <strong>
-                  Responsive site &middot; Service structure &middot; Project
-                  proof &middot; Contact path
+                  Responsive site &middot; Service structure &middot; Local SEO
+                  foundation &middot; Contact path
                 </strong>
               </div>
 
@@ -72,12 +74,17 @@ export default function MosCaseStudy() {
             </div>
 
             <div className="hero-actions">
-              <Link className="button button-primary" href="/contact">
-                Discuss a website
-              </Link>
+              <a
+                className="button button-primary"
+                href="https://mosmajerus.com"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Visit live site &#8599;
+              </a>
 
-              <Link className="button button-secondary" href="/work">
-                Back to selected work
+              <Link className="button button-secondary" href="/contact">
+                Discuss a website
               </Link>
             </div>
           </div>
@@ -94,10 +101,17 @@ export default function MosCaseStudy() {
               <li>Project &amp; gallery presentation</li>
               <li>Quote &amp; contact path</li>
               <li>Local SEO foundation</li>
+              <li>Structured data &amp; Search Console</li>
               <li>Launch support</li>
             </ul>
 
-            <Link href="/work">View selected work &#8599;</Link>
+            <a
+              href="https://mosmajerus.com"
+              target="_blank"
+              rel="noreferrer"
+            >
+              Visit Majerus Outdoor Services &#8599;
+            </a>
           </aside>
 
           <div className="case-narrative">
@@ -170,7 +184,30 @@ export default function MosCaseStudy() {
             </section>
 
             <section className="case-outcome" data-reveal>
-              <p className="eyebrow">03 / The client experience</p>
+              <p className="eyebrow">03 / Search foundation</p>
+
+              <h2>
+                The launch included the technical foundation Google needs to
+                discover and understand the site.
+              </h2>
+
+              <p>
+                I set up page-level search metadata, canonical URLs, local
+                business structured data, service-area context, the XML sitemap,
+                and the robots file. I also verified mosmajerus.com in Google
+                Search Console and submitted the sitemap directly to Google.
+              </p>
+
+              <p>
+                This work does not guarantee a particular search position. It
+                establishes the technical and on-page foundation so search
+                engines can crawl the site, understand the business and its
+                location, and begin collecting search-performance data over time.
+              </p>
+            </section>
+
+            <section className="case-outcome" data-reveal>
+              <p className="eyebrow">04 / The client experience</p>
 
               <h2>The process mattered as much as the finished pages.</h2>
 
@@ -184,7 +221,7 @@ export default function MosCaseStudy() {
             </section>
 
             <section className="client-testimonial-section" data-reveal>
-              <p className="eyebrow">04 / Google review</p>
+              <p className="eyebrow">05 / Google review</p>
               <h2>&ldquo;Fast, professional service.&rdquo;</h2>
 
               <blockquote className="client-testimonial">
@@ -204,8 +241,8 @@ export default function MosCaseStudy() {
         </section>
 
         <section className="next-project shell" data-reveal>
-          <p>Next case study</p>
-          <Link href="/work/pawcircle">PawCircle Membership &#8599;</Link>
+          <p>Other client case study</p>
+          <Link href="/work/minnlawn">Minnlawn Lawn &amp; Landscape &#8599;</Link>
         </section>
       </main>
 
