@@ -23,7 +23,9 @@ export default function ServiceContactPage() {
             </p>
             <div className="direct-email">
               <span>Prefer direct email?</span>
-              <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>
+              <a href="mailto:rebecca@rebeccaiaaland.com">
+                rebecca@rebeccaiaaland.com
+              </a>
             </div>
           </div>
           <ContactForm initialInquiryType="grant" />
