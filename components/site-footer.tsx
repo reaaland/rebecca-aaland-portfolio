@@ -19,6 +19,7 @@ export function SiteFooter() {
         <Link href="/pricing">Pricing</Link>
         <Link href="/work">Work</Link>
         <Link href="/site-care">Site Care</Link>
+        <Link href="/portal/login">Client Portal</Link>
         <Link href="/contact">Contact</Link>
         <Link href="/portfolio">Developer Portfolio</Link>
         <Link href="/privacy">Privacy</Link>

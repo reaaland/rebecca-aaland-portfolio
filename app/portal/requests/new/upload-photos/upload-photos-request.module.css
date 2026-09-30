@@ -1,0 +1,96 @@
+.filePicker small {
+  color: #7a879a;
+  font-size: 0.7rem;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.fileInput {
+  min-height: auto !important;
+  padding: 12px 14px !important;
+  cursor: pointer;
+}
+
+.fileInput::file-selector-button {
+  margin-right: 12px;
+  padding: 8px 12px;
+  border: 1px solid rgba(39, 90, 156, 0.14);
+  border-radius: 9px;
+  background: #ffffff;
+  color: #35516f;
+  font: inherit;
+  font-size: 0.74rem;
+  font-weight: 720;
+  cursor: pointer;
+}
+
+.selectedFiles,
+.reviewFiles {
+  display: grid;
+  gap: 8px;
+  padding: 14px;
+  border: 1px solid rgba(39, 90, 156, 0.1);
+  border-radius: 13px;
+  background: #f8fafc;
+}
+
+.selectedFile,
+.reviewFile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  min-width: 0;
+}
+
+.selectedFile strong,
+.reviewFile strong {
+  overflow: hidden;
+  color: #293a53;
+  font-size: 0.75rem;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.selectedFile span,
+.reviewFile span,
+.reviewFiles > span {
+  flex: 0 0 auto;
+  color: #7a879a;
+  font-size: 0.68rem;
+}
+
+.reviewFiles {
+  margin-top: 18px;
+}
+
+.reviewFiles > span {
+  font-weight: 740;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.progress {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 11px;
+  background: #edf4fc;
+  color: #486582;
+  font-size: 0.75rem;
+  font-weight: 650;
+}
+
+@media (max-width: 620px) {
+  .selectedFile,
+  .reviewFile {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .selectedFile span,
+  .reviewFile span {
+    padding-left: 0;
+  }
+}
