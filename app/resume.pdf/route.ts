@@ -67,10 +67,10 @@ function buildResumePdf() {
   text(190, 754, 19, "REBECCA AALAND", "F2", navy);
   text(217, 735, 10.8, "Junior Frontend Developer", "F2", blue);
   text(
-    72,
+    123,
     717,
     8.8,
-    "Rochester, Minnesota  |  (507) 990-4627  |  reaaland@gmail.com",
+    "Rochester, Minnesota  |  rebecca@rebeccaiaaland.com",
     "F1",
     gray,
   );
@@ -228,6 +228,7 @@ export function GET() {
       "Content-Disposition":
         'inline; filename="Rebecca_Aaland_Frontend_Developer_STAR_Resume.pdf"',
       "Cache-Control": "public, max-age=86400",
+      "X-Robots-Tag": "noindex, noarchive",
     },
   });
 }
