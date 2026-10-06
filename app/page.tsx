@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Web Design, Technical Writing & Business Support in Rochester, MN",
   description:
-    "Web design, site care, as-needed website support, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
+    "Web design, site care, technical writing, grant research, and business support for small businesses in Rochester, Minnesota and beyond.",
   path: "/",
 });
 
