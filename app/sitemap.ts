@@ -17,7 +17,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/privacy",
     "/terms",
     "/portfolio",
-    "/resume",
     "/work/pawcircle",
     "/work/ultraverse",
     "/work/skinstric",
