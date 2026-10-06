@@ -39,8 +39,7 @@ const ALLOWED_EXTENSIONS = new Set([
   "heif",
   "pdf",
 ]);
-const ACCEPTED_FILES =
-  ".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif,.pdf";
+const ACCEPTED_FILES = ".jpg,.jpeg,.png,.webp,.gif,.avif,.heic,.heif,.pdf";
 
 function formatBytes(bytes: number) {
   if (bytes < 1024) return bytes + " B";
@@ -56,6 +55,11 @@ function isAllowedFile(file: File) {
   return ALLOWED_EXTENSIONS.has(fileExtension(file.name));
 }
 
+function isPreviewableImage(file: File) {
+  const extension = fileExtension(file.name);
+  return file.type.startsWith("image/") && extension !== "heic" && extension !== "heif";
+}
+
 function safeFilename(name: string) {
   const cleaned = name
     .replace(/[^a-zA-Z0-9._-]+/g, "-")
@@ -63,6 +67,21 @@ function safeFilename(name: string) {
     .slice(-120);
 
   return cleaned || "file";
+}
+
+function isAlreadyExistsError(error: unknown) {
+  if (!error || typeof error !== "object") return false;
+
+  const value = error as {
+    statusCode?: string | number;
+    status?: string | number;
+    message?: string;
+  };
+
+  return (
+    String(value.statusCode ?? value.status ?? "") === "409" ||
+    value.message?.toLowerCase().includes("already exists") === true
+  );
 }
 
 export function UploadPhotosRequestForm() {
@@ -90,11 +109,11 @@ export function UploadPhotosRequestForm() {
     let active = true;
 
     async function loadIdentity() {
-      const { data: authData } = await client.auth.getUser();
+      const { data: authData, error: authError } = await client.auth.getUser();
 
       if (!active) return;
 
-      if (!authData.user) {
+      if (authError || !authData.user) {
         window.location.replace("/portal/login");
         return;
       }
@@ -109,10 +128,17 @@ export function UploadPhotosRequestForm() {
           .from("clients")
           .select("id, contact_name, business_name")
           .eq("auth_user_id", authData.user.id)
+          .eq("status", "active")
           .limit(1),
       ]);
 
       if (!active) return;
+
+      if (adminResult.error || clientResult.error) {
+        setError("We could not verify your portal access. Please try again.");
+        setLoadingIdentity(false);
+        return;
+      }
 
       setUserId(authData.user.id);
       setIsAdmin(Boolean(adminResult.data?.length));
@@ -157,11 +183,16 @@ export function UploadPhotosRequestForm() {
     if (tooLarge) {
       setFiles([]);
       event.target.value = "";
-      setError(`${tooLarge.name} is larger than 15 MB.`);
+      setError(`${tooLarge.name} is larger than 15 MB. Please choose a smaller file.`);
       return;
     }
 
     setFiles(selected);
+  }
+
+  function removeFile(indexToRemove: number) {
+    setFiles((current) => current.filter((_, index) => index !== indexToRemove));
+    setError("");
   }
 
   function reviewRequest(event: FormEvent<HTMLFormElement>) {
@@ -185,51 +216,69 @@ export function UploadPhotosRequestForm() {
   async function submitRequest() {
     if (!supabase || !portalClient || !userId || !files.length) return;
 
-    if (requestId) {
-      setError(
-        "This request has already been saved. Return to the dashboard and start a new upload request for any missing files.",
-      );
-      return;
-    }
-
     setSubmitting(true);
-    setUploadProgress("Saving your request…");
+    setUploadProgress(requestId ? "Resuming your upload…" : "Saving your request…");
     setError("");
 
-    const { data: request, error: requestError } = await supabase
-      .from("service_requests")
-      .insert({
-        client_id: portalClient.id,
-        request_type: "upload_photos",
-        description: form.description.trim(),
-        location_on_site: form.locationOnSite.trim() || null,
-        additional_notes: form.additionalNotes.trim() || null,
-        status: "received",
-      })
-      .select("id")
-      .single();
+    let activeRequestId = requestId;
 
-    if (requestError || !request) {
-      setError(requestError?.message ?? "Your request could not be saved.");
-      setSubmitting(false);
-      setUploadProgress("");
-      return;
+    if (!activeRequestId) {
+      const { data: request, error: requestError } = await supabase
+        .from("service_requests")
+        .insert({
+          client_id: portalClient.id,
+          request_type: "upload_photos",
+          description: form.description.trim(),
+          location_on_site: form.locationOnSite.trim() || null,
+          additional_notes: form.additionalNotes.trim() || null,
+          status: "received",
+        })
+        .select("id")
+        .single();
+
+      if (requestError || !request) {
+        setError(requestError?.message ?? "Your request could not be saved.");
+        setSubmitting(false);
+        setUploadProgress("");
+        return;
+      }
+
+      activeRequestId = request.id;
+      setRequestId(request.id);
     }
-
-    setRequestId(request.id);
 
     for (let index = 0; index < files.length; index += 1) {
       const file = files[index];
-      setUploadProgress(`Uploading file ${index + 1} of ${files.length}…`);
-
       const storagePath =
         portalClient.id +
         "/" +
-        request.id +
+        activeRequestId +
         "/" +
-        crypto.randomUUID() +
+        String(index + 1).padStart(2, "0") +
         "-" +
         safeFilename(file.name);
+
+      setUploadProgress(`Checking file ${index + 1} of ${files.length}…`);
+
+      const { data: existingMetadata, error: metadataLookupError } = await supabase
+        .from("request_attachments")
+        .select("id")
+        .eq("request_id", activeRequestId)
+        .eq("storage_path", storagePath)
+        .maybeSingle();
+
+      if (metadataLookupError) {
+        setError(
+          `Your request is saved, but I could not verify ${file.name}. Press Retry upload to continue without creating a second request.`,
+        );
+        setSubmitting(false);
+        setUploadProgress("");
+        return;
+      }
+
+      if (existingMetadata) continue;
+
+      setUploadProgress(`Uploading file ${index + 1} of ${files.length}…`);
 
       const uploadOptions = {
         cacheControl: "3600",
@@ -241,9 +290,9 @@ export function UploadPhotosRequestForm() {
         .from("client-request-files")
         .upload(storagePath, file, uploadOptions);
 
-      if (uploadError) {
+      if (uploadError && !isAlreadyExistsError(uploadError)) {
         setError(
-          `The request was saved, but ${file.name} could not be uploaded. Please return to the dashboard and send the missing file in a new upload request.`,
+          `Your request is saved, but ${file.name} did not finish uploading. Press Retry upload to continue this same request.`,
         );
         setSubmitting(false);
         setUploadProgress("");
@@ -253,7 +302,7 @@ export function UploadPhotosRequestForm() {
       const { error: metadataError } = await supabase
         .from("request_attachments")
         .insert({
-          request_id: request.id,
+          request_id: activeRequestId,
           client_id: portalClient.id,
           storage_path: storagePath,
           original_filename: file.name,
@@ -264,7 +313,7 @@ export function UploadPhotosRequestForm() {
 
       if (metadataError) {
         setError(
-          `The request was saved and ${file.name} reached secure storage, but its file record could not be completed. Please contact Rebecca before uploading it again.`,
+          `${file.name} reached secure storage, but its file record did not finish. Press Retry upload; the portal will reconnect it to this same request.`,
         );
         setSubmitting(false);
         setUploadProgress("");
@@ -296,9 +345,7 @@ export function UploadPhotosRequestForm() {
         <div className={baseStyles.topline}>
           <div>
             <p className={baseStyles.eyebrow}>Photo & file request</p>
-            <h1>
-              {step === "success" ? "Files received." : "Upload photos or files"}
-            </h1>
+            <h1>{step === "success" ? "Files received." : "Upload photos or files"}</h1>
           </div>
           {step !== "success" ? (
             <span className={baseStyles.stepBadge}>
@@ -319,8 +366,7 @@ export function UploadPhotosRequestForm() {
                 <strong>Administrator preview</strong>
                 <span>
                   You can review the form, but a real upload must be tested from
-                  an approved client account so the files are tied to the correct
-                  client.
+                  an approved active client account.
                 </span>
               </div>
             ) : null}
@@ -341,9 +387,7 @@ export function UploadPhotosRequestForm() {
                 <span>Where should I use them?</span>
                 <input
                   value={form.locationOnSite}
-                  onChange={(event) =>
-                    updateField("locationOnSite", event.target.value)
-                  }
+                  onChange={(event) => updateField("locationOnSite", event.target.value)}
                   placeholder="Optional — for example, Gallery page or Home page"
                 />
               </label>
@@ -365,14 +409,12 @@ export function UploadPhotosRequestForm() {
 
               {files.length ? (
                 <div className={styles.selectedFiles} aria-live="polite">
-                  {files.map((file) => (
-                    <div
-                      className={styles.selectedFile}
-                      key={file.name + "-" + file.lastModified}
-                    >
-                      <strong>{file.name}</strong>
-                      <span>{formatBytes(file.size)}</span>
-                    </div>
+                  {files.map((file, index) => (
+                    <SelectedFile
+                      key={file.name + "-" + file.lastModified + "-" + index}
+                      file={file}
+                      onRemove={() => removeFile(index)}
+                    />
                   ))}
                 </div>
               ) : null}
@@ -381,9 +423,7 @@ export function UploadPhotosRequestForm() {
                 <span>Anything else I should know?</span>
                 <textarea
                   value={form.additionalNotes}
-                  onChange={(event) =>
-                    updateField("additionalNotes", event.target.value)
-                  }
+                  onChange={(event) => updateField("additionalNotes", event.target.value)}
                   placeholder="Optional notes"
                   rows={3}
                 />
@@ -392,10 +432,7 @@ export function UploadPhotosRequestForm() {
               {error ? <div className={baseStyles.error}>{error}</div> : null}
 
               <div className={baseStyles.actions}>
-                <Link
-                  href="/portal/dashboard"
-                  className={baseStyles.secondaryButton}
-                >
+                <Link href="/portal/dashboard" className={baseStyles.secondaryButton}>
                   Cancel
                 </Link>
                 <button type="submit" className={baseStyles.primaryButton}>
@@ -409,24 +446,22 @@ export function UploadPhotosRequestForm() {
         {step === "review" ? (
           <>
             <p className={baseStyles.intro}>
-              Check the request and file list before sending them.
+              Check the request and file list before sending them. If an upload
+              is interrupted, you can retry without creating a duplicate request.
             </p>
 
             <div className={baseStyles.review}>
-              <ReviewRow
-                label="What are the files for?"
-                value={form.description}
-              />
+              <ReviewRow label="What are the files for?" value={form.description} />
               <ReviewRow label="Where should I use them?" value={form.locationOnSite} />
               <ReviewRow label="Additional notes" value={form.additionalNotes} />
             </div>
 
             <div className={styles.reviewFiles}>
               <span>Files</span>
-              {files.map((file) => (
+              {files.map((file, index) => (
                 <div
                   className={styles.reviewFile}
-                  key={file.name + "-" + file.lastModified}
+                  key={file.name + "-" + file.lastModified + "-" + index}
                 >
                   <strong>{file.name}</strong>
                   <span>{formatBytes(file.size)}</span>
@@ -446,7 +481,7 @@ export function UploadPhotosRequestForm() {
                 type="button"
                 className={baseStyles.secondaryButton}
                 onClick={() => setStep("details")}
-                disabled={submitting}
+                disabled={submitting || Boolean(requestId)}
               >
                 ← Edit request
               </button>
@@ -454,27 +489,29 @@ export function UploadPhotosRequestForm() {
                 type="button"
                 className={baseStyles.primaryButton}
                 onClick={submitRequest}
-                disabled={submitting || !portalClient || Boolean(requestId)}
-                title={
-                  !portalClient
-                    ? "Use an approved client test account to submit"
-                    : undefined
-                }
+                disabled={submitting || !portalClient}
+                title={!portalClient ? "Use an approved client test account to submit" : undefined}
               >
                 {submitting
                   ? "Uploading…"
                   : requestId
-                    ? "Request saved"
+                    ? "Retry upload"
                     : portalClient
                       ? "Send files"
                       : "Client test required"}
               </button>
             </div>
 
+            {requestId ? (
+              <p className={baseStyles.previewOnly}>
+                This request is already saved. Retrying continues the same request and skips files already recorded.
+              </p>
+            ) : null}
+
             {!portalClient ? (
               <p className={baseStyles.previewOnly}>
                 Administrator preview only — a real upload must come from an
-                approved client account.
+                approved active client account.
               </p>
             ) : null}
           </>
@@ -484,8 +521,7 @@ export function UploadPhotosRequestForm() {
           <div className={baseStyles.success}>
             <div className={baseStyles.successIcon}>✓</div>
             <p>
-              Your files and request have been saved with a status of{" "}
-              <strong>Received</strong>.
+              Your files and request have been saved with a status of <strong>Received</strong>.
             </p>
             {requestId ? <small>Request ID: {requestId}</small> : null}
             <Link href="/portal/dashboard" className={baseStyles.primaryButton}>
@@ -495,6 +531,41 @@ export function UploadPhotosRequestForm() {
         ) : null}
       </section>
     </main>
+  );
+}
+
+function SelectedFile({ file, onRemove }: { file: File; onRemove: () => void }) {
+  const [previewUrl, setPreviewUrl] = useState("");
+
+  useEffect(() => {
+    if (!isPreviewableImage(file)) return;
+
+    const url = URL.createObjectURL(file);
+    setPreviewUrl(url);
+
+    return () => URL.revokeObjectURL(url);
+  }, [file]);
+
+  return (
+    <div className={styles.selectedFile}>
+      <div className={styles.fileIdentity}>
+        {previewUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={previewUrl} alt="" className={styles.filePreview} />
+        ) : (
+          <span className={styles.fileTypeBadge}>
+            {fileExtension(file.name).toUpperCase() || "FILE"}
+          </span>
+        )}
+        <div>
+          <strong>{file.name}</strong>
+          <span>{formatBytes(file.size)}</span>
+        </div>
+      </div>
+      <button type="button" className={styles.removeFile} onClick={onRemove}>
+        Remove
+      </button>
+    </div>
   );
 }
 
