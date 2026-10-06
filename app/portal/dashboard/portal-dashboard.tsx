@@ -193,6 +193,7 @@ export function PortalDashboard() {
             .from("clients")
             .select("id, contact_name, business_name")
             .eq("auth_user_id", user.id)
+            .eq("status", "active")
             .limit(1),
         ]);
 
@@ -207,7 +208,7 @@ export function PortalDashboard() {
       const portalClient = clientRows?.[0] ?? null;
 
       if (!isAdmin && !portalClient) {
-        setError("Your sign-in is valid, but this portal account is not linked to a client record.");
+        setError("Your sign-in is valid, but this portal account is not linked to an active client record.");
         return;
       }
 
@@ -220,8 +221,7 @@ export function PortalDashboard() {
         const { data: requestRows, error: requestError } = await client
           .from("service_requests")
           .select("id, client_id, title, description, request_type, status, created_at")
-          .order("created_at", { ascending: false })
-          .limit(20);
+          .order("created_at", { ascending: false });
 
         if (!active) return;
 
@@ -314,11 +314,15 @@ export function PortalDashboard() {
             .from("service_requests")
             .select("id, title, request_type, status, created_at")
             .eq("client_id", portalClient.id)
-            .order("created_at", { ascending: false })
-            .limit(10),
+            .order("created_at", { ascending: false }),
         ]);
 
         if (!active) return;
+
+        if (websiteResult.error || serviceResult.error || requestResult.error) {
+          setError("We could not load all of your portal information. Please try again.");
+          return;
+        }
 
         website = websiteResult.data?.[0] ?? null;
         service = serviceResult.data?.[0] ?? null;
@@ -507,17 +511,17 @@ export function PortalDashboard() {
                 <p className={styles.eyebrow}>Requests</p>
                 <h2>
                   {data.role === "admin"
-                    ? "Recent client requests"
-                    : "Recent requests"}
+                    ? "Client requests"
+                    : "Your requests"}
                 </h2>
               </div>
               <span className={styles.quietBadge}>
                 {data.role === "admin"
                   ? data.adminRequests.length
-                    ? data.adminRequests.length + " shown"
+                    ? data.adminRequests.length + " total"
                     : "None yet"
                   : data.requests.length
-                    ? data.requests.length + " shown"
+                    ? data.requests.length + " total"
                     : "None yet"}
               </span>
             </div>
