@@ -48,11 +48,18 @@ type HistoryItem = {
   changed_at: string;
 };
 
+type AdminNote = {
+  id: number;
+  note: string;
+  created_at: string;
+};
+
 type LoadedData = {
   request: RequestDetail;
   client: ClientDetail;
   attachments: Attachment[];
   history: HistoryItem[];
+  internalNotes: AdminNote[];
   websiteName: string | null;
   serviceName: string | null;
 };
@@ -104,6 +111,9 @@ export function AdminRequestDetail() {
   const [completionNote, setCompletionNote] = useState("");
   const [savingNote, setSavingNote] = useState(false);
   const [noteMessage, setNoteMessage] = useState("");
+  const [internalNote, setInternalNote] = useState("");
+  const [savingInternalNote, setSavingInternalNote] = useState(false);
+  const [internalNoteMessage, setInternalNoteMessage] = useState("");
 
   useEffect(() => {
     if (!supabase || !requestId) {
@@ -115,11 +125,11 @@ export function AdminRequestDetail() {
     let active = true;
 
     async function loadRequest() {
-      const { data: authData } = await client.auth.getUser();
+      const { data: authData, error: authError } = await client.auth.getUser();
 
       if (!active) return;
 
-      if (!authData.user) {
+      if (authError || !authData.user) {
         window.location.replace("/portal/login");
         return;
       }
@@ -154,23 +164,29 @@ export function AdminRequestDetail() {
 
       const request = requestRow as RequestDetail;
 
-      const [clientResult, attachmentResult, historyResult] = await Promise.all([
-        client
-          .from("clients")
-          .select("contact_name, business_name, email, phone")
-          .eq("id", request.client_id)
-          .single(),
-        client
-          .from("request_attachments")
-          .select("id, original_filename, mime_type, size_bytes, storage_path")
-          .eq("request_id", request.id)
-          .order("created_at", { ascending: true }),
-        client
-          .from("request_status_history")
-          .select("id, status, changed_at")
-          .eq("request_id", request.id)
-          .order("changed_at", { ascending: true }),
-      ]);
+      const [clientResult, attachmentResult, historyResult, internalNotesResult] =
+        await Promise.all([
+          client
+            .from("clients")
+            .select("contact_name, business_name, email, phone")
+            .eq("id", request.client_id)
+            .single(),
+          client
+            .from("request_attachments")
+            .select("id, original_filename, mime_type, size_bytes, storage_path")
+            .eq("request_id", request.id)
+            .order("created_at", { ascending: true }),
+          client
+            .from("request_status_history")
+            .select("id, status, changed_at")
+            .eq("request_id", request.id)
+            .order("changed_at", { ascending: true }),
+          client
+            .from("request_admin_notes")
+            .select("id, note, created_at")
+            .eq("request_id", request.id)
+            .order("created_at", { ascending: false }),
+        ]);
 
       if (!active) return;
 
@@ -189,6 +205,11 @@ export function AdminRequestDetail() {
         return;
       }
 
+      if (internalNotesResult.error) {
+        setError("We could not load the private admin notes for this request.");
+        return;
+      }
+
       let websiteName: string | null = null;
       let serviceName: string | null = null;
 
@@ -199,6 +220,11 @@ export function AdminRequestDetail() {
           .eq("id", request.website_id)
           .maybeSingle();
 
+        if (websiteResult.error) {
+          setError("We could not load the website linked to this request.");
+          return;
+        }
+
         websiteName = websiteResult.data?.name ?? null;
       }
 
@@ -208,6 +234,11 @@ export function AdminRequestDetail() {
           .select("service_name")
           .eq("id", request.service_id)
           .maybeSingle();
+
+        if (serviceResult.error) {
+          setError("We could not load the service linked to this request.");
+          return;
+        }
 
         serviceName = serviceResult.data?.service_name ?? null;
       }
@@ -220,6 +251,7 @@ export function AdminRequestDetail() {
         client: clientResult.data as ClientDetail,
         attachments: (attachmentResult.data ?? []) as Attachment[],
         history: (historyResult.data ?? []) as HistoryItem[],
+        internalNotes: (internalNotesResult.data ?? []) as AdminNote[],
         websiteName,
         serviceName,
       });
@@ -330,6 +362,41 @@ export function AdminRequestDetail() {
     setSavingNote(false);
   }
 
+  async function addInternalNote() {
+    if (!supabase || !data) return;
+
+    const note = internalNote.trim();
+    if (!note) return;
+
+    setSavingInternalNote(true);
+    setInternalNoteMessage("");
+    setError("");
+
+    const { data: savedNote, error: noteError } = await supabase
+      .from("request_admin_notes")
+      .insert({ request_id: data.request.id, note })
+      .select("id, note, created_at")
+      .single();
+
+    if (noteError || !savedNote) {
+      setError(noteError?.message ?? "We could not save the private admin note.");
+      setSavingInternalNote(false);
+      return;
+    }
+
+    setData((current) =>
+      current
+        ? {
+            ...current,
+            internalNotes: [savedNote as AdminNote, ...current.internalNotes],
+          }
+        : current,
+    );
+    setInternalNote("");
+    setInternalNoteMessage("Private admin note saved.");
+    setSavingInternalNote(false);
+  }
+
   async function openAttachment(attachment: Attachment) {
     if (!supabase) return;
 
@@ -377,7 +444,7 @@ export function AdminRequestDetail() {
     );
   }
 
-  const { request, client, attachments, history } = data;
+  const { request, client, attachments, history, internalNotes } = data;
   const descriptionLabel =
     request.request_type === "upload_photos"
       ? "What are these files for?"
@@ -448,9 +515,7 @@ export function AdminRequestDetail() {
           ) : null}
 
           <div className={styles.completionNote}>
-            <label htmlFor="client-completion-note">
-              Client-visible note
-            </label>
+            <label htmlFor="client-completion-note">Client-visible note</label>
             <textarea
               id="client-completion-note"
               value={completionNote}
@@ -462,9 +527,7 @@ export function AdminRequestDetail() {
               placeholder="Example: I updated your Saturday hours and phone number on the Contact page and footer."
             />
             <div className={styles.noteActions}>
-              <span>
-                This appears on the client&apos;s request detail page.
-              </span>
+              <span>This appears on the client&apos;s request detail page.</span>
               <button
                 type="button"
                 onClick={saveCompletionNote}
@@ -558,6 +621,60 @@ export function AdminRequestDetail() {
             <div className={styles.emptyState}>
               No photos or files were attached to this request.
             </div>
+          )}
+        </section>
+
+        <section className={styles.internalNotes}>
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.eyebrow}>Private</p>
+              <h2>Internal admin notes</h2>
+            </div>
+            <span>{internalNotes.length}</span>
+          </div>
+
+          <p className={styles.internalNotesHelp}>
+            These notes are only visible to portal administrators. Clients never see them.
+          </p>
+
+          <textarea
+            className={styles.internalNoteInput}
+            value={internalNote}
+            onChange={(event) => {
+              setInternalNote(event.target.value);
+              setInternalNoteMessage("");
+            }}
+            rows={4}
+            placeholder="Add a private note about follow-up, scope, billing, or implementation details."
+          />
+          <div className={styles.internalNoteActions}>
+            <span>{internalNote.length}/2000</span>
+            <button
+              type="button"
+              onClick={addInternalNote}
+              disabled={savingInternalNote || !internalNote.trim() || internalNote.length > 2000}
+            >
+              {savingInternalNote ? "Saving…" : "Add private note"}
+            </button>
+          </div>
+
+          {internalNoteMessage ? (
+            <div className={styles.statusSuccess} role="status">
+              {internalNoteMessage}
+            </div>
+          ) : null}
+
+          {internalNotes.length ? (
+            <div className={styles.internalNoteList}>
+              {internalNotes.map((item) => (
+                <article key={item.id} className={styles.internalNoteItem}>
+                  <p>{item.note}</p>
+                  <span>{formatDate(item.created_at)}</span>
+                </article>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.emptyState}>No private admin notes yet.</div>
           )}
         </section>
 
