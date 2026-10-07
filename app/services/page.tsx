@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Services",
   description:
-    "Web design, site care, as-needed website support, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
+    "Web design, Site Care, and as-needed website support for small businesses and organizations in Rochester, Minnesota and beyond.",
   path: "/services",
 });
 
@@ -53,34 +53,6 @@ const serviceList = [
     href: "/site-care",
     cta: "Compare monthly and as-needed support",
   },
-  {
-    id: "technical-writing",
-    number: "04",
-    title: "Technical Writing & Documentation",
-    fit: "For businesses and organizations that need complicated information turned into clear user guides, SOPs, onboarding material, help content, or process documentation.",
-    includes: [
-      "User guides and software walkthroughs",
-      "SOPs and internal process documentation",
-      "Onboarding and training materials",
-      "Help-center content and documentation editing",
-    ],
-    href: "/technical-writing",
-    cta: "Explore technical writing",
-  },
-  {
-    id: "grant-research",
-    number: "05",
-    title: "Grant Research & Writing",
-    fit: "For small organizations that need help finding realistic funding opportunities, evaluating fit, organizing priorities, or developing a well-supported application.",
-    includes: [
-      "Grant opportunity research",
-      "Eligibility, deadline, and fit review",
-      "Funding roadmaps and grant calendars",
-      "Clearly defined grant-writing support",
-    ],
-    href: "/grant-research-writing",
-    cta: "Explore grant research & writing",
-  },
 ] as const;
 
 export default function ServicesPage() {
@@ -92,9 +64,9 @@ export default function ServicesPage() {
           <p className="eyebrow">Services</p>
           <h1>Choose the kind of practical support you actually need.</h1>
           <p>
-            You may need a website, clearer documentation, funding research, or
-            help organizing a process. Those are different problems, so I treat
-            them as different services instead of forcing everything into one package.
+            Start with a new website, focused improvements to an existing site,
+            or ongoing care. Choose the level of help your website needs,
+            with scope and pricing agreed before work begins.
           </p>
         </section>
 

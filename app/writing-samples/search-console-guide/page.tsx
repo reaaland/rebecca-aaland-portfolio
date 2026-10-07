@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { PortfolioHeader } from "@/components/portfolio-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
@@ -13,7 +13,7 @@ export const metadata = createPageMetadata({
 export default function SearchConsoleGuidePage() {
   return (
     <>
-      <SiteHeader />
+      <PortfolioHeader />
       <main className="business-main service-theme-tech">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Writing Sample · Technical Documentation</p>

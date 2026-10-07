@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "Pricing",
   description:
-    "Starting prices for web design, Site Care, as-needed website support, technical writing, grant research, and practical business support, with clear SEO scope for each website tier.",
+    "Starting prices for web design, Site Care, and as-needed website support, with clear SEO scope for each website tier.",
   path: "/pricing",
 });
 
@@ -28,18 +28,6 @@ const categories = [
     price: "$100/month",
     href: "#site-care",
     text: "For routine support and small ongoing updates.",
-  },
-  {
-    title: "Technical writing",
-    price: "From $175",
-    href: "#technical-writing",
-    text: "For documentation cleanup, SOPs, user guides, onboarding, and help content.",
-  },
-  {
-    title: "Grant research & writing",
-    price: "From $195",
-    href: "#grant-services",
-    text: "For grant research, funding roadmaps, and clearly defined writing support.",
   },
 ] as const;
 
@@ -278,113 +266,6 @@ export default function PricingPage() {
                   Send me the site ↗
                 </Link>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="technical-writing" className="services-section" data-reveal>
-          <div className="shell">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">Technical writing &amp; documentation</p>
-                <h2>Start with the size and complexity of the documentation.</h2>
-              </div>
-              <p>
-                Introductory pricing starts at $175 for cleanup of an existing
-                document. SOPs start at $250, user or onboarding guides at $400,
-                and small documentation sets at $750. Larger projects are quoted
-                by scope.
-              </p>
-            </div>
-
-            <div className="service-grid pricing-update-grid">
-              <article>
-                <span>Starting at $175</span>
-                <h3>Documentation Review &amp; Cleanup</h3>
-                <p>
-                  Edit and reorganize an existing SOP, guide, help article, or
-                  process document for clarity and usability.
-                </p>
-                <Link className="text-link" href="/technical-writing">
-                  See technical writing services ↗
-                </Link>
-              </article>
-
-              <article>
-                <span>Starting at $250</span>
-                <h3>Single SOP or Process Guide</h3>
-                <p>
-                  Turn one defined workflow into a clear, repeatable SOP,
-                  checklist, or internal process guide.
-                </p>
-                <Link className="text-link" href="/technical-writing">
-                  See SOP details ↗
-                </Link>
-              </article>
-
-              <article>
-                <span>Starting at $400</span>
-                <h3>User or Onboarding Guide</h3>
-                <p>
-                  Multi-step documentation for onboarding, implementation,
-                  software use, or training.
-                </p>
-                <Link className="text-link" href="/technical-writing">
-                  See guide details ↗
-                </Link>
-              </article>
-
-              <article>
-                <span>Starting at $750</span>
-                <h3>Small Documentation Set</h3>
-                <p>
-                  A coordinated set of roughly 3–5 related documents with
-                  consistent structure and terminology.
-                </p>
-                <Link className="text-link" href="/technical-writing">
-                  See documentation packages ↗
-                </Link>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="grant-services" className="services-section" data-reveal>
-          <div className="shell">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">Grant research &amp; writing</p>
-                <h2>Start small, then build the funding strategy when it makes sense.</h2>
-              </div>
-              <p>
-                The Grant Funding Snapshot starts at $195. A deeper Funding
-                Strategy starts at $750. Grant-writing support is quoted separately
-                once the opportunity and scope are clear.
-              </p>
-            </div>
-            <div className="service-grid pricing-update-grid">
-              <article>
-                <span>Starting at $195</span>
-                <h3>Grant Funding Snapshot</h3>
-                <p>
-                  A scoped search for funding opportunities, with eligibility,
-                  deadlines, funding ranges, and fit notes for suitable matches.
-                </p>
-                <Link className="text-link" href="/grant-research-writing">
-                  See grant research services ↗
-                </Link>
-              </article>
-              <article>
-                <span>Starting at $750</span>
-                <h3>Funding Strategy</h3>
-                <p>
-                  A deeper opportunity pipeline with a 6–12 month grant calendar,
-                  readiness gaps, and recommended next steps.
-                </p>
-                <Link className="text-link" href="/grant-research-writing">
-                  See funding strategy details ↗
-                </Link>
-              </article>
             </div>
           </div>
         </section>

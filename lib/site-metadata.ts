@@ -4,7 +4,7 @@ export const SITE_URL = "https://www.rebeccaiaaland.com";
 
 const SITE_NAME = "Aaland Web Design & Business Solutions";
 const SOCIAL_IMAGE_ALT =
-  "Aaland Web Design & Business Solutions — web design, technical writing, grant research, and business support";
+  "Aaland Web Design & Business Solutions — website design, website updates, and ongoing Site Care";
 
 type PageMetadataInput = {
   title: string;

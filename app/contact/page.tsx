@@ -6,7 +6,7 @@ import { ContactForm } from "./contact-form";
 export const metadata = createPageMetadata({
   title: "Contact",
   description:
-    "Contact Rebecca Aaland about web design, Site Care, technical writing, grant research, business support, or a development opportunity.",
+    "Contact Rebecca Aaland about website design, website updates, Site Care, or a job opportunity.",
   path: "/contact",
 });
 
