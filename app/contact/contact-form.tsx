@@ -5,9 +5,7 @@ import { FormEvent, useState } from "react";
 const inquiryLabels = {
   website: "Website project or updates",
   care: "Site Care or as-needed support",
-  technical: "Technical writing & documentation",
-  grant: "Grant research & writing",
-  role: "Developer / job opportunity",
+  role: "Job or contract opportunity",
   general: "General inquiry",
 } as const;
 
@@ -30,21 +28,9 @@ const inquiryDetails: Record<
     messageLabel: "What kind of website help do you expect to need?",
     buttonLabel: "Ask about website support ↗",
   },
-  technical: {
-    intro:
-      "For user guides, SOPs, onboarding content, help-center articles, and other documentation.",
-    messageLabel: "What information or process needs to be clearer?",
-    buttonLabel: "Send documentation inquiry ↗",
-  },
-  grant: {
-    intro:
-      "For grant research, opportunity evaluation, funding roadmaps, and clearly defined grant-writing support.",
-    messageLabel: "What organization, project, or funding need should I know about?",
-    buttonLabel: "Send grant inquiry ↗",
-  },
   role: {
     intro:
-      "For frontend, web development, contract, or related technical opportunities.",
+      "For development, writing, training, or related job and contract opportunities.",
     messageLabel: "What should I know about the opportunity?",
     buttonLabel: "Send opportunity message ↗",
   },
@@ -151,28 +137,6 @@ export function ContactForm({
           <label>
             Role or opportunity
             <input name="roleTitle" type="text" />
-          </label>
-        </div>
-      ) : inquiryType === "technical" ? (
-        <div className="form-row">
-          <label>
-            Business or organization
-            <input name="organization" type="text" autoComplete="organization" />
-          </label>
-          <label>
-            Relevant document or project link, if any
-            <input name="website" type="text" autoComplete="url" />
-          </label>
-        </div>
-      ) : inquiryType === "grant" ? (
-        <div className="form-row">
-          <label>
-            Organization
-            <input name="organization" type="text" autoComplete="organization" />
-          </label>
-          <label>
-            Organization website, if available
-            <input name="website" type="text" autoComplete="url" />
           </label>
         </div>
       ) : (

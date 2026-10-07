@@ -4,9 +4,9 @@ import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
-  title: "Web Design, Technical Writing & Business Support in Rochester, MN",
+  title: "Web Design & Site Care in Rochester, MN",
   description:
-    "Web design, site care, technical writing, grant research, and business support for small businesses in Rochester, Minnesota and beyond.",
+    "Website design, website updates, and ongoing Site Care for small businesses in Rochester, Minnesota and beyond.",
   path: "/",
 });
 
@@ -31,20 +31,6 @@ const quickPaths = [
     href: "/site-care",
     link: "Explore Site Care",
     className: "quick-card-web",
-  },
-  {
-    title: "I need technical writing",
-    text: "Clear documentation, SOPs, user guides, onboarding, and help content.",
-    href: "/technical-writing",
-    link: "Explore technical writing",
-    className: "quick-card-tech",
-  },
-  {
-    title: "I need grant research",
-    text: "Funding research, opportunity evaluation, roadmaps, and grant-writing support.",
-    href: "/grant-research-writing",
-    link: "Explore grant services",
-    className: "quick-card-grant",
   },
 ] as const;
 
@@ -81,14 +67,14 @@ export default function HomePage() {
             </p>
 
             <h1 id="hero-title">
-              Clearer websites, better documentation,
-              <em> and practical business support.</em>
+              Websites that work for your business.
+              <em> Support that keeps them working.</em>
             </h1>
 
             <p className="hero-intro">
-              From websites and site care to technical writing, grant research, and
-              process support, I help small businesses and organizations turn
-              complicated needs into clear, practical solutions.
+              I build clear, professional websites for small businesses, improve
+              existing sites, and provide ongoing care. Get practical help
+              without having to manage the technology yourself.
             </p>
 
             <div className="hero-actions">
@@ -111,110 +97,6 @@ export default function HomePage() {
                 </Link>
               </article>
             ))}
-          </div>
-        </section>
-
-        <section className="business-value-section shell" aria-labelledby="business-value-title" data-reveal>
-          <div className="business-value-copy">
-            <p className="eyebrow">Practical web support</p>
-            <h2 id="business-value-title">Web help without making you manage the technology.</h2>
-            <p>
-              Some businesses need a new website. Others only need a few things
-              fixed, updated, or made easier for customers. I start with what is
-              already working and build from there.
-            </p>
-          </div>
-
-          <div className="business-value-grid">
-            <article>
-              <span>01</span>
-              <h3>Start in writing</h3>
-              <p>You can send the details first. A phone call is not required just to find out whether the project fits.</p>
-            </article>
-            <article>
-              <span>02</span>
-              <h3>Existing sites are welcome</h3>
-              <p>I can review and improve a website I did not originally build instead of automatically recommending a replacement.</p>
-            </article>
-            <article>
-              <span>03</span>
-              <h3>Know the price first</h3>
-              <p>You will know the scope and price before I begin work that changes your cost.</p>
-            </article>
-            <article>
-              <span>04</span>
-              <h3>Stay supported</h3>
-              <p>Use $75/hour as-needed support when that is enough, or $100/month Site Care when you want ongoing help.</p>
-            </article>
-          </div>
-        </section>
-
-        <section className="business-specialty-section shell" aria-labelledby="specialty-title" data-reveal>
-          <div className="section-heading">
-            <div>
-              <p className="eyebrow">Beyond the website</p>
-              <h2 id="specialty-title">Clear information is part of how a business works.</h2>
-            </div>
-            <p>
-              Some problems are not website problems. I also help organize
-              technical information, document processes, and research realistic
-              funding opportunities.
-            </p>
-          </div>
-
-          <div className="business-specialty-grid">
-            <article className="specialty-card specialty-card-tech">
-              <span>Technical writing</span>
-              <h3>Documentation people can actually follow.</h3>
-              <p>
-                User guides, SOPs, onboarding material, help-center content, and
-                process documentation built around clarity and practical use.
-              </p>
-              <Link className="text-link" href="/technical-writing">
-                Explore technical writing ↗
-              </Link>
-            </article>
-
-            <article className="specialty-card specialty-card-grant">
-              <span>Grant research &amp; writing</span>
-              <h3>Start with realistic funding opportunities.</h3>
-              <p>
-                Grant research, fit evaluation, funding roadmaps, and clearly
-                defined writing support for small organizations.
-              </p>
-              <Link className="text-link" href="/grant-research-writing">
-                Explore grant services ↗
-              </Link>
-            </article>
-          </div>
-        </section>
-
-        <section className="services-section business-pricing-band" aria-labelledby="pricing-title" data-reveal>
-          <div className="shell">
-            <div className="section-heading">
-              <div>
-                <p className="eyebrow">Pricing at a glance</p>
-                <h2 id="pricing-title">Know the starting point before you reach out.</h2>
-              </div>
-              <p>
-                Clear starting prices make it easier to decide whether a project
-                fits your budget before we spend time discussing the details.
-              </p>
-            </div>
-
-            <div className="service-grid">
-              {pricing.map((item) => (
-                <article key={item.title}>
-                  <span>{item.price}</span>
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              ))}
-            </div>
-
-            <Link className="section-link" href="/pricing">
-              See full pricing ↗
-            </Link>
           </div>
         </section>
 
@@ -270,6 +152,70 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className="business-value-section shell" aria-labelledby="business-value-title" data-reveal>
+          <div className="business-value-copy">
+            <p className="eyebrow">Practical web support</p>
+            <h2 id="business-value-title">Web help without making you manage the technology.</h2>
+            <p>
+              Some businesses need a new website. Others only need a few things
+              fixed, updated, or made easier for customers. I start with what is
+              already working and build from there.
+            </p>
+          </div>
+
+          <div className="business-value-grid">
+            <article>
+              <span>01</span>
+              <h3>Start in writing</h3>
+              <p>You can send the details first. A phone call is not required just to find out whether the project fits.</p>
+            </article>
+            <article>
+              <span>02</span>
+              <h3>Existing sites are welcome</h3>
+              <p>I can review and improve a website I did not originally build instead of automatically recommending a replacement.</p>
+            </article>
+            <article>
+              <span>03</span>
+              <h3>Know the price first</h3>
+              <p>You will know the scope and price before I begin work that changes your cost.</p>
+            </article>
+            <article>
+              <span>04</span>
+              <h3>Stay supported</h3>
+              <p>Use $75/hour as-needed support when that is enough, or $100/month Site Care when you want ongoing help.</p>
+            </article>
+          </div>
+        </section>
+
+        <section className="services-section business-pricing-band" aria-labelledby="pricing-title" data-reveal>
+          <div className="shell">
+            <div className="section-heading">
+              <div>
+                <p className="eyebrow">Pricing at a glance</p>
+                <h2 id="pricing-title">Know the starting point before you reach out.</h2>
+              </div>
+              <p>
+                Clear starting prices make it easier to decide whether a project
+                fits your budget before we spend time discussing the details.
+              </p>
+            </div>
+
+            <div className="service-grid">
+              {pricing.map((item) => (
+                <article key={item.title}>
+                  <span>{item.price}</span>
+                  <h3>{item.title}</h3>
+                  <p>{item.text}</p>
+                </article>
+              ))}
+            </div>
+
+            <Link className="section-link" href="/pricing">
+              See full pricing ↗
+            </Link>
+          </div>
+        </section>
+
         <section className="business-process-section shell" aria-labelledby="business-process-title" data-reveal>
           <div className="section-heading">
             <div>
@@ -307,7 +253,7 @@ export default function HomePage() {
           <h2>Tell me what you need to work better.</h2>
           <p>
             You do not need to know the technical solution first. Start with the
-            business problem, the current site or document, or the change you need.
+            website, the problem, or the change you need.
           </p>
           <Link className="button button-dark" href="/contact">
             Contact Rebecca ↗

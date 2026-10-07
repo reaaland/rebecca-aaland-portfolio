@@ -79,6 +79,10 @@ export function PortfolioHeader() {
           Business Site
         </Link>
 
+        <Link href="/writing-samples" onClick={() => setMenuOpen(false)}>
+          Writing
+        </Link>
+
         <Link href="/resume" onClick={() => setMenuOpen(false)}>
           Résumé
         </Link>

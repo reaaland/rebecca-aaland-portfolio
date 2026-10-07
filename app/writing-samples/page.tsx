@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiteFooter } from "@/components/site-footer";
-import { SiteHeader } from "@/components/site-header";
+import { PortfolioHeader } from "@/components/portfolio-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
 export const metadata = createPageMetadata({
@@ -43,43 +43,22 @@ const technicalSamples = [
 export default function WritingSamplesPage() {
   return (
     <>
-      <SiteHeader />
+      <PortfolioHeader />
       <main className="business-main">
         <section className="page-hero shell" data-reveal>
           <p className="eyebrow">Writing Portfolio</p>
-          <h1>Two kinds of writing, separated so you can see the work that matters to you.</h1>
+          <h1>Writing that makes information easier to use.</h1>
           <p>
-            Technical writing and grant writing solve different problems. This portfolio
-            keeps them separate so clients and hiring teams can go directly to the kind
-            of writing they need to evaluate.
+            Explore technical documentation, SEO and product content, and a submitted
+            application for my own business. These samples show my approach to
+            research, structure, and clear communication.
           </p>
         </section>
 
-        <section className="shell business-choice-grid" aria-label="Writing sample categories">
-          <article data-reveal>
-            <p className="eyebrow">Technical Writing</p>
-            <h2>Documentation, SEO &amp; product content</h2>
-            <p>
-              Setup instructions, troubleshooting, technical explanations, and product
-              information written for the person who has to understand and use it.
-            </p>
-            <a className="button button-dark" href="#technical-writing">
-              View technical writing samples ↓
-            </a>
-          </article>
-
-          <article data-reveal>
-            <p className="eyebrow">Grant Writing</p>
-            <h2>Grant narratives &amp; use-of-funds writing</h2>
-            <p>
-              Applicant stories, funding needs, practical budgets, and narratives that
-              connect the request to a clear plan.
-            </p>
-            <a className="button button-dark" href="#grant-writing">
-              View grant writing samples ↓
-            </a>
-          </article>
-        </section>
+        <nav className="shell hero-actions" aria-label="Writing sample categories">
+          <a className="button button-dark" href="#technical-writing">Technical writing samples ↓</a>
+          <a className="text-link" href="#grant-writing">Grant application sample ↓</a>
+        </nav>
 
         <section id="technical-writing" className="page-hero shell" data-reveal>
           <p className="eyebrow">Technical Writing Samples</p>
@@ -91,7 +70,7 @@ export default function WritingSamplesPage() {
           </p>
         </section>
 
-        <section className="shell business-choice-grid" aria-label="Technical writing samples">
+        <section className="shell service-grid" aria-label="Technical writing samples">
           {technicalSamples.map((sample) => (
             <article key={sample.title} data-reveal>
               <p className="eyebrow">{sample.number} / {sample.type}</p>
@@ -110,12 +89,13 @@ export default function WritingSamplesPage() {
         </section>
 
         <section id="grant-writing" className="page-hero shell" data-reveal>
-          <p className="eyebrow">Grant Writing Samples</p>
+          <p className="eyebrow">Grant Application Sample</p>
           <h2>A real submitted application, presented as a portfolio sample.</h2>
           <p>
             This first grant-writing sample comes from the Amber Grant application I
             submitted for Aaland Web Design &amp; Business Solutions on September 29,
-            2026. I am using real work rather than inventing a client history.
+            2026. This is my own business application, not client work or evidence
+            of a funding award. The excerpts reflect the business plan at submission.
           </p>
         </section>
 
@@ -211,15 +191,15 @@ export default function WritingSamplesPage() {
           </p>
         </section>
 
-        <section className="plain-cta shell themed-cta" data-reveal>
-          <p className="eyebrow">Need writing support?</p>
-          <h2>Choose the type of writing you need.</h2>
+        <section className="plain-cta shell" data-reveal>
+          <p className="eyebrow">Professional portfolio</p>
+          <h2>Explore my experience and other work.</h2>
           <div className="hero-actions">
-            <Link className="button button-dark" href="/contact/technical-writing">
-              Discuss technical writing ↗
+            <Link className="button button-dark" href="/portfolio">
+              Back to portfolio ↗
             </Link>
-            <Link className="button button-secondary" href="/contact/grant-research">
-              Discuss grant writing ↗
+            <Link className="button button-secondary" href="/resume">
+              View résumé
             </Link>
           </div>
         </section>
