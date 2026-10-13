@@ -51,11 +51,11 @@ export function WebsiteUpdateRequestForm() {
     let active = true;
 
     async function loadIdentity() {
-      const { data: authData } = await client.auth.getUser();
+      const { data: authData, error: authError } = await client.auth.getUser();
 
       if (!active) return;
 
-      if (!authData.user) {
+      if (authError || !authData.user) {
         window.location.replace("/portal/login");
         return;
       }
@@ -70,10 +70,17 @@ export function WebsiteUpdateRequestForm() {
           .from("clients")
           .select("id, contact_name, business_name")
           .eq("auth_user_id", authData.user.id)
+          .eq("status", "active")
           .limit(1),
       ]);
 
       if (!active) return;
+
+      if (adminResult.error || clientResult.error) {
+        setError("We could not verify your portal access. Please try again.");
+        setLoadingIdentity(false);
+        return;
+      }
 
       setIsAdmin(Boolean(adminResult.data?.length));
       setPortalClient((clientResult.data?.[0] as PortalClient | undefined) ?? null);
