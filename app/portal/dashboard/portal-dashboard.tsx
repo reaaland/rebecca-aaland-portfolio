@@ -160,6 +160,7 @@ export function PortalDashboard() {
   const [data, setData] = useState<DashboardData | null>(null);
   const [error, setError] = useState("");
   const [signingOut, setSigningOut] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     if (!supabase) {
@@ -402,15 +403,36 @@ export function PortalDashboard() {
 
   return (
     <main className={styles.page}>
-      <aside className={styles.sidebar}>
-        <Brand />
+      <aside
+        className={
+          styles.sidebar + (mobileMenuOpen ? " " + styles.sidebarOpen : "")
+        }
+      >
+        <div className={styles.mobileHeader}>
+          <Brand />
+          <button
+            type="button"
+            className={styles.mobileMenuButton}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="portal-navigation"
+            aria-label={mobileMenuOpen ? "Close portal menu" : "Open portal menu"}
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
 
-        <nav className={styles.nav} aria-label="Client portal">
+        <nav id="portal-navigation" className={styles.nav} aria-label="Client portal">
           {navItems.map((item) => (
             <button
               key={item.label}
               type="button"
-              onClick={() => scrollToPortalSection(item.target)}
+              onClick={() => {
+                scrollToPortalSection(item.target);
+                setMobileMenuOpen(false);
+              }}
               className={item.active ? styles.navActive : styles.navLink}
             >
               <span>{item.label}</span>
