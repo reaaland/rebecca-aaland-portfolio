@@ -145,6 +145,7 @@
 }
 
 .content {
+  min-width: 0;
   width: min(100%, 1260px);
   margin-inline: auto;
   padding: 44px clamp(26px, 4vw, 58px) 70px;
@@ -678,6 +679,31 @@
   font-size: 0.68rem;
 }
 
+.accountSignOut {
+  justify-self: end;
+  min-height: 44px;
+  margin-top: 8px;
+  padding: 10px 14px;
+  border: 1px solid rgba(35, 62, 98, 0.14);
+  border-radius: 10px;
+  background: #fff;
+  color: #40516a;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.accountSignOut:hover {
+  border-color: rgba(47, 122, 218, 0.32);
+  color: #1b65bd;
+}
+
+.accountSignOut:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
 .centeredState {
   min-height: 100vh;
   display: grid;
@@ -923,7 +949,13 @@
   }
 
   .accountSection > div:last-child {
+    width: 100%;
     text-align: left;
+  }
+
+  .accountSignOut {
+    width: 100%;
+    justify-self: stretch;
   }
 }
 
