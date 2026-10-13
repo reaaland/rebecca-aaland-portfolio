@@ -7,7 +7,7 @@ export function SiteFooter() {
         <strong>
           <span aria-hidden="true">[RA]</span> Aaland Web Design &amp; Business Solutions
         </strong>
-        <span>Web design · Site care · Technical writing · Business support</span>
+        <span>Web design · Website updates · Site Care</span>
       </div>
 
       <p>
@@ -21,7 +21,7 @@ export function SiteFooter() {
         <Link href="/site-care">Site Care</Link>
         <Link href="/portal/login">Client Portal</Link>
         <Link href="/contact">Contact</Link>
-        <Link href="/portfolio">Developer Portfolio</Link>
+        <Link href="/portfolio">Portfolio</Link>
         <Link href="/privacy">Privacy</Link>
         <Link href="/terms">Terms</Link>
         <a href="#top">Back to top ↑</a>

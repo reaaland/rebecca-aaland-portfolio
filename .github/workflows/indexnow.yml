@@ -1,0 +1,55 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  statuses: read
+
+jobs:
+  notify-indexnow:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Wait for Vercel production deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          state="pending"
+          for attempt in {1..36}; do
+            state=$(curl -fsSL \
+              -H "Authorization: Bearer ${GH_TOKEN}" \
+              -H "Accept: application/vnd.github+json" \
+              "${GITHUB_API_URL}/repos/${GITHUB_REPOSITORY}/commits/${GITHUB_SHA}/status" \
+              | jq -r '[.statuses[] | select(.context == "Vercel")] | sort_by(.updated_at) | last | .state // "pending"')
+
+            echo "Vercel status: ${state}"
+
+            if [ "${state}" = "success" ]; then
+              break
+            fi
+
+            if [ "${state}" = "failure" ] || [ "${state}" = "error" ]; then
+              echo "Vercel deployment failed; skipping IndexNow submission."
+              exit 1
+            fi
+
+            sleep 10
+          done
+
+          if [ "${state}" != "success" ]; then
+            echo "Timed out waiting for the Vercel production deployment."
+            exit 1
+          fi
+
+      - name: Notify IndexNow about changed public pages
+        env:
+          INDEXNOW_BEFORE_SHA: ${{ github.event.before }}
+        run: node scripts/submit-indexnow.mjs

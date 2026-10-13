@@ -6,7 +6,7 @@ import { createPageMetadata } from "@/lib/site-metadata";
 export const metadata = createPageMetadata({
   title: "About",
   description:
-    "Meet Rebecca Aaland, the web designer, developer, technical writer, and small-business owner behind Aaland Web Design & Business Solutions in Rochester, Minnesota.",
+    "Meet Rebecca Aaland, the web designer, developer, and small-business owner behind Aaland Web Design & Business Solutions in Rochester, Minnesota.",
   path: "/about",
 });
 
@@ -47,17 +47,9 @@ export default function AboutPage() {
               trust, communication, and clear expectations matter.
             </p>
             <p>
-              I now bring those habits into web design, technical writing,
-              documentation, grant research, and practical business support. My
-              work includes custom client websites, frontend applications,
-              process documentation, user-facing guides, research, troubleshooting,
-              and ongoing support.
-            </p>
-            <p>
-              Earlier in my teaching career, I wrote funded classroom grants for
-              microscopes and a 3-D printer. That experience is part of why I
-              approach grant work from the research and fit side first rather than
-              treating every opportunity as an application that should be pursued.
+              I now bring those habits into building and maintaining websites for
+              small businesses. My work includes custom client websites,
+              focused improvements, troubleshooting, and ongoing support.
             </p>
             <blockquote>
               My goal is not to sell the biggest project. It is to figure out
@@ -68,15 +60,15 @@ export default function AboutPage() {
 
         <section className="plain-cta shell" data-reveal>
           <p className="eyebrow">Two sides of the work</p>
-          <h2>Looking for my development experience?</h2>
+          <h2>Looking for my broader experience?</h2>
           <p>
             The business site stays focused on clients. My technical portfolio
-            and résumé are available separately for employers and development
-            opportunities.
+            includes development work and writing samples, with a résumé
+            available for employers and contract opportunities.
           </p>
           <div className="hero-actions">
             <Link className="button button-dark" href="/portfolio">
-              Developer portfolio ↗
+              View portfolio ↗
             </Link>
             <Link className="button button-secondary" href="/work">
               Client work

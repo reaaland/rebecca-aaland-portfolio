@@ -20,11 +20,11 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Web Design, Technical Writing & Business Support | Rochester, MN",
+    default: "Web Design & Site Care | Rochester, MN",
     template: "%s | Aaland Web Design & Business Solutions",
   },
   description:
-    "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
+    "Website design, website updates, and ongoing Site Care for small businesses and organizations in Rochester, Minnesota and beyond.",
   authors: [{ name: "Rebecca Aaland" }],
   creator: "Rebecca Aaland",
   metadataBase: new URL(SITE_URL),
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Aaland Web Design & Business Solutions",
     description:
-      "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations.",
+      "Website design, website updates, and ongoing Site Care for small businesses and organizations.",
     url: "/",
     siteName: "Aaland Web Design & Business Solutions",
     type: "website",

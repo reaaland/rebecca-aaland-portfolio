@@ -27,14 +27,14 @@ const businessStructuredData = {
         },
       ],
       description:
-        "Web design, site care, technical writing, grant research, and practical business support for small businesses and organizations in Rochester, Minnesota and beyond.",
+        "Website design, website updates, and ongoing Site Care for small businesses and organizations in Rochester, Minnesota and beyond.",
     },
     {
       "@type": "Person",
       "@id": `${SITE_URL}/#rebecca-aaland`,
       name: "Rebecca Aaland",
       url: `${SITE_URL}/about`,
-      jobTitle: "Web Designer, Developer, and Technical Writer",
+      jobTitle: "Web Designer and Developer",
       worksFor: {
         "@id": `${SITE_URL}/#business`,
       },

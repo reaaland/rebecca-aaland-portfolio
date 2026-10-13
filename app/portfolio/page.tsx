@@ -9,7 +9,7 @@ import { PortfolioHeader } from "@/components/portfolio-header";
 export const metadata: Metadata = {
   title: "Developer Portfolio | Rebecca Aaland",
   description:
-    "Rebecca Aaland's developer portfolio featuring frontend, web development, client website, and product work.",
+    "Rebecca Aaland's developer portfolio featuring frontend, web development, client website, product work, and writing samples.",
   alternates: {
     canonical: "/portfolio",
   },
@@ -515,6 +515,22 @@ export default function Home() {
                 View résumé
               </Link>
             </div>
+          </div>
+        </section>
+        <section className="plain-cta shell" aria-labelledby="writing-title" data-reveal>
+          <p className="eyebrow">Writing portfolio</p>
+          <h2 id="writing-title">Technical writing and clear communication.</h2>
+          <p>
+            Explore setup instructions, troubleshooting, SEO and product content,
+            plus a grant application submitted for my own business.
+          </p>
+          <div className="hero-actions">
+            <Link className="button button-dark" href="/writing-samples#technical-writing">
+              Technical writing samples ↗
+            </Link>
+            <Link className="text-link" href="/writing-samples#grant-writing">
+              Grant application sample ↗
+            </Link>
           </div>
         </section>
       </main>

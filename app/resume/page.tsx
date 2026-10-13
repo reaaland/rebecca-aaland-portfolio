@@ -2,12 +2,18 @@ import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { createPageMetadata } from "@/lib/site-metadata";
 
-export const metadata = createPageMetadata({
-  title: "Junior Frontend Developer Résumé",
-  description:
-    "Rebecca Aaland's frontend developer résumé, highlighting production React/Supabase work, a paid Skinstric internship, API-driven projects, and practical problem solving.",
-  path: "/resume",
-});
+export const metadata = {
+  ...createPageMetadata({
+    title: "Junior Frontend Developer Résumé",
+    description:
+      "Rebecca Aaland's frontend developer résumé, highlighting production React/Supabase work, a paid Skinstric internship, API-driven projects, and practical problem solving.",
+    path: "/resume",
+  }),
+  robots: {
+    index: false,
+    follow: true,
+  },
+};
 
 export default function ResumePage() {
   return (
@@ -36,7 +42,9 @@ export default function ResumePage() {
           <aside data-reveal>
             <section>
               <h2>Contact</h2>
-              <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>
+              <a href="mailto:rebecca@rebeccaiaaland.com">
+                rebecca@rebeccaiaaland.com
+              </a>
               <p>Rochester, Minnesota</p>
               <p>Open to remote work</p>
               <a
