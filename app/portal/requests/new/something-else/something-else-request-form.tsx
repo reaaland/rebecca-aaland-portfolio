@@ -65,6 +65,21 @@ function safeFilename(name: string) {
   return cleaned || "file";
 }
 
+function isAlreadyExistsError(error: unknown) {
+  if (!error || typeof error !== "object") return false;
+
+  const value = error as {
+    statusCode?: string | number;
+    status?: string | number;
+    message?: string;
+  };
+
+  return (
+    String(value.statusCode ?? value.status ?? "") === "409" ||
+    value.message?.toLowerCase().includes("already exists") === true
+  );
+}
+
 export function SomethingElseRequestForm() {
   const supabase = useMemo(() => createClient(), []);
   const [step, setStep] = useState<Step>("details");
@@ -189,51 +204,69 @@ export function SomethingElseRequestForm() {
   async function submitRequest() {
     if (!supabase || !portalClient || !userId) return;
 
-    if (requestId) {
-      setError(
-        "This request has already been saved. Return to the dashboard to start another request.",
-      );
-      return;
-    }
-
     setSubmitting(true);
-    setUploadProgress("Saving your request…");
+    setUploadProgress(requestId ? "Resuming your upload…" : "Saving your request…");
     setError("");
 
-    const { data: request, error: requestError } = await supabase
-      .from("service_requests")
-      .insert({
-        client_id: portalClient.id,
-        request_type: "something_else",
-        description: form.description.trim(),
-        desired_timing: form.desiredTiming.trim() || null,
-        additional_notes: form.additionalNotes.trim() || null,
-        status: "received",
-      })
-      .select("id")
-      .single();
+    let activeRequestId = requestId;
 
-    if (requestError || !request) {
-      setError(requestError?.message ?? "Your request could not be saved.");
-      setSubmitting(false);
-      setUploadProgress("");
-      return;
+    if (!activeRequestId) {
+      const { data: request, error: requestError } = await supabase
+        .from("service_requests")
+        .insert({
+          client_id: portalClient.id,
+          request_type: "something_else",
+          description: form.description.trim(),
+          desired_timing: form.desiredTiming.trim() || null,
+          additional_notes: form.additionalNotes.trim() || null,
+          status: "received",
+        })
+        .select("id")
+        .single();
+
+      if (requestError || !request) {
+        setError(requestError?.message ?? "Your request could not be saved.");
+        setSubmitting(false);
+        setUploadProgress("");
+        return;
+      }
+
+      activeRequestId = request.id;
+      setRequestId(request.id);
     }
-
-    setRequestId(request.id);
 
     for (let index = 0; index < files.length; index += 1) {
       const file = files[index];
-      setUploadProgress(`Uploading file ${index + 1} of ${files.length}…`);
-
       const storagePath =
         portalClient.id +
         "/" +
-        request.id +
+        activeRequestId +
         "/" +
-        crypto.randomUUID() +
+        String(index + 1).padStart(2, "0") +
         "-" +
         safeFilename(file.name);
+
+      setUploadProgress(`Checking file ${index + 1} of ${files.length}…`);
+
+      const { data: existingMetadata, error: metadataLookupError } = await supabase
+        .from("request_attachments")
+        .select("id")
+        .eq("request_id", activeRequestId)
+        .eq("storage_path", storagePath)
+        .maybeSingle();
+
+      if (metadataLookupError) {
+        setError(
+          `Your request is saved, but I could not verify ${file.name}. Press Retry upload to continue without creating a second request.`,
+        );
+        setSubmitting(false);
+        setUploadProgress("");
+        return;
+      }
+
+      if (existingMetadata) continue;
+
+      setUploadProgress(`Uploading file ${index + 1} of ${files.length}…`);
 
       const uploadOptions = {
         cacheControl: "3600",
@@ -245,9 +278,9 @@ export function SomethingElseRequestForm() {
         .from("client-request-files")
         .upload(storagePath, file, uploadOptions);
 
-      if (uploadError) {
+      if (uploadError && !isAlreadyExistsError(uploadError)) {
         setError(
-          `The request was saved, but ${file.name} could not be uploaded. Please send the missing file in a new upload request.`,
+          `Your request is saved, but ${file.name} did not finish uploading. Press Retry upload to continue this same request.`,
         );
         setSubmitting(false);
         setUploadProgress("");
@@ -257,7 +290,7 @@ export function SomethingElseRequestForm() {
       const { error: metadataError } = await supabase
         .from("request_attachments")
         .insert({
-          request_id: request.id,
+          request_id: activeRequestId,
           client_id: portalClient.id,
           storage_path: storagePath,
           original_filename: file.name,
@@ -268,7 +301,7 @@ export function SomethingElseRequestForm() {
 
       if (metadataError) {
         setError(
-          `The request was saved and ${file.name} reached secure storage, but its file record could not be completed. Please contact Rebecca before uploading it again.`,
+          `${file.name} reached secure storage, but its file record did not finish. Press Retry upload; the portal will reconnect it to this same request.`,
         );
         setSubmitting(false);
         setUploadProgress("");
@@ -457,7 +490,7 @@ export function SomethingElseRequestForm() {
                 type="button"
                 className={baseStyles.secondaryButton}
                 onClick={() => setStep("details")}
-                disabled={submitting}
+                disabled={submitting || Boolean(requestId)}
               >
                 ← Edit request
               </button>
@@ -465,7 +498,7 @@ export function SomethingElseRequestForm() {
                 type="button"
                 className={baseStyles.primaryButton}
                 onClick={submitRequest}
-                disabled={submitting || !portalClient || Boolean(requestId)}
+                disabled={submitting || !portalClient}
                 title={
                   !portalClient
                     ? "Use an approved client test account to submit"
@@ -477,12 +510,18 @@ export function SomethingElseRequestForm() {
                     ? "Sending…"
                     : "Submitting…"
                   : requestId
-                    ? "Request saved"
+                    ? "Retry upload"
                     : portalClient
                       ? "Submit request"
                       : "Client test required"}
               </button>
             </div>
+
+            {requestId ? (
+              <p className={baseStyles.previewOnly}>
+                This request is already saved. Retrying continues the same request and skips files already recorded.
+              </p>
+            ) : null}
 
             {!portalClient ? (
               <p className={baseStyles.previewOnly}>
