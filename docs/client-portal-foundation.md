@@ -1,4 +1,26 @@
-# Aaland Client Portal — Foundation
+# Aaland Client Portal — Production Source of Truth
+
+Updated October 12, 2026.
+
+## Purpose
+
+The Aaland Client Portal is an invite-only client service inside the existing
+`rebeccaiaaland.com` Next.js application. It gives active website clients one
+place to submit website changes, upload files, and track request status.
+
+The portal is not a separate website or Vercel project. Production entry point:
+
+`https://www.rebeccaiaaland.com/portal/login`
+
+Billing remains Phase 2.
+
+## Current public business direction
+
+Aaland Web Design & Business Solutions currently centers its public business
+services on websites, website updates, and Site Care. Technical-writing material
+lives under the portfolio/writing-samples area rather than as a primary business
+service. The portal should not reintroduce retired service navigation or become
+a duplicate sales catalog.
 
 ## Supabase project
 
@@ -8,20 +30,26 @@
 - Region: East US (Ohio / `us-east-2`)
 - Data API: enabled
 - Automatically expose new tables: disabled
-- Automatic RLS: enabled
+- RLS: enabled on portal application tables
 
-## Authentication direction
+## Authentication and access
 
-Use Supabase Auth with two client-facing sign-in options:
+Client-facing sign-in options:
 
 - Continue with Google
-- Email me a sign-in link (magic link)
+- Email me a secure sign-in link
 
-Use persistent sessions for returning clients. Authentication identifies the user; Row Level Security and private Storage policies authorize what that user can access.
+Portal access is approval-based. The Before User Created hook
+`private.hook_allow_approved_portal_user(event jsonb)` allows account creation
+only for an approved active client email or an approved portal administrator.
 
-Portal access remains approval-based. A new auth user should only be created when the email already exists as an approved client record. Google sign-in should use the same approved email address. Supabase can automatically link Google and email identities that share the same verified email.
+Authentication identifies the user. Database RLS and private Storage policies,
+not navigation visibility, enforce client-to-client isolation.
 
-## Current data model
+Inactive clients retain historical records but no longer qualify for active
+portal access.
+
+## Data model
 
 - `portal_admins`
 - `clients`
@@ -32,154 +60,134 @@ Portal access remains approval-based. A new auth user should only be created whe
 - `request_status_history`
 - `request_admin_notes`
 
-Request statuses remain intentionally simple:
+Request statuses:
 
 - Received
 - Working on it
 - Complete
 
-## Security rules
+Private admin notes are stored separately from client-readable request data.
 
-- Every application table has RLS enabled.
-- Anonymous database access to application tables is revoked.
-- Client reads are scoped to the authenticated client's record.
-- Clients may submit their own requests but may not change request status.
-- Internal admin notes are isolated from client-readable request data.
-- Status changes are logged automatically.
-- Authorization helper functions live outside the exposed public API schema.
-- Supabase security advisor currently reports no security lints.
+## Client experience implemented
+
+- `/portal/login`
+- `/portal/dashboard`
+- Website Update request
+- Upload Photos / Files request
+- Change Business Information request
+- Add Something New request
+- Something Else request
+- Request detail/status/history
+- Client-visible completion notes
+- Secure private file access
+- Responsive loading/skeleton states
+
+Upload flows support validation, private storage, deterministic request paths,
+and resumable retry behavior so an interrupted upload does not create a second
+service request.
+
+## Admin experience implemented
+
+- Admin request queue on the portal dashboard
+- Request detail
+- Status updates
+- Attached file access
+- Client-visible completion notes
+- Private administrator notes
+- Request status history
 
 ## Storage
 
-Planned private bucket:
+Private bucket:
 
 `client-request-files`
 
-Object path convention:
+Path convention:
 
-`<client_id>/<request_id>/<filename>`
+`<client_id>/<request_id>/<number>-<safe_filename>`
 
-The `client-request-files` bucket has now been created as **private**. Storage RLS policies are already defined for it.
+Server-side bucket restrictions:
 
-## Remote migrations
+- private bucket
+- maximum 15 MB per file
+- JPEG
+- PNG
+- WebP
+- GIF
+- AVIF
+- HEIC
+- HEIF
+- PDF
+
+The browser performs matching extension/size validation, but Storage restrictions
+remain the server-side enforcement layer.
+
+## Tracked remote migrations
 
 - `20260927213028_initial_portal_foundation`
 - `20260927213124_harden_portal_rls_and_indexes`
+- `20260927222342_add_invite_only_auth_gate`
+- `20260927222407_move_admin_invites_private`
+- `20260927222419_add_explicit_admin_invite_deny_policy`
+- `20261006024603_enforce_active_portal_clients`
+- `20261013000744_restrict_client_request_file_types`
 
-The matching SQL files are tracked in `supabase/migrations/`.
+A separate historical `noop_test_cleanup` migration exists remotely but did
+not introduce portal functionality.
 
-## Current public services to reflect in the portal
+## Search/privacy/security behavior
 
-- New websites — from $1,500
-- Website updates — from $150
-- Site Care — $100/month
-- Technical writing & documentation — from $175
-- Grant research & writing — from $195
+- Portal routes are excluded from the public sitemap.
+- `/portal/` and `/portal-auth-test` are disallowed in `robots.txt`.
+- The portal layout applies `noindex, nofollow`.
+- Site Privacy Policy covers portal authentication, request data, and private
+  client uploads.
+- Site Terms cover invite-only access, uploaded content, and the fact that a
+  portal request does not automatically expand contract scope.
+- Baseline response security headers are configured in `next.config.ts`.
 
-The Services area should show the client's active service first and link out to the public website for broader service details rather than duplicating a full sales catalog inside the portal.
+## Vercel configuration required
 
-## Next implementation steps
+The existing `rebecca-aaland-portfolio` Vercel project must provide these
+public Supabase settings to Preview and Production:
 
-1. Configure Supabase Auth Site URL and allowed redirect URLs for production and preview.
-2. Create Rebecca's portal auth account and add its user ID to `portal_admins`.
-3. Add Supabase client/auth code to this branch.
-4. Build the login flow.
-5. Create two test clients and explicitly prove cross-client database and file access is denied before building the rest of the request UI.
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY`
 
+These are browser-visible Supabase project settings, not service-role secrets.
 
-## Invite-only access gate
+## Supabase Auth production configuration required
 
-Google sign-in is configured in Supabase alongside magic-link authentication.
+The canonical production redirect must be allowed:
 
-A Postgres `Before User Created` hook function is now present:
+`https://www.rebeccaiaaland.com/portal/login`
 
-`private.hook_allow_approved_portal_user(event jsonb)`
+Preview/local redirect patterns should remain configured for testing.
 
-It allows creation of a Supabase Auth user only when:
+## Final pre-merge verification
 
-- the email matches an active row in `public.clients`, or
-- the email is on the private portal-admin bootstrap allow-list.
+PR #8 remains draft and must not be merged until the updated branch has a fresh
+successful Vercel preview and the following checks are complete:
 
-The current admin bootstrap email is Rebecca's present Google Workspace identity:
-`rebecca@pawcirclellc.com`.
+1. Approved client Google sign-in succeeds.
+2. Approved client magic-link sign-in succeeds and returns to the portal.
+3. Unapproved/inactive access is rejected.
+4. Admin login succeeds.
+5. All five request types submit successfully.
+6. File upload, removal, and retry work without duplicate service requests.
+7. Client-visible completion notes display to the client.
+8. Private admin notes do not display to clients.
+9. Client A cannot read Client B database rows or private files.
+10. Public site navigation, footer, sitemap, forms, and current service
+    positioning remain unchanged except for the intentional Client Portal link.
+11. Production environment variables and Auth redirect configuration are
+    confirmed.
+12. After merge, run a production smoke test at
+    `https://www.rebeccaiaaland.com/portal/login`.
 
-After an approved user is created, an `auth.users` trigger automatically:
+## Merge rule
 
-- adds an approved admin to `public.portal_admins`, or
-- links an approved client by setting `clients.auth_user_id`.
-
-The admin email allow-list lives in the non-exposed `private` schema and has an explicit deny-all RLS policy for direct access.
-
-**Remaining dashboard step:** enable the Supabase Authentication → Auth Hooks → Before User Created hook and select the Postgres function `private.hook_allow_approved_portal_user`.
-
-Security Advisor is clean after these migrations.
-
-
-## Login UI direction
-
-The portal sign-in screen should use a polished centered auth card/modal inspired by finished consumer login experiences, while remaining fully Aaland-branded.
-
-- Show the Aaland logo/wordmark at the top.
-- Primary option: **Continue with Google**.
-- Secondary option: **Email me a sign-in link**.
-- No guest login.
-- Keep unrelated navigation and clutter off the auth screen.
-- Match the homepage visual system: light background, navy text, blue/cyan/lilac accents, subtle gradients/glows, rounded corners, and generous spacing.
-- A simple “or” divider may separate Google and email options.
-- Magic-link flow: enter email → send link → confirmation state.
-- Mobile presentation must remain clean and comfortable.
-
-
-## Auth verification results
-
-Local auth verification completed successfully on September 27, 2026.
-
-- Approved admin Google sign-in succeeded for `rebecca@pawcirclellc.com`.
-- The created auth user was recognized as **Portal admin**.
-- An unapproved email (`reaaland@gmail.com`) was rejected by the invite-only hook with the expected message: portal access is by invitation only.
-- This confirms the Google/Supabase auth connection, the Before User Created approval gate, and admin account linking are functioning together.
-
-Remaining before client rollout:
-- polished Aaland-branded login experience implemented at `/portal/login`
-- verify client-row linking with at least two test client accounts
-- verify client A cannot read client B database rows or request files
-- singleton browser Supabase client added to prevent duplicate GoTrue client instances during local development
-
-
-## Polished login implementation
-
-The client-facing sign-in experience is now implemented at:
-
-`/portal/login`
-
-It includes:
-
-- Aaland Web Design & Site Care logo/wordmark
-- **Continue with Google** with Google account selection
-- **Email me a sign-in link**
-- no guest access
-- invitation-only access messaging
-- polished success and error states
-- signed-in account confirmation
-- responsive mobile layout
-- homepage-aligned light navy/blue/cyan/lilac visual language
-
-The temporary `/portal-auth-test` route now redirects to `/portal/login`.
-
-The browser Supabase client is stored as a singleton on `globalThis` so development hot reloads do not create competing GoTrue clients using the same browser storage key.
-
-Before production merge, add the production redirect URL `https://www.rebeccaiaaland.com/portal/login` to the Supabase Auth redirect allow-list. Localhost and Vercel preview wildcards already cover development and preview testing.
-
-
-## Finishing UX direction
-
-For final polish, use restrained professional loading states rather than abrupt content jumps.
-
-- Prefer skeleton placeholders for data-driven portal sections such as dashboard cards, requests, services, billing, and file lists.
-- Keep skeleton timing natural: show them when data is genuinely loading and use a very short minimum display time only when needed to avoid flicker.
-- Avoid artificial long delays just to showcase animation.
-- Use subtle staggered reveal timing for cards/rows once data is ready.
-- Keep motion quiet and functional; no flashy spinners or heavy page transitions.
-- Preserve layout dimensions during loading so content does not jump.
-- Respect `prefers-reduced-motion`.
-- Authentication transitions should remain especially fast and simple.
+Do not merge PR #8 until final QA passes. When it does pass, merge the portal
+into the existing `main` branch. Vercel will then deploy the portal as part of
+the existing rebeccaiaaland.com application; no new repository, Vercel project,
+subdomain, or DNS change is required.
