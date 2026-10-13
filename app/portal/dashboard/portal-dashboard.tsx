@@ -739,6 +739,14 @@ export function PortalDashboard() {
                 ? "Portal administrator access"
                 : "Approved Aaland client access"}
             </span>
+            <button
+              type="button"
+              className={styles.accountSignOut}
+              onClick={signOut}
+              disabled={signingOut}
+            >
+              {signingOut ? "Signing out…" : "Sign out"}
+            </button>
           </div>
         </section>
       </section>
