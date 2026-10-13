@@ -5,7 +5,7 @@ import styles from "./portal-login.module.css";
 export const metadata: Metadata = {
   title: "Client Portal Sign In",
   description:
-    "Secure sign in for Aaland Web Design & Site Care client portal.",
+    "Secure sign in for the Aaland Web Design & Business Solutions client portal.",
 };
 
 export default function PortalLoginPage() {
