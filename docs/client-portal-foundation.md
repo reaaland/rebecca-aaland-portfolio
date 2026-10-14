@@ -173,7 +173,7 @@ Initial backup hierarchy created October 13, 2026. The first dated folder is
 - `20261006024603_enforce_active_portal_clients`
 - `20261013000744_restrict_client_request_file_types`
 - `20261014005914_portal_upload_recovery_and_work_tracking`
-- `20261014131000_update_portal_admin_invite_email`
+- `20261014130517_update_portal_admin_invite_email`
 
 A separate historical `noop_test_cleanup` migration exists remotely but did
 not introduce portal functionality.
