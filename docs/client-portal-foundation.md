@@ -173,6 +173,7 @@ Initial backup hierarchy created October 13, 2026. The first dated folder is
 - `20261006024603_enforce_active_portal_clients`
 - `20261013000744_restrict_client_request_file_types`
 - `20261014005914_portal_upload_recovery_and_work_tracking`
+- `20261014131000_update_portal_admin_invite_email`
 
 A separate historical `noop_test_cleanup` migration exists remotely but did
 not introduce portal functionality.
@@ -208,24 +209,45 @@ Preview/local redirect patterns should remain configured for testing.
 
 ## Final pre-merge verification
 
-PR #8 remains draft and must not be merged until the updated branch has a fresh
-successful Vercel preview and the following checks are complete:
+PR #8 remains draft and must not be merged without Rebecca's explicit approval.
+
+Verified on the current preview / hosted project:
 
 1. Approved client Google sign-in succeeds.
 2. Approved client magic-link sign-in succeeds and returns to the portal.
-3. Unapproved/inactive access is rejected.
+3. Unapproved access is rejected by the invitation-only Auth hook.
 4. Admin login succeeds.
 5. All five request types submit successfully.
-6. File upload, removal, and retry work without duplicate service requests.
+6. File upload, removal, interrupted-connection recovery, and retry work without
+   duplicate service requests.
 7. Client-visible completion notes display to the client.
 8. Private admin notes do not display to clients.
-9. Client A cannot read Client B database rows or private files.
-10. Public site navigation, footer, sitemap, forms, and current service
-    positioning remain unchanged except for the intentional Client Portal link.
-11. Production environment variables and Auth redirect configuration are
+9. Two real browser sessions remain separate; Client A receives "Request
+   unavailable" when attempting to open Client B's request URL.
+10. Hosted transactional tests also cover inactive-client database/Storage
+    authorization.
+11. Dashboard, request/detail screens, review/success states, and mobile
+    navigation were checked at narrow width.
+12. Client/admin file opening, admin filters, pending-upload indicators, and
+    work-time logging work in Chrome.
+13. Production environment variables and Auth redirect configuration are
     confirmed.
-12. After merge, run a production smoke test at
-    `https://www.rebeccaiaaland.com/portal/login`.
+14. Supabase Pro daily physical database backups with seven-day retention are
+    confirmed.
+15. The admin invite allow-list now contains only
+    `rebecca@rebeccaiaaland.com`; the existing linked administrator auth user ID
+    is intentionally preserved.
+
+Remaining operational cleanup before relying on backups for real client files:
+
+- The six orphaned QA Storage objects must be copied to the first dated Google
+  Drive backup folder (if retained as backup evidence) or removed through the
+  authorized Storage API. Their database attachment/request rows are already
+  gone.
+- Perform one synthetic private-file recovery from the Google Drive backup when
+  convenient.
+- After any approved merge, run a production smoke test at
+  `https://www.rebeccaiaaland.com/portal/login`.
 
 ## Merge rule
 
@@ -285,15 +307,13 @@ its existing unused password-flow warning remains.
 
 ### Remaining release gates
 
-- Fresh successful Vercel preview and CI for the updated commit.
-- Signed-in preview regression of all five forms, attachments, restored drafts,
-  client/admin detail, work logs, and filters.
-- Phone/narrow-screen QA and real Safari/Chrome file opening.
-- HTTP/API isolation and signed-file tests with two real test sessions; inactive
-  sign-in flow and already-issued signed-link expiry behavior.
-- Database backup coverage is confirmed. Complete the first off-site private-file
-  copy to the documented Google Drive backup folder and verify one synthetic
-  file recovery before relying on the process for real client data.
+- Fresh successful Vercel preview and CI for the latest commit.
+- Copy or remove the six orphaned QA Storage objects through the authorized
+  Storage API; do not delete them directly from Storage SQL.
+- Complete the first off-site private-file copy to the documented Google Drive
+  backup folder and verify one synthetic file recovery before relying on the
+  process for real client data.
+- Safari file-opening behavior has not been manually checked; Chrome passed.
 - Rebecca's explicit merge approval, then production smoke test.
 
 ## Operating checklist
