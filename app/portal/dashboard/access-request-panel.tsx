@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./portal-dashboard.module.css";
 
@@ -21,7 +21,34 @@ export function AccessRequestPanel() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
 
-  const loadRequests = useCallback(async () => {
+  useEffect(() => {
+    if (!supabase) return;
+
+    let active = true;
+
+    void supabase
+      .from("portal_access_requests")
+      .select("id, contact_name, business_name, email, reason, created_at")
+      .eq("status", "pending")
+      .order("created_at", { ascending: false })
+      .then(({ data, error: loadError }) => {
+        if (!active) return;
+
+        if (loadError) {
+          setError("We could not load portal access requests.");
+          return;
+        }
+
+        setError("");
+        setRequests((data ?? []) as AccessRequestRecord[]);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [supabase]);
+
+  async function refreshRequests() {
     if (!supabase) return;
 
     const { data, error: loadError } = await supabase
@@ -31,17 +58,13 @@ export function AccessRequestPanel() {
       .order("created_at", { ascending: false });
 
     if (loadError) {
-      setError("We could not load portal access requests.");
+      setError("We could not reload portal access requests.");
       return;
     }
 
     setError("");
     setRequests((data ?? []) as AccessRequestRecord[]);
-  }, [supabase]);
-
-  useEffect(() => {
-    void loadRequests();
-  }, [loadRequests]);
+  }
 
   async function decide(requestId: string, approve: boolean) {
     if (!supabase) return;
@@ -110,7 +133,7 @@ export function AccessRequestPanel() {
         return next;
       });
 
-      await loadRequests();
+      await refreshRequests();
     } catch {
       setError("We could not save that access decision. Please try again.");
     } finally {
