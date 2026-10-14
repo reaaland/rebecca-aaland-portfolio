@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { clearUserDrafts } from "@/lib/portal/drafts";
 import { createClient } from "@/lib/supabase/client";
+import { AccessRequestPanel } from "./access-request-panel";
 import styles from "./portal-dashboard.module.css";
 
 type PortalRole = "admin" | "client";
@@ -611,6 +612,8 @@ export function PortalDashboard() {
             </div>
           </section>
         )}
+
+        {data.role === "admin" ? <AccessRequestPanel /> : null}
 
         <div className={styles.dashboardGrid}>
           <section
