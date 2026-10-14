@@ -1,6 +1,6 @@
 "use client";
 
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, useState } from "react";
 import styles from "./portal-login.module.css";
 
 type RequestState =
@@ -17,12 +17,6 @@ export function AccessRequestForm({ defaultEmail = "" }: { defaultEmail?: string
   const [reason, setReason] = useState("");
   const [companySite, setCompanySite] = useState("");
   const [state, setState] = useState<RequestState>({ kind: "idle" });
-
-  useEffect(() => {
-    if (defaultEmail) {
-      setEmail((current) => current || defaultEmail);
-    }
-  }, [defaultEmail]);
 
   async function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
