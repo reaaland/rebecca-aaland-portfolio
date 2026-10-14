@@ -19,6 +19,16 @@ type PortalIdentity = {
   label: string;
 };
 
+const GOOGLE_REDIRECT_RECOVERY_MS = 12000;
+
+function friendlyAuthError(message: string) {
+  if (message.toLowerCase().includes("email rate limit")) {
+    return "Too many sign-in emails were requested recently. Please wait and try again later.";
+  }
+
+  return message;
+}
+
 function GoogleMark() {
   return (
     <svg className={styles.googleMark} viewBox="0 0 24 24" aria-hidden="true">
@@ -125,17 +135,40 @@ export function PortalLoginCard() {
       message: "Opening Google sign-in…",
     });
 
-    const { error } = await supabase.auth.signInWithOAuth({
-      provider: "google",
-      options: {
-        redirectTo: `${window.location.origin}/portal/login`,
-      },
-    });
+    const recoveryTimer = window.setTimeout(() => {
+      setState((current) =>
+        current.kind === "working" &&
+        current.message === "Opening Google sign-in…"
+          ? {
+              kind: "error",
+              message:
+                "Google sign-in did not open. Please try again, or use an email sign-in link.",
+            }
+          : current,
+      );
+    }, GOOGLE_REDIRECT_RECOVERY_MS);
 
-    if (error) {
+    try {
+      const { error } = await supabase.auth.signInWithOAuth({
+        provider: "google",
+        options: {
+          redirectTo: `${window.location.origin}/portal/login`,
+        },
+      });
+
+      if (error) {
+        window.clearTimeout(recoveryTimer);
+        setState({
+          kind: "error",
+          message: friendlyAuthError(error.message),
+        });
+      }
+    } catch {
+      window.clearTimeout(recoveryTimer);
       setState({
         kind: "error",
-        message: error.message,
+        message:
+          "Google sign-in could not start. Please try again, or use an email sign-in link.",
       });
     }
   }
@@ -161,7 +194,7 @@ export function PortalLoginCard() {
     if (error) {
       setState({
         kind: "error",
-        message: error.message,
+        message: friendlyAuthError(error.message),
       });
       return;
     }
