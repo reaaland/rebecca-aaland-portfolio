@@ -94,6 +94,7 @@ export async function POST(request: Request) {
   if (result.status !== "already_approved" && apiKey) {
     const resend = new Resend(apiKey);
     const subjectName = contactName.replace(/[\r\n]+/g, " ");
+    const dashboardUrl = `${new URL(request.url).origin}/portal/dashboard`;
     const details = [
       "A new client portal access request was submitted.",
       "",
@@ -102,7 +103,8 @@ export async function POST(request: Request) {
       businessName ? `Business: ${businessName}` : "",
       reason ? `Reason: ${reason}` : "Reason: Not provided",
       "",
-      "Open the Aaland Client Portal admin dashboard to approve or reject this request.",
+      "Approve or reject this request in the Aaland Client Portal:",
+      dashboardUrl,
     ].filter(Boolean);
 
     try {
