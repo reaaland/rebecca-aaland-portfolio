@@ -63,9 +63,7 @@ export function AccessRequestForm({ defaultEmail = "" }: { defaultEmail?: string
       setState({
         kind: "success",
         message:
-          result.status === "already_approved"
-            ? "This email is already approved. You can sign in above with Google or a secure email link."
-            : "Request sent. Rebecca will review it, and you’ll receive an email when it is approved or rejected.",
+          "Request sent. Rebecca will review it, and you’ll receive an email when it is approved or rejected.",
       });
     } catch {
       setState({
