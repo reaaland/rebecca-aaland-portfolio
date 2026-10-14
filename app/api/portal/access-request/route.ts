@@ -9,11 +9,6 @@ type AccessRequestBody = {
   companySite?: unknown;
 };
 
-type AccessRequestResult = {
-  status?: "created" | "pending" | "already_approved";
-  request_id?: string;
-};
-
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 function clean(value: unknown, maxLength: number) {
@@ -72,14 +67,16 @@ export async function POST(request: Request) {
     );
   }
 
-  const { data, error } = await supabase.rpc("request_portal_access", {
-    p_contact_name: contactName,
-    p_email: email,
-    p_business_name: businessName || null,
-    p_reason: reason || null,
+  const { error } = await supabase.from("portal_access_requests").insert({
+    contact_name: contactName,
+    business_name: businessName || null,
+    email,
+    reason: reason || null,
   });
 
-  if (error) {
+  const duplicatePending = error?.code === "23505";
+
+  if (error && !duplicatePending) {
     console.error("Portal access request failed:", error.code);
     return Response.json(
       { error: "We could not save your access request. Please try again." },
@@ -87,11 +84,11 @@ export async function POST(request: Request) {
     );
   }
 
-  const result = (data ?? {}) as AccessRequestResult;
+  const requestStatus = duplicatePending ? "pending" : "created";
   let emailSent = false;
   const apiKey = process.env.RESEND_API_KEY;
 
-  if (result.status !== "already_approved" && apiKey) {
+  if (apiKey) {
     const resend = new Resend(apiKey);
     const subjectName = contactName.replace(/[\r\n]+/g, " ");
     const dashboardUrl = `${new URL(request.url).origin}/portal/dashboard`;
@@ -128,7 +125,7 @@ export async function POST(request: Request) {
 
   return Response.json({
     ok: true,
-    status: result.status ?? "pending",
+    status: requestStatus,
     emailSent,
   });
 }
