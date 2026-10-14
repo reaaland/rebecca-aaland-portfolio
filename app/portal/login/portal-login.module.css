@@ -416,3 +416,88 @@
   line-height: 1.45;
   text-align: center;
 }
+
+
+.accessRequestBox {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(37, 57, 88, 0.12);
+}
+
+.accessRequestTitle {
+  margin: 0 0 6px;
+  color: var(--portal-navy);
+  font-size: 0.82rem;
+  font-weight: 780;
+  text-align: center;
+}
+
+.accessRequestCopy {
+  margin: 0 0 14px;
+  color: var(--portal-muted);
+  font-size: 0.75rem;
+  line-height: 1.55;
+  text-align: center;
+}
+
+.accessRequestForm {
+  display: grid;
+  gap: 9px;
+  margin-top: 15px;
+}
+
+.accessRequestForm label {
+  margin-top: 3px;
+  font-size: 0.79rem;
+  font-weight: 760;
+}
+
+.accessRequestForm input,
+.accessRequestForm textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid rgba(37, 57, 88, 0.16);
+  border-radius: 11px;
+  outline: none;
+  background: #f8fafc;
+  color: var(--portal-navy);
+  font: inherit;
+  font-size: 0.91rem;
+  transition:
+    border-color 160ms ease,
+    box-shadow 160ms ease,
+    background-color 160ms ease;
+}
+
+.accessRequestForm input {
+  min-height: 50px;
+}
+
+.accessRequestForm textarea {
+  resize: vertical;
+  min-height: 96px;
+  line-height: 1.5;
+}
+
+.accessRequestForm input:focus,
+.accessRequestForm textarea:focus {
+  border-color: rgba(54, 127, 211, 0.62);
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(54, 127, 211, 0.09);
+}
+
+.accessRequestActions {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 9px;
+  margin-top: 4px;
+}
+
+.honeypot {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+  white-space: nowrap !important;
+}
