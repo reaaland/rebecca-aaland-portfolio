@@ -1057,3 +1057,158 @@
 .queueFilters { display: flex; flex-wrap: wrap; gap: 12px; align-items: end; margin: 16px 0; }
 .queueFilters label { display: grid; gap: 6px; max-width: 100%; }
 .queueFilters select, .queueFilters button { padding: 10px; border: 1px solid #bdd0e5; border-radius: 8px; background: white; color: #12213a; max-width: 100%; }
+
+
+.accessRequestsPanel {
+  min-height: 0;
+  margin-top: 18px;
+}
+
+.accessRequestList {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.accessRequestCard {
+  padding: 18px;
+  border: 1px solid rgba(39, 90, 156, 0.11);
+  border-radius: 14px;
+  background: #fbfcfe;
+}
+
+.accessRequestDetails {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.accessRequestDetails > div {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.accessRequestDetails strong {
+  color: #183254;
+  font-size: 0.86rem;
+}
+
+.accessRequestDetails span,
+.accessRequestDetails time {
+  color: #7b8799;
+  font-size: 0.69rem;
+  line-height: 1.45;
+}
+
+.accessRequestDetails span {
+  overflow-wrap: anywhere;
+}
+
+.accessRequestCard > p {
+  margin: 14px 0;
+  color: #5f6f86;
+  font-size: 0.76rem;
+  line-height: 1.6;
+}
+
+.rejectionReason {
+  display: grid;
+  gap: 7px;
+  color: #40516a;
+  font-size: 0.72rem;
+  font-weight: 720;
+}
+
+.rejectionReason textarea {
+  width: 100%;
+  min-height: 82px;
+  padding: 11px 12px;
+  border: 1px solid rgba(39, 90, 156, 0.16);
+  border-radius: 10px;
+  outline: none;
+  background: #fff;
+  color: #12213a;
+  font: inherit;
+  font-size: 0.76rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.rejectionReason textarea:focus {
+  border-color: rgba(46, 120, 207, 0.5);
+  box-shadow: 0 0 0 3px rgba(46, 120, 207, 0.08);
+}
+
+.accessDecisionActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 12px;
+}
+
+.approveAccessButton,
+.rejectAccessButton {
+  min-height: 42px;
+  padding: 9px 13px;
+  border-radius: 9px;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 740;
+  cursor: pointer;
+}
+
+.approveAccessButton {
+  border: 1px solid rgba(25, 135, 101, 0.24);
+  background: #eaf8f2;
+  color: #236d58;
+}
+
+.rejectAccessButton {
+  border: 1px solid rgba(172, 55, 55, 0.2);
+  background: #fff5f5;
+  color: #963737;
+}
+
+.approveAccessButton:disabled,
+.rejectAccessButton:disabled {
+  cursor: wait;
+  opacity: 0.62;
+}
+
+.adminSuccessNotice,
+.adminErrorNotice {
+  margin-top: 14px;
+  padding: 11px 13px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+}
+
+.adminSuccessNotice {
+  border: 1px solid rgba(25, 135, 101, 0.18);
+  background: rgba(25, 135, 101, 0.06);
+  color: #236d58;
+}
+
+.adminErrorNotice {
+  border: 1px solid rgba(172, 55, 55, 0.17);
+  background: rgba(172, 55, 55, 0.055);
+  color: #9d3131;
+}
+
+@media (max-width: 620px) {
+  .accessRequestDetails {
+    display: grid;
+  }
+
+  .accessDecisionActions {
+    display: grid;
+  }
+
+  .approveAccessButton,
+  .rejectAccessButton {
+    width: 100%;
+  }
+}
