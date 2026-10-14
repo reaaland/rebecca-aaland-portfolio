@@ -43,6 +43,15 @@ Portal access is approval-based. The Before User Created hook
 `private.hook_allow_approved_portal_user(event jsonb)` allows account creation
 only for an approved active client email or an approved portal administrator.
 
+An unapproved visitor can submit a portal access request from the sign-in page.
+The request is stored separately from Auth and client records. Rebecca receives
+an email notification and can approve or reject it from the administrator
+dashboard. Rejection requires a reason. Approval creates or reactivates the
+active client record before the requester is emailed; that active client record
+immediately satisfies the existing Auth hook, so the approved email can then
+sign in with Google or a secure email link. No Supabase Auth user is created
+merely by requesting access.
+
 Authentication identifies the user. Database RLS and private Storage policies,
 not navigation visibility, enforce client-to-client isolation.
 
@@ -174,6 +183,7 @@ Initial backup hierarchy created October 13, 2026. The first dated folder is
 - `20261013000744_restrict_client_request_file_types`
 - `20261014005914_portal_upload_recovery_and_work_tracking`
 - `20261014130517_update_portal_admin_invite_email`
+- `20261014132814_add_portal_access_approval_workflow`
 
 A separate historical `noop_test_cleanup` migration exists remotely but did
 not introduce portal functionality.
@@ -237,6 +247,10 @@ Verified on the current preview / hosted project:
 15. The admin invite allow-list now contains only
     `rebecca@rebeccaiaaland.com`; the existing linked administrator auth user ID
     is intentionally preserved.
+16. Access-request approval/rejection database flow passed transactional
+    verification: approval creates an active client and the Auth hook allows the
+    email; rejection creates no client and the Auth hook continues to return
+    403. The QA rows were rolled back.
 
 Remaining operational cleanup before relying on backups for real client files:
 
@@ -286,9 +300,12 @@ Implemented on PR #8; no merge or production website release:
 
 Hosted database: 21 transactional authorization assertions passed, including
 cross-client reads, writes, Storage paths, private notes/time, and inactive-client
-access under the same claims. Test fixtures were rolled back; zero test users,
-clients, or Storage rows remain. This exercises real database roles and RLS;
-it does not prove Auth issuance, HTTP signed-download behavior, or file bytes.
+access under the same claims. Those original authorization fixtures were rolled
+back. A separate October 14 access-approval transaction also passed and was
+rolled back. The client/request database tables are currently clean, while six
+older orphaned QA file objects remain physically in private Storage pending
+authorized Storage cleanup. These tests exercise real database roles and RLS;
+they do not prove browser email delivery or file-byte recovery.
 
 Submission tests cover lost insert responses, failed upload, lost upload
 response, lost metadata response, failed finalization, duplicate retry,
@@ -308,6 +325,8 @@ its existing unused password-flow warning remains.
 ### Remaining release gates
 
 - Fresh successful Vercel preview and CI for the latest commit.
+- Browser QA the new access-request form, administrator notification email,
+  approve/reject controls, and requester decision email.
 - Copy or remove the six orphaned QA Storage objects through the authorized
   Storage API; do not delete them directly from Storage SQL.
 - Complete the first off-site private-file copy to the documented Google Drive
@@ -324,8 +343,11 @@ active service with the actual agreed scope. Put the included hour/allowance,
 overage process, rollover rule, and response expectations in the service summary
 only after those terms are agreed. Do not invent blanket promises in the UI.
 
-Until email notifications are implemented, review Received and Files still
-uploading each business day. Follow up on incomplete requests. Log work minutes
+Portal access requests now generate an administrator email and appear in the
+admin dashboard. Approve only known clients; rejection requires a reason and
+emails that reason to the requester. Continue reviewing Received and Files still
+uploading each business day because service-request notifications remain a
+separate future enhancement. Follow up on incomplete requests. Log work minutes
 privately; compare monthly time to the client's agreed allowance. Add a useful
 completion note and mark Complete only when the work is finished.
 
