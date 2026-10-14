@@ -22,6 +22,8 @@ type RequestDetail = {
   created_at: string;
   updated_at: string;
   completed_at: string | null;
+  upload_complete: boolean;
+  expected_attachment_count: number;
 };
 
 type Attachment = {
@@ -84,12 +86,14 @@ export function ClientRequestDetail() {
   const requestId = params?.id;
   const supabase = useMemo(() => createClient(), []);
   const [data, setData] = useState<LoadedData | null>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(
+    !supabase ? "This request could not be loaded." : "",
+  );
   const [openingFile, setOpeningFile] = useState("");
+  const [fileLink, setFileLink] = useState("");
 
   useEffect(() => {
     if (!supabase || !requestId) {
-      setError("This request could not be loaded.");
       return;
     }
 
@@ -109,7 +113,7 @@ export function ClientRequestDetail() {
       const { data: requestRow, error: requestError } = await client
         .from("service_requests")
         .select(
-          "id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at",
+          "id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at, upload_complete, expected_attachment_count",
         )
         .eq("id", requestId)
         .maybeSingle();
@@ -165,6 +169,9 @@ export function ClientRequestDetail() {
   async function openAttachment(attachment: Attachment) {
     if (!supabase) return;
 
+    const opened = window.open("about:blank", "_blank");
+    if (opened) opened.opener = null;
+    setFileLink("");
     setOpeningFile(attachment.id);
     setError("");
 
@@ -175,11 +182,13 @@ export function ClientRequestDetail() {
     setOpeningFile("");
 
     if (signedError || !signedData?.signedUrl) {
+      opened?.close();
       setError("We could not open that file. Please try again.");
       return;
     }
 
-    window.open(signedData.signedUrl, "_blank", "noopener,noreferrer");
+    if (opened) opened.location.replace(signedData.signedUrl);
+    else setFileLink(signedData.signedUrl);
   }
 
   if (error && !data) {
@@ -189,7 +198,10 @@ export function ClientRequestDetail() {
           <p className={styles.eyebrow}>Aaland Client Portal</p>
           <h1>Request unavailable</h1>
           <p className={styles.intro}>{error}</p>
-          <Link href="/portal/dashboard#requests" className={styles.primaryLink}>
+          <Link
+            href="/portal/dashboard#requests"
+            className={styles.primaryLink}
+          >
             Back to requests
           </Link>
         </section>
@@ -234,6 +246,40 @@ export function ClientRequestDetail() {
             {statusLabel(request.status)}
           </span>
         </header>
+        {!request.upload_complete && (
+          <div className={styles.statusPanel} role="status">
+            <strong>
+              Files still uploading: {attachments.length} of{" "}
+              {request.expected_attachment_count} received.
+            </strong>
+            <p>This request is saved, but its attachments are incomplete.</p>
+            <Link
+              href={
+                "/portal/requests/new/" +
+                (
+                  {
+                    website_update: "website-update",
+                    upload_photos: "upload-photos",
+                    change_business_information: "change-business-information",
+                    add_something_new: "add-something-new",
+                    something_else: "something-else",
+                  } as Record<string, string>
+                )[request.request_type]
+              }
+            >
+              Continue sending from the device you used
+            </Link>
+          </div>
+        )}
+        {fileLink && (
+          <p role="status">
+            Your browser blocked the new window.{" "}
+            <a href={fileLink} target="_blank" rel="noopener noreferrer">
+              Open file
+            </a>{" "}
+            (link expires shortly).
+          </p>
+        )}
 
         <section className={styles.progressPanel}>
           <div>
@@ -255,13 +301,19 @@ export function ClientRequestDetail() {
         <section className={styles.details}>
           <h2>Request details</h2>
           <DetailRow label={descriptionLabel} value={request.description} />
-          <DetailRow label="Where on the site?" value={request.location_on_site} />
+          <DetailRow
+            label="Where on the site?"
+            value={request.location_on_site}
+          />
           <DetailRow
             label="Replacement text / instructions"
             value={request.replacement_text}
           />
           <DetailRow label="Timing" value={request.desired_timing} />
-          <DetailRow label="Additional notes" value={request.additional_notes} />
+          <DetailRow
+            label="Additional notes"
+            value={request.additional_notes}
+          />
           {request.client_visible_completion_note ? (
             <DetailRow
               label="Completion note"
@@ -292,7 +344,10 @@ export function ClientRequestDetail() {
                   <div>
                     <strong>{attachment.original_filename}</strong>
                     <span>
-                      {[attachment.mime_type, formatBytes(attachment.size_bytes)]
+                      {[
+                        attachment.mime_type,
+                        formatBytes(attachment.size_bytes),
+                      ]
                         .filter(Boolean)
                         .join(" • ")}
                     </span>
@@ -343,13 +398,7 @@ export function ClientRequestDetail() {
   );
 }
 
-function DetailRow({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | null;
-}) {
+function DetailRow({ label, value }: { label: string; value: string | null }) {
   return (
     <div className={styles.detailRow}>
       <span>{label}</span>

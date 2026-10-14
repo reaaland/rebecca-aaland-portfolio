@@ -1,6 +1,6 @@
 # Aaland Client Portal — Production Source of Truth
 
-Updated October 12, 2026.
+Updated October 13, 2026.
 
 ## Purpose
 
@@ -59,6 +59,7 @@ portal access.
 - `request_attachments`
 - `request_status_history`
 - `request_admin_notes`
+- `request_work_logs` (administrator-only work time)
 
 Request statuses:
 
@@ -131,6 +132,7 @@ remain the server-side enforcement layer.
 - `20260927222419_add_explicit_admin_invite_deny_policy`
 - `20261006024603_enforce_active_portal_clients`
 - `20261013000744_restrict_client_request_file_types`
+- `20261014005914_portal_upload_recovery_and_work_tracking`
 
 A separate historical `noop_test_cleanup` migration exists remotely but did
 not introduce portal functionality.
@@ -187,7 +189,96 @@ successful Vercel preview and the following checks are complete:
 
 ## Merge rule
 
-Do not merge PR #8 until final QA passes. When it does pass, merge the portal
-into the existing `main` branch. Vercel will then deploy the portal as part of
+Do not merge PR #8 until final QA passes. After final QA passes, obtain Rebecca's explicit approval before merging into the existing `main` branch. Vercel will then deploy the portal as part of
 the existing rebeccaiaaland.com application; no new repository, Vercel project,
 subdomain, or DNS change is required.
+
+
+## October 13 audit follow-through
+
+Implemented on PR #8; no merge or production website release:
+
+- All five forms share validation, review, submission, optional attachments,
+  primary-website defaults, and a selector for clients with multiple websites.
+- Recovery data (request UUID, fields, selected files) is committed to IndexedDB
+  before the first request write. It is scoped to the signed-in user and request
+  type. Same browser/device recovery is available for seven days; expiry is
+  checked on access. Successful submission and explicit sign-out clear it.
+- Retrying a lost request/Storage/metadata response uses the original UUID and
+  deterministic attachment path. This retries whole files; it is not byte-level
+  resumable transfer and does not restore files on a different device.
+- The database records expected file counts and pending upload state. A narrowly
+  authorized RPC verifies private Storage objects and attachment records before
+  marking the upload finished. Clients still have no general request UPDATE
+  policy. Requests with pending uploads cannot be marked Complete.
+- Admin/client views identify incomplete uploads. Admin queue is paged in the
+  database (20 rows) and filtered by client, status, or incomplete uploads.
+- File opening reserves the new window during the click and offers an explicit
+  signed link if the browser blocks it.
+- Private work-time entries are protected in a separate admin-only table.
+- Billing now explains the existing invoice/payment process. Request review
+  explains that requested dates need confirmation and extra work is quoted.
+- CI runs lint, TypeScript, submission/draft tests, and the Next.js build.
+
+### Evidence and limits
+
+Hosted database: 21 transactional authorization assertions passed, including
+cross-client reads, writes, Storage paths, private notes/time, and inactive-client
+access under the same claims. Test fixtures were rolled back; zero test users,
+clients, or Storage rows remain. This exercises real database roles and RLS;
+it does not prove Auth issuance, HTTP signed-download behavior, or file bytes.
+
+Submission tests cover lost insert responses, failed upload, lost upload
+response, lost metadata response, failed finalization, duplicate retry,
+inactive/current-user checks, file limits, and duplicate filenames.
+Draft tests cover persisted recovery, user/type separation, sign-out cleanup,
+and expiry. IndexedDB tests use a test implementation of the browser API;
+real phone/browser persistence must still be verified.
+
+Prior Oct 12 signed-in QA remains historical evidence: Google/magic-link,
+all five request types, uploads, status controls, completion/private notes,
+and dashboard mobile menu. New shared forms require refreshed preview QA.
+
+Local lint and TypeScript/build checks passed; two existing image warnings
+outside the portal remain. Database advisor has no schema/RLS security findings;
+its existing unused password-flow warning remains.
+
+### Remaining release gates
+
+- Fresh successful Vercel preview and CI for the updated commit.
+- Signed-in preview regression of all five forms, attachments, restored drafts,
+  client/admin detail, work logs, and filters.
+- Phone/narrow-screen QA and real Safari/Chrome file opening.
+- HTTP/API isolation and signed-file tests with two real test sessions; inactive
+  sign-in flow and already-issued signed-link expiry behavior.
+- Confirm database and uploaded-file backup/restore coverage before real data.
+- Rebecca's explicit merge approval, then production smoke test.
+
+## Operating checklist
+
+Before inviting a client, create one approved client record with the exact
+sign-in email, add their website(s), designate the primary site, and add an
+active service with the actual agreed scope. Put the included hour/allowance,
+overage process, rollover rule, and response expectations in the service summary
+only after those terms are agreed. Do not invent blanket promises in the UI.
+
+Until email notifications are implemented, review Received and Files still
+uploading each business day. Follow up on incomplete requests. Log work minutes
+privately; compare monthly time to the client's agreed allowance. Add a useful
+completion note and mark Complete only when the work is finished.
+
+Offboarding: mark the client inactive to block future database/Storage access
+while retaining history. Existing signed file links last at most their short
+expiry. Decide the agreed retention period before deleting data. Deleting rows
+can cascade through requests and metadata but does not constitute a Storage-file
+cleanup process: remove files through the Storage API under authorized admin
+access and verify cleanup separately. Do not delete directly from Storage SQL.
+
+Backup: verify the actual Supabase plan's database retention and recovery, and
+maintain an authenticated private-file backup if needed. A database backup alone
+must not be treated as a backup of uploaded file bytes. Restore a synthetic
+request plus file in an isolated environment before relying on the process.
+
+Notifications, integrated billing, and formal retention durations remain owner
+choices. No emails were sent, no paid resources were provisioned, and no client
+pricing or contract terms were changed during this work.

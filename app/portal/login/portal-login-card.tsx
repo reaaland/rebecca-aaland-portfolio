@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
+import { clearUserDrafts } from "@/lib/portal/drafts";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./portal-login.module.css";
 
@@ -20,11 +21,7 @@ type PortalIdentity = {
 
 function GoogleMark() {
   return (
-    <svg
-      className={styles.googleMark}
-      viewBox="0 0 24 24"
-      aria-hidden="true"
-    >
+    <svg className={styles.googleMark} viewBox="0 0 24 24" aria-hidden="true">
       <path
         fill="#4285F4"
         d="M21.6 12.23c0-.71-.06-1.22-.2-1.75H12v3.4h5.52a4.74 4.74 0 0 1-2.05 3.02l-.02.11 2.97 2.3.2.02c1.85-1.7 2.98-4.22 2.98-7.1Z"
@@ -61,6 +58,17 @@ export function PortalLoginCard() {
     let active = true;
 
     async function loadIdentity() {
+      const params = new URLSearchParams(window.location.search);
+      const authError = params.get("error_description");
+
+      if (authError) {
+        setState({
+          kind: "error",
+          message: authError.replaceAll("+", " "),
+        });
+        window.history.replaceState({}, "", window.location.pathname);
+      }
+
       const { data, error } = await client.auth.getUser();
 
       if (!active) return;
@@ -93,17 +101,6 @@ export function PortalLoginCard() {
         email: data.user.email ?? "Signed-in account",
         label: "Portal access pending",
       });
-    }
-
-    const params = new URLSearchParams(window.location.search);
-    const authError = params.get("error_description");
-
-    if (authError) {
-      setState({
-        kind: "error",
-        message: authError.replaceAll("+", " "),
-      });
-      window.history.replaceState({}, "", window.location.pathname);
     }
 
     void loadIdentity();
@@ -179,6 +176,8 @@ export function PortalLoginCard() {
   async function signOut() {
     if (!supabase) return;
 
+    const { data: auth } = await supabase.auth.getUser();
+    if (auth.user) await clearUserDrafts(auth.user.id).catch(() => undefined);
     await supabase.auth.signOut();
     setIdentity(null);
     setEmail("");
@@ -310,7 +309,8 @@ export function PortalLoginCard() {
             access,{" "}
             <Link href="/contact">
               contact Aaland Web Design &amp; Business Solutions
-            </Link>.
+            </Link>
+            .
           </p>
         </>
       )}

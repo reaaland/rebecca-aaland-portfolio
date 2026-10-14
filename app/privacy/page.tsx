@@ -59,6 +59,15 @@ export default function PrivacyPage() {
             notices are sent.
           </p>
 
+          <p>
+            When you begin sending a request, the portal saves its details and
+            selected files in this browser so an interrupted submission can be
+            retried. Recovery is available on the same device and browser for
+            up to seven days. Saved recovery data is removed after successful
+            submission or portal sign-out; expired data is removed when checked.
+            On a shared device, sign out and clear site data when finished.
+          </p>
+
           <h2>How information is used</h2>
           <p>
             Information is used to respond to inquiries, provide requested

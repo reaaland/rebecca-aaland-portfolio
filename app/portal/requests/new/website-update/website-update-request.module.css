@@ -100,6 +100,7 @@
   font-weight: 710;
 }
 
+.form select,
 .form input,
 .form textarea {
   width: 100%;
@@ -334,3 +335,6 @@
     animation: none;
   }
 }
+
+.form select { width: 100%; padding: 12px; border: 1px solid #bdd0e5; border-radius: 10px; background: white; color: #12213a; }
+.reviewRow strong { overflow-wrap: anywhere; }

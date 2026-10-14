@@ -25,6 +25,8 @@ type RequestDetail = {
   created_at: string;
   updated_at: string;
   completed_at: string | null;
+  upload_complete: boolean;
+  expected_attachment_count: number;
 };
 
 type ClientDetail = {
@@ -104,8 +106,15 @@ export function AdminRequestDetail() {
   const requestId = params?.id;
   const supabase = useMemo(() => createClient(), []);
   const [data, setData] = useState<LoadedData | null>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(
+    !supabase ? "This request could not be loaded." : "",
+  );
   const [openingFile, setOpeningFile] = useState("");
+  const [fileLink, setFileLink] = useState("");
+  const [minutes, setMinutes] = useState("");
+  const [workTotal, setWorkTotal] = useState(0);
+  const [savingTime, setSavingTime] = useState(false);
+  const [timeMessage, setTimeMessage] = useState("");
   const [savingStatus, setSavingStatus] = useState<RequestStatus | null>(null);
   const [statusMessage, setStatusMessage] = useState("");
   const [completionNote, setCompletionNote] = useState("");
@@ -117,7 +126,6 @@ export function AdminRequestDetail() {
 
   useEffect(() => {
     if (!supabase || !requestId) {
-      setError("This request could not be loaded.");
       return;
     }
 
@@ -150,7 +158,7 @@ export function AdminRequestDetail() {
       const { data: requestRow, error: requestError } = await client
         .from("service_requests")
         .select(
-          "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at",
+          "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at, upload_complete, expected_attachment_count",
         )
         .eq("id", requestId)
         .maybeSingle();
@@ -163,30 +171,46 @@ export function AdminRequestDetail() {
       }
 
       const request = requestRow as RequestDetail;
+      const time = await client
+        .from("request_work_logs")
+        .select("minutes")
+        .eq("request_id", request.id);
+      if (!active) return;
+      if (time.error) {
+        setError("We could not load private work time.");
+        return;
+      }
+      setWorkTotal(
+        (time.data ?? []).reduce((total, row) => total + row.minutes, 0),
+      );
 
-      const [clientResult, attachmentResult, historyResult, internalNotesResult] =
-        await Promise.all([
-          client
-            .from("clients")
-            .select("contact_name, business_name, email, phone")
-            .eq("id", request.client_id)
-            .single(),
-          client
-            .from("request_attachments")
-            .select("id, original_filename, mime_type, size_bytes, storage_path")
-            .eq("request_id", request.id)
-            .order("created_at", { ascending: true }),
-          client
-            .from("request_status_history")
-            .select("id, status, changed_at")
-            .eq("request_id", request.id)
-            .order("changed_at", { ascending: true }),
-          client
-            .from("request_admin_notes")
-            .select("id, note, created_at")
-            .eq("request_id", request.id)
-            .order("created_at", { ascending: false }),
-        ]);
+      const [
+        clientResult,
+        attachmentResult,
+        historyResult,
+        internalNotesResult,
+      ] = await Promise.all([
+        client
+          .from("clients")
+          .select("contact_name, business_name, email, phone")
+          .eq("id", request.client_id)
+          .single(),
+        client
+          .from("request_attachments")
+          .select("id, original_filename, mime_type, size_bytes, storage_path")
+          .eq("request_id", request.id)
+          .order("created_at", { ascending: true }),
+        client
+          .from("request_status_history")
+          .select("id, status, changed_at")
+          .eq("request_id", request.id)
+          .order("changed_at", { ascending: true }),
+        client
+          .from("request_admin_notes")
+          .select("id, note, created_at")
+          .eq("request_id", request.id)
+          .order("created_at", { ascending: false }),
+      ]);
 
       if (!active) return;
 
@@ -276,12 +300,14 @@ export function AdminRequestDetail() {
       .update({ status: nextStatus })
       .eq("id", data.request.id)
       .select(
-        "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at",
+        "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at, upload_complete, expected_attachment_count",
       )
       .single();
 
     if (updateError || !updatedRequest) {
-      setError(updateError?.message ?? "We could not update the request status.");
+      setError(
+        updateError?.message ?? "We could not update the request status.",
+      );
       setSavingStatus(null);
       return;
     }
@@ -337,7 +363,7 @@ export function AdminRequestDetail() {
       })
       .eq("id", data.request.id)
       .select(
-        "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at",
+        "id, client_id, website_id, service_id, title, request_type, description, location_on_site, replacement_text, desired_timing, additional_notes, status, client_visible_completion_note, created_at, updated_at, completed_at, upload_complete, expected_attachment_count",
       )
       .single();
 
@@ -379,7 +405,9 @@ export function AdminRequestDetail() {
       .single();
 
     if (noteError || !savedNote) {
-      setError(noteError?.message ?? "We could not save the private admin note.");
+      setError(
+        noteError?.message ?? "We could not save the private admin note.",
+      );
       setSavingInternalNote(false);
       return;
     }
@@ -397,9 +425,38 @@ export function AdminRequestDetail() {
     setSavingInternalNote(false);
   }
 
+  async function logTime() {
+    if (!supabase || !data || savingTime) return;
+    const value = Number(minutes);
+    if (!Number.isInteger(value) || value < 1 || value > 1440) {
+      setTimeMessage("Enter between 1 and 1440 whole minutes.");
+      return;
+    }
+    setSavingTime(true);
+    setTimeMessage("");
+    try {
+      const result = await supabase
+        .from("request_work_logs")
+        .insert({ request_id: data.request.id, minutes: value });
+      if (result.error) throw result.error;
+      setWorkTotal((total) => total + value);
+      setMinutes("");
+      setTimeMessage("Work time saved privately.");
+    } catch {
+      setTimeMessage(
+        "We could not save work time. Check the record before retrying.",
+      );
+    } finally {
+      setSavingTime(false);
+    }
+  }
+
   async function openAttachment(attachment: Attachment) {
     if (!supabase) return;
 
+    const opened = window.open("about:blank", "_blank");
+    if (opened) opened.opener = null;
+    setFileLink("");
     setOpeningFile(attachment.id);
     setError("");
 
@@ -410,11 +467,13 @@ export function AdminRequestDetail() {
     setOpeningFile("");
 
     if (signedError || !signedData?.signedUrl) {
+      opened?.close();
       setError("We could not open that file. Please try again.");
       return;
     }
 
-    window.open(signedData.signedUrl, "_blank", "noopener,noreferrer");
+    if (opened) opened.location.replace(signedData.signedUrl);
+    else setFileLink(signedData.signedUrl);
   }
 
   if (error && !data) {
@@ -462,14 +521,60 @@ export function AdminRequestDetail() {
             <p className={styles.eyebrow}>Client request</p>
             <h1>{request.title || requestTypeLabel(request.request_type)}</h1>
             <p className={styles.intro}>
-              {client.business_name || client.contact_name} • {client.contact_name}
+              {client.business_name || client.contact_name} •{" "}
+              {client.contact_name}
             </p>
           </div>
           <span className={styles["status_" + request.status]}>
             {statusLabel(request.status)}
           </span>
         </header>
+        {!request.upload_complete && (
+          <div className={styles.statusPanel} role="status">
+            <strong>
+              Files still uploading: {attachments.length} of{" "}
+              {request.expected_attachment_count} received.
+            </strong>
+            <p>This request is saved, but its attachments are incomplete.</p>
+          </div>
+        )}
+        {fileLink && (
+          <p role="status">
+            Your browser blocked the new window.{" "}
+            <a href={fileLink} target="_blank" rel="noopener noreferrer">
+              Open file
+            </a>{" "}
+            (link expires shortly).
+          </p>
+        )}
 
+        <section className={styles.statusPanel}>
+          <h2>Private work time</h2>
+          <p>
+            {workTotal} minutes logged for this request. Visible to
+            administrators only.
+          </p>
+          <label>
+            Minutes to add{" "}
+            <input
+              type="number"
+              min="1"
+              max="1440"
+              step="1"
+              value={minutes}
+              onChange={(e) => setMinutes(e.target.value)}
+            />
+          </label>
+          <button
+            type="button"
+            className={styles.statusButton}
+            disabled={savingTime}
+            onClick={() => void logTime()}
+          >
+            {savingTime ? "Saving…" : "Log time"}
+          </button>
+          {timeMessage && <p role="status">{timeMessage}</p>}
+        </section>
         <section className={styles.statusPanel}>
           <div className={styles.statusPanelHeading}>
             <div>
@@ -481,7 +586,11 @@ export function AdminRequestDetail() {
             </span>
           </div>
 
-          <div className={styles.statusActions} role="group" aria-label="Request status">
+          <div
+            className={styles.statusActions}
+            role="group"
+            aria-label="Request status"
+          >
             {(["received", "working", "complete"] as RequestStatus[]).map(
               (status) => {
                 const active = request.status === status;
@@ -491,9 +600,15 @@ export function AdminRequestDetail() {
                   <button
                     key={status}
                     type="button"
-                    className={active ? styles.statusButtonActive : styles.statusButton}
+                    className={
+                      active ? styles.statusButtonActive : styles.statusButton
+                    }
                     onClick={() => changeStatus(status)}
-                    disabled={active || savingStatus !== null}
+                    disabled={
+                      active ||
+                      savingStatus !== null ||
+                      (status === "complete" && !request.upload_complete)
+                    }
                     aria-pressed={active}
                   >
                     {saving ? "Saving…" : statusLabel(status)}
@@ -527,7 +642,9 @@ export function AdminRequestDetail() {
               placeholder="Example: I updated your Saturday hours and phone number on the Contact page and footer."
             />
             <div className={styles.noteActions}>
-              <span>This appears on the client&apos;s request detail page.</span>
+              <span>
+                This appears on the client&apos;s request detail page.
+              </span>
               <button
                 type="button"
                 onClick={saveCompletionNote}
@@ -569,13 +686,19 @@ export function AdminRequestDetail() {
         <section className={styles.details}>
           <h2>Request details</h2>
           <DetailRow label={descriptionLabel} value={request.description} />
-          <DetailRow label="Where on the site?" value={request.location_on_site} />
+          <DetailRow
+            label="Where on the site?"
+            value={request.location_on_site}
+          />
           <DetailRow
             label="Replacement text / instructions"
             value={request.replacement_text}
           />
           <DetailRow label="Timing" value={request.desired_timing} />
-          <DetailRow label="Additional notes" value={request.additional_notes} />
+          <DetailRow
+            label="Additional notes"
+            value={request.additional_notes}
+          />
           {request.client_visible_completion_note ? (
             <DetailRow
               label="Completion note"
@@ -606,7 +729,10 @@ export function AdminRequestDetail() {
                   <div>
                     <strong>{attachment.original_filename}</strong>
                     <span>
-                      {[attachment.mime_type, formatBytes(attachment.size_bytes)]
+                      {[
+                        attachment.mime_type,
+                        formatBytes(attachment.size_bytes),
+                      ]
                         .filter(Boolean)
                         .join(" • ")}
                     </span>
@@ -634,7 +760,8 @@ export function AdminRequestDetail() {
           </div>
 
           <p className={styles.internalNotesHelp}>
-            These notes are only visible to portal administrators. Clients never see them.
+            These notes are only visible to portal administrators. Clients never
+            see them.
           </p>
 
           <textarea
@@ -652,7 +779,11 @@ export function AdminRequestDetail() {
             <button
               type="button"
               onClick={addInternalNote}
-              disabled={savingInternalNote || !internalNote.trim() || internalNote.length > 2000}
+              disabled={
+                savingInternalNote ||
+                !internalNote.trim() ||
+                internalNote.length > 2000
+              }
             >
               {savingInternalNote ? "Saving…" : "Add private note"}
             </button>
@@ -705,13 +836,7 @@ export function AdminRequestDetail() {
   );
 }
 
-function DetailRow({
-  label,
-  value,
-}: {
-  label: string;
-  value: string | null;
-}) {
+function DetailRow({ label, value }: { label: string; value: string | null }) {
   return (
     <div className={styles.detailRow}>
       <span>{label}</span>

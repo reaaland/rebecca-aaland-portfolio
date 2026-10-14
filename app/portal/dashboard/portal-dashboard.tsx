@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { clearUserDrafts } from "@/lib/portal/drafts";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./portal-dashboard.module.css";
 
@@ -33,6 +34,8 @@ type RequestRecord = {
   request_type: string;
   status: "received" | "working" | "complete";
   created_at: string;
+  upload_complete: boolean;
+  expected_attachment_count: number;
 };
 
 type AdminRequestRecord = RequestRecord & {
@@ -57,25 +60,29 @@ type DashboardData = {
 const requestTypes = [
   {
     title: "Update something on my website",
-    description: "Change text, photos, links, or another part of an existing page.",
+    description:
+      "Change text, photos, links, or another part of an existing page.",
     icon: "edit",
     href: "/portal/requests/new/website-update",
   },
   {
     title: "Upload photos",
-    description: "Send new photos or files and keep them with the request they belong to.",
+    description:
+      "Send new photos or files and keep them with the request they belong to.",
     icon: "image",
     href: "/portal/requests/new/upload-photos",
   },
   {
     title: "Change business information",
-    description: "Update hours, contact details, services, pricing, or other business information.",
+    description:
+      "Update hours, contact details, services, pricing, or other business information.",
     icon: "business",
     href: "/portal/requests/new/change-business-information",
   },
   {
     title: "Add something new",
-    description: "Request a new page, section, feature, or other addition to your site.",
+    description:
+      "Request a new page, section, feature, or other addition to your site.",
     icon: "plus",
     href: "/portal/requests/new/add-something-new",
   },
@@ -91,11 +98,15 @@ const navItems = [
   { label: "Dashboard", target: "top", active: true },
   { label: "Requests", target: "requests" },
   { label: "Services", target: "services" },
-  { label: "Billing", target: "billing", badge: "Phase 2" },
+  { label: "Billing", target: "billing" },
   { label: "Account", target: "account" },
 ];
 
-function RequestIcon({ name }: { name: (typeof requestTypes)[number]["icon"] }) {
+function RequestIcon({
+  name,
+}: {
+  name: (typeof requestTypes)[number]["icon"];
+}) {
   const paths = {
     edit: (
       <>
@@ -158,13 +169,29 @@ function requestTypeLabel(type: string) {
 export function PortalDashboard() {
   const supabase = useMemo(() => createClient(), []);
   const [data, setData] = useState<DashboardData | null>(null);
-  const [error, setError] = useState("");
+  const [error, setError] = useState(
+    !supabase
+      ? "Portal access is unavailable. Please contact Aaland for help."
+      : "",
+  );
   const [signingOut, setSigningOut] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [statusFilter, setStatusFilter] = useState("all");
+  const [clientFilter, setClientFilter] = useState("");
+  const [queuePage, setQueuePage] = useState(0);
+  const [queueTotal, setQueueTotal] = useState(0);
+  const [queueClients, setQueueClients] = useState<
+    Array<{ id: string; contact_name: string; business_name: string | null }>
+  >([]);
+  const [adminCounts, setAdminCounts] = useState({
+    received: 0,
+    working: 0,
+    complete: 0,
+  });
+  const [adminFileCount, setAdminFileCount] = useState(0);
 
   useEffect(() => {
     if (!supabase) {
-      setError("Portal authentication is not configured in this environment.");
       return;
     }
 
@@ -183,20 +210,22 @@ export function PortalDashboard() {
 
       const user = authData.user;
 
-      const [{ data: adminRows, error: adminError }, { data: clientRows, error: clientError }] =
-        await Promise.all([
-          client
-            .from("portal_admins")
-            .select("user_id")
-            .eq("user_id", user.id)
-            .limit(1),
-          client
-            .from("clients")
-            .select("id, contact_name, business_name")
-            .eq("auth_user_id", user.id)
-            .eq("status", "active")
-            .limit(1),
-        ]);
+      const [
+        { data: adminRows, error: adminError },
+        { data: clientRows, error: clientError },
+      ] = await Promise.all([
+        client
+          .from("portal_admins")
+          .select("user_id")
+          .eq("user_id", user.id)
+          .limit(1),
+        client
+          .from("clients")
+          .select("id, contact_name, business_name")
+          .eq("auth_user_id", user.id)
+          .eq("status", "active")
+          .limit(1),
+      ]);
 
       if (!active) return;
 
@@ -209,7 +238,9 @@ export function PortalDashboard() {
       const portalClient = clientRows?.[0] ?? null;
 
       if (!isAdmin && !portalClient) {
-        setError("Your sign-in is valid, but this portal account is not linked to an active client record.");
+        setError(
+          "Your sign-in is valid, but this portal account is not linked to an active client record.",
+        );
         return;
       }
 
@@ -219,22 +250,69 @@ export function PortalDashboard() {
       let adminRequests: AdminRequestRecord[] = [];
 
       if (isAdmin) {
-        const { data: requestRows, error: requestError } = await client
+        let requestQuery = client
           .from("service_requests")
-          .select("id, client_id, title, description, request_type, status, created_at")
-          .order("created_at", { ascending: false });
-
+          .select(
+            "id, client_id, title, description, request_type, status, created_at, upload_complete, expected_attachment_count",
+            { count: "exact" },
+          )
+          .order("created_at", { ascending: false })
+          .order("id")
+          .range(queuePage * 20, queuePage * 20 + 19);
+        if (clientFilter)
+          requestQuery = requestQuery.eq("client_id", clientFilter);
+        if (statusFilter === "pending_upload")
+          requestQuery = requestQuery.eq("upload_complete", false);
+        else if (statusFilter !== "all")
+          requestQuery = requestQuery.eq("status", statusFilter);
+        const [result, directory, received, working, complete, fileCount] =
+          await Promise.all([
+            requestQuery,
+            client
+              .from("clients")
+              .select("id, contact_name, business_name")
+              .order("contact_name"),
+            client
+              .from("service_requests")
+              .select("id", { count: "exact", head: true })
+              .eq("status", "received"),
+            client
+              .from("service_requests")
+              .select("id", { count: "exact", head: true })
+              .eq("status", "working"),
+            client
+              .from("service_requests")
+              .select("id", { count: "exact", head: true })
+              .eq("status", "complete"),
+            client
+              .from("request_attachments")
+              .select("id", { count: "exact", head: true }),
+          ]);
         if (!active) return;
-
-        if (requestError) {
+        if (
+          [result, directory, received, working, complete, fileCount].some(
+            (item) => item.error,
+          )
+        ) {
           setError("We could not load client requests. Please try again.");
           return;
         }
+        const requestRows = result.data;
+        setQueueTotal(result.count ?? 0);
+        setQueueClients(directory.data ?? []);
+        setAdminCounts({
+          received: received.count ?? 0,
+          working: working.count ?? 0,
+          complete: complete.count ?? 0,
+        });
+        setAdminFileCount(fileCount.count ?? 0);
 
         const rawRequests = (requestRows ?? []) as Array<
           RequestRecord & { client_id: string; description: string }
         >;
-        const clientIds = [...new Set(rawRequests.map((request) => request.client_id))];
+        const clientIds = [
+          ...new Set(rawRequests.map((request) => request.client_id)),
+        ];
         const requestIds = rawRequests.map((request) => request.id);
 
         let clientDetails: Array<{
@@ -267,7 +345,9 @@ export function PortalDashboard() {
             .in("request_id", requestIds);
 
           if (attachmentError) {
-            setError("We could not load request file information. Please try again.");
+            setError(
+              "We could not load request file information. Please try again.",
+            );
             return;
           }
 
@@ -298,30 +378,36 @@ export function PortalDashboard() {
       }
 
       if (portalClient) {
-        const [websiteResult, serviceResult, requestResult] = await Promise.all([
-          client
-            .from("client_websites")
-            .select("id, name, url, is_primary")
-            .eq("client_id", portalClient.id)
-            .order("is_primary", { ascending: false })
-            .limit(1),
-          client
-            .from("client_services")
-            .select("id, service_name, client_visible_summary")
-            .eq("client_id", portalClient.id)
-            .eq("status", "active")
-            .limit(1),
-          client
-            .from("service_requests")
-            .select("id, title, request_type, status, created_at")
-            .eq("client_id", portalClient.id)
-            .order("created_at", { ascending: false }),
-        ]);
+        const [websiteResult, serviceResult, requestResult] = await Promise.all(
+          [
+            client
+              .from("client_websites")
+              .select("id, name, url, is_primary")
+              .eq("client_id", portalClient.id)
+              .order("is_primary", { ascending: false })
+              .limit(1),
+            client
+              .from("client_services")
+              .select("id, service_name, client_visible_summary")
+              .eq("client_id", portalClient.id)
+              .eq("status", "active")
+              .limit(1),
+            client
+              .from("service_requests")
+              .select(
+                "id, title, request_type, status, created_at, upload_complete, expected_attachment_count",
+              )
+              .eq("client_id", portalClient.id)
+              .order("created_at", { ascending: false }),
+          ],
+        );
 
         if (!active) return;
 
         if (websiteResult.error || serviceResult.error || requestResult.error) {
-          setError("We could not load all of your portal information. Please try again.");
+          setError(
+            "We could not load all of your portal information. Please try again.",
+          );
           return;
         }
 
@@ -346,7 +432,7 @@ export function PortalDashboard() {
     return () => {
       active = false;
     };
-  }, [supabase]);
+  }, [supabase, queuePage, statusFilter, clientFilter]);
 
   function scrollToPortalSection(target: string) {
     if (target === "top") {
@@ -364,6 +450,8 @@ export function PortalDashboard() {
     if (!supabase) return;
 
     setSigningOut(true);
+    const { data: auth } = await supabase.auth.getUser();
+    if (auth.user) await clearUserDrafts(auth.user.id).catch(() => undefined);
     await supabase.auth.signOut();
     window.location.replace("/portal/login");
   }
@@ -391,15 +479,7 @@ export function PortalDashboard() {
   const displayName =
     data.client?.business_name || data.client?.contact_name || "Aaland portal";
   const firstName = data.client?.contact_name?.split(" ")[0] ?? "Rebecca";
-  const adminCounts = {
-    received: data.adminRequests.filter((request) => request.status === "received").length,
-    working: data.adminRequests.filter((request) => request.status === "working").length,
-    complete: data.adminRequests.filter((request) => request.status === "complete").length,
-  };
-  const adminFileCount = data.adminRequests.reduce(
-    (total, request) => total + request.attachmentCount,
-    0,
-  );
+  const visibleAdminRequests = data.adminRequests;
 
   return (
     <main className={styles.page}>
@@ -415,7 +495,9 @@ export function PortalDashboard() {
             className={styles.mobileMenuButton}
             aria-expanded={mobileMenuOpen}
             aria-controls="portal-navigation"
-            aria-label={mobileMenuOpen ? "Close portal menu" : "Open portal menu"}
+            aria-label={
+              mobileMenuOpen ? "Close portal menu" : "Open portal menu"
+            }
             onClick={() => setMobileMenuOpen((open) => !open)}
           >
             <span />
@@ -424,7 +506,11 @@ export function PortalDashboard() {
           </button>
         </div>
 
-        <nav id="portal-navigation" className={styles.nav} aria-label="Client portal">
+        <nav
+          id="portal-navigation"
+          className={styles.nav}
+          aria-label="Client portal"
+        >
           {navItems.map((item) => (
             <button
               key={item.label}
@@ -436,13 +522,14 @@ export function PortalDashboard() {
               className={item.active ? styles.navActive : styles.navLink}
             >
               <span>{item.label}</span>
-              {item.badge ? <small>{item.badge}</small> : null}
             </button>
           ))}
         </nav>
 
         <div className={styles.sidebarFooter}>
-          <span>{data.role === "admin" ? "Portal administrator" : displayName}</span>
+          <span>
+            {data.role === "admin" ? "Portal administrator" : displayName}
+          </span>
           <small>{data.email}</small>
           <button type="button" onClick={signOut} disabled={signingOut}>
             {signingOut ? "Signing out…" : "Sign out"}
@@ -454,7 +541,9 @@ export function PortalDashboard() {
         <header className={styles.topbar}>
           <div>
             <p className={styles.eyebrow}>
-              {data.role === "admin" ? "Portal administration" : "Client portal"}
+              {data.role === "admin"
+                ? "Portal administration"
+                : "Client portal"}
             </p>
             <h1>Hi, {firstName}.</h1>
           </div>
@@ -491,13 +580,16 @@ export function PortalDashboard() {
             </div>
           </section>
         ) : (
-          <section className={styles.requestHero} aria-labelledby="help-heading">
+          <section
+            className={styles.requestHero}
+            aria-labelledby="help-heading"
+          >
             <div className={styles.heroCopy}>
               <p className={styles.eyebrow}>Website support</p>
               <h2 id="help-heading">What do you need help with?</h2>
               <p>
-                Choose the closest option. The request form will only ask for the
-                information needed to complete your update.
+                Choose the closest option. The request form will only ask for
+                the information needed to complete your update.
               </p>
             </div>
 
@@ -532,15 +624,13 @@ export function PortalDashboard() {
               <div>
                 <p className={styles.eyebrow}>Requests</p>
                 <h2>
-                  {data.role === "admin"
-                    ? "Client requests"
-                    : "Your requests"}
+                  {data.role === "admin" ? "Client requests" : "Your requests"}
                 </h2>
               </div>
               <span className={styles.quietBadge}>
                 {data.role === "admin"
                   ? data.adminRequests.length
-                    ? data.adminRequests.length + " total"
+                    ? queueTotal + " matching"
                     : "None yet"
                   : data.requests.length
                     ? data.requests.length + " total"
@@ -548,10 +638,50 @@ export function PortalDashboard() {
               </span>
             </div>
 
+            {data.role === "admin" && (
+              <div className={styles.queueFilters}>
+                <label>
+                  Status
+                  <select
+                    value={statusFilter}
+                    onChange={(e) => {
+                      setStatusFilter(e.target.value);
+                      setQueuePage(0);
+                    }}
+                  >
+                    <option value="all">All statuses</option>
+                    <option value="received">Received</option>
+                    <option value="working">Working on it</option>
+                    <option value="complete">Complete</option>
+                    <option value="pending_upload">
+                      Files still uploading
+                    </option>
+                  </select>
+                </label>
+                <label>
+                  Client
+                  <select
+                    value={clientFilter}
+                    onChange={(e) => {
+                      setClientFilter(e.target.value);
+                      setQueuePage(0);
+                    }}
+                  >
+                    <option value="">All clients</option>
+                    {queueClients.map((client) => (
+                      <option key={client.id} value={client.id}>
+                        {client.business_name || client.contact_name}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+                <p role="status">{queueTotal} matching requests</p>
+              </div>
+            )}
             {data.role === "admin" ? (
-              data.adminRequests.length ? (
+              visibleAdminRequests.length ? (
                 <div className={styles.adminRequestList}>
-                  {data.adminRequests.map((request) => (
+                  {visibleAdminRequests.map((request) => (
                     <Link
                       key={request.id}
                       href={"/portal/admin/requests/" + request.id}
@@ -571,7 +701,8 @@ export function PortalDashboard() {
                         </div>
                         <div className={styles.adminRequestSummary}>
                           <strong>
-                            {request.title || requestTypeLabel(request.request_type)}
+                            {request.title ||
+                              requestTypeLabel(request.request_type)}
                           </strong>
                           <span>{request.description}</span>
                         </div>
@@ -587,7 +718,9 @@ export function PortalDashboard() {
                         <span>
                           {request.attachmentCount
                             ? request.attachmentCount +
-                              (request.attachmentCount === 1 ? " file" : " files")
+                              (request.attachmentCount === 1
+                                ? " file"
+                                : " files")
                             : "No files"}
                         </span>
                         <span
@@ -599,14 +732,22 @@ export function PortalDashboard() {
                         >
                           {statusLabel(request.status)}
                         </span>
-                        <strong className={styles.openRequest}>Open request →</strong>
+                        {!request.upload_complete && (
+                          <strong>
+                            Files still uploading ({request.attachmentCount}/
+                            {request.expected_attachment_count})
+                          </strong>
+                        )}
+                        <strong className={styles.openRequest}>
+                          Open request →
+                        </strong>
                       </div>
                     </Link>
                   ))}
                 </div>
               ) : (
                 <div className={styles.emptyState}>
-                  <strong>No client requests yet.</strong>
+                  <strong>No requests match this view.</strong>
                   <p>
                     New client submissions will appear here as soon as they are
                     received.
@@ -623,7 +764,8 @@ export function PortalDashboard() {
                   >
                     <div>
                       <strong>
-                        {request.title || requestTypeLabel(request.request_type)}
+                        {request.title ||
+                          requestTypeLabel(request.request_type)}
                       </strong>
                       <span>
                         {new Intl.DateTimeFormat("en-US", {
@@ -636,12 +778,19 @@ export function PortalDashboard() {
                     <div className={styles.requestRowMeta}>
                       <span
                         className={
-                          styles.status + " " + styles["status_" + request.status]
+                          styles.status +
+                          " " +
+                          styles["status_" + request.status]
                         }
                       >
                         {statusLabel(request.status)}
                       </span>
-                      <strong className={styles.openRequest}>View request →</strong>
+                      {!request.upload_complete && (
+                        <strong>Files still uploading</strong>
+                      )}
+                      <strong className={styles.openRequest}>
+                        View request →
+                      </strong>
                     </div>
                   </Link>
                 ))}
@@ -657,6 +806,27 @@ export function PortalDashboard() {
             )}
           </section>
 
+          {data.role === "admin" && queueTotal > 20 && (
+            <div className={styles.queueFilters}>
+              <button
+                type="button"
+                disabled={queuePage === 0}
+                onClick={() => setQueuePage((page) => page - 1)}
+              >
+                Previous
+              </button>
+              <span>
+                Page {queuePage + 1} of {Math.ceil(queueTotal / 20)}
+              </span>
+              <button
+                type="button"
+                disabled={(queuePage + 1) * 20 >= queueTotal}
+                onClick={() => setQueuePage((page) => page + 1)}
+              >
+                Next
+              </button>
+            </div>
+          )}
           <section className={styles.panel} id="services">
             <div className={styles.panelHeading}>
               <div>
@@ -677,6 +847,11 @@ export function PortalDashboard() {
               <div className={styles.serviceCard}>
                 <span>Active</span>
                 <strong>{data.service.service_name}</strong>
+                <p>
+                  Your agreed plan defines included work. Additional work is
+                  quoted before it begins; requested completion dates need
+                  confirmation.
+                </p>
                 {data.service.client_visible_summary ? (
                   <p>{data.service.client_visible_summary}</p>
                 ) : null}
@@ -708,7 +883,10 @@ export function PortalDashboard() {
               <div className={styles.emptyState}>
                 <strong>
                   {adminFileCount
-                    ? adminFileCount + (adminFileCount === 1 ? " file received" : " files received")
+                    ? adminFileCount +
+                      (adminFileCount === 1
+                        ? " file received"
+                        : " files received")
                     : "No request files yet."}
                 </strong>
                 <p>
@@ -734,20 +912,24 @@ export function PortalDashboard() {
             )}
           </section>
 
-          <section className={styles.panel + " " + styles.billingPanel} id="billing">
+          <section
+            className={styles.panel + " " + styles.billingPanel}
+            id="billing"
+          >
             <div className={styles.panelHeading}>
               <div>
                 <p className={styles.eyebrow}>Billing</p>
                 <h2>Billing</h2>
               </div>
-              <span className={styles.phaseBadge}>Phase 2</span>
             </div>
             <p className={styles.panelText}>
-              Billing will live here later. For the MVP, website requests,
-              files, and service information come first.
+              Continue using your usual invoice or payment link. For billing
+              questions, contact Aaland before submitting payment details here.
             </p>
           </section>
         </div>
+
+        <p className={styles.panelText}>Need help? <a href="mailto:rebecca@rebeccaiaaland.com">Contact Rebecca</a>.</p>
 
         <section className={styles.accountSection} id="account">
           <div>
