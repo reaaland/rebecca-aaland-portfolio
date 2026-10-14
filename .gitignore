@@ -31,3 +31,6 @@ next-env.d.ts
 
 # Vercel's local project connection
 .vercel
+
+# Supabase CLI state
+supabase/.temp/

@@ -17,7 +17,7 @@ export default function TermsPage() {
         <section className="page-hero shell">
           <p className="eyebrow">Terms</p>
           <h1>Terms of Service</h1>
-          <p>Effective September 22, 2026</p>
+          <p>Effective October 12, 2026</p>
         </section>
 
         <section className="legal-copy shell">
@@ -30,9 +30,10 @@ export default function TermsPage() {
 
           <h2>Website use</h2>
           <p>
-            This website provides general information about Aaland Web Design & Business Solutions, Rebecca Aaland&apos;s work, services, pricing, portfolio,
-            and ways to get in touch. You may use the site for lawful personal
-            or business purposes.
+            This website provides general information about Aaland Web Design &amp;
+            Business Solutions, Rebecca Aaland&apos;s work, services, pricing,
+            portfolio, and ways to get in touch. You may use the site for lawful
+            personal or business purposes.
           </p>
 
           <h2>Service information and pricing</h2>
@@ -50,6 +51,40 @@ export default function TermsPage() {
             agreement for that project controls if it conflicts with these
             website terms. Contracts and invoices may identify PawCircle LLC as
             the legal entity providing the services.
+          </p>
+
+          <h2>Client Portal access</h2>
+          <p>
+            The Aaland Client Portal is provided to approved clients for
+            submitting website service requests, sharing project information and
+            files, and viewing request status. Portal access is invitation-only
+            and is associated with the approved client email address.
+          </p>
+          <p>
+            Clients are responsible for using an email account they control and
+            for protecting access to their email or Google account. Portal access
+            may be suspended or removed when a client relationship ends, an
+            account becomes inactive, or access is reasonably believed to be
+            unauthorized or unsafe.
+          </p>
+
+          <h2>Portal requests do not automatically change project scope</h2>
+          <p>
+            Submitting a request through the Client Portal confirms receipt of
+            the request; it does not by itself create a new contract, approve an
+            additional charge, guarantee a completion date, or expand the work
+            included in an existing agreement. If a request falls outside the
+            agreed service or requires additional cost or timing, those details
+            will be discussed separately.
+          </p>
+
+          <h2>Client-provided content and files</h2>
+          <p>
+            Clients should upload only content and files they are authorized to
+            use and share for the requested work. By submitting content through
+            the Client Portal, the client gives Aaland Web Design &amp; Business
+            Solutions permission to access, store, review, and use that material
+            as reasonably needed to perform the requested services.
           </p>
 
           <h2>Intellectual property</h2>
@@ -72,31 +107,33 @@ export default function TermsPage() {
 
           <h2>Third-party services and links</h2>
           <p>
-            This site may link to or display information from third-party
-            services. Aaland Web Design & Business Solutions does not control those
-            services and is not responsible for their availability, content,
-            policies, or security.
+            This site and Client Portal may rely on or link to third-party
+            services. Aaland Web Design &amp; Business Solutions does not control
+            those services and is not responsible for their availability,
+            content, policies, or security.
           </p>
 
           <h2>No guarantee of uninterrupted availability</h2>
           <p>
-            Reasonable care is taken to keep this website accurate and
-            available, but no guarantee is made that every page, feature, link,
-            or third-party integration will always be available or error-free.
+            Reasonable care is taken to keep this website and Client Portal
+            accurate and available, but no guarantee is made that every page,
+            feature, link, authentication provider, file service, or other
+            third-party integration will always be available or error-free.
           </p>
 
           <h2>Limitation</h2>
           <p>
-            To the extent permitted by law, Aaland Web Design & Business Solutions is not
-            responsible for indirect or consequential loss arising solely from
-            use of this informational website or reliance on third-party content
-            displayed here.
+            To the extent permitted by law, Aaland Web Design &amp; Business
+            Solutions is not responsible for indirect or consequential loss
+            arising solely from use of this informational website or reliance on
+            third-party content displayed here.
           </p>
 
           <h2>Changes to these terms</h2>
           <p>
-            These terms may be updated as the website or services change. The
-            effective date at the top of the page will reflect material updates.
+            These terms may be updated as the website, Client Portal, or services
+            change. The effective date at the top of the page will reflect
+            material updates.
           </p>
 
           <h2>Contact</h2>

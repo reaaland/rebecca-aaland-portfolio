@@ -78,6 +78,14 @@ export function SiteHeader() {
           </Link>
         ))}
 
+        <Link
+          className="nav-portal"
+          href="/portal/login"
+          onClick={() => setMenuOpen(false)}
+        >
+          Client Portal
+        </Link>
+
         <div className="mobile-theme-row">
           <ThemeToggle />
         </div>
