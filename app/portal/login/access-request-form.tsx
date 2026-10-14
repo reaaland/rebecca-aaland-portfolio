@@ -19,8 +19,10 @@ export function AccessRequestForm({ defaultEmail = "" }: { defaultEmail?: string
   const [state, setState] = useState<RequestState>({ kind: "idle" });
 
   useEffect(() => {
-    if (defaultEmail && !email) setEmail(defaultEmail);
-  }, [defaultEmail, email]);
+    if (defaultEmail) {
+      setEmail((current) => current || defaultEmail);
+    }
+  }, [defaultEmail]);
 
   async function submitRequest(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
