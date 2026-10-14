@@ -1,10 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
 import { FormEvent, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { clearUserDrafts } from "@/lib/portal/drafts";
+import { AccessRequestForm } from "./access-request-form";
 import { createClient } from "@/lib/supabase/client";
 import styles from "./portal-login.module.css";
 
@@ -337,14 +337,7 @@ export function PortalLoginCard() {
             </div>
           ) : null}
 
-          <p className={styles.inviteNote}>
-            Portal access is available to approved Aaland clients. If you need
-            access,{" "}
-            <Link href="/contact">
-              contact Aaland Web Design &amp; Business Solutions
-            </Link>
-            .
-          </p>
+          <AccessRequestForm defaultEmail={email} />
         </>
       )}
     </section>
