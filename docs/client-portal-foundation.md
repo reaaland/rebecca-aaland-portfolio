@@ -123,6 +123,46 @@ Server-side bucket restrictions:
 The browser performs matching extension/size validation, but Storage restrictions
 remain the server-side enforcement layer.
 
+## Backup and recovery
+
+Database protection:
+
+- Supabase organization plan: Pro.
+- Automatic daily physical database backups are enabled.
+- The current Pro retention window is seven days.
+- Point-in-Time Recovery is not required for the portal's current scale.
+- Restore database state from **Supabase → Database → Backups → Scheduled**.
+
+Private-file protection:
+
+- Supabase database backups include Storage metadata but do **not** include the
+  uploaded file bytes in `client-request-files`.
+- Maintain a separate authenticated off-site copy in the business Google Drive.
+- Backup destination:
+  `Aaland Web Design & Business Solutions / Client Portal / Backups / Supabase Storage / YYYY-MM-DD`
+- Create one dated folder for each backup run and copy the private
+  `client-request-files` objects into it.
+- Minimum operating cadence: weekly while the portal contains active client
+  files, plus an extra backup before destructive Storage cleanup or a major
+  migration.
+- Keep this Drive hierarchy private to the business account; do not make client
+  backup folders publicly link-accessible.
+
+Recovery procedure:
+
+1. Restore the database from the closest appropriate Supabase scheduled backup.
+2. Identify any Storage objects that are missing from the restored/current
+   `client-request-files` bucket.
+3. Restore the corresponding files from the latest appropriate dated Google
+   Drive backup while preserving their original Storage object paths.
+4. Verify attachment metadata, private Storage access, and client/admin file
+   opening after recovery.
+5. Test the procedure with synthetic data before relying on it for real client
+   recovery.
+
+Initial backup hierarchy created October 13, 2026. The first dated folder is
+`2026-10-13`.
+
 ## Tracked remote migrations
 
 - `20260927213028_initial_portal_foundation`
@@ -251,7 +291,9 @@ its existing unused password-flow warning remains.
 - Phone/narrow-screen QA and real Safari/Chrome file opening.
 - HTTP/API isolation and signed-file tests with two real test sessions; inactive
   sign-in flow and already-issued signed-link expiry behavior.
-- Confirm database and uploaded-file backup/restore coverage before real data.
+- Database backup coverage is confirmed. Complete the first off-site private-file
+  copy to the documented Google Drive backup folder and verify one synthetic
+  file recovery before relying on the process for real client data.
 - Rebecca's explicit merge approval, then production smoke test.
 
 ## Operating checklist
@@ -274,10 +316,12 @@ can cascade through requests and metadata but does not constitute a Storage-file
 cleanup process: remove files through the Storage API under authorized admin
 access and verify cleanup separately. Do not delete directly from Storage SQL.
 
-Backup: verify the actual Supabase plan's database retention and recovery, and
-maintain an authenticated private-file backup if needed. A database backup alone
-must not be treated as a backup of uploaded file bytes. Restore a synthetic
-request plus file in an isolated environment before relying on the process.
+Backup: Supabase Pro daily physical database backups are confirmed with a
+seven-day retention window. Back up `client-request-files` weekly to the private
+business Google Drive hierarchy documented above, using a new dated folder for
+each run. A database backup alone must not be treated as a backup of uploaded
+file bytes. Restore a synthetic request plus file in an isolated environment
+before relying on the process.
 
 Notifications, integrated billing, and formal retention durations remain owner
 choices. No emails were sent, no paid resources were provisioned, and no client
