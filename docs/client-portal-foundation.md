@@ -44,13 +44,15 @@ Portal access is approval-based. The Before User Created hook
 only for an approved active client email or an approved portal administrator.
 
 An unapproved visitor can submit a portal access request from the sign-in page.
-The request is stored separately from Auth and client records. Rebecca receives
-an email notification and can approve or reject it from the administrator
-dashboard. Rejection requires a reason. Approval creates or reactivates the
-active client record before the requester is emailed; that active client record
-immediately satisfies the existing Auth hook, so the approved email can then
-sign in with Google or a secure email link. No Supabase Auth user is created
-merely by requesting access.
+The anonymous submission is limited to a pending-only RLS insert with database
+length/format constraints; anonymous users cannot read or decide requests.
+Rebecca receives an email notification and can approve or reject the request
+from the administrator dashboard. Rejection requires a reason. The decision
+RPC is SECURITY INVOKER and runs under the signed-in administrator's existing
+RLS permissions. Approval creates or reactivates the active client record before
+the requester is emailed; that active client record immediately satisfies the
+existing Auth hook, so the approved email can then sign in with Google or a
+secure email link. No Supabase Auth user is created merely by requesting access.
 
 Authentication identifies the user. Database RLS and private Storage policies,
 not navigation visibility, enforce client-to-client isolation.
@@ -184,6 +186,7 @@ Initial backup hierarchy created October 13, 2026. The first dated folder is
 - `20261014005914_portal_upload_recovery_and_work_tracking`
 - `20261014130517_update_portal_admin_invite_email`
 - `20261014132814_add_portal_access_approval_workflow`
+- `20261014133442_harden_portal_access_approval_workflow`
 
 A separate historical `noop_test_cleanup` migration exists remotely but did
 not introduce portal functionality.
@@ -251,6 +254,8 @@ Verified on the current preview / hosted project:
     verification: approval creates an active client and the Auth hook allows the
     email; rejection creates no client and the Auth hook continues to return
     403. The QA rows were rolled back.
+17. Supabase Security Advisor was rerun after hardening the access workflow; no
+    new schema/RLS or public SECURITY DEFINER findings remain.
 
 Remaining operational cleanup before relying on backups for real client files:
 
