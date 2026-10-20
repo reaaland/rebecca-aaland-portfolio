@@ -196,8 +196,8 @@ export default function SummaristCaseStudy() {
               </h2>
 
               <p>
-                Summarist shows a different kind of work from PawCircle. I did
-                not define the product or visual direction myself. The value is
+                For Summarist, I implemented a supplied product brief and
+                visual direction. The value is
                 in following the project requirements, working through app
                 state and authentication, connecting multiple routes and data
                 sources, and debugging the flow until the pieces worked

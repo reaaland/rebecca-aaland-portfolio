@@ -11,7 +11,7 @@ export function SiteFooter() {
       </div>
 
       <p>
-        Based in Rochester, Minnesota. Working with small businesses and organizations locally and beyond. Aaland Web Design &amp; Business Solutions is operated by PawCircle LLC.
+        Based in Rochester, Minnesota. Working with small businesses and organizations locally and beyond.
       </p>
 
       <nav aria-label="Footer navigation">

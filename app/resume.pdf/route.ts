@@ -105,7 +105,7 @@ function buildResumePdf() {
 
   y = heading(y, "Selected Development Projects");
 
-  text(50, y, 9.9, "PawCircle Membership", "F2", navy);
+  text(50, y, 9.9, "Pet-care Membership Platform", "F2", navy);
   text(390, y, 8.3, "React / Supabase / Stripe", "F1", gray);
   y -= 12;
   y = bullet(y, [
@@ -158,7 +158,7 @@ function buildResumePdf() {
   ]);
   y -= 3;
 
-  text(50, y, 9.2, "Founder & Owner - PawCircle LLC / Aaland Web Design & Business Solutions", "F2", navy);
+  text(50, y, 9.2, "Founder & Owner - Aaland Web Design & Business Solutions", "F2", navy);
   y -= 11;
   text(50, y, 8.3, "2023-Present", "F1", gray);
   y -= 11;

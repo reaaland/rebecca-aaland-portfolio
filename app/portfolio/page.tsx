@@ -38,25 +38,6 @@ const projects = [
   },
   {
     number: "02",
-    label: "Independent product · From idea to launch",
-    title: "PawCircle Membership",
-    summary:
-      "I planned, built, launched, supported, and later converted a real paid pet-care membership product into an interactive portfolio demo after the paid model no longer made sense.",
-    proof: [
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "React",
-      "Responsive UI",
-      "Supabase",
-      "Stripe",
-      "Product ownership",
-    ],
-    href: "/work/pawcircle",
-    visual: "pawcircle",
-  },
-  {
-    number: "03",
     label: "Skinstric internship",
     title: "Skinstric",
     summary:
@@ -75,7 +56,7 @@ const projects = [
     visual: "skinstric",
   },
   {
-    number: "04",
+    number: "03",
     label: "Frontend development project",
     title: "Ultraverse NFT Marketplace",
     summary:
@@ -305,8 +286,8 @@ export default function Home() {
             </div>
 
             <p>
-              These projects show client website work, independent product
-              development, paid implementation work, and responsive
+              These projects show client website work, paid implementation
+              work, and responsive
               API-driven interfaces built from supplied requirements.
             </p>
           </div>
@@ -329,16 +310,6 @@ export default function Home() {
 
                   {project.title === "Minnlawn Lawn & Landscape" ? (
                     <MinnlawnProjectVisual />
-                  ) : project.title === "PawCircle Membership" ? (
-                    <div className="project-screenshot-frame">
-                      <Image
-                        src="/pawcircle-homepage.png"
-                        alt="PawCircle Membership homepage"
-                        width={1440}
-                        height={900}
-                        className="project-screenshot"
-                      />
-                    </div>
                   ) : project.title === "Skinstric" ? (
                     <div className="project-screenshot-frame">
                       <Image

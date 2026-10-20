@@ -17,13 +17,13 @@ export default function PrivacyPage() {
         <section className="page-hero shell">
           <p className="eyebrow">Privacy</p>
           <h1>Privacy Policy</h1>
-          <p>Effective October 12, 2026</p>
+          <p>Effective October 20, 2026</p>
         </section>
 
         <section className="legal-copy shell">
           <p>
-            Aaland Web Design &amp; Business Solutions is operated by PawCircle LLC.
-            This policy applies to rebeccaiaaland.com, the Aaland Client Portal,
+            This policy applies to Aaland Web Design &amp; Business Solutions,
+            rebeccaiaaland.com, the Aaland Client Portal,
             and information collected through the website in connection with
             those services.
           </p>
@@ -154,7 +154,7 @@ export default function PrivacyPage() {
           <h2>Contact</h2>
           <p>
             Questions about this privacy policy can be sent to{" "}
-            <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>.
+            <a href="mailto:rebecca@rebeccaiaaland.com">rebecca@rebeccaiaaland.com</a>.
           </p>
         </section>
       </main>
