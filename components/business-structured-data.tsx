@@ -7,7 +7,6 @@ const businessStructuredData = {
       "@type": "ProfessionalService",
       "@id": `${SITE_URL}/#business`,
       name: "Aaland Web Design & Business Solutions",
-      legalName: "PawCircle LLC",
       url: SITE_URL,
       founder: {
         "@id": `${SITE_URL}/#rebecca-aaland`,

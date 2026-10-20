@@ -108,7 +108,7 @@ export default function ResumePage() {
               <p className="eyebrow">Selected Development Projects</p>
 
               <article>
-                <h2>PawCircle Membership</h2>
+                <h2>Pet-care Membership Platform</h2>
                 <span>React · Supabase / PostgreSQL · Stripe</span>
                 <p>
                   Identified the need for a direct local pet-care membership
@@ -173,7 +173,7 @@ export default function ResumePage() {
 
               <article>
                 <h2>Founder &amp; Owner</h2>
-                <span>PawCircle LLC / Aaland Web Design &amp; Business Solutions · 2023–Present</span>
+                <span>Aaland Web Design &amp; Business Solutions · 2023–Present</span>
                 <p>
                   Built an independent pet-service business with approximately
                   95% repeat business, then transitioned the company into web

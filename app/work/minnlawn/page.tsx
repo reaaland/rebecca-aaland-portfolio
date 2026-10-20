@@ -203,7 +203,7 @@ export default function MinnlawnCaseStudy() {
 
         <section className="next-project shell" data-reveal>
           <p>Next case study</p>
-          <Link href="/work/pawcircle">PawCircle Membership &#8599;</Link>
+          <Link href="/work/mos">Majerus Outdoor Services &#8599;</Link>
         </section>
       </main>
 

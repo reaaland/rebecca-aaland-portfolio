@@ -186,8 +186,8 @@ export default function SkinstricCaseStudy() {
               </h2>
 
               <p>
-                Skinstric is different from PawCircle because I did not define
-                the product or visual design. The value of this project is in
+                For Skinstric, I implemented a supplied product and visual
+                design. The value of this project is in
                 the implementation: following supplied requirements, working
                 through unfamiliar browser APIs, connecting multiple states and
                 routes, and keeping the experience usable across screen sizes.

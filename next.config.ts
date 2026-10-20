@@ -11,6 +11,15 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/Rebecca-Aaland-Resume.pdf",
+        destination: "/resume.pdf",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

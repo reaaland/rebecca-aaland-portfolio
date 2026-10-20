@@ -17,15 +17,14 @@ export default function TermsPage() {
         <section className="page-hero shell">
           <p className="eyebrow">Terms</p>
           <h1>Terms of Service</h1>
-          <p>Effective October 12, 2026</p>
+          <p>Effective October 20, 2026</p>
         </section>
 
         <section className="legal-copy shell">
           <p>
-            Aaland Web Design &amp; Business Solutions is operated by PawCircle LLC.
-            Unless a written client agreement states otherwise, PawCircle LLC is
-            the legal business entity providing the services described on this
-            website.
+            These terms apply to the Aaland Web Design &amp; Business Solutions
+            website and Client Portal. The legal entity providing project
+            services is identified in the applicable written client agreement.
           </p>
 
           <h2>Website use</h2>
@@ -49,8 +48,8 @@ export default function TermsPage() {
             If you hire Aaland Web Design &amp; Business Solutions, the proposal,
             statement of work, contract, invoice terms, or other written client
             agreement for that project controls if it conflicts with these
-            website terms. Contracts and invoices may identify PawCircle LLC as
-            the legal entity providing the services.
+            website terms. Refer to your project agreement and invoice for the
+            legal entity providing the services.
           </p>
 
           <h2>Client Portal access</h2>
@@ -139,7 +138,7 @@ export default function TermsPage() {
           <h2>Contact</h2>
           <p>
             Questions about these terms can be sent to{" "}
-            <a href="mailto:reaaland@gmail.com">reaaland@gmail.com</a>.
+            <a href="mailto:rebecca@rebeccaiaaland.com">rebecca@rebeccaiaaland.com</a>.
           </p>
         </section>
       </main>
