@@ -101,6 +101,15 @@ export default function PrivacyPage() {
 
           <h2>Cookies and analytics</h2>
           <p>
+            Public pages use Google Analytics to measure visits and engagement.
+            Google Analytics may use cookies and process technical information
+            such as browser and device details, page addresses, and interactions.
+            This website does not intentionally send names, email addresses,
+            messages, or client request content to Google Analytics. Tracking is
+            excluded from Client Portal pages and is not enabled when your
+            browser sends Do Not Track or Global Privacy Control.
+          </p>
+          <p>
             The site may use cookies or similar technologies when needed for
             authentication, security, analytics, or other website functions. If
             analytics or other tools are added or changed, this policy will be

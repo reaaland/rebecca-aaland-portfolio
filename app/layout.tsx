@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { MotionController } from "@/components/motion-controller";
 import { BusinessStructuredData } from "@/components/business-structured-data";
+import { PublicAnalytics } from "@/components/public-analytics";
 import { SITE_URL } from "@/lib/site-metadata";
 import "./globals.css";
 import "./portfolio-enhancements.css";
@@ -67,6 +68,7 @@ export default function RootLayout({
     >
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <BusinessStructuredData />
+        <PublicAnalytics />
         <MotionController />
         {children}
       </body>
